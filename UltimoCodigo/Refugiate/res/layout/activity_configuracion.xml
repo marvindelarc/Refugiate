@@ -1,0 +1,131 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" 
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#B0E0E6"
+                android:text="Configuracion"
+                android:gravity="center"
+                android:textColor="#313131"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313133"
+                android:background="#B0E0E6"
+                android:text="Aqui puedes personalizar algunas funcionalidades de esta aplicacíon."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:textColor="#313131"
+                android:text="Tiempo de Actualización:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+             <Spinner
+                android:id="@+id/ComboTiempoActulizacion "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="95dp"
+                android:layout_marginLeft="95dp"/>
+            
+                        
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Tiempo Antes de Cada Reserva"
+                android:textSize="16sp" />
+
+              <Spinner
+                android:id="@+id/ComboTiempoPrevioReserva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="85dp"
+                android:layout_marginLeft="85dp" />
+                
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Tipo de Propagandas: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+                <Spinner
+                android:id="@+id/ComboTipoPropagandas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp" />
+              
+                <CheckBox
+                android:id="@+id/chbRepetir"
+                android:textColor="#313131"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chbRepetir"
+                android:text="Desea repetir el aviso de su reserva."/>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             android:id="@+id/ViewChbRepetir"
+                   android:orientation="vertical" >
+              
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Tiempo que desea Repetir: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+           <Spinner
+                android:id="@+id/ComboRepetirTiempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="80dp"
+                android:layout_marginLeft="80dp" />
+            </LinearLayout>
+
+            <Button
+                android:onClick="btnAceptar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1E90FF"
+                android:minHeight="30dip"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp" 
+                android:text="Aceptar"
+                android:textSize="20sp"/>
+            
+            
+            
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

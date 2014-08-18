@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">4dp</dimen>
+    <dimen name="activity_vertical_margin">4dp</dimen>
+    <dimen name="margen_a">10dp</dimen>
+    <dimen name="tamaño_encabezado_mensaje">9sp</dimen>
+    <dimen name="tamaño_comentario">8sp</dimen>
+
+</resources>

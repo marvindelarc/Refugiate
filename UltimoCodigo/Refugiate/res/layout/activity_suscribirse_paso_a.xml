@@ -1,0 +1,172 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" 
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#B0E0E6"
+                android:text="Paso 1: Informacion de Contacto"
+                android:textColor="#313131"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313133"
+                android:background="#B0E0E6"
+                android:text="Deben completarse todos los campos que no sean opcionales"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:textColor="#313131"
+                android:text="Dirección de correo electronico:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtCorreoRegistroPasoA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="5dp"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="10dp"
+                android:text="Confirmar Dirección de correo electrónico"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp" />
+         
+            <EditText
+                android:id="@+id/txtCorreoConfirmarRegistroPasoA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:ems="10" />
+                        
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Nombre: "
+                android:textSize="16sp" />
+
+             <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtNombreConfirmarRegistroPasoA"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:ems="10"/>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Apellido:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+             <EditText
+                android:id="@+id/txtApellidoConfirmarRegistroPasoA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:ems="10" />
+
+            <TextView                
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Usuario :"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtUsuarioConfirmarRegistroPasoA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="DNI:"
+                android:numeric="integer"
+                android:inputType="number"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtDNIConfirmarRegistroPasoA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:ems="10" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#313131"
+                android:paddingTop="5dp"
+                android:text="Numero de Celular: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtTelefonoConfirmarRegistroPasoA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:ems="10" />
+
+         
+            <Button
+                android:onClick="btnPasoDos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1E90FF"
+                android:minHeight="30dip"
+                android:paddingTop="10dp"
+                android:text="Siguiente: Paso 2"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
