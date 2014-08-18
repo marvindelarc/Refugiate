@@ -1,7 +1,0 @@
-<resources>    
-    <string name="app_name">spinnerWidget</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_spinner">SpinnerActivity</string>
-    <string name="prompt">  Seleccionar Tipo de Habitacion! </string> 
-    <drawable name="red">#606060</drawable>     
-</resources>

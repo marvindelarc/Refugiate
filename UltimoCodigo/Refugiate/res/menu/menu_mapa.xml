@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="@+id/MnuOpc1" android:title="Busqueda por Distancia"></item>
-<item android:id="@+id/MnuOpc2" android:title="Busqueda por Lista"></item>
-<item android:id="@+id/MnuOpc3" android:title="Reservas"></item>
-<item android:id="@+id/MnuOpc4" android:title="Configuracion"></item>
-<item android:id="@+id/MnuOpc5" android:title="Cerrar Sesión"></item>
-</menu>
