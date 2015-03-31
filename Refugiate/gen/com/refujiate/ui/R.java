@@ -147,11 +147,11 @@ containing a value of this type.
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
          */
-        public static final int activity_horizontal_margin=0x7f070000;
-        public static final int activity_vertical_margin=0x7f070001;
-        public static final int margen_a=0x7f070002;
-        public static final int tamaño_comentario=0x7f070004;
-        public static final int tamaño_encabezado_mensaje=0x7f070003;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
+        public static final int margen_a=0x7f060002;
+        public static final int tamaño_comentario=0x7f060004;
+        public static final int tamaño_encabezado_mensaje=0x7f060003;
     }
     public static final class drawable {
         public static final int agregar_usuarios=0x7f020000;
@@ -213,115 +213,115 @@ containing a value of this type.
         public static final int verde=0x7f020037;
     }
     public static final class id {
-        public static final int ComboInstalacion=0x7f050008;
-        public static final int ComboRepetirTiempo=0x7f050014;
-        public static final int ComboTiempoActulizacion =0x7f05000f;
-        public static final int ComboTiempoPrevioReserva=0x7f050010;
-        public static final int ComboTipoHabitacion=0x7f050007;
-        public static final int ComboTipoPropagandas=0x7f050011;
-        public static final int ComboTipoServicio=0x7f050037;
-        public static final int LinearLayout1=0x7f050015;
-        public static final int MnuOpc1=0x7f050068;
-        public static final int MnuOpc2=0x7f050069;
-        public static final int MnuOpc3=0x7f05006a;
-        public static final int MnuOpc4=0x7f05006b;
-        public static final int MnuOpc5=0x7f05006c;
-        public static final int ViewChbRepetir=0x7f050013;
-        public static final int ViewImagen=0x7f05004e;
-        public static final int Vista=0x7f050054;
-        public static final int banner=0x7f050033;
-        public static final int btnAceptar=0x7f05000c;
-        public static final int btnCancelar=0x7f050047;
-        public static final int btnRegistrar=0x7f050029;
-        public static final int button1=0x7f05001a;
-        public static final int button2=0x7f05001c;
-        public static final int button3=0x7f05001e;
-        public static final int button4=0x7f050020;
-        public static final int button5=0x7f050023;
-        public static final int button6=0x7f050025;
-        public static final int button7=0x7f050026;
-        public static final int chbCodiciones=0x7f050041;
-        public static final int chbInformacion=0x7f050042;
-        public static final int chbRepetir=0x7f050012;
-        public static final int gallery1=0x7f050065;
-        public static final int hybrid=0x7f050004;
-        public static final int image=0x7f050051;
-        public static final int imageview1=0x7f050066;
-        public static final int lblBienvenida=0x7f05002c;
-        public static final int lblCalificacionTabDatos=0x7f050061;
-        public static final int lblCiudadTabDatos=0x7f05005c;
-        public static final int lblComentarioTabComentario=0x7f05004b;
-        public static final int lblComodidadTabDatos=0x7f050062;
-        public static final int lblCostoHabitacion=0x7f050038;
-        public static final int lblCostoTabCama=0x7f050050;
-        public static final int lblDescripcionTabCama=0x7f05004f;
-        public static final int lblDetalle=0x7f050056;
-        public static final int lblDireccionTabDatos=0x7f05005b;
-        public static final int lblEntradaTabDatos=0x7f05005e;
-        public static final int lblFechaRserva=0x7f05003a;
-        public static final int lblHabitacionDisponibles=0x7f050039;
-        public static final int lblHotel=0x7f050035;
-        public static final int lblLimpiezaTabDatos=0x7f050064;
-        public static final int lblLoad=0x7f05000d;
-        public static final int lblNDiasRserva=0x7f05003b;
-        public static final int lblNHabitacionesRserva=0x7f05003c;
-        public static final int lblNombre=0x7f050052;
-        public static final int lblNombreTabDatos=0x7f050059;
-        public static final int lblNombreTipoTabCamas=0x7f05004d;
-        public static final int lblPisosTabDatos=0x7f050060;
-        public static final int lblSalidaTabDatos=0x7f05005f;
-        public static final int lblServicioTabDatos=0x7f050063;
-        public static final int lblServiciosTabDatos=0x7f05005d;
-        public static final int lblTipoHabitacion=0x7f050055;
-        public static final int lblTitulo=0x7f05003e;
-        public static final int lblTotal=0x7f050036;
-        public static final int lblUsuarioTabComentario=0x7f05004c;
-        public static final int listComentarios=0x7f050058;
-        public static final int listHabitaciones=0x7f050057;
-        public static final int listHoteles=0x7f05002b;
-        public static final int listReserva=0x7f05003d;
-        public static final int listReservas=0x7f05003f;
-        public static final int listView1=0x7f050034;
-        public static final int map=0x7f050067;
-        public static final int none=0x7f050000;
-        public static final int normal=0x7f050001;
-        public static final int progressBar1=0x7f05000e;
-        public static final int ratinEstrellasTabDatos=0x7f05005a;
-        public static final int ratingBarComodidad=0x7f05004a;
-        public static final int ratingBarLimpieza=0x7f050048;
-        public static final int ratingBarServicio=0x7f050049;
-        public static final int ratingEstrellas=0x7f050053;
-        public static final int rtbEstrellas=0x7f050005;
-        public static final int rtbPuntos=0x7f050006;
-        public static final int satellite=0x7f050002;
-        public static final int spinner1=0x7f050017;
-        public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f050016;
-        public static final int textView10=0x7f050043;
-        public static final int textView2=0x7f050018;
-        public static final int textView3=0x7f050019;
-        public static final int textView4=0x7f05001b;
-        public static final int textView5=0x7f05001d;
-        public static final int textView6=0x7f05001f;
-        public static final int textView7=0x7f050021;
-        public static final int textView8=0x7f050022;
-        public static final int textView9=0x7f050024;
-        public static final int txtApellidoConfirmarRegistroPasoA=0x7f050030;
-        public static final int txtBusqueda=0x7f05002a;
-        public static final int txtClave=0x7f050028;
-        public static final int txtClaveAnterior=0x7f050009;
-        public static final int txtComentario=0x7f050046;
-        public static final int txtContraseniaConfirmarRegistroPasoB=0x7f050045;
-        public static final int txtContraseniaRegistroPasoB=0x7f050044;
-        public static final int txtCorreoConfirmarRegistroPasoA=0x7f05002e;
-        public static final int txtCorreoRegistroPasoA=0x7f05002d;
-        public static final int txtDNIConfirmarRegistroPasoA=0x7f050031;
-        public static final int txtNombreConfirmarRegistroPasoA=0x7f05002f;
-        public static final int txtNuevaClave=0x7f05000a;
-        public static final int txtReClave=0x7f05000b;
-        public static final int txtTelefonoConfirmarRegistroPasoA=0x7f050032;
-        public static final int txtUsuario=0x7f050027;
-        public static final int txtUsuarioConfirmarRegistroPasoA=0x7f050040;
+        public static final int ComboInstalacion=0x7f090008;
+        public static final int ComboRepetirTiempo=0x7f090014;
+        public static final int ComboTiempoActulizacion =0x7f09000f;
+        public static final int ComboTiempoPrevioReserva=0x7f090010;
+        public static final int ComboTipoHabitacion=0x7f090007;
+        public static final int ComboTipoPropagandas=0x7f090011;
+        public static final int ComboTipoServicio=0x7f090037;
+        public static final int LinearLayout1=0x7f090015;
+        public static final int MnuOpc1=0x7f090068;
+        public static final int MnuOpc2=0x7f090069;
+        public static final int MnuOpc3=0x7f09006a;
+        public static final int MnuOpc4=0x7f09006b;
+        public static final int MnuOpc5=0x7f09006c;
+        public static final int ViewChbRepetir=0x7f090013;
+        public static final int ViewImagen=0x7f09004e;
+        public static final int Vista=0x7f090054;
+        public static final int banner=0x7f090033;
+        public static final int btnAceptar=0x7f09000c;
+        public static final int btnCancelar=0x7f090047;
+        public static final int btnRegistrar=0x7f090029;
+        public static final int button1=0x7f09001a;
+        public static final int button2=0x7f09001c;
+        public static final int button3=0x7f09001e;
+        public static final int button4=0x7f090020;
+        public static final int button5=0x7f090023;
+        public static final int button6=0x7f090025;
+        public static final int button7=0x7f090026;
+        public static final int chbCodiciones=0x7f090041;
+        public static final int chbInformacion=0x7f090042;
+        public static final int chbRepetir=0x7f090012;
+        public static final int gallery1=0x7f090065;
+        public static final int hybrid=0x7f090000;
+        public static final int image=0x7f090051;
+        public static final int imageview1=0x7f090066;
+        public static final int lblBienvenida=0x7f09002c;
+        public static final int lblCalificacionTabDatos=0x7f090061;
+        public static final int lblCiudadTabDatos=0x7f09005c;
+        public static final int lblComentarioTabComentario=0x7f09004b;
+        public static final int lblComodidadTabDatos=0x7f090062;
+        public static final int lblCostoHabitacion=0x7f090038;
+        public static final int lblCostoTabCama=0x7f090050;
+        public static final int lblDescripcionTabCama=0x7f09004f;
+        public static final int lblDetalle=0x7f090056;
+        public static final int lblDireccionTabDatos=0x7f09005b;
+        public static final int lblEntradaTabDatos=0x7f09005e;
+        public static final int lblFechaRserva=0x7f09003a;
+        public static final int lblHabitacionDisponibles=0x7f090039;
+        public static final int lblHotel=0x7f090035;
+        public static final int lblLimpiezaTabDatos=0x7f090064;
+        public static final int lblLoad=0x7f09000d;
+        public static final int lblNDiasRserva=0x7f09003b;
+        public static final int lblNHabitacionesRserva=0x7f09003c;
+        public static final int lblNombre=0x7f090052;
+        public static final int lblNombreTabDatos=0x7f090059;
+        public static final int lblNombreTipoTabCamas=0x7f09004d;
+        public static final int lblPisosTabDatos=0x7f090060;
+        public static final int lblSalidaTabDatos=0x7f09005f;
+        public static final int lblServicioTabDatos=0x7f090063;
+        public static final int lblServiciosTabDatos=0x7f09005d;
+        public static final int lblTipoHabitacion=0x7f090055;
+        public static final int lblTitulo=0x7f09003e;
+        public static final int lblTotal=0x7f090036;
+        public static final int lblUsuarioTabComentario=0x7f09004c;
+        public static final int listComentarios=0x7f090058;
+        public static final int listHabitaciones=0x7f090057;
+        public static final int listHoteles=0x7f09002b;
+        public static final int listReserva=0x7f09003d;
+        public static final int listReservas=0x7f09003f;
+        public static final int listView1=0x7f090034;
+        public static final int map=0x7f090067;
+        public static final int none=0x7f090001;
+        public static final int normal=0x7f090002;
+        public static final int progressBar1=0x7f09000e;
+        public static final int ratinEstrellasTabDatos=0x7f09005a;
+        public static final int ratingBarComodidad=0x7f09004a;
+        public static final int ratingBarLimpieza=0x7f090048;
+        public static final int ratingBarServicio=0x7f090049;
+        public static final int ratingEstrellas=0x7f090053;
+        public static final int rtbEstrellas=0x7f090005;
+        public static final int rtbPuntos=0x7f090006;
+        public static final int satellite=0x7f090003;
+        public static final int spinner1=0x7f090017;
+        public static final int terrain=0x7f090004;
+        public static final int textView1=0x7f090016;
+        public static final int textView10=0x7f090043;
+        public static final int textView2=0x7f090018;
+        public static final int textView3=0x7f090019;
+        public static final int textView4=0x7f09001b;
+        public static final int textView5=0x7f09001d;
+        public static final int textView6=0x7f09001f;
+        public static final int textView7=0x7f090021;
+        public static final int textView8=0x7f090022;
+        public static final int textView9=0x7f090024;
+        public static final int txtApellidoConfirmarRegistroPasoA=0x7f090030;
+        public static final int txtBusqueda=0x7f09002a;
+        public static final int txtClave=0x7f090028;
+        public static final int txtClaveAnterior=0x7f090009;
+        public static final int txtComentario=0x7f090046;
+        public static final int txtContraseniaConfirmarRegistroPasoB=0x7f090045;
+        public static final int txtContraseniaRegistroPasoB=0x7f090044;
+        public static final int txtCorreoConfirmarRegistroPasoA=0x7f09002e;
+        public static final int txtCorreoRegistroPasoA=0x7f09002d;
+        public static final int txtDNIConfirmarRegistroPasoA=0x7f090031;
+        public static final int txtNombreConfirmarRegistroPasoA=0x7f09002f;
+        public static final int txtNuevaClave=0x7f09000a;
+        public static final int txtReClave=0x7f09000b;
+        public static final int txtTelefonoConfirmarRegistroPasoA=0x7f090032;
+        public static final int txtUsuario=0x7f090027;
+        public static final int txtUsuarioConfirmarRegistroPasoA=0x7f090040;
     }
     public static final class layout {
         public static final int activity_busqueda=0x7f030000;
@@ -353,75 +353,75 @@ containing a value of this type.
         public static final int tab_ubicacion=0x7f03001a;
     }
     public static final class menu {
-        public static final int menu_mapa=0x7f090000;
-        public static final int menu_perfil=0x7f090001;
+        public static final int menu_mapa=0x7f080000;
+        public static final int menu_perfil=0x7f080001;
     }
     public static final class string {
-        public static final int app_name=0x7f060015;
+        public static final int app_name=0x7f050015;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
          */
-        public static final int auth_client_availability_notification_title=0x7f06000f;
+        public static final int auth_client_availability_notification_title=0x7f05000f;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=42] 
          */
-        public static final int auth_client_play_services_err_notification_msg=0x7f060010;
+        public static final int auth_client_play_services_err_notification_msg=0x7f050010;
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
-        public static final int auth_client_requested_by_msg=0x7f060011;
+        public static final int auth_client_requested_by_msg=0x7f050011;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_button=0x7f060006;
+        public static final int common_google_play_services_enable_button=0x7f050006;
         /**  Message in confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_enable_text=0x7f060005;
+        public static final int common_google_play_services_enable_text=0x7f050005;
         /**  Title of confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_title=0x7f060004;
+        public static final int common_google_play_services_enable_title=0x7f050004;
         /**  Button in confirmation dialog for installing Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_button=0x7f060003;
+        public static final int common_google_play_services_install_button=0x7f050003;
         /**  (For phones) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_phone=0x7f060001;
+        public static final int common_google_play_services_install_text_phone=0x7f050001;
         /**  (For tablets) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_tablet=0x7f060002;
+        public static final int common_google_play_services_install_text_tablet=0x7f050002;
         /**  Title of confirmation dialog informing user that they need to install
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_title=0x7f060000;
+        public static final int common_google_play_services_install_title=0x7f050000;
         /**  Message in confirmation dialog informing user there is an unknown issue in Google Play
         services [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unknown_issue=0x7f060009;
+        public static final int common_google_play_services_unknown_issue=0x7f050009;
         /**  Message in confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unsupported_text=0x7f06000b;
+        public static final int common_google_play_services_unsupported_text=0x7f05000b;
         /**  Title of confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_unsupported_title=0x7f06000a;
+        public static final int common_google_play_services_unsupported_title=0x7f05000a;
         /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_button=0x7f06000c;
+        public static final int common_google_play_services_update_button=0x7f05000c;
         /**  Message in confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_update_text=0x7f060008;
+        public static final int common_google_play_services_update_text=0x7f050008;
         /**  Title of confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_title=0x7f060007;
+        public static final int common_google_play_services_update_title=0x7f050007;
         /**  Sign-in button text [CHAR LIMIT=15] 
          */
-        public static final int common_signin_button_text=0x7f06000d;
+        public static final int common_signin_button_text=0x7f05000d;
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
-        public static final int common_signin_button_text_long=0x7f06000e;
+        public static final int common_signin_button_text_long=0x7f05000e;
         /**  Location client code resources (prefix with location_client) 
 
         Begin strings for location.reporting
@@ -430,15 +430,15 @@ containing a value of this type.
         Some InactiveReason names.  See more in OneUp/package/location/res/values/strings.xml
     
          */
-        public static final int location_client_ulr_inactive_age_under_13=0x7f060012;
-        public static final int location_client_ulr_inactive_age_unknown=0x7f060013;
-        public static final int location_client_ulr_inactive_unknown_restriction=0x7f060014;
-        public static final int menu_settings=0x7f060016;
-        public static final int prompt=0x7f060018;
-        public static final int title_activity_spinner=0x7f060017;
+        public static final int location_client_ulr_inactive_age_under_13=0x7f050012;
+        public static final int location_client_ulr_inactive_age_unknown=0x7f050013;
+        public static final int location_client_ulr_inactive_unknown_restriction=0x7f050014;
+        public static final int menu_settings=0x7f050016;
+        public static final int prompt=0x7f050018;
+        public static final int title_activity_spinner=0x7f050017;
     }
     public static final class style {
-        public static final int rRatingBar=0x7f080000;
+        public static final int rRatingBar=0x7f070000;
     }
     public static final class styleable {
         /** Attributes that can be used with a Gallery1.

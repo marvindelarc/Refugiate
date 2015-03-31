@@ -1,2 +1,2 @@
-G:\UltimoCodigo\Refugiate\bin\AndroidManifest.xml : \
-G:\UltimoCodigo\Refugiate\AndroidManifest.xml \
+C:\Users\EdHam\Desktop\Refugiate\Refugiate\bin\AndroidManifest.xml : \
+C:\Users\EdHam\Desktop\Refugiate\Refugiate\AndroidManifest.xml \

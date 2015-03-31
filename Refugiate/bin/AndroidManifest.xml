@@ -37,7 +37,6 @@
             </intent-filter>
         </activity>
         
-        
         <activity android:name="MainMapaActivity" android:label="REFUGIATE"></activity>  
         <activity android:name="MainActivity" android:label="REFUGIATE"></activity>  
         <activity android:name="TabsActivity" android:label="REFUGIATE"></activity>  
