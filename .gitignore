@@ -16,3 +16,7 @@ hs_err_pid*
 /Proyecto Tesis/RefugiateApp/gen/
 /Proyecto Tesis/RefugiateApp/bin/
 /Proyecto Tesis/RefugiateWeb/build/
+/Proyecto Tesis/RefugiateApp/nbandroid/
+/Proyecto Tesis/RefugiateDAO/nbproject/private/
+/Proyecto Tesis/RefugiateEntidades/nbproject/private/
+/Proyecto Tesis/RefugiateCOM/nbproject/private/
