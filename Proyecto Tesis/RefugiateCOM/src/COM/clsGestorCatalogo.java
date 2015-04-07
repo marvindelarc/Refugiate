@@ -5,7 +5,7 @@
  */
 package COM;
 
-import DAO.*;
+import DAO.clsTipoHabitacionDAO;
 import Entidades.*;
 import java.util.List;
 

@@ -19,9 +19,10 @@ public class NewMain {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        clsTipoHabitacion entidad = new clsTipoHabitacion();
-        entidad.setNombreComercial("Simple");
-        System.out.print(clsGestorCatalogo.insertarTipoHabitacion(entidad));
+//        clsTipoHabitacion entidad = new clsTipoHabitacion();
+//        entidad.setNombreComercial("Simple");
+//        System.out.print(clsGestorCatalogo.insertarTipoHabitacion(entidad));
+        System.out.print(clsGestorCatalogo.ListarTipoHabitacion(true).size());
         
     }
     
