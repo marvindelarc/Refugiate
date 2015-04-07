@@ -9,7 +9,7 @@ package Entidades;
  *
  * @author Paulo
  */
-class clsTipoHabitacion {
+public class clsTipoHabitacion {
     private int idTipoHabitacion;
     private String nombreComercial;
     private int estado;
