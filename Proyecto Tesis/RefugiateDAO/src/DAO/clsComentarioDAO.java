@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class clsComentarioDAO {
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, entidad.getObjReserva().getIdReserva());
             stmt.setString(2, entidad.getDescripcion());
-            //stmt.setTimestamp(3, entidad.getFecha());
+//            stmt.setTimestamp(3, entidad.getFecha());
             stmt.setInt(4, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -113,7 +114,7 @@ public class clsComentarioDAO {
             stmt = conn.prepareCall(sql);
                         
             stmt.setString(1, entidad.getDescripcion());
-            //stmt.setTimestamp(2, entidad.getFecha());
+//            stmt.setTimestamp(2, entidad.getFecha());
             stmt.setInt(3, entidad.getEstado());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {

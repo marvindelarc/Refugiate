@@ -18,5 +18,12 @@ public class clsGestorBajaEmpresaPersona {
     {
         return clsBajaEmpresaPersonaDAO.Listar(activo);
     }
-    
+    public static int InsertarBajaEmpresaPersona(clsBajaEmpresaPersona entidad) throws Exception
+    {
+        return clsBajaEmpresaPersonaDAO.insertar(entidad);
+    }
+    public static boolean ActualizarBajaEmpresaPersona(clsBajaEmpresaPersona entidad) throws Exception
+    {
+        return clsBajaEmpresaPersonaDAO.actualizar(entidad);
+    }
 }

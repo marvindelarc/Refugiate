@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author EdHam
  */
-public class clsGestorCatalogo {
+public class clsGestorTipoHabitacion {
         
     //<editor-fold defaultstate="collapsed" desc="entTipoHabitacion">
     public static List<clsTipoHabitacion> ListarTipoHabitacion(boolean activo) throws Exception
