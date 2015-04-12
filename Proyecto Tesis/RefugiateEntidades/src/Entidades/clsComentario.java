@@ -15,6 +15,7 @@ public class clsComentario {
     private int idComentario;
     private String descripcion;
     private Date fecha;
+    private int estado;
     private clsReserva objReserva;
 
     public clsComentario() {
@@ -36,6 +37,10 @@ public class clsComentario {
         return objReserva;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
     public void setIdComentario(int idComentario) {
         this.idComentario = idComentario;
     }
@@ -50,5 +55,9 @@ public class clsComentario {
 
     public void setObjReserva(clsReserva objReserva) {
         this.objReserva = objReserva;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 }

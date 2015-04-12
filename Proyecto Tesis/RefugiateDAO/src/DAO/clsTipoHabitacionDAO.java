@@ -28,7 +28,6 @@ public class clsTipoHabitacionDAO
             String sql="SELECT idTipoHabitacion,nombreComercial,estado FROM tipohabitacion";
             if(activo)
                         sql+=" where estado=1"; 
-
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -36,15 +35,13 @@ public class clsTipoHabitacionDAO
             while(dr.next())
             {
                 if(lista==null)
-                    lista= new ArrayList<clsTipoHabitacion>();
-                
+                    lista= new ArrayList<clsTipoHabitacion>();                
                     clsTipoHabitacion entidad = new clsTipoHabitacion();
                     entidad.setIdTipoHabitacion(dr.getInt(1));
                     entidad.setNombreComercial(dr.getString(2)); 
                     entidad.setEstado(dr.getInt(3));  
                     lista.add(entidad);
             }
-
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
         }
@@ -62,12 +59,12 @@ public class clsTipoHabitacionDAO
     public  static int insertar(clsTipoHabitacion entidad) throws Exception
     {
         int rpta = 0;
-        Connection conn =null;
+        Connection conn = null;
         PreparedStatement  stmt = null;
         try {
             
-           String sql="INSERT INTO tipohabitacion(nombreComercial,estado)"
-                   + " VALUES(?,1);";
+           String sql= "INSERT INTO tipohabitacion(nombreComercial,estado)"
+                   + " VALUES(?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
