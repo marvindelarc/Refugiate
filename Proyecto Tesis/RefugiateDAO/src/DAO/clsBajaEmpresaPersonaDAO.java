@@ -13,13 +13,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Paulo
@@ -87,8 +80,8 @@ public class clsBajaEmpresaPersonaDAO {
             stmt.setInt(1, entidad.getObjEmpresa().getIdEmpresa());
             stmt.setInt(2, entidad.getObjPersona().getIdPersona());
             stmt.setString(3, entidad.getComentario());
-            stmt.setTimestamp(4, entidad.getFechaRegistro());
-            stmt.setTimestamp(5, entidad.getFechaFinal());
+//            stmt.setTimestamp(4, entidad.getFechaRegistro());
+//            stmt.setTimestamp(5, entidad.getFechaFinal());
             stmt.setInt(6, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -116,10 +109,27 @@ public class clsBajaEmpresaPersonaDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql = "";
+            String sql = "UPDATE bajaempresapersona SET idEmpresa = ?,idPersona = ?,comentario = ?,fechaRegistro = ?,fechaFinal = ?,estado = ? WHERE idBajaEmpresaPersona = ?;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
+            stmt.setInt(1, entidad.getObjEmpresa().getIdEmpresa());
+            stmt.setInt(2, entidad.getObjPersona().getIdPersona());
+            stmt.setString(3, entidad.getComentario());
+//            stmt.setTimestamp(4, entidad.getFechaRegistro());
+//            stmt.setTimestamp(5, entidad.getFechaFinal());
+            stmt.setInt(6, entidad.getEstado());
+            rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
+            throw new Exception("Error Actualizar"+e.getMessage(), e);
         }
+        finally
+        {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return rpta;
     }
 }

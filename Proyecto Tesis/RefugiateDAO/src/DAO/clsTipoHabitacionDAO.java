@@ -102,7 +102,7 @@ public class clsTipoHabitacionDAO
             stmt.setString(1, entidad.getNombreComercial());
             stmt.setInt(2,entidad.getEstado());
             stmt.setInt(3,entidad.getIdTipoHabitacion());
-           rpta = stmt.executeUpdate() == 1;
+            rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);
         }
