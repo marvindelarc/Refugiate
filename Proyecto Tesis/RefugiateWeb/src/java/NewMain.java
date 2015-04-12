@@ -1,7 +1,9 @@
 
-import COM.clsGestionarDepartamento;
+import COM.clsGestorDepartamento;
 import COM.clsGestorBajaEmpresaPersona;
 import COM.clsGestorComentarios;
+import COM.clsGestorDetalleReserva;
+import COM.clsGestorDistrito;
 import COM.clsGestorTipoHabitacion;
 import DAO.clsDepartamentoDAO;
 import Entidades.clsTipoHabitacion;
@@ -20,6 +22,8 @@ public class NewMain {
 //        System.out.print(clsGestorComentarios.ListarComentario(true));
 //        System.out.print(clsGestorBajaEmpresaPersona.ListarBajaEmpresaPersonas(true));
 //        System.out.print(clsGestorBajaEmpresaPersona.ListarBajaEmpresaPersonas(true));
-//        System.out.print(clsGestionarDepartamento.ListarDepartamento(true));
+//        System.out.print(clsGestorDepartamento.ListarDepartamento(true));
+//        System.out.print(clsGestorDetalleReserva.ListarDetalleReservas(true));
+//        System.out.print(clsGestorDistrito.listarDistrito(true));
     }    
 }

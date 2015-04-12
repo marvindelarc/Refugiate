@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Paulo
  */
-public class clsGestionarDepartamento {
+public class clsGestorDepartamento {
     public static List<clsDepartamento> ListarDepartamento(boolean activo) throws Exception{
         return clsDepartamentoDAO.Listar(activo);
     }

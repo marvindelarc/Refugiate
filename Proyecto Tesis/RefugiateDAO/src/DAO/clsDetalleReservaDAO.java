@@ -10,7 +10,9 @@ import Entidades.clsHabitacion;
 import Entidades.clsReserva;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +69,73 @@ public class clsDetalleReservaDAO {
             }
         }
         return lista;
+    }
+    
+    public static int insertar(clsDetalleReserva entidad) throws Exception
+    {
+        int rpta = 0;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            String sql = "INSERT INTO detallereserva(idReserva,numeroHabitaciones,fechaIngresp,dias,total,estado,idHabitacion)"
+                        + " VALUES(?,?,?,?,?,?,?)";
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, entidad.getObjReserva().getIdReserva());
+            stmt.setInt(2, entidad.getNroHabitaciones());
+            //stmt.setTimestamp(3, entidad.getFechaIngreso());
+            stmt.setInt(4, entidad.getDias());
+            stmt.setDouble(5, entidad.getTotal());
+            stmt.setInt(6, entidad.getEstado());
+            stmt.setInt(7, entidad.getObjHabitacion().getIdHabitacion());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                rpta = rs.getInt(6);
+            }
+            rs.close();
+        } catch (Exception e) {
+            throw new Exception("Insertar"+e.getMessage());
+        }
+        finally
+        {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return rpta;
+    }
+    
+    public static boolean actualizar(clsDetalleReserva entidad) throws Exception{
+        boolean rpta = false;
+        Connection conn = null;
+        CallableStatement stmt = null;
+        try {
+            String sql = "UPDATE detallereserva SET idReserva = ?,numeroHabitaciones = ?,fechaIngresp = ?,dias = ?,"
+                        + "total = ?,estado = ?,idHabitacion = ? WHERE idDetalleReserva = ?;";
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            stmt.setInt(1, entidad.getObjReserva().getIdReserva());
+            stmt.setInt(2, entidad.getNroHabitaciones());
+            //stmt.setTimestamp(3, entidad.getFechaIngreso());
+            stmt.setInt(4, entidad.getDias());
+            stmt.setDouble(5, entidad.getTotal());
+            stmt.setInt(6, entidad.getEstado());
+            stmt.setInt(7, entidad.getObjHabitacion().getIdHabitacion());
+            rpta = stmt.executeUpdate() == 1;
+        } catch (Exception e) {
+            throw new Exception("Error Actualizar"+e.getMessage(), e);
+        }
+        finally
+        {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return rpta;
     }
 }
