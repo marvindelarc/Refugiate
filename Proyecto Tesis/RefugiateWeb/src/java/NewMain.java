@@ -1,4 +1,5 @@
 
+import COM.clsGestor;
 import COM.clsGestorDepartamento;
 import COM.clsGestorBajaEmpresaPersona;
 import COM.clsGestorComentarios;
@@ -18,7 +19,7 @@ public class NewMain {
 //        clsTipoHabitacion entidad = new clsTipoHabitacion();
 //        entidad.setNombreComercial("Simple");
 //        System.out.print(clsGestorTipoHabitacion.insertarTipoHabitacion(entidad));
-//        System.out.print(clsGestorTipoHabitacion.ListarTipoHabitacion(true).size());
+        System.out.print(clsGestor.ListarTipoHabitacion(false).size());
 //        System.out.print(clsGestorComentarios.ListarComentario(true));
 //        System.out.print(clsGestorBajaEmpresaPersona.ListarBajaEmpresaPersonas(true));
 //        System.out.print(clsGestorBajaEmpresaPersona.ListarBajaEmpresaPersonas(true));

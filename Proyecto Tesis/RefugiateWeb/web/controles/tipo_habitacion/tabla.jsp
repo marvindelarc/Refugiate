@@ -1,3 +1,46 @@
+<%@page import="COM.clsGestor"%>
+<%@page import="java.util.List"%>
+<%@page import="Entidades.clsTipoHabitacion"%>
+<div id="tabla">
+
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped" id="datatable" width="100%">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Engine version</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <%
+                   List<clsTipoHabitacion> lista=clsGestor.ListarTipoHabitacion(false);
+                   if(lista!=null)
+                   for(clsTipoHabitacion entidad : lista)
+                   {
+                 %>
+                  <tr >
+                    <td><%=entidad.getIdTipoHabitacion()%></td>
+                     <td><%=entidad.getNombreComercial()%></td>
+                    <td class="center">
+                        <%
+                        if(entidad.getEstado()==1)
+                            out.print("<span class='badge badge-info'>Activo</span>");
+                        else
+                            out.print("<span class='badge badge-important'>Inactivo</span>");
+                        %>      
+                    </td>
+                    <td class="center">
+                         <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdTipoHabitacion()%>,'<%=entidad.getNombreComercial()%>',<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center> 
+                
+                
+                    </td>
+                  </tr>
+                <%}%> 
+                </tbody>
+              </table>
+   <script type="text/javascript">
+$(function () { 
           
    /* Set the defaults for DataTables initialisation */
 $.extend( true, $.fn.dataTable.defaults, {
@@ -109,66 +152,21 @@ $.extend( $.fn.dataTableExt.oPagination, {
 	}
 } );
 
-         /*
-     * Insert a 'details' column to the table
-     */
-    var nCloneTh = document.createElement( 'th' );
-    var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<i class="icon-plus-sign"></i>';
-    nCloneTd.className = "center";
-     
-    $('#example2 thead tr').each( function () {
-        this.insertBefore( nCloneTh, this.childNodes[0] );
-    } );
-     
-    $('#example2 tbody tr').each( function () {
-        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
-    } );
-     
+
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
-    var oTable = $('#example2').dataTable( {
+   $('#datatable').dataTable( {
+        "sScrollY": "210px",
 	   "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'p i>>",
        "aaSorting": [],
 				"oLanguage": {
 			"sLengthMenu": "_MENU_ ",
-			"sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+			"sInfo": "Mostrando del  <b>_START_ al _END_</b> de _TOTAL_ entradas"
 		},
     });
-     $("div.toolbar").html('<div class="table-tools-actions"><button class="btn btn-primary" style="margin-left:12px" id="test2">Add</button></div>');
-	
-	$('#test2').on( "click",function() {
-		$("#quick-access").css("bottom","0px");
-    });
-	
-    $('#example2_wrapper .dataTables_filter input').addClass("input-medium ");
-    $('#example2_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
-	    $('#example2 tbody td i').live('click', function () {
-        var nTr = $(this).parents('tr')[0];
-        if ( oTable.fnIsOpen(nTr) )
-        {
-            /* This row is already open - close it */
-			this.removeClass = "icon-plus-sign";
-            this.addClass = "icon-minus-sign";     
-            oTable.fnClose( nTr );
-        }
-        else
-        {
-            /* Open this row */
-            this.removeClass = "icon-minus-sign";
-            this.addClass = "icon-plus-sign";  
-            oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
-        }
-    });   
-     function fnFormatDetails ( oTable, nTr )
-{
-    var aData = oTable.fnGetData( nTr );
-    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" class="inner-table">';
-    sOut += '<tr><td>Rendering engine:</td><td>'+aData[1]+' '+aData[4]+'</td></tr>';
-    sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-    sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
-    sOut += '</table>';
-     
-    return sOut;
-}  
+   
+  
+});
+</script>
+    </div>

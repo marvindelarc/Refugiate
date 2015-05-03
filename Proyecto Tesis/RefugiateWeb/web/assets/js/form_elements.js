@@ -8,6 +8,14 @@ var Switch = require('ios7-switch')
         e.preventDefault();
         mySwitch.toggle();
       }, false);
+ var Switch = require('ios7-switch')
+        , checkbox = document.querySelector('.ios')
+        , mySwitch = new Switch(checkbox);
+ mySwitch.toggle();
+      mySwitch.el.addEventListener('click', function(e){
+        e.preventDefault();
+        mySwitch.toggle();
+      }, false);
 //creating multiple instances
 var Switch2 = require('ios7-switch')
         , checkbox = document.querySelector('.iosblue')
