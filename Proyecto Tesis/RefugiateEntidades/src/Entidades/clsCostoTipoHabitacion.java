@@ -9,7 +9,7 @@ package Entidades;
  *
  * @author Paulo
  */
-class clsCostoTipoHabitacion {
+public class clsCostoTipoHabitacion {
     private int idCostoTipoHabitacion;
     private float costo;
     private int totalHabitaciones;

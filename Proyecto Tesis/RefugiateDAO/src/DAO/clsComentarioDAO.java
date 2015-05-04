@@ -10,6 +10,7 @@ import Entidades.clsComentario;
 import Entidades.clsReserva;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,7 +82,7 @@ public class clsComentarioDAO {
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, entidad.getObjReserva().getIdReserva());
             stmt.setString(2, entidad.getDescripcion());
-//            stmt.setTimestamp(3, entidad.getFecha());
+            stmt.setDate(3, (Date) entidad.getFecha());
             stmt.setInt(4, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -111,10 +112,9 @@ public class clsComentarioDAO {
         try {
             String sql="UPDATE comentario SET descripcion = ?,fecha = ?,estado= ? WHERE idComentario = ?;";            
             conn = clsConexion.getConnection();
-            stmt = conn.prepareCall(sql);
-                        
+            stmt = conn.prepareCall(sql);                        
             stmt.setString(1, entidad.getDescripcion());
-//            stmt.setTimestamp(2, entidad.getFecha());
+            stmt.setDate(3, (Date) entidad.getFecha());
             stmt.setInt(3, entidad.getEstado());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {

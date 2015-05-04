@@ -10,6 +10,7 @@ import Entidades.clsHabitacion;
 import Entidades.clsReserva;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -83,7 +84,7 @@ public class clsDetalleReservaDAO {
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, entidad.getObjReserva().getIdReserva());
             stmt.setInt(2, entidad.getNroHabitaciones());
-            //stmt.setTimestamp(3, entidad.getFechaIngreso());
+            stmt.setDate(3, (Date) entidad.getFechaIngreso());
             stmt.setInt(4, entidad.getDias());
             stmt.setDouble(5, entidad.getTotal());
             stmt.setInt(6, entidad.getEstado());
@@ -113,17 +114,17 @@ public class clsDetalleReservaDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql = "UPDATE detallereserva SET idReserva = ?,numeroHabitaciones = ?,fechaIngresp = ?,dias = ?,"
-                        + "total = ?,estado = ?,idHabitacion = ? WHERE idDetalleReserva = ?;";
+            String sql = "UPDATE detallereserva SET idReserva = ?,numeroHabitaciones = ?,fechaIngresp = ?,dias = ?,total = ?,estado = ?,idHabitacion = ? WHERE idDetalleReserva = ?;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             stmt.setInt(1, entidad.getObjReserva().getIdReserva());
             stmt.setInt(2, entidad.getNroHabitaciones());
-            //stmt.setTimestamp(3, entidad.getFechaIngreso());
+            stmt.setDate(3, (Date) entidad.getFechaIngreso());
             stmt.setInt(4, entidad.getDias());
             stmt.setDouble(5, entidad.getTotal());
             stmt.setInt(6, entidad.getEstado());
             stmt.setInt(7, entidad.getObjHabitacion().getIdHabitacion());
+            stmt.setInt(8, entidad.getInt_IdDetalleReserva());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);

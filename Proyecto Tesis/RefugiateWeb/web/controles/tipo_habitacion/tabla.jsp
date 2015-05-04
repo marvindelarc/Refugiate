@@ -9,7 +9,7 @@
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Estado</th>
-                    <th>Engine version</th>
+                    <th>Selecionar</th>
                   </tr>
                 </thead>
                 <tbody>

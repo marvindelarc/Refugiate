@@ -1,18 +1,18 @@
 package DAO;
 
-
 import DAO.clsConexion;
 import Entidades.clsBajaEmpresaPersona;
 import Entidades.clsEmpresa;
 import Entidades.clsPersona;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author Paulo
@@ -80,8 +80,8 @@ public class clsBajaEmpresaPersonaDAO {
             stmt.setInt(1, entidad.getObjEmpresa().getIdEmpresa());
             stmt.setInt(2, entidad.getObjPersona().getIdPersona());
             stmt.setString(3, entidad.getComentario());
-//            stmt.setTimestamp(4, entidad.getFechaRegistro());
-//            stmt.setTimestamp(5, entidad.getFechaFinal());
+            stmt.setDate(4, (Date) entidad.getFechaRegistro());
+            stmt.setDate(5, (Date) entidad.getFechaFinal());
             stmt.setInt(6, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -115,8 +115,8 @@ public class clsBajaEmpresaPersonaDAO {
             stmt.setInt(1, entidad.getObjEmpresa().getIdEmpresa());
             stmt.setInt(2, entidad.getObjPersona().getIdPersona());
             stmt.setString(3, entidad.getComentario());
-//            stmt.setTimestamp(4, entidad.getFechaRegistro());
-//            stmt.setTimestamp(5, entidad.getFechaFinal());
+            stmt.setDate(4, (Date) entidad.getFechaRegistro());
+            stmt.setDate(5, (Date) entidad.getFechaFinal());
             stmt.setInt(6, entidad.getEstado());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {

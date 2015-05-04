@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
-import Entidades.clsTipoHabitacion;
+import Entidades.clsServicio;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,16 +15,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class clsTipoHabitacionDAO 
-{
-    public static List<clsTipoHabitacion> Listar(boolean activo) throws Exception
+/**
+ *
+ * @author Paulo
+ */
+public class clsServicioDAO {
+    public static List<clsServicio> Listar(boolean activo) throws Exception
     {
-        List<clsTipoHabitacion> lista = null;
+        List<clsServicio> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idTipoHabitacion,nombreComercial,estado FROM tipohabitacion";
+            String sql="SELECT idServicio,nombre,estado FROM servicio";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -35,10 +37,10 @@ public class clsTipoHabitacionDAO
             while(dr.next())
             {
                 if(lista==null){
-                    lista= new ArrayList<clsTipoHabitacion>();                
-                    clsTipoHabitacion entidad = new clsTipoHabitacion();
-                    entidad.setIdTipoHabitacion(dr.getInt(1));
-                    entidad.setNombreComercial(dr.getString(2)); 
+                    lista= new ArrayList<clsServicio>();                
+                    clsServicio entidad = new clsServicio();
+                    entidad.setIdServicio(dr.getInt(1));
+                    entidad.setNombre(dr.getString(2)); 
                     entidad.setEstado(dr.getInt(3));  
                     lista.add(entidad);
                 }
@@ -57,19 +59,19 @@ public class clsTipoHabitacionDAO
         return lista;
     }
     
-    public  static int insertar(clsTipoHabitacion entidad) throws Exception
+    public  static int insertar(clsServicio entidad) throws Exception
     {
         int rpta = 0;
         Connection conn = null;
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO tipohabitacion(nombreComercial,estado)"
+           String sql= "INSERT INTO servicio(nombre,estado)"
                    + " VALUES(?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, entidad.getNombreComercial());
+            stmt.setString(1, entidad.getNombre());
             stmt.setInt(2, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -91,19 +93,19 @@ public class clsTipoHabitacionDAO
         return rpta;
     } 
     
-    public static boolean actualizar(clsTipoHabitacion entidad) throws Exception
+    public static boolean actualizar(clsServicio entidad) throws Exception
     {
         boolean rpta = false;
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE tipohabitacion SET nombreComercial = ?,estado= ? WHERE idTipoHabitacion = ?;";
+             String sql="UPDATE servicio SET nombre = ?,estado= ? WHERE idServicio = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
-            stmt.setString(1, entidad.getNombreComercial());
+            stmt.setString(1, entidad.getNombre());
             stmt.setInt(2,entidad.getEstado());
-            stmt.setInt(3,entidad.getIdTipoHabitacion());
+            stmt.setInt(3,entidad.getIdServicio());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

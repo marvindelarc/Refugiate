@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
-import Entidades.clsTipoHabitacion;
+import Entidades.clsEncargado;
+import Entidades.clsSucursal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,17 +15,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-public class clsTipoHabitacionDAO 
-{
-    public static List<clsTipoHabitacion> Listar(boolean activo) throws Exception
+/**
+ *
+ * @author Paulo
+ */
+public class clsEncargadoDAO {
+    public static List<clsEncargado> Listar(boolean activo) throws Exception
     {
-        List<clsTipoHabitacion> lista = null;
+        List<clsEncargado> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idTipoHabitacion,nombreComercial,estado FROM tipohabitacion";
+            String sql="SELECT idEncargado,idSucursal,nombre,apellido,email,celularPersonal,usuario,password,estado FROM encargado";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -35,11 +37,21 @@ public class clsTipoHabitacionDAO
             while(dr.next())
             {
                 if(lista==null){
-                    lista= new ArrayList<clsTipoHabitacion>();                
-                    clsTipoHabitacion entidad = new clsTipoHabitacion();
-                    entidad.setIdTipoHabitacion(dr.getInt(1));
-                    entidad.setNombreComercial(dr.getString(2)); 
-                    entidad.setEstado(dr.getInt(3));  
+                    lista= new ArrayList<clsEncargado>();
+                    
+                    clsSucursal objSucursal = new clsSucursal();
+                    objSucursal.setIdSucursal(dr.getInt(2));
+                
+                    clsEncargado entidad = new clsEncargado();
+                    entidad.setInt_IdEncargado(dr.getInt(1));
+                    entidad.setObjSucursal(objSucursal);
+                    entidad.setNombre(dr.getString(3));
+                    entidad.setApellido(dr.getString(4));
+                    entidad.setEmail(dr.getString(5));
+                    entidad.setCelular(dr.getString(6));
+                    entidad.setUsuario(dr.getString(7));
+                    entidad.setPassword(dr.getString(8));
+                    entidad.setEstado(dr.getInt(9));
                     lista.add(entidad);
                 }
             }
@@ -57,20 +69,26 @@ public class clsTipoHabitacionDAO
         return lista;
     }
     
-    public  static int insertar(clsTipoHabitacion entidad) throws Exception
+    public  static int insertar(clsEncargado entidad) throws Exception
     {
         int rpta = 0;
         Connection conn = null;
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO tipohabitacion(nombreComercial,estado)"
-                   + " VALUES(?,?);";
+           String sql= "INSERT INTO encargado (idSucursal,nombre,apellido,email,celularPersonal,usuario,password,estado)"
+                   + " VALUES(?,?,?,?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2, entidad.getEstado());
+            stmt.setInt(1, entidad.getObjSucursal().getIdSucursal());
+            stmt.setString(2, entidad.getNombre());
+            stmt.setString(3, entidad.getApellido());
+            stmt.setString(4, entidad.getEmail());
+            stmt.setString(5, entidad.getCelular());
+            stmt.setString(6, entidad.getUsuario());
+            stmt.setString(7, entidad.getPassword());
+            stmt.setInt(8, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -89,21 +107,26 @@ public class clsTipoHabitacionDAO
             }
         }
         return rpta;
-    } 
+    }
     
-    public static boolean actualizar(clsTipoHabitacion entidad) throws Exception
+    public static boolean actualizar(clsEncargado entidad) throws Exception
     {
         boolean rpta = false;
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE tipohabitacion SET nombreComercial = ?,estado= ? WHERE idTipoHabitacion = ?;";
+             String sql="UPDATE encargado SET idSucursal = ?,nombre = ?,apellido = ?,email = ?,celularPersonal = ?,usuario = ?,password = ?,estado = ? WHERE idEncargado = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2,entidad.getEstado());
-            stmt.setInt(3,entidad.getIdTipoHabitacion());
+            stmt.setInt(1, entidad.getObjSucursal().getIdSucursal());
+            stmt.setString(2, entidad.getNombre());
+            stmt.setString(3, entidad.getApellido());
+            stmt.setString(4, entidad.getEmail());
+            stmt.setString(5, entidad.getCelular());
+            stmt.setString(6, entidad.getUsuario());
+            stmt.setString(7, entidad.getPassword());
+            stmt.setInt(8, entidad.getEstado());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);
@@ -116,5 +139,5 @@ public class clsTipoHabitacionDAO
             }
         }
         return rpta;
-    }    
+    }   
 }

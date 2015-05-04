@@ -76,7 +76,7 @@
         </ul>
        
       </div>
-      <div id="header"></div>
+      <div id="header"></div><!-- aca la cabecera -->
     </div>
 
    
@@ -93,7 +93,7 @@
   <!-- END SIDEBAR -->
   <!-- BEGIN PAGE CONTAINER-->
     
-  <div id="sidebar" ></div>
+  <div id="sidebar" ></div><!-- aca va salir el sidebar -->
   
   
   
@@ -180,7 +180,7 @@
                 </div>
                   
             <div class="grid-body ">
-                <div id="tabla"></div>
+                <div id="tabla"></div><!-- aca se va mostrar la tabla -->
             </div>
                   
                   
@@ -231,13 +231,7 @@
 <script type="text/javascript">
 function getLimpiar()
 {   
-    $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Mensaje',
-            // (string | mandatory) the text inside the notification
-            text: 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" style="color:#ccc">magnis dis parturient</a> montes, nascetur ridiculus mus.'
-    });
-
+   sendMessage("Se Limpio correctamente");
       $('#forml_validation')[0].reset();
        $('#Id').val("");
 };
@@ -333,19 +327,19 @@ getTabla();
                                 $('#myModal').modal('hide');
                                 if(data>0)
                                 {
-                                    
+                                    sendMessage("Se Grabo Correctamente.");
                                      getTabla();    
                                      $('#forml_validation')[0].reset();
                                       $('#Id').val("");
                                 }else if(data==0)
                                 {
-                                      
+                                      sendMessage("Se actulizo correctamente.");
                                       getTabla();
-                                       $('#forml_validation')[0].reset
+                                       $('#forml_validation')[0].reset();
                                         $('#Id').val("");
                                 }else if(data==-1)
                                 {
-                                   
+                                   sendMessage("problemas con el servidor intentelo mas tarde");
                                 }
                                
 
@@ -359,6 +353,16 @@ getTabla();
 	      
 	
 });	
+
+function sendMessage(sms)
+{
+    $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            title: 'Mensaje',
+            // (string | mandatory) the text inside the notification
+            text: sms
+    }); 
+};
 function edit_form(id,nombre,estado) {
     $('#Id').val(id);
     $('#txtNombre').val(nombre);

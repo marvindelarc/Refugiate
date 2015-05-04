@@ -3,31 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
-import Entidades.clsTipoHabitacion;
+import Entidades.clsPuntuacionHotel;
+import Entidades.clsReserva;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-public class clsTipoHabitacionDAO 
-{
-    public static List<clsTipoHabitacion> Listar(boolean activo) throws Exception
+/**
+ *
+ * @author Paulo
+ */
+public class clsPuntuacionHotelDAO {
+    public static List<clsPuntuacionHotel> Listar(boolean activo) throws Exception
     {
-        List<clsTipoHabitacion> lista = null;
+        List<clsPuntuacionHotel> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idTipoHabitacion,nombreComercial,estado FROM tipohabitacion";
-            if(activo)
-                    sql+=" where estado=1"; 
+            String sql="SELECT idPuntuacionHotel,idReserva,limpieza,servicio,comodidad,fecha FROM puntuacionhotel;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -35,11 +36,18 @@ public class clsTipoHabitacionDAO
             while(dr.next())
             {
                 if(lista==null){
-                    lista= new ArrayList<clsTipoHabitacion>();                
-                    clsTipoHabitacion entidad = new clsTipoHabitacion();
-                    entidad.setIdTipoHabitacion(dr.getInt(1));
-                    entidad.setNombreComercial(dr.getString(2)); 
-                    entidad.setEstado(dr.getInt(3));  
+                    lista= new ArrayList<clsPuntuacionHotel>();                
+                    
+                    clsReserva objReserva = new clsReserva();
+                    objReserva.setIdReserva(dr.getInt(2));
+                    
+                    clsPuntuacionHotel entidad = new clsPuntuacionHotel();
+                    entidad.setIdPuntacionHotel(dr.getInt(1));
+                    entidad.setObjReserva(objReserva);
+                    entidad.setLimpieza(dr.getInt(3));
+                    entidad.setServicio(dr.getInt(4));
+                    entidad.setComodidad(dr.getInt(5));
+                    entidad.setFecha(dr.getTimestamp(6));
                     lista.add(entidad);
                 }
             }
@@ -57,20 +65,22 @@ public class clsTipoHabitacionDAO
         return lista;
     }
     
-    public  static int insertar(clsTipoHabitacion entidad) throws Exception
+    public  static int insertar(clsPuntuacionHotel entidad) throws Exception
     {
         int rpta = 0;
         Connection conn = null;
         PreparedStatement  stmt = null;
-        try {
-            
-           String sql= "INSERT INTO tipohabitacion(nombreComercial,estado)"
+        try {            
+            String sql= "INSERT INTO puntuacionhotel(idReserva,limpieza,servicio,comodidad,fecha;)"
                    + " VALUES(?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2, entidad.getEstado());
+            stmt.setInt(1, entidad.getObjReserva().getIdReserva());
+            stmt.setInt(2, entidad.getLimpieza());
+            stmt.setInt(3, entidad.getServicio());
+            stmt.setInt(4, entidad.getComodidad());
+            stmt.setDate(5, (Date) entidad.getFecha());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -91,7 +101,7 @@ public class clsTipoHabitacionDAO
         return rpta;
     } 
     
-    public static boolean actualizar(clsTipoHabitacion entidad) throws Exception
+    public static boolean actualizar(clsPuntuacionHotel entidad) throws Exception
     {
         boolean rpta = false;
         Connection conn =null;
@@ -101,9 +111,11 @@ public class clsTipoHabitacionDAO
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2,entidad.getEstado());
-            stmt.setInt(3,entidad.getIdTipoHabitacion());
+            stmt.setInt(1, entidad.getObjReserva().getIdReserva());
+            stmt.setInt(2, entidad.getLimpieza());
+            stmt.setInt(3, entidad.getServicio());
+            stmt.setInt(4, entidad.getComodidad());
+            stmt.setDate(5, (Date) entidad.getFecha());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);
@@ -116,5 +128,5 @@ public class clsTipoHabitacionDAO
             }
         }
         return rpta;
-    }    
+    } 
 }

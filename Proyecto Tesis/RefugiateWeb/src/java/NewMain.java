@@ -1,13 +1,4 @@
-
 import COM.clsGestor;
-import COM.clsGestorDepartamento;
-import COM.clsGestorBajaEmpresaPersona;
-import COM.clsGestorComentarios;
-import COM.clsGestorDetalleReserva;
-import COM.clsGestorDistrito;
-import COM.clsGestorTipoHabitacion;
-import DAO.clsDepartamentoDAO;
-import Entidades.clsTipoHabitacion;
 
 public class NewMain {
 
@@ -18,13 +9,13 @@ public class NewMain {
         // TODO code application logic here
 //        clsTipoHabitacion entidad = new clsTipoHabitacion();
 //        entidad.setNombreComercial("Simple");
-//        System.out.print(clsGestorTipoHabitacion.insertarTipoHabitacion(entidad));
+//        System.out.print(clsGestor.insertarTipoHabitacion(entidad));
         System.out.print(clsGestor.ListarTipoHabitacion(false).size());
-//        System.out.print(clsGestorComentarios.ListarComentario(true));
-//        System.out.print(clsGestorBajaEmpresaPersona.ListarBajaEmpresaPersonas(true));
-//        System.out.print(clsGestorBajaEmpresaPersona.ListarBajaEmpresaPersonas(true));
-//        System.out.print(clsGestorDepartamento.ListarDepartamento(true));
-//        System.out.print(clsGestorDetalleReserva.ListarDetalleReservas(true));
-//        System.out.print(clsGestorDistrito.listarDistrito(true));
+//        System.out.print(clsGestor.ListarComentario(true));
+//        System.out.print(clsGestor.ListarBajaEmpresaPersonas(true));
+//        System.out.print(clsGestor.ListarBajaEmpresaPersonas(true));
+//        System.out.print(clsGestor.ListarDepartamento(true));
+//        System.out.print(clsGestor.ListarDetalleReservas(true));
+//        System.out.print(clsGestor.listarDistrito(true));
     }    
 }

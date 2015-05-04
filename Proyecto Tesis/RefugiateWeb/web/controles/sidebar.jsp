@@ -23,6 +23,7 @@
       <li class=""> <a href="javascript:;"> <i class="icon-shield"></i> <span class="title">Configuracion</span> <span class="arrow "></span> <span class="badge badge-disable pull-right">5</span></a>
         <ul class="sub-menu">
           <li> <a href="tipo_habitacion.jsp">Tipo de Habitación</a> </li>
+          <li> <a href="tipo_habitacion.jsp">Tipo de Habitación</a> </li>
           <li> <a href="messages_notifications.html"> Messages & Notifications </a> </li>
         </ul>
       </li>

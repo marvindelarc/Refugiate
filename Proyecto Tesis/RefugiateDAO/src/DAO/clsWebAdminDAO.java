@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
-import Entidades.clsTipoHabitacion;
+import Entidades.clsWebAdmin;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,16 +15,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class clsTipoHabitacionDAO 
-{
-    public static List<clsTipoHabitacion> Listar(boolean activo) throws Exception
+/**
+ *
+ * @author Paulo
+ */
+public class clsWebAdminDAO {
+    public static List<clsWebAdmin> Listar(boolean activo) throws Exception
     {
-        List<clsTipoHabitacion> lista = null;
+        List<clsWebAdmin> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idTipoHabitacion,nombreComercial,estado FROM tipohabitacion";
+            String sql="SELECT idWebAdmin,nombre,apellido,usuario,password,nivel,email,estado FROM webadmin";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -35,11 +37,16 @@ public class clsTipoHabitacionDAO
             while(dr.next())
             {
                 if(lista==null){
-                    lista= new ArrayList<clsTipoHabitacion>();                
-                    clsTipoHabitacion entidad = new clsTipoHabitacion();
-                    entidad.setIdTipoHabitacion(dr.getInt(1));
-                    entidad.setNombreComercial(dr.getString(2)); 
-                    entidad.setEstado(dr.getInt(3));  
+                    lista= new ArrayList<clsWebAdmin>();                
+                    clsWebAdmin entidad = new clsWebAdmin();
+                    entidad.setIdWebAdmin(dr.getInt(1));
+                    entidad.setNombre(dr.getString(2)); 
+                    entidad.setApellido(dr.getString(3)); 
+                    entidad.setUsuario(dr.getString(4)); 
+                    entidad.setPassword(dr.getString(5)); 
+                    entidad.setNivel(dr.getInt(6));
+                    entidad.setEmail(dr.getString(7));
+                    entidad.setEstado(dr.getInt(8));
                     lista.add(entidad);
                 }
             }
@@ -57,20 +64,25 @@ public class clsTipoHabitacionDAO
         return lista;
     }
     
-    public  static int insertar(clsTipoHabitacion entidad) throws Exception
+    public  static int insertar(clsWebAdmin entidad) throws Exception
     {
         int rpta = 0;
         Connection conn = null;
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO tipohabitacion(nombreComercial,estado)"
-                   + " VALUES(?,?);";
+           String sql= "INSERT INTO webadmin(nombre,apellido,usuario,password,nivel,email,estado)"
+                   + " VALUES(?,?,?,?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2, entidad.getEstado());
+            stmt.setString(1, entidad.getNombre());
+            stmt.setString(2, entidad.getApellido());
+            stmt.setString(3, entidad.getUsuario());
+            stmt.setString(4, entidad.getPassword());
+            stmt.setInt(5, entidad.getNivel());
+            stmt.setString(6, entidad.getEmail());
+            stmt.setInt(7, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -91,19 +103,24 @@ public class clsTipoHabitacionDAO
         return rpta;
     } 
     
-    public static boolean actualizar(clsTipoHabitacion entidad) throws Exception
+    public static boolean actualizar(clsWebAdmin entidad) throws Exception
     {
         boolean rpta = false;
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE tipohabitacion SET nombreComercial = ?,estado= ? WHERE idTipoHabitacion = ?;";
+             String sql="UPDATE webadmin SET nombre = ?,apellido = ?,usuario = ?,password = ?,nivel = ?,email = ?,estado= ? WHERE idWebAdmin = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2,entidad.getEstado());
-            stmt.setInt(3,entidad.getIdTipoHabitacion());
+            stmt.setString(1, entidad.getNombre());
+            stmt.setString(2, entidad.getApellido());
+            stmt.setString(3, entidad.getUsuario());
+            stmt.setString(4, entidad.getPassword());
+            stmt.setInt(5, entidad.getNivel());
+            stmt.setString(6, entidad.getEmail());
+            stmt.setInt(7, entidad.getEstado());
+            stmt.setInt(8, entidad.getIdWebAdmin());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

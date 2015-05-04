@@ -10,15 +10,15 @@ package Entidades;
  * @author Paulo
  */
 public class clsServicio {
-    private int isServicio;
+    private int idServicio;
     private String nombre;
     private int estado;
 
     public clsServicio() {
     }
 
-    public int getIsServicio() {
-        return isServicio;
+    public int getIdServicio() {
+        return idServicio;
     }
 
     public String getNombre() {
@@ -29,8 +29,8 @@ public class clsServicio {
         return estado;
     }
 
-    public void setIsServicio(int isServicio) {
-        this.isServicio = isServicio;
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
     }
 
     public void setNombre(String nombre) {
