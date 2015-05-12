@@ -745,7 +745,6 @@ and (orientation : portrait) {
 		width: 150px;
 	}
 }
-	
 
 @media (max-width: 840px){
 	#Parks.list .meta.region,

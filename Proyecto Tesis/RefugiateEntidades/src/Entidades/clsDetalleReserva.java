@@ -19,6 +19,7 @@ public class clsDetalleReserva {
     private double total;
     private int estado;
     private clsReserva objReserva;
+    private clsHabitacion objHabitacion;
 
     public clsDetalleReserva() {
     }
@@ -51,7 +52,11 @@ public class clsDetalleReserva {
         return objReserva;
     }
 
-    public void setInt_IdDetalleReserva(int int_IdDetalleReserva) {
+    public clsHabitacion getObjHabitacion() {
+        return objHabitacion;
+    }
+
+    public void setIdDetalleReserva(int int_IdDetalleReserva) {
         this.int_IdDetalleReserva = int_IdDetalleReserva;
     }
 
@@ -78,5 +83,8 @@ public class clsDetalleReserva {
     public void setObjReserva(clsReserva objReserva) {
         this.objReserva = objReserva;
     }
-    
+
+    public void setObjHabitacion(clsHabitacion objHabitacion) {
+        this.objHabitacion = objHabitacion;
+    }
 }

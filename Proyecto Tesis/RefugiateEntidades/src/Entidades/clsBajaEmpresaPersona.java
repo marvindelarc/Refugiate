@@ -17,6 +17,7 @@ public class clsBajaEmpresaPersona {
     private Date fechaRegistro;
     private Date fechaFinal;
     private int estado;
+    private clsEmpresa objEmpresa;
     private clsPersona objPersona;
 
     public clsBajaEmpresaPersona() {
@@ -42,6 +43,10 @@ public class clsBajaEmpresaPersona {
         return estado;
     }
 
+    public clsEmpresa getObjEmpresa() {
+        return objEmpresa;
+    }   
+
     public clsPersona getObjPersona() {
         return objPersona;
     }
@@ -66,6 +71,10 @@ public class clsBajaEmpresaPersona {
         this.estado = estado;
     }
 
+    public void setObjEmpresa(clsEmpresa objEmpresa) {
+        this.objEmpresa = objEmpresa;
+    }
+   
     public void setObjPersona(clsPersona objPersona) {
         this.objPersona = objPersona;
     }

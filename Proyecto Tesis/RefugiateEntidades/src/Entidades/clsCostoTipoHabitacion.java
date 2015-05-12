@@ -9,22 +9,27 @@ package Entidades;
  *
  * @author Paulo
  */
-class clsCostoTipoHabitacion {
+public class clsCostoTipoHabitacion {
     private int idCostoTipoHabitacion;
-    private float costo;
+    private double costo;
     private int totalHabitaciones;
     private int habitacionesOcupadas;
     private int estado;
     private clsTipoHabitacion objTipohabitacion;
+    private clsSucursal objSucursal;
 
     public clsCostoTipoHabitacion() {
+    }
+
+    public clsSucursal getObjSucursal() {
+        return objSucursal;
     }
 
     public int getIdCostoTipoHabitacion() {
         return idCostoTipoHabitacion;
     }
 
-    public float getCosto() {
+    public double getCosto() {
         return costo;
     }
 
@@ -44,11 +49,15 @@ class clsCostoTipoHabitacion {
         return objTipohabitacion;
     }
 
+    public void setObjSucursal(clsSucursal objSucursal) {
+        this.objSucursal = objSucursal;
+    }
+
     public void setIdCostoTipoHabitacion(int idCostoTipoHabitacion) {
         this.idCostoTipoHabitacion = idCostoTipoHabitacion;
     }
 
-    public void setCosto(float costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 

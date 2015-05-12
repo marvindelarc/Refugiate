@@ -6,7 +6,6 @@
 package Entidades;
 
 import java.util.Date;
-
 /**
  *
  * @author Paulo
@@ -16,12 +15,12 @@ public class clsEmpresa {
     private String nombreComercial;
     private String nombre;
     private String slogan;
-    private String ruc;
-    private int estado;
+    private String ruc;    
     private int puntos;
     private Date fechaRegistro;
     private byte[] logo;
-    private byte banner;
+    private byte[] banner;
+    private int estado;
 
     public clsEmpresa() {
     }
@@ -62,7 +61,7 @@ public class clsEmpresa {
         return logo;
     }
 
-    public byte getBanner() {
+    public byte[] getBanner() {
         return banner;
     }
 
@@ -102,7 +101,7 @@ public class clsEmpresa {
         this.logo = logo;
     }
 
-    public void setBanner(byte banner) {
+    public void setBanner(byte[] banner) {
         this.banner = banner;
     }
 }

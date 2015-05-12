@@ -10,15 +10,15 @@ package Entidades;
  * @author Paulo
  */
 public class clsDistrito {
-    private int isDistrito;
+    private int idDistrito;
     private String nombre;
     private clsProvincia objProvincia;
 
     public clsDistrito() {
     }
 
-    public int getIsDistrito() {
-        return isDistrito;
+    public int getIdDistrito() {
+        return idDistrito;
     }
 
     public String getNombre() {
@@ -29,8 +29,8 @@ public class clsDistrito {
         return objProvincia;
     }
 
-    public void setIsDistrito(int isDistrito) {
-        this.isDistrito = isDistrito;
+    public void setIdDistrito(int idDistrito) {
+        this.idDistrito = idDistrito;
     }
 
     public void setNombre(String nombre) {

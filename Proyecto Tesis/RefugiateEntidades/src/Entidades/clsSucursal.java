@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Paulo
@@ -23,7 +25,7 @@ public class clsSucursal {
     private int nivel;
     private String entrada;
     private String salida;
-    private String fecha;
+    private Date fecha;
     private int estado;
     private clsDistrito objDistrito;
     private clsEmpresa objEmpresa;
@@ -83,7 +85,7 @@ public class clsSucursal {
         return salida;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -151,7 +153,7 @@ public class clsSucursal {
         this.salida = salida;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

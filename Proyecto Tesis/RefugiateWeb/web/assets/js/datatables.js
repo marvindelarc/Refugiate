@@ -1,4 +1,5 @@
-/* Set the defaults for DataTables initialisation */
+          
+   /* Set the defaults for DataTables initialisation */
 $.extend( true, $.fn.dataTable.defaults, {
 	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'p i>>",
 	"sPaginationType": "bootstrap",
@@ -108,106 +109,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
 	}
 } );
 
-
-/*
- * TableTools Bootstrap compatibility
- * Required TableTools 2.1+
- */
-
-	// Set the classes that TableTools uses to something suitable for Bootstrap
-	$.extend( true, $.fn.DataTable.TableTools.classes, {
-		"container": "DTTT ",
-		"buttons": {
-			"normal": "btn btn-white",
-			"disabled": "disabled"
-		},
-		"collection": {
-			"container": "DTTT_dropdown dropdown-menu",
-			"buttons": {
-				"normal": "",
-				"disabled": "disabled"
-			}
-		},
-		"print": {
-			"info": "DTTT_print_info "
-		},
-		"select": {
-			"row": "active"
-		}
-	} );
-
-	// Have the collection use a bootstrap compatible dropdown
-	$.extend( true, $.fn.DataTable.TableTools.DEFAULTS.oTags, {
-		"collection": {
-			"container": "ul",
-			"button": "li",
-			"liner": "a"
-		}
-	} );
-
-/* Table initialisation */
-$(document).ready(function() {
-    var responsiveHelper = undefined;
-    var breakpointDefinition = {
-        tablet: 1024,
-        phone : 480
-    };    
-	var tableElement = $('#example');
-
-    tableElement.dataTable( {
-		"sDom": "<'row-fluid'<'span6'l T><'span6'f>r>t<'row-fluid'<'span12'p i>>",
-			"oTableTools": {
-			"aButtons": [
-				{
-					"sExtends":    "collection",
-					"sButtonText": "<i class='icon-cloud-download'></i>",
-					"aButtons":    [ "csv", "xls", "pdf", "copy"]
-				}
-			]
-		},
-		"sPaginationType": "bootstrap",
-		 "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 0 ] }
-		],
-		"aaSorting": [[ 1, "asc" ]],
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ ",
-			"sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
-		},
-		 bAutoWidth     : false,
-        fnPreDrawCallback: function () {
-            // Initialize the responsive datatables helper once.
-            if (!responsiveHelper) {
-                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
-            }
-        },
-        fnRowCallback  : function (nRow) {
-            responsiveHelper.createExpandIcon(nRow);
-        },
-        fnDrawCallback : function (oSettings) {
-            responsiveHelper.respond();
-        }
-	});
-	
-	$('#example_wrapper .dataTables_filter input').addClass("input-medium "); // modify table search input
-    $('#example_wrapper .dataTables_length select').addClass("select2-wrapper span12"); // modify table per page dropdown
-
-	
-	
-	$('#example input').click( function() {
-        $(this).parent().parent().parent().toggleClass('row_selected');
-    });
-	
-	
-	$('#quick-access .btn-cancel').click( function() {
-		$("#quick-access").css("bottom","-115px");
-    });
-	$('#quick-access .btn-add').click( function() {
-		fnClickAddRow();
-		$("#quick-access").css("bottom","-115px");
-    });
-	
-    /*
+         /*
      * Insert a 'details' column to the table
      */
     var nCloneTh = document.createElement( 'th' );
@@ -234,44 +136,15 @@ $(document).ready(function() {
 			"sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
 		},
     });
-	 var oTable3 = $('#example3').dataTable( {
-	   "sDom": "<'row-fluid'<'span6'l <'toolbar'>><'span6'f>r>t<'row-fluid'<'span12'p i>>",
-        			"oTableTools": {
-			"aButtons": [
-				{
-					"sExtends":    "collection",
-					"sButtonText": "<i class='icon-cloud-download'></i>",
-					"aButtons":    [ "csv", "xls", "pdf", "copy"]
-				}
-			]
-		},
-        "aoColumnDefs": [
-            { "bSortable": false, "aTargets": [ 0 ] }
-        ],
-        "aaSorting": [[ 3, "desc" ]],
-				"oLanguage": {
-			"sLengthMenu": "_MENU_ ",
-			"sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
-		},
-    });
-	$("div.toolbar").html('<div class="table-tools-actions"><button class="btn btn-primary" style="margin-left:12px" id="test2">Add</button></div>');
+     $("div.toolbar").html('<div class="table-tools-actions"><button class="btn btn-primary" style="margin-left:12px" id="test2">Add</button></div>');
 	
 	$('#test2').on( "click",function() {
 		$("#quick-access").css("bottom","0px");
     });
 	
-	$('#example2_wrapper .dataTables_filter input').addClass("input-medium ");
+    $('#example2_wrapper .dataTables_filter input').addClass("input-medium ");
     $('#example2_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
-	
-	$('#example3_wrapper .dataTables_filter input').addClass("input-medium ");
-    $('#example3_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
-	
-	
-    /* Add event listener for opening and closing details
-     * Note that the indicator for showing which row is open is not controlled by DataTables,
-     * rather it is done here
-     */
-    $('#example2 tbody td i').live('click', function () {
+	    $('#example2 tbody td i').live('click', function () {
         var nTr = $(this).parents('tr')[0];
         if ( oTable.fnIsOpen(nTr) )
         {
@@ -287,22 +160,8 @@ $(document).ready(function() {
             this.addClass = "icon-plus-sign";  
             oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
         }
-    });
-	
-		$(".select2-wrapper").select2({minimumResultsForSearch: -1});
-
-	function fnClickAddRow() {
-    $('#example3').dataTable().fnAddData( [
-        $("#val1 option:selected").text(),
-        $("#val2 option:selected").text(),
-        "Windows",
-        "789.","A" ] );     
-	}	
-});
-
-
-/* Formating function for row details */
-function fnFormatDetails ( oTable, nTr )
+    });   
+     function fnFormatDetails ( oTable, nTr )
 {
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" class="inner-table">';
@@ -312,4 +171,4 @@ function fnFormatDetails ( oTable, nTr )
     sOut += '</table>';
      
     return sOut;
-}
+}  
