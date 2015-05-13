@@ -56,7 +56,7 @@ public class clsDetalleReserva {
         return objHabitacion;
     }
 
-    public void setInt_IdDetalleReserva(int int_IdDetalleReserva) {
+    public void setIdDetalleReserva(int int_IdDetalleReserva) {
         this.int_IdDetalleReserva = int_IdDetalleReserva;
     }
 

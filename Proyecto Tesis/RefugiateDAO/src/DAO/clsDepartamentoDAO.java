@@ -30,13 +30,14 @@ public class clsDepartamentoDAO {
             dr = stmt.executeQuery();
             while (dr.next()) 
             {                
-                if (lista == null) {
+                if (lista == null) 
+                {
                     lista= new ArrayList<clsDepartamento>();
-                    clsDepartamento entidad = new clsDepartamento();
-                    entidad.setIdDepartamento(dr.getInt(1));
-                    entidad.setNombre(dr.getString(2));
-                    lista.add(entidad);
                 }
+                clsDepartamento entidad = new clsDepartamento();
+                entidad.setIdDepartamento(dr.getInt(1));
+                entidad.setNombre(dr.getString(2));
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);

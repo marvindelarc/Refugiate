@@ -35,21 +35,22 @@ public class clsEmpresaDAO {
             dr = stmt.executeQuery();
             while (dr.next()) 
             {
-                if (lista == null) {
+                if (lista == null) 
+                {
                     lista = new ArrayList<clsEmpresa>();
-                    clsEmpresa entidad =  new clsEmpresa();
-                    entidad.setIdEmpresa(dr.getInt(1));
-                    entidad.setNombreComercial(dr.getString(2));
-                    entidad.setNombre(dr.getString(3));
-                    entidad.setSlogan(dr.getString(4));
-                    entidad.setRuc(dr.getString(5));
-                    entidad.setPuntos(dr.getInt(6));
-                    entidad.setFechaRegistro(dr.getTimestamp(7));
-                    entidad.setLogo(dr.getBytes(8));
-                    entidad.setBanner(dr.getBytes(9));
-                    entidad.setEstado(dr.getInt(10));
-                    lista.add(entidad);
                 }
+                clsEmpresa entidad =  new clsEmpresa();
+                entidad.setIdEmpresa(dr.getInt(1));
+                entidad.setNombreComercial(dr.getString(2));
+                entidad.setNombre(dr.getString(3));
+                entidad.setSlogan(dr.getString(4));
+                entidad.setRuc(dr.getString(5));
+                entidad.setPuntos(dr.getInt(6));
+                entidad.setFechaRegistro(dr.getTimestamp(7));
+                entidad.setLogo(dr.getBytes(8));
+                entidad.setBanner(dr.getBytes(9));
+                entidad.setEstado(dr.getInt(10));
+                lista.add(entidad);                
             }
             
         } catch (Exception e) {

@@ -37,22 +37,22 @@ public class clsHabitacionDAO {
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)
+                {
                     lista= new ArrayList<clsHabitacion>();                
-                    
-                    clsCostoTipoHabitacion ObjCostoTipoHabitacion = new clsCostoTipoHabitacion();
-                    ObjCostoTipoHabitacion.setIdCostoTipoHabitacion(dr.getInt(2));
-                    
-                    clsHabitacion entidad = new clsHabitacion();
-                    entidad.setIdHabitacion(dr.getInt(1));
-                    entidad.setObjCostoTipoHabitacion(ObjCostoTipoHabitacion); 
-                    entidad.setNumero(dr.getInt(3));  
-                    entidad.setPiso(dr.getInt(4));  
-                    entidad.setNumeroPersonas(dr.getInt(5));  
-                    entidad.setEstado(dr.getInt(6));  
-                    entidad.setVista(dr.getInt(7));  
-                    lista.add(entidad);
                 }
+                clsCostoTipoHabitacion ObjCostoTipoHabitacion = new clsCostoTipoHabitacion();
+                ObjCostoTipoHabitacion.setIdCostoTipoHabitacion(dr.getInt(2));
+
+                clsHabitacion entidad = new clsHabitacion();
+                entidad.setIdHabitacion(dr.getInt(1));
+                entidad.setObjCostoTipoHabitacion(ObjCostoTipoHabitacion); 
+                entidad.setNumero(dr.getInt(3));  
+                entidad.setPiso(dr.getInt(4));  
+                entidad.setNumeroPersonas(dr.getInt(5));  
+                entidad.setEstado(dr.getInt(6));  
+                entidad.setVista(dr.getInt(7));  
+                lista.add(entidad);
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -76,7 +76,7 @@ public class clsHabitacionDAO {
         try {
             
             String sql= "INSERT INTO habitacion(idCostoTipoHabitacion,numero,piso,numeroPersonas,estado,vista)"
-                        + " VALUES(?,?,?,?,?,?);";
+                        + " VALUES(?,?,?,?,?,?)";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -122,6 +122,7 @@ public class clsHabitacionDAO {
             stmt.setInt(4, entidad.getNumeroPersonas());
             stmt.setInt(5, entidad.getEstado());
             stmt.setInt(6, entidad.getVista());
+            stmt.setInt(7, entidad.getIdHabitacion());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);

@@ -19,14 +19,16 @@ import java.util.List;
  *
  * @author Paulo
  */
-public class clsWebAdminDAO {
+public class clsWebAdminDAO 
+{
     public static List<clsWebAdmin> Listar(boolean activo) throws Exception
     {
         List<clsWebAdmin> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
-        try {
+        try 
+        {
             String sql="SELECT idWebAdmin,nombre,apellido,usuario,password,nivel,email,estado FROM webadmin";
             if(activo)
                     sql+=" where estado=1"; 
@@ -36,19 +38,20 @@ public class clsWebAdminDAO {
 
             while(dr.next())
             {
-                if(lista==null){
-                    lista= new ArrayList<clsWebAdmin>();                
-                    clsWebAdmin entidad = new clsWebAdmin();
-                    entidad.setIdWebAdmin(dr.getInt(1));
-                    entidad.setNombre(dr.getString(2)); 
-                    entidad.setApellido(dr.getString(3)); 
-                    entidad.setUsuario(dr.getString(4)); 
-                    entidad.setPassword(dr.getString(5)); 
-                    entidad.setNivel(dr.getInt(6));
-                    entidad.setEmail(dr.getString(7));
-                    entidad.setEstado(dr.getInt(8));
-                    lista.add(entidad);
-                }
+                if(lista==null)
+                    { 
+                        lista= new ArrayList<clsWebAdmin>(); 
+                    }              
+                clsWebAdmin entidad = new clsWebAdmin();
+                entidad.setIdWebAdmin(dr.getInt(1));
+                entidad.setNombre(dr.getString(2)); 
+                entidad.setApellido(dr.getString(3)); 
+                entidad.setUsuario(dr.getString(4)); 
+                entidad.setPassword(dr.getString(5)); 
+                entidad.setNivel(dr.getInt(6));
+                entidad.setEmail(dr.getString(7));
+                entidad.setEstado(dr.getInt(8));
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -72,7 +75,7 @@ public class clsWebAdminDAO {
         try {
             
            String sql= "INSERT INTO webadmin(nombre,apellido,usuario,password,nivel,email,estado)"
-                   + " VALUES(?,?,?,?,?,?,?,?);";
+                   + " VALUES(?,?,?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

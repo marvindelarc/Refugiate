@@ -35,21 +35,21 @@ public class clsPuntuacionHotelDAO {
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)
+                {
                     lista= new ArrayList<clsPuntuacionHotel>();                
-                    
-                    clsReserva objReserva = new clsReserva();
-                    objReserva.setIdReserva(dr.getInt(2));
-                    
-                    clsPuntuacionHotel entidad = new clsPuntuacionHotel();
-                    entidad.setIdPuntacionHotel(dr.getInt(1));
-                    entidad.setObjReserva(objReserva);
-                    entidad.setLimpieza(dr.getInt(3));
-                    entidad.setServicio(dr.getInt(4));
-                    entidad.setComodidad(dr.getInt(5));
-                    entidad.setFecha(dr.getTimestamp(6));
-                    lista.add(entidad);
                 }
+                clsReserva objReserva = new clsReserva();
+                objReserva.setIdReserva(dr.getInt(2));
+
+                clsPuntuacionHotel entidad = new clsPuntuacionHotel();
+                entidad.setIdPuntacionHotel(dr.getInt(1));
+                entidad.setObjReserva(objReserva);
+                entidad.setLimpieza(dr.getInt(3));
+                entidad.setServicio(dr.getInt(4));
+                entidad.setComodidad(dr.getInt(5));
+                entidad.setFecha(dr.getTimestamp(6));
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -71,8 +71,8 @@ public class clsPuntuacionHotelDAO {
         Connection conn = null;
         PreparedStatement  stmt = null;
         try {            
-            String sql= "INSERT INTO puntuacionhotel(idReserva,limpieza,servicio,comodidad,fecha;)"
-                   + " VALUES(?,?);";
+            String sql= "INSERT INTO puntuacionhotel(idReserva,limpieza,servicio,comodidad,fecha)"
+                   + " VALUES(?,?,?,?,?)";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -107,7 +107,7 @@ public class clsPuntuacionHotelDAO {
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE tipohabitacion SET nombreComercial = ?,estado= ? WHERE idTipoHabitacion = ?;";
+             String sql="UPDATE puntuacionhotel SET idReserva = ?,limpieza= ?,servicio = ?,comodidad = ?,fecha = ? WHERE idPuntuacionHotel = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
@@ -116,6 +116,7 @@ public class clsPuntuacionHotelDAO {
             stmt.setInt(3, entidad.getServicio());
             stmt.setInt(4, entidad.getComodidad());
             stmt.setDate(5, (Date) entidad.getFecha());
+            stmt.setInt(6, entidad.getIdPuntacionHotel());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

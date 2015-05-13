@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
-import Entidades.clsTipoHabitacion;
+import Entidades.clsPaquete;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,18 +15,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class clsTipoHabitacionDAO 
-{
-    public static List<clsTipoHabitacion> Listar(boolean activo) throws Exception
+/**
+ *
+ * @author Paulo
+ */
+public class clsPaqueteDAO {
+    public static List<clsPaquete> Listar(boolean activo) throws Exception
     {
-        List<clsTipoHabitacion> lista = null;
+        List<clsPaquete> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idTipoHabitacion,nombreComercial,estado FROM tipohabitacion";
+            String sql="SELECT id_paquete,monto,meses,estado FROM paquete ";
             if(activo)
-                    sql+=" where estado=1"; 
+                sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -36,12 +38,13 @@ public class clsTipoHabitacionDAO
             {
                 if(lista==null)
                 {
-                    lista= new ArrayList<clsTipoHabitacion>(); 
+                    lista= new ArrayList<clsPaquete>(); 
                 }  
-                clsTipoHabitacion entidad = new clsTipoHabitacion();
-                entidad.setIdTipoHabitacion(dr.getInt(1));
-                entidad.setNombreComercial(dr.getString(2)); 
-                entidad.setEstado(dr.getInt(3));  
+                clsPaquete entidad = new clsPaquete();
+                entidad.setIdPaquete(dr.getInt(1));
+                entidad.setMonto(dr.getDouble(2)); 
+                entidad.setMeses(dr.getInt(3));
+                entidad.setEstado(dr.getInt(4));
                 lista.add(entidad);                
             }
         } catch (Exception e) {
@@ -58,20 +61,21 @@ public class clsTipoHabitacionDAO
         return lista;
     }
     
-    public  static int insertar(clsTipoHabitacion entidad) throws Exception
+    public  static int insertar(clsPaquete entidad) throws Exception
     {
         int rpta = 0;
         Connection conn = null;
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO tipohabitacion(nombreComercial,estado)"
-                   + " VALUES(?,?);";
+           String sql= "INSERT INTO paquete(monto,meses,estado)"
+                   + " VALUES(?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2, entidad.getEstado());
+            stmt.setDouble(1, entidad.getMonto());
+            stmt.setInt(2, entidad.getMeses());
+            stmt.setInt(3, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -92,19 +96,20 @@ public class clsTipoHabitacionDAO
         return rpta;
     } 
     
-    public static boolean actualizar(clsTipoHabitacion entidad) throws Exception
+    public static boolean actualizar(clsPaquete entidad) throws Exception
     {
         boolean rpta = false;
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE tipohabitacion SET nombreComercial = ?,estado= ? WHERE idTipoHabitacion = ?;";
+             String sql="UPDATE paquete SET monto = ?, meses = ?, estado = ? WHERE id_paquete = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
-            stmt.setString(1, entidad.getNombreComercial());
-            stmt.setInt(2,entidad.getEstado());
-            stmt.setInt(3,entidad.getIdTipoHabitacion());
+            stmt.setDouble(1, entidad.getMonto());
+            stmt.setInt(2, entidad.getMeses());
+            stmt.setInt(3, entidad.getEstado());
+            stmt.setInt(4, entidad.getIdPaquete());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);
@@ -117,5 +122,5 @@ public class clsTipoHabitacionDAO
             }
         }
         return rpta;
-    }    
+    }  
 }

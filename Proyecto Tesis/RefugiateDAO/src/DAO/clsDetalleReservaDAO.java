@@ -36,26 +36,26 @@ public class clsDetalleReservaDAO {
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
             while (dr.next()) {
-                if (lista == null) {
+                if (lista == null) 
+                {
                     lista = new ArrayList<clsDetalleReserva>();
-                    
-                    clsReserva objReserva = new clsReserva();
-                    objReserva.setIdReserva(dr.getInt(2));
-                    
-                    clsHabitacion objHabitacion = new clsHabitacion();
-                    objHabitacion.setIdHabitacion(dr.getInt(8));
-                    
-                    clsDetalleReserva entidad = new clsDetalleReserva();
-                    entidad.setInt_IdDetalleReserva(dr.getInt(1));
-                    entidad.setObjReserva(objReserva);
-                    entidad.setNroHabitaciones(dr.getInt(3));
-                    entidad.setFechaIngreso(dr.getTimestamp(4));
-                    entidad.setDias(dr.getInt(5));
-                    entidad.setTotal(dr.getFloat(6));
-                    entidad.setEstado(dr.getInt(7));
-                    entidad.setObjHabitacion(objHabitacion);
-                    lista.add(entidad);
                 }
+                clsReserva objReserva = new clsReserva();
+                objReserva.setIdReserva(dr.getInt(2));
+
+                clsHabitacion objHabitacion = new clsHabitacion();
+                objHabitacion.setIdHabitacion(dr.getInt(8));
+
+                clsDetalleReserva entidad = new clsDetalleReserva();
+                entidad.setIdDetalleReserva(dr.getInt(1));
+                entidad.setObjReserva(objReserva);
+                entidad.setNroHabitaciones(dr.getInt(3));
+                entidad.setFechaIngreso(dr.getTimestamp(4));
+                entidad.setDias(dr.getInt(5));
+                entidad.setTotal(dr.getFloat(6));
+                entidad.setEstado(dr.getInt(7));
+                entidad.setObjHabitacion(objHabitacion);
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar"+e.getMessage(), e);
@@ -92,7 +92,7 @@ public class clsDetalleReservaDAO {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                rpta = rs.getInt(6);
+                rpta = rs.getInt(1);
             }
             rs.close();
         } catch (Exception e) {

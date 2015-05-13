@@ -13,9 +13,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,20 +38,20 @@ public class clsComentarioDAO {
             
             while (dr.next()) 
             {
-                if (lista==null) {
+                if (lista==null)
+                {
                     lista = new ArrayList<clsComentario>();
-                    
-                    clsReserva objReserva = new clsReserva();
-                    objReserva.setIdReserva(dr.getInt(2));
-                    
-                    clsComentario entidad = new clsComentario();
-                    entidad.setIdComentario(dr.getInt(1));
-                    entidad.setDescripcion(dr.getString(3));
-                    entidad.setFecha(dr.getTimestamp(4));
-                    entidad.setEstado(dr.getInt(5));
-                    entidad.setObjReserva(objReserva);
-                    lista.add(entidad);
                 }
+                clsReserva objReserva = new clsReserva();
+                objReserva.setIdReserva(dr.getInt(2));
+
+                clsComentario entidad = new clsComentario();
+                entidad.setIdComentario(dr.getInt(1));
+                entidad.setDescripcion(dr.getString(3));
+                entidad.setFecha(dr.getTimestamp(4));
+                entidad.setEstado(dr.getInt(5));
+                entidad.setObjReserva(objReserva);
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar"+e.getMessage(), e);
@@ -87,7 +85,7 @@ public class clsComentarioDAO {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                rpta = rs.getInt(4);
+                rpta = rs.getInt(1);
             }
             rs.close();
         } catch (Exception e) {
@@ -110,12 +108,14 @@ public class clsComentarioDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql="UPDATE comentario SET descripcion = ?,fecha = ?,estado= ? WHERE idComentario = ?;";            
+            String sql="UPDATE comentario SET idReserva = ?,descripcion = ?,fecha = ?,estado= ? WHERE idComentario = ?;";            
             conn = clsConexion.getConnection();
-            stmt = conn.prepareCall(sql);                        
-            stmt.setString(1, entidad.getDescripcion());
+            stmt = conn.prepareCall(sql);                  
+            stmt.setInt(1, entidad.getObjReserva().getIdReserva());
+            stmt.setString(2, entidad.getDescripcion());
             stmt.setDate(3, (Date) entidad.getFecha());
-            stmt.setInt(3, entidad.getEstado());
+            stmt.setInt(4, entidad.getEstado());
+            stmt.setInt(5, entidad.getIdComentario());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);

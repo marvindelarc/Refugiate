@@ -36,22 +36,22 @@ public class clsIntalacionDAO {
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)
+                {
                     lista= new ArrayList<clsIntalacion>();                
-                
-                    clsServicio objServicio = new clsServicio();
-                    objServicio.setIdServicio(dr.getInt(2));
-                    
-                    clsSucursal objSucursal = new clsSucursal();
-                    objSucursal.setIdSucursal(dr.getInt(3));
-                    
-                    clsIntalacion entidad = new clsIntalacion();
-                    entidad.setIdInstalacion(dr.getInt(1));
-                    entidad.setObjServicio(objServicio); 
-                    entidad.setObjSucursal(objSucursal);  
-                    entidad.setDescripcion(dr.getString(4));  
-                    lista.add(entidad);
                 }
+                clsServicio objServicio = new clsServicio();
+                objServicio.setIdServicio(dr.getInt(2));
+
+                clsSucursal objSucursal = new clsSucursal();
+                objSucursal.setIdSucursal(dr.getInt(3));
+
+                clsIntalacion entidad = new clsIntalacion();
+                entidad.setIdInstalacion(dr.getInt(1));
+                entidad.setObjServicio(objServicio); 
+                entidad.setObjSucursal(objSucursal);  
+                entidad.setDescripcion(dr.getString(4));  
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -113,6 +113,7 @@ public class clsIntalacionDAO {
             stmt.setInt(1, entidad.getObjServicio().getIdServicio());
             stmt.setInt(2, entidad.getObjSucursal().getIdSucursal());
             stmt.setString(3, entidad.getDescripcion());
+            stmt.setInt(4, entidad.getIdInstalacion());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);

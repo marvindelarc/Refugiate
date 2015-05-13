@@ -39,35 +39,35 @@ public class clsSucursalDAO {
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)
+                {
                     lista= new ArrayList<clsSucursal>();
-                    
-                    clsEmpresa objEmpresa = new clsEmpresa();
-                    objEmpresa.setIdEmpresa(dr.getInt(2));
-                    
-                    clsDistrito objDistrito = new clsDistrito();
-                    objDistrito.setIdDistrito(dr.getInt(3));
-                    
-                    clsSucursal entidad = new clsSucursal();
-                    entidad.setIdSucursal(dr.getInt(1));
-                    entidad.setObjEmpresa(objEmpresa);
-                    entidad.setObjDistrito(objDistrito);
-                    entidad.setDireccion(dr.getString(4)); 
-                    entidad.setPisos(dr.getInt(5));
-                    entidad.setTelefono(dr.getString(6)); 
-                    entidad.setLongitud(dr.getDouble(7));
-                    entidad.setLongitud(dr.getDouble(8));
-                    entidad.setLimpieza(dr.getInt(9));
-                    entidad.setServicio(dr.getInt(10));
-                    entidad.setComodidad(dr.getInt(11));
-                    entidad.setPuntuacion(dr.getInt(12));
-                    entidad.setNivel(dr.getInt(13));
-                    entidad.setEntrada(dr.getString(14)); 
-                    entidad.setSalida(dr.getString(15)); 
-                    entidad.setFecha(dr.getDate(16));
-                    entidad.setEstado(dr.getInt(17));  
-                    lista.add(entidad);
-                }
+                }    
+                clsEmpresa objEmpresa = new clsEmpresa();
+                objEmpresa.setIdEmpresa(dr.getInt(2));
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setIdDistrito(dr.getInt(3));
+
+                clsSucursal entidad = new clsSucursal();
+                entidad.setIdSucursal(dr.getInt(1));
+                entidad.setObjEmpresa(objEmpresa);
+                entidad.setObjDistrito(objDistrito);
+                entidad.setDireccion(dr.getString(4)); 
+                entidad.setPisos(dr.getInt(5));
+                entidad.setTelefono(dr.getString(6)); 
+                entidad.setLongitud(dr.getDouble(7));
+                entidad.setLongitud(dr.getDouble(8));
+                entidad.setLimpieza(dr.getInt(9));
+                entidad.setServicio(dr.getInt(10));
+                entidad.setComodidad(dr.getInt(11));
+                entidad.setPuntuacion(dr.getInt(12));
+                entidad.setNivel(dr.getInt(13));
+                entidad.setEntrada(dr.getString(14)); 
+                entidad.setSalida(dr.getString(15)); 
+                entidad.setFecha(dr.getDate(16));
+                entidad.setEstado(dr.getInt(17));  
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -170,6 +170,49 @@ public class clsSucursalDAO {
             }
         }
         return rpta;
-    }    
+    }
+    public static List<clsSucursal> ListarPorDistrito(int idempresa) throws Exception
+    {
+        List<clsSucursal> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql= "SELECT sucursal.idSucursal,sucursal.idEmpresa,sucursal.idDistrito,distrito.nombre,estado \n" +
+                        "FROM sucursal inner join distrito on sucursal.idDistrito = distrito.idDistrito where  estado = 1 and sucursal.idEmpresa = "+idempresa;            
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            while(dr.next())
+            {
+                if(lista==null)
+                {
+                    lista= new ArrayList<clsSucursal>();
+                }    
+                clsEmpresa objEmpresa = new clsEmpresa();
+                objEmpresa.setIdEmpresa(dr.getInt(2));
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setIdDistrito(dr.getInt(3));
+
+                clsSucursal entidad = new clsSucursal();
+                entidad.setIdSucursal(dr.getInt(1));
+                
+                lista.add(entidad);                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
 }
 

@@ -36,20 +36,20 @@ public class clsPuntuacionUsuarioDAO {
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)
+                {
                     lista= new ArrayList<clsPuntuacionUsuario>();                
-                    
-                    clsReserva objReserva = new clsReserva();
-                    objReserva.setIdReserva(dr.getInt(5));
-                    
-                    clsPuntuacionUsuario entidad = new clsPuntuacionUsuario();
-                    entidad.setIdPUntuacionUsuario(dr.getInt(1));
-                    entidad.setPuntualidad(dr.getInt(2));  
-                    entidad.setHonrrades(dr.getInt(3));  
-                    entidad.setEducacion(dr.getInt(4));  
-                    entidad.setObjReserva(objReserva);  
-                    lista.add(entidad);
                 }
+                clsReserva objReserva = new clsReserva();
+                objReserva.setIdReserva(dr.getInt(5));
+
+                clsPuntuacionUsuario entidad = new clsPuntuacionUsuario();
+                entidad.setIdPUntuacionUsuario(dr.getInt(1));
+                entidad.setPuntualidad(dr.getInt(2));  
+                entidad.setHonrrades(dr.getInt(3));  
+                entidad.setEducacion(dr.getInt(4));  
+                entidad.setObjReserva(objReserva);  
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -72,7 +72,7 @@ public class clsPuntuacionUsuarioDAO {
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO puntuacionusuario(idPuntuacionUsuario,puntualidad,honrades,educacion,fecha,idReserva)"
+           String sql= "INSERT INTO puntuacionusuario(puntualidad,honrades,educacion,fecha,idReserva)"
                    + " VALUES(?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
@@ -117,6 +117,7 @@ public class clsPuntuacionUsuarioDAO {
             stmt.setInt(3, entidad.getEducacion());
             stmt.setDate(4, (Date) entidad.getFecha());
             stmt.setInt(5, entidad.getObjReserva().getIdReserva());
+            stmt.setInt(6, entidad.getIdPUntuacionUsuario());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

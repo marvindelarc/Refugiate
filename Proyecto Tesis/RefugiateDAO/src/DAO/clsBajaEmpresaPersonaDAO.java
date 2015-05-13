@@ -32,25 +32,25 @@ public class clsBajaEmpresaPersonaDAO {
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
             while (dr.next()) {
-                if (lista == null) {
+                if (lista == null) 
+                {
                     lista = new ArrayList<clsBajaEmpresaPersona>();
-                    
-                    clsEmpresa objEmpresa = new clsEmpresa();
-                    objEmpresa.setIdEmpresa(dr.getInt(2));
-                    
-                    clsPersona objPersona = new clsPersona();
-                    objPersona.setIdPersona(dr.getInt(3));
-                    
-                    clsBajaEmpresaPersona entidad = new clsBajaEmpresaPersona();
-                    entidad.setIdBajaEmpresaPersona(dr.getInt(1));
-                    entidad.setComentario(dr.getString(4));
-                    entidad.setFechaRegistro(dr.getTimestamp(5));
-                    entidad.setFechaFinal(dr.getTimestamp(6));
-                    entidad.setEstado(dr.getInt(7));
-                    entidad.setObjEmpresa(objEmpresa);
-                    entidad.setObjPersona(objPersona);
-                    lista.add(entidad);
                 }
+                clsEmpresa objEmpresa = new clsEmpresa();
+                objEmpresa.setIdEmpresa(dr.getInt(2));
+
+                clsPersona objPersona = new clsPersona();
+                objPersona.setIdPersona(dr.getInt(3));
+
+                clsBajaEmpresaPersona entidad = new clsBajaEmpresaPersona();
+                entidad.setIdBajaEmpresaPersona(dr.getInt(1));
+                entidad.setComentario(dr.getString(4));
+                entidad.setFechaRegistro(dr.getTimestamp(5));
+                entidad.setFechaFinal(dr.getTimestamp(6));
+                entidad.setEstado(dr.getInt(7));
+                entidad.setObjEmpresa(objEmpresa);
+                entidad.setObjPersona(objPersona);
+                lista.add(entidad);
             }
         } catch (Exception e) {
             throw new Exception("Listar"+e.getMessage(), e);
@@ -86,7 +86,7 @@ public class clsBajaEmpresaPersonaDAO {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                rpta = rs.getInt(6);
+                rpta = rs.getInt(1);
             }
             rs.close();
         } catch (Exception e) {
@@ -118,6 +118,7 @@ public class clsBajaEmpresaPersonaDAO {
             stmt.setDate(4, (Date) entidad.getFechaRegistro());
             stmt.setDate(5, (Date) entidad.getFechaFinal());
             stmt.setInt(6, entidad.getEstado());
+            stmt.setInt(7, entidad.getIdBajaEmpresaPersona());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);

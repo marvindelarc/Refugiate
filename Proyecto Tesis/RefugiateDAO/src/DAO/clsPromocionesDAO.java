@@ -38,21 +38,21 @@ public class clsPromocionesDAO {
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)
+                {
                     lista= new ArrayList<clsPromociones>();
-                    
-                    clsSucursal objSucursal = new clsSucursal();
-                    objSucursal.setIdSucursal(dr.getInt(6));
-                            
-                    clsPromociones entidad = new clsPromociones();
-                    entidad.setIdPromociones(dr.getInt(1));
-                    entidad.setDato(dr.getString(2));
-                    entidad.setFechaInicio(dr.getTimestamp(3));
-                    entidad.setFechaFin(dr.getTimestamp(4));
-                    entidad.setEstado(dr.getInt(5));
-                    entidad.setObjSucursal(objSucursal);
-                    lista.add(entidad);
                 }
+                clsSucursal objSucursal = new clsSucursal();
+                objSucursal.setIdSucursal(dr.getInt(6));
+
+                clsPromociones entidad = new clsPromociones();
+                entidad.setIdPromociones(dr.getInt(1));
+                entidad.setDato(dr.getString(2));
+                entidad.setFechaInicio(dr.getTimestamp(3));
+                entidad.setFechaFin(dr.getTimestamp(4));
+                entidad.setEstado(dr.getInt(5));
+                entidad.setObjSucursal(objSucursal);
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -76,7 +76,7 @@ public class clsPromocionesDAO {
         try {
             
            String sql= "INSERT INTO promociones(dato,fechaInicio,fechaFin,estado,idSucursal)"
-                   + " VALUES(?,?);";
+                   + " VALUES(?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -111,7 +111,7 @@ public class clsPromocionesDAO {
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE promociones SET dato = ?,fechaInicio = ?,fechaFin = ?,estado = ?,idSucursal = ? WHERE idTipoHabitacion = ?;";
+             String sql="UPDATE promociones SET dato = ?,fechaInicio = ?,fechaFin = ?,estado = ?,idSucursal = ? WHERE idPromociones = ?";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
@@ -120,6 +120,7 @@ public class clsPromocionesDAO {
             stmt.setDate(3, (Date) entidad.getFechaFin());
             stmt.setInt(4, entidad.getEstado());
             stmt.setInt(5, entidad.getObjSucursal().getIdSucursal());
+            stmt.setInt(6, entidad.getIdPromociones());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

@@ -19,21 +19,22 @@ import java.util.List;
  * @author Paulo
  */
 public class clsProvinciaDAO {
-    public static List<clsProvincia> Listar(boolean activo) throws Exception
+    public static List<clsProvincia> Listar(int IdDepartamento) throws Exception
     {
         List<clsProvincia> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idProvincia,idDepartamento,nombre FROM provincia;";
+            String sql="SELECT idProvincia,idDepartamento,nombre FROM provincia where idDepartamento="+IdDepartamento;
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
 
             while(dr.next())
             {
-                if(lista==null){
+                if(lista==null)//ctm te voy a cahar de verdad idiota de mierda no ves lo q has hecho date cuenta ps mujer
+                                        
                     lista= new ArrayList<clsProvincia>();
                     
                     clsDepartamento objDepartamento = new clsDepartamento();
@@ -44,7 +45,43 @@ public class clsProvinciaDAO {
                     entidad.setObjDepartamento(objDepartamento); 
                     entidad.setNombre(dr.getString(3));  
                     lista.add(entidad);
-                }
+                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
+    public static List<clsDepartamento> BuscarDepartamento(int IdDepartamento) throws Exception
+    {
+        List<clsDepartamento> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT idDepartamento,nombre FROM departamento where idDepartamento="+IdDepartamento;
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            while(dr.next())
+            {
+                if(lista==null)//ctm te voy a cahar de verdad idiota de mierda no ves lo q has hecho date cuenta ps mujer
+                                        
+                    lista= new ArrayList<clsDepartamento>();
+                    
+                    clsDepartamento entidad = new clsDepartamento();
+                    entidad.setIdDepartamento(dr.getInt(1));                    
+                    entidad.setNombre(dr.getString(2));  
+                    lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);

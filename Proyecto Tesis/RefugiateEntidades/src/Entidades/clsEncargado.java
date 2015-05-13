@@ -23,7 +23,7 @@ public class clsEncargado {
     public clsEncargado() {
     }
 
-    public int getInt_IdEncargado() {
+    public int getIdEncargado() {
         return int_IdEncargado;
     }
 
@@ -59,7 +59,7 @@ public class clsEncargado {
         return objSucursal;
     }
 
-    public void setInt_IdEncargado(int int_IdEncargado) {
+    public void setIdEncargado(int int_IdEncargado) {
         this.int_IdEncargado = int_IdEncargado;
     }
 

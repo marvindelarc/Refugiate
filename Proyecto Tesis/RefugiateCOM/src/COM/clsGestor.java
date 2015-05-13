@@ -2,6 +2,7 @@ package COM;
 
 import DAO.clsBajaEmpresaPersonaDAO;
 import DAO.clsComentarioDAO;
+import DAO.clsCostoTipoHabitacionDAO;
 import DAO.clsDepartamentoDAO;
 import DAO.clsDetalleReservaDAO;
 import DAO.clsDistritoDAO;
@@ -9,6 +10,8 @@ import DAO.clsEmpresaDAO;
 import DAO.clsEncargadoDAO;
 import DAO.clsHabitacionDAO;
 import DAO.clsIntalacionDAO;
+import DAO.clsPagoEmpresaDAO;
+import DAO.clsPaqueteDAO;
 import DAO.clsPersonaDAO;
 import DAO.clsPromocionesDAO;
 import DAO.clsProvinciaDAO;
@@ -21,6 +24,7 @@ import DAO.clsTipoHabitacionDAO;
 import DAO.clsWebAdminDAO;
 import Entidades.clsBajaEmpresaPersona;
 import Entidades.clsComentario;
+import Entidades.clsCostoTipoHabitacion;
 import Entidades.clsDepartamento;
 import Entidades.clsDetalleReserva;
 import Entidades.clsDistrito;
@@ -28,6 +32,8 @@ import Entidades.clsEmpresa;
 import Entidades.clsEncargado;
 import Entidades.clsHabitacion;
 import Entidades.clsIntalacion;
+import Entidades.clsPagoEmpresa;
+import Entidades.clsPaquete;
 import Entidades.clsPersona;
 import Entidades.clsPromociones;
 import Entidades.clsProvincia;
@@ -61,7 +67,7 @@ public class clsGestor {
     }
     // </editor-fold>
     
-    //<editor-fold defaultstate="collapsed" desc="clsBajaEmpresaPersona">
+    //<editor-fold defaultstate="collapsed" desc="clsComentario">
     public static List<clsComentario> ListarComentario(boolean activo) throws Exception
     {
         return clsComentarioDAO.Listar(activo);
@@ -73,6 +79,21 @@ public class clsGestor {
     public static boolean actualizarComentario(clsComentario entidad) throws Exception
     {
         return clsComentarioDAO.actualizar(entidad);
+    }
+    // </editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="clsCostoTipoHabitacion">
+    public static List<clsCostoTipoHabitacion> ListarCostoTipoHabitacion(boolean activo) throws Exception
+    {
+        return clsCostoTipoHabitacionDAO.Listar(activo);
+    }
+    public static int insertarCostoTipoHabitacion(clsCostoTipoHabitacion entidad) throws Exception
+    {
+        return clsCostoTipoHabitacionDAO.insertar(entidad);
+    }
+    public static boolean actualizarCostoTipoHabitacion(clsCostoTipoHabitacion entidad) throws Exception
+    {
+        return clsCostoTipoHabitacionDAO.actualizar(entidad);
     }
     // </editor-fold>
     
@@ -98,9 +119,9 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsDistrito">
-    public static List<clsDistrito> listarDistrito(boolean activo) throws Exception
+    public static List<clsDistrito> listarDistrito(int idProvincia) throws Exception
     {
-        return clsDistritoDAO.Listar(activo);
+        return clsDistritoDAO.Listar(idProvincia);
     }
     // </editor-fold>
     
@@ -172,6 +193,40 @@ public class clsGestor {
     }    
     // </editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="clsPagoEmpresa">
+    public static List<clsPagoEmpresa> ListarPagoEmpresa(boolean activo) throws Exception
+    {
+        return clsPagoEmpresaDAO.Listar(activo);
+    }
+    
+    public  static int insertarPagoEmpresa(clsPagoEmpresa entidad) throws Exception
+    {
+        return clsPagoEmpresaDAO.insertar(entidad);
+    }
+    
+    public static boolean actualizarPagoEmpresa(clsPagoEmpresa entidad) throws Exception
+    {
+        return clsPagoEmpresaDAO.actualizar(entidad);
+    }    
+    // </editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="clsPaquete">
+    public static List<clsPaquete> ListarPaquete(boolean activo) throws Exception
+    {
+        return clsPaqueteDAO.Listar(activo);
+    }
+    
+    public  static int insertarPaquete(clsPaquete entidad) throws Exception
+    {
+        return clsPaqueteDAO.insertar(entidad);
+    }
+    
+    public static boolean actualizarPaquete(clsPaquete entidad) throws Exception
+    {
+        return clsPaqueteDAO.actualizar(entidad);
+    }    
+    // </editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="clsPersona">
     public static List<clsPersona> ListarPersona(boolean activo) throws Exception
     {
@@ -207,14 +262,14 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsProvincia">
-    public static List<clsProvincia> listarProvincia(boolean activo) throws Exception
+    public static List<clsProvincia> listarProvincia(int IdDepartamento) throws Exception
     {
-        return clsProvinciaDAO.Listar(activo);
+        return clsProvinciaDAO.Listar(IdDepartamento);
     }
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsPuntuacionHotel">
-    public static List<clsPuntuacionHotel> ListarPuntuacionHotel(boolean activo) throws Exception
+    public static List<clsPuntuacionHotel> listarPuntuacionHotel(boolean activo) throws Exception
     {
         return clsPuntuacionHotelDAO.Listar(activo);
     }
@@ -231,7 +286,7 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsPuntuacionUsuario">
-    public static List<clsPuntuacionUsuario> ListarPuntuacionUsuario(boolean activo) throws Exception
+    public static List<clsPuntuacionUsuario> listarPuntuacionUsuario(boolean activo) throws Exception
     {
         return clsPuntuacionUsuarioDAO.Listar(activo);
     }
@@ -282,7 +337,7 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsSucursal">
-    public static List<clsSucursal> ListarSucursal(boolean activo) throws Exception
+    public static List<clsSucursal> listarSucursal(boolean activo) throws Exception
     {
         return clsSucursalDAO.Listar(activo);
     }

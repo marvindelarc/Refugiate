@@ -36,14 +36,15 @@ public class clsServicioDAO {
 
             while(dr.next())
             {
-                if(lista==null){
-                    lista= new ArrayList<clsServicio>();                
-                    clsServicio entidad = new clsServicio();
-                    entidad.setIdServicio(dr.getInt(1));
-                    entidad.setNombre(dr.getString(2)); 
-                    entidad.setEstado(dr.getInt(3));  
-                    lista.add(entidad);
-                }
+                if(lista==null)
+                {
+                    lista= new ArrayList<clsServicio>();
+                } 
+                clsServicio entidad = new clsServicio();
+                entidad.setIdServicio(dr.getInt(1));
+                entidad.setNombre(dr.getString(2)); 
+                entidad.setEstado(dr.getInt(3));  
+                lista.add(entidad);               
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);

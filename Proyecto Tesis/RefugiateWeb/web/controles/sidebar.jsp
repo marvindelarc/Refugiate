@@ -22,9 +22,10 @@
       <li class=""> <a href="email.html"> <i class="icon-envelope"></i> <span class="title">Email</span> <span class=" badge badge-disable pull-right ">203</span></a> </li>
       <li class=""> <a href="javascript:;"> <i class="icon-shield"></i> <span class="title">Configuracion</span> <span class="arrow "></span> <span class="badge badge-disable pull-right">5</span></a>
         <ul class="sub-menu">
-          <li> <a href="tipo_habitacion.jsp">Tipo de Habitación</a> </li>
-          <li> <a href="tipo_habitacion.jsp">Tipo de Habitación</a> </li>
-          <li> <a href="messages_notifications.html"> Messages & Notifications </a> </li>
+            <li> <a href="../crud_empresa.jsp">Gestion Empresa</a></li> 
+            <li> <a href="../crud_encargado.jsp">Gestion Encargado</a></li> 
+            <li> <a href="../crud_tipo_habitacion.jsp">Gestion Tipo Habitación</a></li>
+            <li> <a href="../crud_paquete.jsp">Gestion Paquetes</a></li>           
         </ul>
       </li>
       <li class=""> <a href="javascript:;"> <i class="icon-custom-form"></i> <span class="title">Forms</span> <span class="arrow "></span> </a>

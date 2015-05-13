@@ -34,24 +34,25 @@ public class clsPersonaDAO {
 
             while(dr.next())
             {
-                if(lista==null){
-                    lista= new ArrayList<clsPersona>();                
-                    clsPersona entidad = new clsPersona();
-                    entidad.setIdPersona(dr.getInt(1));
-                    entidad.setNombre(dr.getString(2)); 
-                    entidad.setApellido(dr.getString(3)); 
-                    entidad.setTelefono(dr.getString(4)); 
-                    entidad.setEmail(dr.getString(5)); 
-                    entidad.setDNI(dr.getString(6)); 
-                    entidad.setUsuario(dr.getString(7)); 
-                    entidad.setPassword(dr.getString(8)); 
-                    entidad.setInformacion(dr.getInt(9));
-                    entidad.setPuntualidad(dr.getInt(10));
-                    entidad.setHonrrades(dr.getInt(11));
-                    entidad.setEducacion(dr.getInt(12));
-                    entidad.setCalificacion(dr.getInt(13));
-                    lista.add(entidad);
-                }
+                if(lista==null)
+                {
+                    lista= new ArrayList<clsPersona>(); 
+                }               
+                clsPersona entidad = new clsPersona();
+                entidad.setIdPersona(dr.getInt(1));
+                entidad.setNombre(dr.getString(2)); 
+                entidad.setApellido(dr.getString(3)); 
+                entidad.setTelefono(dr.getString(4)); 
+                entidad.setEmail(dr.getString(5)); 
+                entidad.setDNI(dr.getString(6)); 
+                entidad.setUsuario(dr.getString(7)); 
+                entidad.setPassword(dr.getString(8)); 
+                entidad.setInformacion(dr.getInt(9));
+                entidad.setPuntualidad(dr.getInt(10));
+                entidad.setHonrrades(dr.getInt(11));
+                entidad.setEducacion(dr.getInt(12));
+                entidad.setCalificacion(dr.getInt(13));
+                lista.add(entidad);                
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -74,7 +75,7 @@ public class clsPersonaDAO {
         PreparedStatement  stmt = null;
         try {            
             String sql= "INSERT INTO persona(nombres,apellidos,telefono,email,dni,usuario,password,informacion,puntualidad,honrades,educacion,calificacion)"
-                   + " VALUES(?,?);";
+                   + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -132,6 +133,7 @@ public class clsPersonaDAO {
             stmt.setInt(10, entidad.getHonrrades());
             stmt.setInt(11, entidad.getEducacion());            
             stmt.setInt(12, entidad.getCalificacion());
+            stmt.setInt(13, entidad.getIdPersona());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

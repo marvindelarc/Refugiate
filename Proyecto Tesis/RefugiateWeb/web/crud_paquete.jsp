@@ -1,10 +1,11 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 <meta charset="utf-8" />
-<title>Webarch - Responsive Admin Dashboard</title>
+<title>Refugiate Web - Administrativa</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+<meta content="Refugiate Web" name="desceription" />
 <meta content="Marvin de la Cruz Razon" name="author" />
 <!-- BEGIN PLUGIN CSS -->
 <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
@@ -70,9 +71,7 @@
        
       </div>
       <div id="header"></div><!-- aca la cabecera -->
-    </div>
-
-   
+    </div>   
     <!-- END TOP NAVIGATION MENU -->
   </div>
   <!-- END TOP NAVIGATION BAR -->
@@ -87,7 +86,6 @@
   <!-- BEGIN PAGE CONTAINER-->
     
   <div id="sidebar" ></div><!-- aca va salir el sidebar -->
-  
   
    <div id="container" class="page-content">
     <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
@@ -104,11 +102,11 @@
         <li>
           <p>TU ESTAS EN</p>
         </li>
-        <li class="icon-angle-right"></li>
-        <li><a href="#" class="active">GESTION DE TIPO DE HABITACION</a> </li>
+        <i class="icon-angle-right"></i>
+        <li><a href="#" class="active">GESTION DE TIPO PAQUETES</a> </li>
       </ul>
       <div class="page-title"> <i class="icon-custom-left"></i>
-        <h3>Configuraciín - <span class="semi-bold">Tipo de Habitación</span></h3>
+        <h3>Configuraciín - <span class="semi-bold">Tipo de paquetes</span></h3>
       </div>
 	  
        <div class="row-fluid">
@@ -119,7 +117,7 @@
                   <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                 </div>
                 <div class="grid-body no-border"> <br />
-				<form id="forml_validation" action="#" />
+				<form id="forml_validation" action="#" >
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="control-group">
@@ -127,9 +125,18 @@
                         <span class="help">nombre de tipo de habitacion.</span>
 						<div class="input-with-icon  right">                                       
 							<i class=""></i>
-							<input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="ingrese nombre"  />                                 
+							<input type="text" name="txtMonto" id="txtMonto" class="span12" placeholder="ingrese nombre"  />                                 
 						</div>
                       </div>
+                         <div class="control-group">
+                        <label class="control-label">Nombre: </label>
+                        <span class="help">nombre de tipo de habitacion.</span>
+						<div class="input-with-icon  right">                                       
+							<i class=""></i>
+							<input type="text" name="txtMeses" id="txtMeses" class="span12" placeholder="ingrese nombre"  />                                 
+						</div>
+                      </div>
+                      
                       <div class="control-group">
                         <label class="control-label">Estado:</label>
                         <span class="help">seleccione un estado</span>
@@ -154,8 +161,9 @@
 					</div>
 					</div>
 				</form>
-                     		
-                                                
+                    <div id="cbPaquete" >XD</div>
+                 
+                   
                     
                 </div>
               </div>
@@ -184,6 +192,7 @@
   
 </div>
 <!-- END PAGE -->
+
 <!-- END CONTAINER -->
 <!-- BEGIN CORE JS FRAMEWORK-->
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
@@ -207,6 +216,7 @@
 <script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
 <script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
+
 <script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
 <!-- BEGIN CORE TEMPLATE JS -->
 <script src="assets/js/core.js" type="text/javascript"></script>
@@ -223,125 +233,154 @@ function getLimpiar()
 };
 function getHeader()
 {
-    $.ajax({
-        url: 'controles/header.jsp',
-        type: 'POST',
-        success: function (data) {     
-            $('#header').html(data);
-        },
-        contentType: false,
-        processData: false
-    });
+     $.ajax({
+            url: 'controles/header.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#header').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
 };
 getHeader();
  function getSidebar()
 {
-    $.ajax({
-        url: 'controles/sidebar.jsp',
-        type: 'POST',
-        success: function (data) {     
-            $('#sidebar').html(data);
-        },
-        contentType: false,
-        processData: false
-    });
+     $.ajax({
+            url: 'controles/sidebar.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#sidebar').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
 };
 getSidebar();
  function getTabla()
 {
-    $('#tabla').html('<center><h4><img width="60" height="60" src="assets/img/cargando.gif" alt=""/>Espere <span class="semi-bold">...</span></h4></center>');
-    $.ajax({
-        url: 'controles/tipo_habitacion/tabla.jsp',
-        type: 'POST',
-        success: function (data) {     
-            $('#tabla').html(data);
-        },
-        contentType: false,
-        processData: false
-    });
+     $('#tabla').html('<center><h4><img width="60" height="60" src="assets/img/cargando.gif" alt=""/>Espere <span class="semi-bold">...</span></h4></center>');
+     $.ajax({
+            url: 'controles/paquete/tabla.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#tabla').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
 };
 getTabla();
-    $(document).ready(function() {		
- 	//Traditional form validation sample
+ function getCombo()
+{
+     $.ajax({
+            url: 'controles/paquete/combo.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#cbPaquete').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
+};
+getCombo();
+
+      $(document).ready(function() {			
+ 
+	//Traditional form validation sample
 	$('#forml_validation').validate({
-            focusInvalid: false, 
-            ignore: "",
-            rules: {
-                txtNombre: {
-                    minlength: 2,
-                    required: true
-                }
-            },
-             messages: 
-            {
-                txtNombre: "Ingrese Tipo de Habitación"
-            },
-            invalidHandler: function (event, validator) { //display error alert on form submit    
-            },
+                focusInvalid: false, 
+                ignore: "",
+                rules: {
+                    txtMonto: {
+                        number: true,
+                        required: true
+                    },
+                      txtMeses: {
+                        digits: true,
+                        required: true
+                    }
+                    
+                },
+                 messages: 
+                         {
+                    txtMonto: "Ingrese monto",
+                    txtMeses: "Ingrese meses"
+                },
+                invalidHandler: function (event, validator) {
+					//display error alert on form submit    
+                },
 
-            errorPlacement: function (label, element) { // render error placement for each input type   
-                $('<span class="error"></span>').insertAfter(element).append(label)
-                var parent = $(element).parent('.input-with-icon');
-                parent.removeClass('success-control').addClass('error-control');  
-            },
+                errorPlacement: function (label, element) { // render error placement for each input type   
+					$('<span class="error"></span>').insertAfter(element).append(label)
+                    var parent = $(element).parent('.input-with-icon');
+                    parent.removeClass('success-control').addClass('error-control');  
+                },
 
-            highlight: function (element) { // hightlight error inputs
-            },
+                highlight: function (element) { // hightlight error inputs
+					
+                },
 
-            unhighlight: function (element) { // revert the change done by hightlight
-            },
+                unhighlight: function (element) { // revert the change done by hightlight
+                    
+                },
 
-            success: function (label, element) {
-                var parent = $(element).parent('.input-with-icon');
-                parent.removeClass('error-control').addClass('success-control'); 
-            },
-
-            submitHandler: function() {   
-                $("#myModal").modal('show');                                   
-
-                   var url = "controles/tipo_habitacion/insert.jsp"; 
-                   $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: $("#forml_validation").serialize(), 
-                        success: function(data)
-                        {
-                            $('#myModal').modal('hide');
-                            if(data>0)
+                success: function (label, element) {
+					var parent = $(element).parent('.input-with-icon');
+					parent.removeClass('error-control').addClass('success-control'); 
+                },
+                
+                submitHandler: function() {   
+                    $("#myModal").modal('show');                                   
+                   
+                       var url = "controles/paquete/insert.jsp"; 
+                       $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: $("#forml_validation").serialize(), 
+                            success: function(data)
                             {
-                                sendMessage("Se Grabo Correctamente.");
-                                getTabla();    
-                                $('#forml_validation')[0].reset();
-                                $('#Id').val("");
-                            }else if(data==0)
-                            {
-                                sendMessage("Se actulizo correctamente.");
-                                getTabla();
-                                $('#forml_validation')[0].reset();
-                                $('#Id').val("");
-                            }else if(data==-1)
-                            {
-                               sendMessage("problemas con el servidor intentelo mas tarde");
+                              $('#myModal').modal('hide');
+                              if(data>0)
+                              {
+                                  sendMessage("Se Grabo Correctamente.");
+                                   getTabla();    
+                                   $('#forml_validation')[0].reset();
+                                    $('#Id').val("");
+                              }else if(data==0)
+                              {
+                                    sendMessage("Se actulizo correctamente.");
+                                    getTabla();
+                                     $('#forml_validation')[0].reset();
+                                      $('#Id').val("");
+                              }else if(data==-1)
+                              {
+                                 sendMessage("problemas con el servidor intentelo mas tarde");
+                              }
+
                             }
-                        }
-                    });    
-               }
-
-        });	
+                        });    
+                   }
+               
+            });	
+	
+	      
+	
 });	
 
 function sendMessage(sms)
 {
     $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Mensaje',
-            // (string | mandatory) the text inside the notification
-            text: sms
+        // (string | mandatory) the heading of the notification
+        title: 'Mensaje',
+        // (string | mandatory) the text inside the notification
+        text: sms
     }); 
 };
-function edit_form(id,nombre,estado) {
+function edit_form(id,monto,meses,estado) {
     $('#Id').val(id);
-    $('#txtNombre').val(nombre);
+    $('#txtMonto').val(monto);
+    $('#txtMeses').val(meses);
 
     if(estado==1)
         $('input:radio[name=rEstado]')[0].checked = true;
