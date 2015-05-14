@@ -221,6 +221,7 @@
 <script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 
+<!-- BEGIN CORE TEMPLATE JS -->
 <script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
 <!-- BEGIN CORE TEMPLATE JS -->
 <script src="assets/js/core.js" type="text/javascript"></script>

@@ -1,93 +1,65 @@
-$(document).ready(function() {		
-	  //Initialize Map
-	  map = new GMaps({
-        el: '#map',
-        lat: -12.043333,
-        lng: -77.028333,
-        zoomControl : false,
-        zoomControlOpt: {
-            style : 'SMALL',
-            position: 'TOP_LEFT'
-        },
-		 markers: [
-			{lat: -12.043333, lng: -77.028333},
-			{lat: -12.045333, lng: -77.034},
-			{lat: -12.045633, lng: -77.022}
-		],
-        panControl : false,
-        streetViewControl : false,
-        mapTypeControl: false,
-        overviewMapControl: false,
-		
-      });
-	  // Add a random mark
-	  setTimeout( function(){
-		  map.addMarker({
-				  lat: -12.043333,
-				  lng: -77.028333,
-				  animation: google.maps.Animation.DROP,
-				  draggable:true,
-				  title: 'New marker'
-		  });
-	  },3000);
-	  //Initialize Context Menu
-	    map.setContextMenu({
-        control: 'map',
-        options: [{
-          title: 'Add marker',
-          name: 'add_marker',
-          action: function(e){
-            console.log(e.latLng.lat());
-            console.log(e.latLng.lng());
-            this.addMarker({
-              lat: e.latLng.lat(),
-              lng: e.latLng.lng(),
-			  animation: google.maps.Animation.DROP,
-			  draggable:true,
-              title: 'New marker'
-            });
-            this.hideContextMenu();
-          }
-        }, {
-          title: 'Center here',
-          name: 'center_here',
-          action: function(e){
-            this.setCenter(e.latLng.lat(), e.latLng.lng());
-          }
-        }]
-      });
-      map.setContextMenu({
-        control: 'marker',
-        options: [{
-          title: 'Center here',
-          name: 'center_here',
-          action: function(e){
-            this.setCenter(e.latLng.lat(), e.latLng.lng());
-          }
-        }]
-      });
-	        map.travelRoute({
-        origin: [-12.044012922866312, -77.02470665341184],
-        destination: [-12.090814532191756, -77.02271108990476],
-        travelMode: 'driving',
-        step: function(e){
-          $('#instructions').append('<li>'+e.instructions+'</li>');
-          $('#instructions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
-            map.drawPolyline({
-              path: e.path,
-              strokeColor: '#131540',
-              strokeOpacity: 0.6,
-              strokeWeight: 6
-            });  
-          });
+/* [ ---- Gebo Admin Panel - location finder ---- ] */
+
+	
+    g_Map = $('#g_map');
+
+
+
+	// marker callback after drag end
+    function marker_callback(marker) {
+        $('#txtLatiud').val(marker.position.lat().toFixed(6));
+        $('#txtLongitud').val(marker.position.lng().toFixed(6));
+        g_Map.gmap3({
+            action: 'getAddress',
+            latLng: marker.getPosition(),
+            callback: function(results){
+                $('#txtDireccion').val(results[0].formatted_address);
+            }
+        });
+    };
+    
+    gebo_maps = {
+        
+        search_location: function(search_query) {
+            //* drop marker on map after location search
+            
+            if(search_query != ''){
+                //g_Map.gmap3('destroy').remove();
+                g_Map.gmap3(
+                    {
+                        action: 'clear',
+                        name: 'marker'
+                    },
+                    {   action: 'addMarker',
+                        address: search_query,
+                        map: {
+                            center:true,
+                            zoom: 13
+                        },
+                        marker: {
+                            
+                           options: { 
+                               draggable: true
+                           },
+                            events: {
+                                dragend: function(marker){
+                                    marker_callback(marker);
+									g_Map.gmap3('get').panTo(marker.position);
+                                }
+                            }
+                        }
+                    }
+                )
+            } else {
+                $.gritter.add({
+                                                // (string | mandatory) the heading of the notification
+                                                title: 'Mensaje',
+                                                // (string | mandatory) the text inside the notification
+                                                text: "Por favor Ingresa una ubicación."
+                                        }); 
+            }
         }
-      });
-	  $("#map-zoom-out").click(function() {
-		 map.zoomOut(1);		  
-	  });
-	  
-	  $("#map-zoom-in").click(function() {
-		map.zoomIn(1);	  
-	  });
-	  
-});
+        
+        
+        
+    };

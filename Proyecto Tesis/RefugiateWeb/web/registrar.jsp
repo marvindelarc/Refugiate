@@ -19,6 +19,8 @@
 <link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css" />
+
+<link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 <!-- END CORE CSS FRAMEWORK -->
 
 <!-- BEGIN CSS TEMPLATE -->
@@ -41,34 +43,171 @@
               <h4>Condensed <span class="semi-bold">Layout</span></h4>
             </div>
             <div class="grid-body no-border">
-			<form class="form-no-horizontal-spacing" id="form-condensed" />	
+            <form class="form-no-horizontal-spacing" id="form-condensed" />	
               <div class="row-fluid column-seperation">
-                <div class="span6">
-                  <h4>Basic Information</h4>            
+                <div class="span3">
+                  <h4>Datos de Empresas</h4>            
                     <div class="row-fluid">
-                      <div class="span5">
-                        <input name="form3FirstName" id="form3FirstName" type="text" class="span12" placeholder="First Name" />
-                      </div>
-                      <div class="span6">
-                        <input name="form3LastName" id="form3LastName" type="text" class="span12" placeholder="Last Name" />
-                      </div>
+                      <div class="span11">
+                        <input name="txtNombreEmpresa" id="txtNombreEmpresa" type="text" class="span12" placeholder="Nombre de Empresas" />
+                      </div>                     
                     </div>
-                    <div class="row-fluid">
-                      <div class="span5">
-                        <select name="form3Gender" id="form3Gender" class="select2 span12">
-                          <option value="1" />Male
-                          <option value="2" />Female
-                        </select>
-                      </div>
-                      <div class="span6">
-                        <input name="form3DateOfBirth" id="form3DateOfBirth" type="text" class="span12" placeholder="Date of Birth" />
-                      </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtNombreCEmpresa" id="txtNombreCEmpresa" type="text" class="span12" placeholder="Nombre Comercial" />
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                          <textarea name="SloganEmpresa" id="SloganEmpresa" placeholder="Slogan ..." class="span12" rows="2"></textarea>
+                      </div>                     
                     </div>
                     <div class="row-fluid">
                       <div class="span11">
-                        <input name="form3Occupation" id="form3Occupation" type="text" class="span12" placeholder="Occupation" />
-                      </div>
+                        <input name="txtRucEmpresa" id="txtRucEmpresa" type="text" class="span12" placeholder="RUC Empresa" />
+                      </div>                     
                     </div>
+                   
+                  
+                    <h4>Datos de Persona</h4>            
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtNombrePersona" id="txtNombrePersona" type="text" class="span12" placeholder="Nombres de Persona" />
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtApellidoPersona" id="txtApellidoPersona" type="text" class="span12" placeholder="Apellidos de Persona" />
+                      </div>                     
+                    </div>
+            
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtEmailPersoma" id="txtEmailPersoma" type="text" class="span12" placeholder="E-mail Persona" />
+                      </div>                     
+                    </div>
+                  
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtCelularPersona" id="txtCelularPersona" type="text" class="span12" placeholder="Celular Persona" />
+                      </div>                     
+                    </div>
+                   
+                </div>
+                    
+                  
+                  
+                  
+                  <div class="span3">
+                  <h4>Datos de Sucursal</h4>            
+                    <div class="row-fluid">
+                      <div class="span11">
+                          <select id="cbDepartamento" name="cbDepartamento" class="span12" onchange="getProvincia(this.value)" title="Por favor selecione un departamento!" required>
+                            <option value="">espere un momento...</option>                                                       
+                        </select>
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                         <select id="cbProvincia" name="cbProvincia"  class="span12" onchange="getDistrito(this.value)" title="Por favor selecione una provincia!" required>
+                            <option value="">Selecione una opcción</option>
+                        </select>
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                          <select id="cbDistrito" name="cbDistrito" class="span12" onchange="getMapa()" title="Por favor selecione un distrito!" required>
+                            <option value="">Selecione una opcción</option>
+                        </select>
+                      </div>                     
+                    </div>
+                   <div class="row-fluid">
+                      <div class="span11">
+                          <textarea name="txtDireccionSucrusla" id="txtDireccionSucrusla" placeholder="Direccion Sucursal ..." class="span12" rows="2"></textarea>
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtHorarioSucursal" id="txtHorarioSucursal" type="text" class="span12" placeholder="Horaario Sucursal" />
+                      </div>                     
+                    </div>
+                  
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtTelefonoSucursal" id="txtTelefonoSucursal" type="text" class="span12" placeholder="Telefono Sucursal" />
+                      </div>                     
+                    </div>
+                  
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtPisosSucursal" id="txtPisosSucursal" type="text" class="span12" placeholder="Número Pisos Sucursal" />
+                      </div>                     
+                    </div>
+                    
+                  <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtLatiud" id="txtLatiud" type="text" class="span12" placeholder="Latitud" readonly="readonly" />
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtLongitud" id="txtLongitud" type="text" class="span12" placeholder="Longitud" readonly="readonly"  />
+                      </div>                     
+                    </div>
+                </div>
+                  
+                  
+                  
+                  <div class="span3">
+                  <h4>Basic Information</h4>       
+                    <div id="g_map" style=" min-height:380px;" class="span10"  ></div>
+                   
+                 
+                  
+                  
+                  
+                </div>
+                  
+                  
+                  
+                   <div class="span3">
+                  <h4>Datos de Empresas</h4>            
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtNombreEmpresa" id="txtNombreEmpresa" type="text" class="span12" placeholder="Nombre de Empresas" />
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtNombreCEmpresa" id="txtNombreCEmpresa" type="text" class="span12" placeholder="Nombre Comercial" />
+                      </div>                     
+                    </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                          <textarea name="SloganEmpresa" id="SloganEmpresa" placeholder="Slogan ..." class="span12" rows="2"></textarea>
+                      </div>                     
+                    </div>
+                    <div class="row-fluid">
+                      <div class="span11">
+                        <input name="txtRucEmpresa" id="txtRucEmpresa" type="text" class="span12" placeholder="RUC Empresa" />
+                      </div>                     
+                    </div>
+                    <div class="input-prepend">     
+                        <div class="span11">
+                        <div id="foto"></div>    
+                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivo" id="archivo" />
+                        <br>
+                        <a id="Remover" data-dismiss="fileupload" class="btn btn-primary btn-xs btn-mini" href="#">Remover</a>
+                        
+                        </div>
+                    </div>
+                    <div class="input-prepend">
+                        <input type="text" name="txtFoto" id="txtFoto"/> 
+                    </div>
+                  
+                  
+                  
+                  
                     <div class="row-fluid">
                       <div class="span8">
                         <div class="radio">
@@ -85,42 +224,12 @@
                       </div>
                     </div>
                 </div>
-                <div class="span6">
-				
-                  <h4>Postal Information</h4>
                   
-                    <div class="row-fluid">
-                      <div class="span12">
-                        <input name="form3Address" id="form3Address" type="text" class="span12" placeholder="Address" />
-                      </div>
-                    </div>
-                    <div class="row-fluid">
-                      <div class="span6">
-                        <input name="form3City" id="form3City" type="text" class="span12" placeholder="City" />
-                      </div>
-                      <div class="span6">
-                        <input name="form3State" id="form3State" type="text" class="span12" placeholder="State" />
-                      </div>
-                    </div>
-                    <div class="row-fluid">
-                      <div class="span8">
-                        <input name="form3Country" id="form3Country" type="text" class="span12" placeholder="Country" />
-                      </div>
-                      <div class="span4">
-                        <input name="form3PostalCode" id="form3PostalCode" type="text" class="span12" placeholder="Postal Code" />
-                      </div>
-                    </div>
-                    <div class="row-fluid">
-                      <div class="span4">
-                        <input name="form3TeleCode" id="form3TeleCode" type="text" class="span12" placeholder="+94" />
-                      </div>
-                      <div class="span8">
-                        <input name="form3TeleNo" id="form3TeleNo" type="text" class="span12" placeholder="Phone Number" />
-                      </div>
-                    </div>
-                    <div class="row-fluid small-text"> NOTE - Facts to be considered, Simply remove or edit this as for what you desire. Disabled font Color and size</div>
-             
-                </div>
+                  
+                  
+                  
+                  
+                  
               </div>
 				<div class="form-actions">
 					<div class="pull-left">
@@ -145,26 +254,8 @@
 </div>
  <div id="footer">
       <div class="span12 error-container">
-	  <ul class="footer-links">
-			<li><a href="#">Template Guidelines</a></li>
-			<li><a href="#">Copyrights & Privacy </a></li>
-			<li><a href="#">Help & FAQ</a></li>
-			<li><a href="#">Contact Us</a></li>
-			<li><a href="#">Reports</a></li>
-			<li><a href="#">Search</a></li>
-			<li><a href="#">Buy theme</a></li>
-		</ul>
-		<br />
-		<ul class="footer-links small-links">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">About Us </a></li>
-			<li><a href="#">UI Elements</a></li>
-			<li><a href="#">Charts</a></li>
-			<li><a href="#">Mobile Apps</a></li>
-			<li><a href="#">Responsive Design</a></li>
-			<li><a href="#">Design</a></li>
-		</ul>
-		<br />
+          <br><br><br><br><br>
+          
 		<div class="copyright">
 			All work copyright of respective owner, 2013 webarch Incorporated
 		</div>
@@ -178,9 +269,110 @@
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>  
 <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="assets/plugins/jquery-gmap/gmap3.min.js" type="text/javascript"></script> 	
 
+<script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS --> 	
+<!-- PAGE JS -->
+<script src="assets/js/google_maps.js" type="text/javascript"></script> 
 <!-- BEGIN CORE TEMPLATE JS --> 
 <script type="text/javascript">
+function comboDepartamento()
+{
+     $.ajax({
+        url: 'controles/ubigeo/combo_departamento.jsp',
+        type: 'POST',
+        success: function (data) {     
+                 $('#cbDepartamento').html(data);
+        },
+        contentType: false,
+        processData: false
+    });          
+ };
+ function getUbigeo(departamento,provincia,distrito){
+                $("select#cbDepartamento").val(departamento);
+                 
+                $('#cbProvincia option[value=]').text('espere un momento...');               
+                var url = "controles/ubigeo/combo_provincia.jsp?id="+departamento; 
+
+                                    $.ajax({
+                                           type: "POST",
+                                           url: url,
+                                           success: function(data)
+                                           {
+                                               $("#cbProvincia").html(data);
+                                               $("select#cbProvincia").val(provincia);
+                                               url = "controles/ubigeo/combo_distrito.jsp?id="+provincia; 
+
+                                                $.ajax({
+                                                       type: "POST",
+                                                       url: url,
+                                                       success: function(data)
+                                                       {
+                                                            $("#cbDistrito").html(data);
+                                                            $("select#cbDistrito").val(distrito);
+
+                                                       }
+                                                     });    
+                                           }
+                                         });    
+                  
+  }
+  function getProvincia(id){
+     
+                if(id!="")
+                {
+                 $('#cbProvincia option[value=]').text('espere un momento...');
+                 $("#cbDistrito").val(0);
+                var url = "controles/ubigeo/combo_provincia.jsp?id="+id; 
+
+                                    $.ajax({
+                                           type: "POST",
+                                           url: url,
+                                           success: function(data)
+                                           {
+                                                $("#cbProvincia").html(data);
+                                                $("#cbProvincia").change();
+                                           }
+                                         });    
+                  }
+                   else
+                  {
+                      $("#cbProvincia").val(0);
+                  }
+            }
+  function getDistrito(id){
+                
+                if(id!="")
+                {
+                $('#cbDistrito option[value=]').text('espere un momento...');
+                var url = "controles/ubigeo/combo_distrito.jsp?id="+id; 
+
+                                    $.ajax({
+                                           type: "POST",
+                                           url: url,
+                                           success: function(data)
+                                           {
+                                                $("#cbDistrito").html(data);
+                                                
+                                           }
+                                         });    
+                  }
+                  else
+                  {
+                      $("#cbDistrito").val(0);
+                  }
+            }
+            
+    function getMapa(){
+        
+          gebo_maps.search_location('Perú '+$( "#cbDepartamento option:selected" ).text()+
+                  " "+$( "#cbProvincia option:selected" ).text()+" "+$( "#cbDistrito option:selected" ).text());
+    };
+  comboDepartamento();
+   
+                                          
       $(document).ready(function() {			
  
 	//Form Condensed Validation
