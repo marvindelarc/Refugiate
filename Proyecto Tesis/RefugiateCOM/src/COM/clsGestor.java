@@ -350,7 +350,12 @@ public class clsGestor {
     public static boolean actualizarSucursal(clsSucursal entidad) throws Exception
     {
         return clsSucursalDAO.actualizar(entidad);
-    }    
+    }
+    
+    public static List<clsSucursal> listarSucursalPorDistrito(int idEmpresa) throws Exception
+    {
+        return clsSucursalDAO.ListarPorDistrito(idEmpresa);
+    }
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsTipoHabitacion">

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 30-mar-2015, 19:45:41
-    Author     : EdHam
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -42,101 +36,93 @@
 <body class="">
 <!-- BEGIN HEADER -->
   
-<!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse ">
-  <!-- BEGIN TOP NAVIGATION BAR -->
-  <div class="navbar-inner">
-    <div class="header-seperation">
-      <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper" style="display:none">
-        <li class="dropdown"> <a id="main-menu-toggle" href="#main-menu" class="">
-          <div class="iconset top-menu-toggle-white"></div>
-          </a> </li>
-      </ul>
-      <!-- BEGIN LOGO -->
-      <a href="intranet.jsp"><img src="assets/img/logo.png" class="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="92" /></a>
-      <!-- END LOGO -->
-      <ul class="nav pull-right notifcation-center">
-        <li class="dropdown" id="header_task_bar"> <a href="intranet.jsp" class="dropdown-toggle active" data-toggle="">
-          <div class="iconset top-home"></div>
-          </a> </li>
-        <li class="dropdown" id="portrait-chat-toggler" style="display:none"> <a href="#sidr" class="chat-menu-toggle">
-          <div class="iconset top-chat-white "></div>
-          </a> </li>
-      </ul>
-    </div>
-    <!-- END RESPONSIVE MENU TOGGLER -->
-   
- <div class="header-quick-nav">
-      <!-- BEGIN TOP NAVIGATION MENU -->
-      <div class="pull-left">
-        <ul class="nav quick-section">
-          <li class="quicklinks"> <a href="#" class="" id="layout-condensed-toggle">
-            <div class="iconset top-menu-toggle-dark"></div>
-            </a> </li>
-        </ul>
-       
-      </div>
-      <div id="header"></div><!-- aca la cabecera -->
-    </div>
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-inverse ">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="navbar-inner">
+            <div class="header-seperation">
+                <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper" style="display:none">
+                    <li class="dropdown"> 
+                        <a id="main-menu-toggle" href="#main-menu" class="">
+                            <div class="iconset top-menu-toggle-white"></div>
+                        </a> 
+                    </li>
+                </ul>
+                <!-- BEGIN LOGO -->
+                <a href="intranet.jsp"><img src="assets/img/logo.png" class="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="92" /></a>
+                <!-- END LOGO -->
+                <ul class="nav pull-right notifcation-center">
+                    <li class="dropdown" id="header_task_bar"> 
+                        <a href="intranet.jsp" class="dropdown-toggle active" data-toggle="">
+                        <div class="iconset top-home"></div>
+                        </a> 
+                    </li>
+                    <li class="dropdown" id="portrait-chat-toggler" style="display:none"> 
+                        <a href="#sidr" class="chat-menu-toggle">
+                        <div class="iconset top-chat-white "></div>
+                        </a> 
+                    </li>
+                </ul>
+            </div>
+            <!-- END RESPONSIVE MENU TOGGLER -->
 
-   
-    <!-- END TOP NAVIGATION MENU -->
-  </div>
-  <!-- END TOP NAVIGATION BAR -->
-</div>
-<!-- END HEADER -->
-<!-- END HEADER -->
-<!-- BEGIN CONTAINER -->
-<div class="page-container row-fluid">
-  <!-- BEGIN SIDEBAR -->
-
-  <!-- END SIDEBAR -->
-  <!-- BEGIN PAGE CONTAINER-->
-    
-  <div id="sidebar" ></div><!-- aca va salir el sidebar -->
-  
-  
-  
-  
-  
-  
-  
-   <div id="container" class="page-content">
-    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <div id="portlet-config" class="modal hide">
-      <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button"></button>
-        <h3>Widget Settings</h3>
-      </div>
-      <div class="modal-body"> Widget settings form goes here </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="content">
-      <ul class="breadcrumb">
-        <li>
-          <p>TU ESTAS EN</p>
-        </li>
-        <i class="icon-angle-right"></i>
-        <li><a href="#" class="active">GESTION DE TIPO DE HABITACION</a> </li>
-      </ul>
-      <div class="page-title"> <i class="icon-custom-left"></i>
-        <h3>Configuraciín - <span class="semi-bold">Tipo de Habitación</span></h3>
-      </div>
-	  
-       <div class="row-fluid">
-            <div class="span4">
-              <div class="grid simple">
-                <div class="grid-title no-border">
-                  <h4>Traditional <span class="semi-bold">Validation</span></h4>
-                  <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
+            <div class="header-quick-nav">
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="pull-left">
+                    <ul class="nav quick-section">
+                        <li class="quicklinks"> 
+                            <a href="#" class="" id="layout-condensed-toggle">
+                            <div class="iconset top-menu-toggle-dark"></div>
+                            </a> 
+                        </li>
+                    </ul>       
                 </div>
-                <div class="grid-body no-border"> <br />
-				<form id="forml_validation" action="#" />
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <div class="control-group">
-                        <label class="control-label">Nombre: </label>
-                        <span class="help">nombre de tipo de habitacion.</span>
+                <div id="header"></div><!-- aca la cabecera -->
+            </div>   
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <!-- END HEADER -->
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container row-fluid">
+        <div id="sidebar" ></div><!-- aca va salir el sidebar -->
+        <div id="container" class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
+            </div>
+            <div class="modal-body"> Widget settings form goes here </div>
+        </div>
+        <div class="clearfix"></div>
+            <div class="content">
+                <ul class="breadcrumb">
+                    <li>
+                        <p>TU ESTAS EN</p>
+                    </li>
+                    <i class="icon-angle-right"></i>
+                    <li><a href="#" class="active">GESTION DE HABITACIONES</a> </li>
+                </ul>
+                <div class="page-title"> <i class="icon-custom-left"></i>
+                    <h3>Configuraciín - <span class="semi-bold">Habitaciónes de Sucursal</span></h3>
+                </div>	  
+                <div class="row-fluid">
+                    <div class="span4">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">
+                                <h4>Ingresar <span class="semi-bold">Habitacion</span></h4>
+                                <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                            <form id="forml_validation" action="#">
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <div class="control-group">
+                                            <label class="control-label">Nombre: </label>
+                                            <span class="help">nombre de tipo de habitacion.</span>
 						<div class="input-with-icon  right">                                       
 							<i class=""></i>
 							<input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="ingrese nombre"  />                                 
@@ -319,32 +305,30 @@ getTabla();
                    
                        var url = "controles/tipo_habitacion/insert.jsp"; 
                        $.ajax({
-                              type: "POST",
-                              url: url,
-                              data: $("#forml_validation").serialize(), 
-                              success: function(data)
+                            type: "POST",
+                            url: url,
+                            data: $("#forml_validation").serialize(), 
+                            success: function(data)
+                            {
+                              $('#myModal').modal('hide');
+                              if(data>0)
                               {
-                                $('#myModal').modal('hide');
-                                if(data>0)
-                                {
-                                    sendMessage("Se Grabo Correctamente.");
-                                     getTabla();    
+                                  sendMessage("Se Grabo Correctamente.");
+                                   getTabla();    
+                                   $('#forml_validation')[0].reset();
+                                    $('#Id').val("");
+                              }else if(data==0)
+                              {
+                                    sendMessage("Se actulizo correctamente.");
+                                    getTabla();
                                      $('#forml_validation')[0].reset();
                                       $('#Id').val("");
-                                }else if(data==0)
-                                {
-                                      sendMessage("Se actulizo correctamente.");
-                                      getTabla();
-                                       $('#forml_validation')[0].reset();
-                                        $('#Id').val("");
-                                }else if(data==-1)
-                                {
-                                   sendMessage("problemas con el servidor intentelo mas tarde");
-                                }
-                               
-
-                                
+                              }else if(data==-1)
+                              {
+                                 sendMessage("problemas con el servidor intentelo mas tarde");
                               }
+
+                            }
                         });    
                    }
                
@@ -357,10 +341,10 @@ getTabla();
 function sendMessage(sms)
 {
     $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Mensaje',
-            // (string | mandatory) the text inside the notification
-            text: sms
+        // (string | mandatory) the heading of the notification
+        title: 'Mensaje',
+        // (string | mandatory) the text inside the notification
+        text: sms
     }); 
 };
 function edit_form(id,nombre,estado) {

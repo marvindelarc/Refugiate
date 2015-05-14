@@ -16,11 +16,11 @@ request.getParameter("rEstado") != null && request.getParameter("rEstado") != ""
     clsEncargado entidad = new clsEncargado();
     entidad.setObjSucursal(objSucursal);
     entidad.setNombre(request.getParameter("txtNombre"));
-    entidad.setNombre(request.getParameter("txtApellidos"));
-    entidad.setNombre(request.getParameter("txtEmail"));
-    entidad.setNombre(request.getParameter("txtTelefono"));
-    entidad.setNombre(request.getParameter("txtUsuario"));
-    entidad.setNombre(request.getParameter("txtPassword"));
+    entidad.setApellido(request.getParameter("txtApellidos"));
+    entidad.setEmail(request.getParameter("txtEmail"));
+    entidad.setCelular(request.getParameter("txtTelefono"));
+    entidad.setUsuario(request.getParameter("txtUsuario"));
+    entidad.setPassword(request.getParameter("txtPassword"));
     entidad.setEstado(0);
     if(request.getParameter("rEstado").equals("1"))
      entidad.setEstado(1);
