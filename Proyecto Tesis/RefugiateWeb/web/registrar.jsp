@@ -273,7 +273,7 @@
 <script src="assets/plugins/jquery-gmap/gmap3.min.js" type="text/javascript"></script> 	
 
 <script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS --> 	
+	
 <!-- PAGE JS -->
 <script src="assets/js/google_maps.js" type="text/javascript"></script> 
 <!-- BEGIN CORE TEMPLATE JS --> 
