@@ -59,7 +59,7 @@
                     </div>
                   <div class="row-fluid">
                       <div class="span11">
-                          <textarea name="SloganEmpresa" id="SloganEmpresa" placeholder="Slogan ..." class="span12" rows="2"></textarea>
+                          <textarea name="txtSloganEmpresa" id="txtSloganEmpresa" placeholder="Slogan ..." class="span12" rows="2"></textarea>
                       </div>                     
                     </div>
                     <div class="row-fluid">
@@ -160,7 +160,7 @@
                   
                   <div class="span3">
                   <h4>Basic Information</h4>       
-                    <div id="g_map" style=" min-height:380px;" class="span10"  ></div>
+                    <div id="g_map" style=" min-height:400px;" class="span10"  ></div>
                    
                  
                   
@@ -171,58 +171,39 @@
                   
                   
                    <div class="span3">
-                  <h4>Datos de Empresas</h4>            
-                    <div class="row-fluid">
-                      <div class="span11">
-                        <input name="txtNombreEmpresa" id="txtNombreEmpresa" type="text" class="span12" placeholder="Nombre de Empresas" />
-                      </div>                     
-                    </div>
-                  <div class="row-fluid">
-                      <div class="span11">
-                        <input name="txtNombreCEmpresa" id="txtNombreCEmpresa" type="text" class="span12" placeholder="Nombre Comercial" />
-                      </div>                     
-                    </div>
-                  <div class="row-fluid">
-                      <div class="span11">
-                          <textarea name="SloganEmpresa" id="SloganEmpresa" placeholder="Slogan ..." class="span12" rows="2"></textarea>
-                      </div>                     
-                    </div>
-                    <div class="row-fluid">
-                      <div class="span11">
-                        <input name="txtRucEmpresa" id="txtRucEmpresa" type="text" class="span12" placeholder="RUC Empresa" />
-                      </div>                     
-                    </div>
+                  <h4>Subir Logo</h4>            
+                    
                     <div class="input-prepend">     
                         <div class="span11">
-                        <div id="foto"></div>    
-                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivo" id="archivo" />
+                        <div id="fotoLogo" class="fileupload-preview thumbnail" ></div>    
+                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoLogo" id="archivoLogo" />
                         <br>
-                        <a id="Remover" data-dismiss="fileupload" class="btn btn-primary btn-xs btn-mini" href="#">Remover</a>
+                        <a id="RemoverLogo" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
                         
                         </div>
                     </div>
                     <div class="input-prepend">
-                        <input type="text" name="txtFoto" id="txtFoto"/> 
+                        <input type="text" name="txtFotoLogo" id="txtFotoLogo"/> 
                     </div>
                   
                   
-                  
-                  
-                    <div class="row-fluid">
-                      <div class="span8">
-                        <div class="radio">
-                          <input id="male" type="radio" name="gender" value="male" checked="checked" />
-                          <label for="male">Male</label>
-                          <input id="female" type="radio" name="gender" value="female" />
-                          <label for="female">Female</label>
+                   <h4>Subir Banner</h4>            
+                    
+                    <div class="input-prepend">     
+                        <div class="span11">
+                        <div id="fotoBanner" class="fileupload-preview thumbnail" ></div>    
+                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoBanner" id="archivoBanner" />
+                        <br>
+                        <a id="RemoverBanner" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
+                        
                         </div>
-                      </div>
                     </div>
-                    <div class="row-fluid">
-                      <div class="span11">
-                        <input name="form3Email" id="form3Email" type="text" class="span12" placeholder="email@address.com" />
-                      </div>
+                    <div class="input-prepend">
+                        <input type="text" name="txtFotoBanner" id="txtFotoBanner"/> 
                     </div>
+                  
+                   
+                 
                 </div>
                   
                   
@@ -233,10 +214,15 @@
               </div>
 				<div class="form-actions">
 					<div class="pull-left">
-					  <div class="checkbox checkbox check-success 	">
-						<input type="checkbox" value="1" id="checkbox1" />
-						<label for="checkbox1">I Here by agree on the Term and condition. </label>
-					  </div>
+					 
+                                            <div class="row-fluid">
+                                                <div class="span6">
+                                                  <input name="txtContrasena" id="txtContrasena" type="password" class="span12" placeholder="Ingrese Contraseña" />
+                                                </div>  
+                                                 <div class="span6">
+                                                  <input name="txtRContrasena" id="txtRContrasena" type="password" class="span12" placeholder="Repita Contraseña" />
+                                                </div>  
+                                              </div>
 					</div>
 					<div class="pull-right">
 					  <button class="btn btn-danger btn-cons" type="submit"><i class="icon-ok"></i> Save</button>
@@ -374,75 +360,168 @@ function comboDepartamento()
    
                                           
       $(document).ready(function() {			
+$( "#RemoverLogo" ).hide();
+ $( "#txtFotoLogo" ).hide();
  
-	//Form Condensed Validation
-	$('#form-condensed').validate({
-                errorElement: 'span', 
-                errorClass: 'error', 
+ $('#archivoLogo').change(function (e) {
+    var input=e.target,fr=new FileReader(),
+	tipos=/^image\/jpg|image\/jpeg|image\/png|image\/gif$/i;
+	if(input.files.length===0)return;
+	if(!tipos.test(input.files[0].type)){alert("El archivo selecionado es inválido");return;}
+	fr.onload=function(evt){
+		var im=evt.target.result;
+		redimensionar(im,100,100,0);
+	}
+    fr.readAsDataURL(input.files[0]);
+});
+$( "#RemoverLogo" ).click(function() {
+    $("#fotoLogo").html('<div id="fotoLogo"></div>');
+    $('#txtFotoLogo').val("");
+    $( "#Remover" ).hide();
+     $("#archivoLogo").val("");
+});
+
+
+$( "#RemoverBanner" ).hide();
+ $( "#txtFotoBanner" ).hide();
+ 
+ $('#archivoBanner').change(function (e) {
+    var input=e.target,fr=new FileReader(),
+	tipos=/^image\/jpg|image\/jpeg|image\/png|image\/gif$/i;
+	if(input.files.length===0)return;
+	if(!tipos.test(input.files[0].type)){alert("El archivo selecionado es inválido");return;}
+	fr.onload=function(evt){
+		var im=evt.target.result;
+		redimensionar(im,280,280,1);
+	}
+    fr.readAsDataURL(input.files[0]);
+});
+$( "#RemoverBanner" ).click(function() {
+    $("#fotoBanner").html('<div id="fotoBanner"></div>');
+    $('#txtFotoBanner').val("");
+    $( "#RemoverBanner" ).hide();
+     $("#archivoBanner").val("");
+});
+
+function redimensionar(im,maxWidth,maxHeight,img){
+	var i=new Image();
+	i.onload=function(){
+		var w=this.width,
+		h=this.height,
+		scale=Math.min(maxWidth/w,maxHeight/h),
+		canvas=document.createElement('canvas'),
+		ctx=canvas.getContext('2d');
+		canvas.width=w*scale;
+		canvas.height=h*scale;
+		ctx.drawImage(i,0,0,w*scale,h*scale);
+                if(img==0)
+                {
+                    $("#fotoLogo").html('<img class="fileupload-preview thumbnail" src="'+canvas.toDataURL()+'">');
+                    $('#txtFotoLogo').val(canvas.toDataURL());
+                    $( "#RemoverLogo" ).show()();
+                }
+                else
+                {
+                    $("#fotoBanner").html('<img class="fileupload-preview thumbnail" src="'+canvas.toDataURL()+'">');
+                    $('#txtFotoBanner').val(canvas.toDataURL());
+                    $( "#RemoverBanner" ).show()();
+                }
+		
+	}
+	i.src=im;
+}  
+                $('#form-condensed').validate({
                 focusInvalid: false, 
                 ignore: "",
                 rules: {
-                    form3FirstName: {
-						name: true,
-                        minlength: 3,
+                    txtNombreEmpresa: {
+                        minlength: 2,
                         required: true
                     },
-					form3LastName: {
-                        minlength: 3,
+                    txtNombreCEmpresa: {
+                        minlength: 2,
                         required: true
                     },
-                    form3Gender: {
-                        required: true,
+                    txtSloganEmpresa: {
+                        minlength: 2,
+                        required: true
                     },
-					form3DateOfBirth: {
-                        required: true,
+                    txtRucEmpresa: {
+                        digits: true,
+                        minlength: 8,
+                        maxlength: 8,
+                        required: true
                     },
-					form3Occupation: {
-						 minlength: 3,
-                        required: true,
+                    txtNombrePersona: {
+                        minlength: 2,
+                        required: true
                     },
-					form3Email: {
-                        required: true,
-						email: true
+                    txtApellidoPersona: {
+                        minlength: 2,
+                        required: true
                     },
-                    form3Address: {
-						minlength: 10,
-                        required: true,
+                    txtEmailPersoma: {
+                        minlength: 2,
+                        email: true,
+                        required: true
                     },
-					form3City: {
-						minlength: 5,
-                        required: true,
+                    txtCelularPersona: {
+                        digits: true,
+                        minlength: 9,
+                        maxlength: 9,
+                        required: true
                     },
-					form3State: {
-						minlength: 3,
-                        required: true,
+                    txtDireccionSucrusla: {
+                        minlength: 2,
+                        required: true
                     },
-					form3Country: {
-						minlength: 3,
-                        required: true,
+                    txtHorarioSucursal: {
+                        minlength: 2,
+                        required: true
                     },
-					form3PostalCode: {
-						number: true,
-						maxlength: 4,
-                        required: true,
+                    txtTelefonoSucursal: {
+                        digits: true,
+                        minlength: 9,
+                        maxlength: 9,
+                        required: true
                     },
-					form3TeleCode: {
-						minlength: 3,
-						maxlength: 4,
-                        required: true,
+                    txtPisosSucursal: {
+                        digits: true,
+                        maxlength: 4,
+                        required: true
                     },
-					form3TeleNo: {
-						maxlength: 10,
-                        required: true,
+                    txtLatiud: {
+                        required: true
                     },
+                    txtLongitud: {
+                        required: true
+                    },
+                    txtFotoLogo: {
+                        required: true
+                    },
+                    txtFotoBanner: {
+                        required: true
+                    },
+                    checkbox1: {
+                        required: true
+                    },
+                    txtContrasena: {
+                        minlength: 6,
+                        required: true
+                    },
+                    txtRContrasena: {
+                        equalTo: "#txtContrasena",
+                        required: true
+                    }
                 },
-
                 invalidHandler: function (event, validator) {
 					//display error alert on form submit    
                 },
 
                 errorPlacement: function (label, element) { // render error placement for each input type   
 					$('<span class="error"></span>').insertAfter(element).append(label)
+                    var parent = $(element).parent('.input-with-icon');
+                    parent.removeClass('success-control').addClass('error-control');  
                 },
 
                 highlight: function (element) { // hightlight error inputs
@@ -454,14 +533,45 @@ function comboDepartamento()
                 },
 
                 success: function (label, element) {
-                  
+					var parent = $(element).parent('.input-with-icon');
+					parent.removeClass('error-control').addClass('success-control'); 
                 },
-
-                submitHandler: function (form) {
                 
-                }
+                submitHandler: function() {   
+                    $("#myModal").modal('show');                                   
+                   
+                       var url = "controles/tipo_habitacion/insert.jsp"; 
+                       $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: $("#forml_validation").serialize(), 
+                            success: function(data)
+                            {
+                              $('#myModal').modal('hide');
+                              if(data>0)
+                              {
+                                  sendMessage("Se Grabo Correctamente.");
+                                   getTabla();    
+                                   $('#forml_validation')[0].reset();
+                                    $('#Id').val("");
+                              }else if(data==0)
+                              {
+                                    sendMessage("Se actulizo correctamente.");
+                                    getTabla();
+                                     $('#forml_validation')[0].reset();
+                                      $('#Id').val("");
+                              }else if(data==-1)
+                              {
+                                 sendMessage("problemas con el servidor intentelo mas tarde");
+                              }
+
+                            }
+                        });    
+                   }
+               
             });	
-	 
+	
+	
 	
 });	
 
