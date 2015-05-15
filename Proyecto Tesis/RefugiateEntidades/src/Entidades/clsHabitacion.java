@@ -12,8 +12,7 @@ package Entidades;
 public class clsHabitacion {
     private int idHabitacion;
     private int numero;
-    private int piso;
-    private int numeroPersonas;
+    private int piso;    
     private int estado;
     private int vista;
     private clsCostoTipoHabitacion objCostoTipoHabitacion;
@@ -31,10 +30,6 @@ public class clsHabitacion {
 
     public int getPiso() {
         return piso;
-    }
-
-    public int getNumeroPersonas() {
-        return numeroPersonas;
     }
 
     public int getEstado() {
@@ -59,10 +54,6 @@ public class clsHabitacion {
 
     public void setPiso(int piso) {
         this.piso = piso;
-    }
-
-    public void setNumeroPersonas(int numeroPersonas) {
-        this.numeroPersonas = numeroPersonas;
     }
 
     public void setEstado(int estado) {

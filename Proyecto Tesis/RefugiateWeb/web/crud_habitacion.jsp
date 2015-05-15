@@ -54,12 +54,12 @@
                 <ul class="nav pull-right notifcation-center">
                     <li class="dropdown" id="header_task_bar"> 
                         <a href="intranet.jsp" class="dropdown-toggle active" data-toggle="">
-                        <div class="iconset top-home"></div>
+                            <div class="iconset top-home"></div>
                         </a> 
                     </li>
                     <li class="dropdown" id="portrait-chat-toggler" style="display:none"> 
                         <a href="#sidr" class="chat-menu-toggle">
-                        <div class="iconset top-chat-white "></div>
+                            <div class="iconset top-chat-white "></div>
                         </a> 
                     </li>
                 </ul>
@@ -67,15 +67,15 @@
             <!-- END RESPONSIVE MENU TOGGLER -->
 
             <div class="header-quick-nav">
-                <!-- BEGIN TOP NAVIGATION MENU -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
                 <div class="pull-left">
                     <ul class="nav quick-section">
                         <li class="quicklinks"> 
                             <a href="#" class="" id="layout-condensed-toggle">
-                            <div class="iconset top-menu-toggle-dark"></div>
+                                <div class="iconset top-menu-toggle-dark"></div>
                             </a> 
                         </li>
-                    </ul>       
+                    </ul>
                 </div>
                 <div id="header"></div><!-- aca la cabecera -->
             </div>   
@@ -87,17 +87,19 @@
 
     <!-- BEGIN CONTAINER -->
     <div class="page-container row-fluid">
-        <div id="sidebar" ></div><!-- aca va salir el sidebar -->
+     
+      <!-- BEGIN PAGE CONTAINER-->
+      <div id="sidebar" ></div><!-- aca va salir el sidebar -->
         <div id="container" class="page-content">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-        <div id="portlet-config" class="modal hide">
-            <div class="modal-header">
-                <button data-dismiss="modal" class="close" type="button"></button>
-                <h3>Widget Settings</h3>
+            <div id="portlet-config" class="modal hide">
+                <div class="modal-header">
+                    <button data-dismiss="modal" class="close" type="button"></button>
+                    <h3>Widget Settings</h3>
+                </div>
+                <div class="modal-body"> Widget settings form goes here </div>
             </div>
-            <div class="modal-body"> Widget settings form goes here </div>
-        </div>
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
             <div class="content">
                 <ul class="breadcrumb">
                     <li>
@@ -107,48 +109,53 @@
                     <li><a href="#" class="active">GESTION DE HABITACIONES</a> </li>
                 </ul>
                 <div class="page-title"> <i class="icon-custom-left"></i>
-                    <h3>Configuraciín - <span class="semi-bold">Habitaciónes de Sucursal</span></h3>
+                    <h3>Configuraciín - <span class="semi-bold">habitacion</span></h3>
                 </div>	  
                 <div class="row-fluid">
                     <div class="span4">
                         <div class="grid simple">
                             <div class="grid-title no-border">
-                                <h4>Ingresar <span class="semi-bold">Habitacion</span></h4>
+                                <h4>Datos de <span class="semi-bold">Habitacion</span></h4>
                                 <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                             </div>
                             <div class="grid-body no-border"> <br />
-                                <form id="forml_validation" action="#">
+                                <form id="forml_validation" action="#" >
                                     <div class="row-fluid">
                                         <div class="span12">
                                             <div class="control-group">
                                                 <label class="control-label">Tipo Habitacion: </label>
-                                                <span class="help">Seleccionar Tipo.</span>
+                                                <span class="help">Seleccionar Sucursal.</span>
                                                 <div id="cbTipoHabitacion" ></div>
-                                            </div>   
+                                            </div>  
                                             <div class="control-group">
-                                                <label class="control-label">Costo: </label>
-                                                <span class="help">Ingrese costo por habitacion.</span>
+                                                <label class="control-label">Numero: </label>
+                                                <span class="help">Numero de habitacion.</span>
                                                 <div class="input-with-icon  right">                                       
                                                     <i class=""></i>
-                                                    <input type="text" name="txtCosto" id="txtCosto" class="span12" placeholder="Ingrese Precio"  />                                 
+                                                    <input type="text" name="txtNumero" id="txtNumero" class="span12" placeholder="ingrese nombre"  />                                 
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label">Nro. de Personas: </label>
-                                                <span class="help">Nro. de personas permitidas.</span>
-                                                <div class="input-with-icon  right">                             
+                                                <label class="control-label">Piso: </label>
+                                                <span class="help">nombre de tipo de habitacion.</span>
+                                                <div class="input-with-icon  right">                                       
                                                     <i class=""></i>
-                                                    <input type="text" name="txtNroPersonas" id="txtNroPersonas" class="span12" placeholder="Ingrese Nro. Personas"  />                                 
+                                                    <input type="text" name="txtPiso" id="txtPiso" class="span12" placeholder="ingrese nombre"  />                                 
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label">Nro. Habitaciones: </label>
-                                                <span class="help">Nro. Habitaciones Existentes</span>
+                                                <label class="control-label">Vista: </label>
+                                                <span class="help">Sleccione Opcion.</span>
                                                 <div class="input-with-icon  right">                                       
                                                     <i class=""></i>
-                                                    <input type="text" name="txtNroHabitaciones" id="txtNroHabitaciones" class="span12" placeholder="Ingrese Nro. Habitaciones"  />                                 
+                                                    <div class="radio radio-success">
+                                                        <input id="vista" type="radio" name="rVista" value="1" checked="checked" />
+                                                        <label for="vista">Vista</label>
+                                                        <input id="sinvista" type="radio" name="rVista" value="0" />
+                                                        <label for="sinvista">Sin Vista</label>
+                                                    </div>
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                             <div class="control-group">
                                                 <label class="control-label">Estado:</label>
                                                 <span class="help">seleccione un estado</span>
@@ -161,12 +168,11 @@
                                                         <label for="no">Inactivo</label>
                                                     </div>
                                                 </div>
-                                            </div>                      
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-actions">  
                                         <div class="pull-right">
-                                            <input type="hidden" id="IdSucursal"  name="IdSucursal" value="1" />
                                             <input type="hidden" id="Id"  name="Id" value="" />
                                             <button type="submit" class="btn btn-success btn-cons"><i class="icon-ok"></i> Aceptar</button>
                                             <button type="button" onclick="getLimpiar()" class="btn btn-white btn-cons">Cancelar</button>
@@ -181,59 +187,59 @@
                             <div class="grid-title no-border">
                                 <h4>Icon <span class="semi-bold">Validation</span></h4>
                                 <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
-                            </div>                  
+                            </div>
                             <div class="grid-body ">
                                 <div id="tabla"></div><!-- aca se va mostrar la tabla -->
                             </div>
                         </div>
                     </div>
-                </div>	  
+                </div>            
             </div>
-        </div>
+        </div>  
     </div>
     <!-- END PAGE -->
 
-    <!-- END CONTAINER -->
-    <!-- BEGIN CORE JS FRAMEWORK-->
-    <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/breakpoints.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <!-- END CORE JS FRAMEWORK -->
-    <!-- BEGIN PAGE LEVEL JS -->
-    <script src="assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
-    <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/boostrap-form-wizard/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-datatable/extra/js/TableTools.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
-    <script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/plugins/breakpoints.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+<!-- END CORE JS FRAMEWORK -->
+<!-- BEGIN PAGE LEVEL JS -->
+<script src="assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
+<script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+<script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/plugins/boostrap-form-wizard/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-datatable/extra/js/TableTools.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+<script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
 
-    <script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
-    <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="assets/js/core.js" type="text/javascript"></script>
-    <script src="assets/js/demo.js" type="text/javascript"></script>
-    <!-- END CORE TEMPLATE JS -->
-    <!-- END JAVASCRIPTS -->
+<script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<!-- BEGIN CORE TEMPLATE JS -->
+<script src="assets/js/core.js" type="text/javascript"></script>
+<script src="assets/js/demo.js" type="text/javascript"></script>
+<!-- END CORE TEMPLATE JS -->
+<!-- END JAVASCRIPTS -->
  
-    <script type="text/javascript">
-    function getLimpiar()
-    {   
-       sendMessage("Se Limpio correctamente");
-        $('#forml_validation')[0].reset();
-        $('#Id').val("");
-    };
-    function getHeader()
-    {
-        $.ajax({
+<script type="text/javascript">
+function getLimpiar()
+{   
+   sendMessage("Se Limpio correctamente");
+      $('#forml_validation')[0].reset();
+       $('#Id').val("");
+};
+function getHeader()
+{
+     $.ajax({
             url: 'controles/header.jsp',
             type: 'POST',
             success: function (data) {     
@@ -242,11 +248,11 @@
             contentType: false,
             processData: false
         });
-    };
-    getHeader();
-     function getSidebar()
-    {
-        $.ajax({
+};
+getHeader();
+ function getSidebar()
+{
+     $.ajax({
             url: 'controles/sidebar.jsp',
             type: 'POST',
             success: function (data) {     
@@ -255,26 +261,26 @@
             contentType: false,
             processData: false
         });
-    };
-    getSidebar();
-    function getCombo()
-    {
-        $.ajax({
-            url: 'controles/costo_tipo_habitacion/combo.jsp',
+};
+getSidebar();
+function getCombo()
+{
+     $.ajax({
+            url: 'controles/habitacion/combo.jsp',
             type: 'POST',
-            success: function (data) {
-                $('#cbTipoHabitacion').html(data);
+            success: function (data) {     
+                     $('#cbTipoHabitacion').html(data);
             },
             contentType: false,
             processData: false
         });
-    };
-    getCombo();
-     function getTabla()
-    {
-        $('#tabla').html('<center><h4><img width="60" height="60" src="assets/img/cargando.gif" alt=""/>Espere <span class="semi-bold">...</span></h4></center>');
-        $.ajax({
-            url: 'controles/costo_tipo_habitacion/tabla.jsp',
+};
+getCombo();
+ function getTabla()
+{
+     $('#tabla').html('<center><h4><img width="60" height="60" src="assets/img/cargando.gif" alt=""/>Espere <span class="semi-bold">...</span></h4></center>');
+     $.ajax({
+            url: 'controles/habitacion/tabla.jsp',
             type: 'POST',
             success: function (data) {     
                      $('#tabla').html(data);
@@ -282,118 +288,111 @@
             contentType: false,
             processData: false
         });
-    };
-    getTabla();    
-    
-    $(document).ready(function() 
-    {	
-        //Traditional form validation sample
-        $('#forml_validation').validate({
-            focusInvalid: false, 
-            ignore: "",
-            rules: {
-                cbTipoHabitacion: {
-                    required: true                    
-                },
-                txtCosto: {                    
-                    required: true,
-                    number: true
-                },
-                txtNroPersonas: {
-                    required: true,
-                    number: true
-                },
-                txtNroHabitaciones: {
-                    required: true,
-                    number: true
-                }
+};
+getTabla();
+ 
+$(document).ready(function() 
+{
+    //Traditional form validation sample
+    $('#forml_validation').validate({
+        focusInvalid: false, 
+        ignore: "",
+        rules: {
+            txtNumero: {
+                number: true,
+                required: true
             },
-             messages: 
-            {
-                cbTipoHabitacion: "Seleccione Tipo Habitación",
-                txtCosto: "Ingrese Precio de Habitación",
-                txtNroPersonas: "Ingrese Nro. Personas por Habitación",
-                txtNroHabitaciones: "Ingrese Numero de Habitaciones"
-            },
-            invalidHandler: function (event, validator) {
-                                    //display error alert on form submit    
-            },
-
-            errorPlacement: function (label, element) { // render error placement for each input type   
-                                    $('<span class="error"></span>').insertAfter(element).append(label)
-                var parent = $(element).parent('.input-with-icon');
-                parent.removeClass('success-control').addClass('error-control');  
-            },
-
-            highlight: function (element) { // hightlight error inputs
-
-            },
-
-            unhighlight: function (element) { // revert the change done by hightlight
-
-            },
-
-            success: function (label, element) {
-                var parent = $(element).parent('.input-with-icon');
-                parent.removeClass('error-control').addClass('success-control'); 
-            },
-
-            submitHandler: function() 
-            {   
-                $("#myModal").modal('show');                                   
-
-                var url = "controles/costo_tipo_habitacion/insert.jsp"; 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: $("#forml_validation").serialize(), 
-                    success: function(data)
-                    {
-                        $('#myModal').modal('hide');
-                        if(data>0)
-                        {
-                           sendMessage("Se Grabo Correctamente.");
-                            getTabla();    
-                            $('#forml_validation')[0].reset();
-                            $('#Id').val("");
-                        }else if(data==0)
-                        {
-                            sendMessage("Se actulizo correctamente.");
-                            getTabla();
-                            $('#forml_validation')[0].reset();
-                            $('#Id').val("");
-                        }else if(data==-1)
-                        {
-                            sendMessage("problemas con el servidor intentelo mas tarde");
-                        }
-
-                    }
-                });    
+            txtPiso: {
+                digits: true,
+                required: true
             }
-        });
-    });	
+        },
+        messages: 
+        {
+            txtNumero: "Ingrese numero de habitacion",
+            txtPiso: "Ingrese numero de piso"
+        },
+        invalidHandler: function (event, validator) {
+            //display error alert on form submit    
+        },
 
-    function sendMessage(sms)
-    {
-        $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Mensaje',
-            // (string | mandatory) the text inside the notification
-            text: sms
-        }); 
-    };
-    function edit_form(id,idSucursal,cbTipoHabitacion,txtCosto,txtNroPersonas,txtNroHabitaciones,estado) {
-        $('#Id').val(id);
-        $('#IdSucursal').val(idSucursal);
-        $('#cbTipoHabitacion').val(cbTipoHabitacion);
-        $('#txtCosto').val(txtCosto);
-        $('#txtNroPersonas').val(txtNroPersonas);
-        $('#txtNroHabitaciones').val(txtNroHabitaciones);
-        if(estado==1)
-            $('input:radio[name=rEstado]')[0].checked = true;
-        else
-            $('input:radio[name=rEstado]')[1].checked = true;
-    };  	 
-    </script>
+        errorPlacement: function (label, element) { // render error placement for each input type   
+            $('<span class="error"></span>').insertAfter(element).append(label)
+            var parent = $(element).parent('.input-with-icon');
+            parent.removeClass('success-control').addClass('error-control');  
+        },
+
+        highlight: function (element) { // hightlight error inputs
+
+        },
+
+        unhighlight: function (element) { // revert the change done by hightlight
+
+        },
+
+        success: function (label, element) {
+            var parent = $(element).parent('.input-with-icon');
+            parent.removeClass('error-control').addClass('success-control'); 
+        },
+
+        submitHandler: function() 
+        {   
+            $("#myModal").modal('show');  
+            var url = "controles/habitacion/insert.jsp"; 
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#forml_validation").serialize(), 
+                success: function(data)
+                {
+                    $('#myModal').modal('hide');
+                    if(data>0)
+                    {
+                        sendMessage("Se Grabo Correctamente.");
+                        getTabla();    
+                        $('#forml_validation')[0].reset();
+                        $('#Id').val("");
+                    }else if(data==0)
+                    {
+                        sendMessage("Se actulizo correctamente.");
+                        getTabla();
+                        $('#forml_validation')[0].reset();
+                        $('#Id').val("");
+                    }else if(data==-1)
+                    {
+                        sendMessage("problemas con el servidor intentelo mas tarde");
+                    }
+                }
+            });    
+        }
+
+    });
+});	
+
+function sendMessage(sms)
+{
+    $.gritter.add({
+        // (string | mandatory) the heading of the notification
+        title: 'Mensaje',
+        // (string | mandatory) the text inside the notification
+        text: sms
+    }); 
+};
+function edit_form(id,cbTipoHabitacion,Numero,Piso,vista,estado) {
+    $('#Id').val(id);
+    $('#cbTipoHabitacion').val(cbTipoHabitacion);
+    $('#txtNumero').val(Numero);
+    $('#txtPiso').val(Piso);
+    if(vista==1)
+        $('input:radio[name=rVista]')[0].checked = true;
+    else
+        $('input:radio[name=rVista]')[1].checked = true;
+    
+    if(estado==1)
+        $('input:radio[name=rEstado]')[0].checked = true;
+    else
+        $('input:radio[name=rEstado]')[1].checked = true;
+};  	 
+</script>
 </body>
 
