@@ -8,6 +8,7 @@
 <meta content="Refugiate Web" name="desceription" />
 <meta content="Marvin de la Cruz Razon" name="author" />
 <!-- BEGIN PLUGIN CSS -->
+
 <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
