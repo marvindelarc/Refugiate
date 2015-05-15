@@ -87,109 +87,96 @@
     
   <div id="sidebar" ></div><!-- aca va salir el sidebar -->
   
-   <div id="container" class="page-content">
+    <div id="container" class="page-content">
     <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <div id="portlet-config" class="modal hide">
-      <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button"></button>
-        <h3>Widget Settings</h3>
-      </div>
-      <div class="modal-body"> Widget settings form goes here </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="content">
-      <ul class="breadcrumb">
-        <li>
-          <p>TU ESTAS EN</p>
-        </li>
-        <i class="icon-angle-right"></i>
-        <li><a href="#" class="active">GESTION DE TIPO PAQUETES</a> </li>
-      </ul>
-      <div class="page-title"> <i class="icon-custom-left"></i>
-        <h3>Configuraciín - <span class="semi-bold">Tipo de paquetes</span></h3>
-      </div>
-	  
-       <div class="row-fluid">
-            <div class="span4">
-              <div class="grid simple">
-                <div class="grid-title no-border">
-                  <h4>Traditional <span class="semi-bold">Validation</span></h4>
-                  <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
-                </div>
-                <div class="grid-body no-border"> <br />
-				<form id="forml_validation" action="#" >
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <div class="control-group">
-                        <label class="control-label">Nombre: </label>
-                        <span class="help">nombre de tipo de habitacion.</span>
-						<div class="input-with-icon  right">                                       
-							<i class=""></i>
-							<input type="text" name="txtMonto" id="txtMonto" class="span12" placeholder="ingrese nombre"  />                                 
-						</div>
-                      </div>
-                         <div class="control-group">
-                        <label class="control-label">Nombre: </label>
-                        <span class="help">nombre de tipo de habitacion.</span>
-						<div class="input-with-icon  right">                                       
-							<i class=""></i>
-							<input type="text" name="txtMeses" id="txtMeses" class="span12" placeholder="ingrese nombre"  />                                 
-						</div>
-                      </div>
-                      
-                      <div class="control-group">
-                        <label class="control-label">Estado:</label>
-                        <span class="help">seleccione un estado</span>
-						<div class="input-with-icon  right">                                       
-							<i class=""></i>
-                                                            <div class="radio radio-success">
-                                                                <input id="yes" type="radio" name="rEstado" value="1" checked="checked" />
-                                                                <label for="yes">Activo</label>
-                                                                <input id="no" type="radio" name="rEstado" value="0" />
-                                                                <label for="no">Inactivo</label>
-                                                              </div>
-                                                </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-				  <div class="form-actions">  
-					<div class="pull-right">
-                                           <input type="hidden" id="Id"  name="Id" value="" />
-					  <button type="submit" class="btn btn-success btn-cons"><i class="icon-ok"></i> Aceptar</button>
-                                          <button type="button" onclick="getLimpiar()" class="btn btn-white btn-cons">Cancelar</button>
-					</div>
-					</div>
-				</form>
-                    <div id="cbPaquete" >XD</div>
-                 
-                   
-                    
-                </div>
-              </div>
-            </div>		
-            <div class="span8">
-              <div class="grid simple">
-                <div class="grid-title no-border">
-                  <h4>Icon <span class="semi-bold">Validation</span></h4>
-                  <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
-                </div>
-                  
-            <div class="grid-body ">
-                <div id="tabla"></div><!-- aca se va mostrar la tabla -->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
             </div>
-                  
-                  
-                  
-              </div>
-            </div>
-          </div>	  
-      
-     
-    </div>
-  </div>
+            <div class="modal-body"> Widget settings form goes here </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="content">
+            <ul class="breadcrumb">
+                <li>
+                    <p>TU ESTAS EN</p>
+                </li>
+                <i class="icon-angle-right"></i>
+                <li><a href="#" class="active">GESTION DE TIPO PAQUETES</a> </li>
+            </ul>
+            <div class="page-title"> <i class="icon-custom-left"></i>
+                <h3>Configuraciín - <span class="semi-bold">Tipo de paquetes</span></h3>
+            </div>	  
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">
+                            <h4>Traditional <span class="semi-bold">Validation</span></h4>
+                            <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <form id="forml_validation" action="#" >
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <div class="control-group">
+                                            <label class="control-label">Nombre: </label>
+                                            <span class="help">nombre de tipo de habitacion.</span>
+                                            <div class="input-with-icon  right">                                       
+                                                <i class=""></i>
+                                                <input type="text" name="txtMonto" id="txtMonto" class="span12" placeholder="ingrese nombre"  />                                 
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">Nombre: </label>
+                                            <span class="help">nombre de tipo de habitacion.</span>
+                                            <div class="input-with-icon  right">                                       
+                                                <i class=""></i>
+                                                <input type="text" name="txtMeses" id="txtMeses" class="span12" placeholder="ingrese nombre"  />                                 
+                                            </div>
+                                        </div>
 
-  
+                                        <div class="control-group">
+                                            <label class="control-label">Estado:</label>
+                                            <span class="help">seleccione un estado</span>
+                                            <div class="input-with-icon  right">                                       
+                                                <i class=""></i>
+                                                <div class="radio radio-success">
+                                                    <input id="yes" type="radio" name="rEstado" value="1" checked="checked" />
+                                                    <label for="yes">Activo</label>
+                                                    <input id="no" type="radio" name="rEstado" value="0" />
+                                                    <label for="no">Inactivo</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions">  
+                                    <div class="pull-right">
+                                        <input type="hidden" id="Id"  name="Id" value="" />
+                                        <button type="submit" class="btn btn-success btn-cons"><i class="icon-ok"></i> Aceptar</button>
+                                        <button type="button" onclick="getLimpiar()" class="btn btn-white btn-cons">Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>		
+                <div class="span8">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">
+                            <h4>Icon <span class="semi-bold">Validation</span></h4>
+                            <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
+                        </div>
+                        <div class="grid-body ">
+                            <div id="tabla"></div><!-- aca se va mostrar la tabla -->
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>  
 </div>
 <!-- END PAGE -->
 
@@ -271,101 +258,84 @@ getSidebar();
         });
 };
 getTabla();
- function getCombo()
-{
-     $.ajax({
-            url: 'controles/paquete/combo.jsp',
-            type: 'POST',
-            success: function (data) {     
-                     $('#cbPaquete').html(data);
-            },
-            contentType: false,
-            processData: false
-        });
-};
-getCombo();
-
-      $(document).ready(function() {			
  
-	//Traditional form validation sample
-	$('#forml_validation').validate({
-                focusInvalid: false, 
-                ignore: "",
-                rules: {
-                    txtMonto: {
-                        number: true,
-                        required: true
-                    },
-                      txtMeses: {
-                        digits: true,
-                        required: true
+$(document).ready(function() 
+{
+    //Traditional form validation sample
+    $('#forml_validation').validate({
+        focusInvalid: false, 
+        ignore: "",
+        rules: {
+            txtMonto: {
+                number: true,
+                required: true
+            },
+              txtMeses: {
+                digits: true,
+                required: true
+            }
+
+        },
+        messages: 
+        {
+            txtMonto: "Ingrese monto",
+            txtMeses: "Ingrese meses"
+        },
+        invalidHandler: function (event, validator) {
+                                //display error alert on form submit    
+        },
+
+        errorPlacement: function (label, element) { // render error placement for each input type   
+            $('<span class="error"></span>').insertAfter(element).append(label)
+            var parent = $(element).parent('.input-with-icon');
+            parent.removeClass('success-control').addClass('error-control');  
+        },
+
+        highlight: function (element) { // hightlight error inputs
+
+        },
+
+        unhighlight: function (element) { // revert the change done by hightlight
+
+        },
+
+        success: function (label, element) {
+            var parent = $(element).parent('.input-with-icon');
+            parent.removeClass('error-control').addClass('success-control'); 
+        },
+
+        submitHandler: function() 
+        {   
+            $("#myModal").modal('show');  
+            var url = "controles/paquete/insert.jsp"; 
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#forml_validation").serialize(), 
+                success: function(data)
+                {
+                    $('#myModal').modal('hide');
+                    if(data>0)
+                    {
+                        sendMessage("Se Grabo Correctamente.");
+                        getTabla();    
+                        $('#forml_validation')[0].reset();
+                        $('#Id').val("");
+                    }else if(data==0)
+                    {
+                        sendMessage("Se actulizo correctamente.");
+                        getTabla();
+                        $('#forml_validation')[0].reset();
+                        $('#Id').val("");
+                    }else if(data==-1)
+                    {
+                        sendMessage("problemas con el servidor intentelo mas tarde");
                     }
-                    
-                },
-                 messages: 
-                         {
-                    txtMonto: "Ingrese monto",
-                    txtMeses: "Ingrese meses"
-                },
-                invalidHandler: function (event, validator) {
-					//display error alert on form submit    
-                },
+                }
+            });    
+        }
 
-                errorPlacement: function (label, element) { // render error placement for each input type   
-					$('<span class="error"></span>').insertAfter(element).append(label)
-                    var parent = $(element).parent('.input-with-icon');
-                    parent.removeClass('success-control').addClass('error-control');  
-                },
-
-                highlight: function (element) { // hightlight error inputs
-					
-                },
-
-                unhighlight: function (element) { // revert the change done by hightlight
-                    
-                },
-
-                success: function (label, element) {
-					var parent = $(element).parent('.input-with-icon');
-					parent.removeClass('error-control').addClass('success-control'); 
-                },
-                
-                submitHandler: function() {   
-                    $("#myModal").modal('show');                                   
-                   
-                       var url = "controles/paquete/insert.jsp"; 
-                       $.ajax({
-                            type: "POST",
-                            url: url,
-                            data: $("#forml_validation").serialize(), 
-                            success: function(data)
-                            {
-                              $('#myModal').modal('hide');
-                              if(data>0)
-                              {
-                                  sendMessage("Se Grabo Correctamente.");
-                                   getTabla();    
-                                   $('#forml_validation')[0].reset();
-                                    $('#Id').val("");
-                              }else if(data==0)
-                              {
-                                    sendMessage("Se actulizo correctamente.");
-                                    getTabla();
-                                     $('#forml_validation')[0].reset();
-                                      $('#Id').val("");
-                              }else if(data==-1)
-                              {
-                                 sendMessage("problemas con el servidor intentelo mas tarde");
-                              }
-
-                            }
-                        });    
-                   }
-               
-            });	
-	
-	      
-	
+    });
 });	
 
 function sendMessage(sms)

@@ -6,10 +6,9 @@
     <option value="">Selecione una Opción</option>
 
 <%  
-    List<clsSucursal> lista=clsGestor.listarSucursal(true);
+    List<clsSucursal> lista=clsGestor.listarSucursalPorDistrito(1);
     if(lista!=null)
         for(clsSucursal entidad : lista)
-            out.print("<option value='"+entidad.getIdSucursal()+"'>"+entidad.getDireccion()+"</option>");
-
+            out.print("<option value='"+entidad.getIdSucursal()+"'>"+entidad.getObjDistrito().getNombre()+"</option>");
  %>
 </select>

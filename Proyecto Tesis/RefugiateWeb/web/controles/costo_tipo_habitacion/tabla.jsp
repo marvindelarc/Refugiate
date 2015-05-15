@@ -1,44 +1,57 @@
 <%@page import="COM.clsGestor"%>
 <%@page import="java.util.List"%>
-<%@page import="Entidades.clsTipoHabitacion"%>
-<div id="tabla">
-
+<%@page import="Entidades.clsCostoTipoHabitacion"%>
+<div id="tabla">    
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped" id="datatable" width="100%">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                    <th>Selecionar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                 <%
-                   List<clsTipoHabitacion> lista=clsGestor.ListarTipoHabitacion(false);
-                   if(lista!=null)
-                   for(clsTipoHabitacion entidad : lista)
-                   {
-                 %>
-                  <tr >
-                    <td><%=entidad.getIdTipoHabitacion()%></td>
-                    <td><%=entidad.getNombreComercial()%></td>
-                    <td class="center">
-                        <%
-                        if(entidad.getEstado()==1)
-                            out.print("<span class='badge badge-info'>Activo</span>");
-                        else
-                            out.print("<span class='badge badge-important'>Inactivo</span>");
-                        %>      
-                    </td>
-                    <td class="center">
-                         <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdTipoHabitacion()%>,'<%=entidad.getNombreComercial()%>',<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center> 
-                
-                
-                    </td>
-                  </tr>
-                <%}%> 
-                </tbody>
-              </table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tipo</th>
+            <th>Nro Pers. x Hab.</th>            
+            <th>Nro Habitaciones</th>
+            <th>Precio</th>
+            <th>Nro Habs. Ocupadas</th>
+            <th>Estado</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%
+        List<clsCostoTipoHabitacion> lista=clsGestor.ListarCostoTipoHabitacion(true);
+        if(lista!=null)
+        for(clsCostoTipoHabitacion entidad : lista)
+        {
+    %>
+        <tr >
+            <td><%=entidad.getIdCostoTipoHabitacion()%></td>
+            <td><%=entidad.getObjTipohabitacion().getIdTipoHabitacion()%></td>            
+            <td><%=entidad.getNumeroPersonas()%></td>                                
+            <td><%=entidad.getTotalHabitaciones()%></td>
+            <td><%=entidad.getCosto()%></td>
+            <td><%=entidad.getHabitacionesOcupadas()%></td>
+            <td class="center">
+                <%
+                if(entidad.getEstado()==1)
+                    out.print("<span class='badge badge-info'>Activo</span>");
+                else
+                    out.print("<span class='badge badge-important'>Inactivo</span>");
+                %>      
+            </td>
+            <td class="center">
+                 <center> <a href="javascript:void(0)" 
+                             onclick="edit_form(    <%=entidad.getIdCostoTipoHabitacion()%>,
+                                                    <%=entidad.getObjTipohabitacion().getIdTipoHabitacion()%>,
+                                                    <%=entidad.getObjSucursal().getIdSucursal()%>,
+                                                    <%=entidad.getCosto()%>,                                                                                                        
+                                                    <%=entidad.getNumeroPersonas()%>,
+                                                    <%=entidad.getTotalHabitaciones()%>,
+                                                    <%=entidad.getEstado()%>)" 
+                            class="btn btn-primary btn-sm btn-small">Editar</a></center> 
+            </td>
+        </tr>
+        <%}%> 
+    </tbody>
+</table>
    <script type="text/javascript">
 $(function () { 
           

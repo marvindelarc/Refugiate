@@ -5,17 +5,17 @@
 
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped" id="datatable" width="100%">
                 <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
-                    <th>Usuario</th>
-                    <th>Password</th>                    
-                    <th>Estado</th>
-                    <th>Selecionar</th>
-                  </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Usuario</th>
+                        <th>Password</th>                    
+                        <th>Estado</th>
+                        <th>Selecionar</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <%
@@ -41,7 +41,7 @@
                         %>      
                     </td>
                     <td class="center">
-                         <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdEncargado()%>,'<%=entidad.getNombre()%>','<%=entidad.getApellido()%>','<%=entidad.getEmail()%>','<%=entidad.getCelular()%>','<%=entidad.getUsuario()%>','<%=entidad.getPassword()%>',<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center> 
+                         <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdEncargado()%>,1,'<%=entidad.getNombre()%>','<%=entidad.getApellido()%>','<%=entidad.getEmail()%>','<%=entidad.getCelular()%>','<%=entidad.getUsuario()%>','<%=entidad.getPassword()%>',<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center> 
                     </td>
                   </tr>
                 <%}%> 
