@@ -34,7 +34,8 @@
 </head>
 <!-- BEGIN BODY -->
 <body class="">
-<!-- BEGIN HEADER -->  
+<!-- BEGIN HEADER -->
+  
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
         <!-- BEGIN TOP NAVIGATION BAR -->
@@ -66,32 +67,29 @@
             <!-- END RESPONSIVE MENU TOGGLER -->
    
             <div class="header-quick-nav">
-                <!-- BEGIN TOP NAVIGATION MENU -->
-                <div class="pull-left">
-                    <ul class="nav quick-section">
-                        <li class="quicklinks"> 
-                            <a href="#" class="" id="layout-condensed-toggle">
-                                <div class="iconset top-menu-toggle-dark"></div>
-                            </a>
-                        </li>
-                    </ul>       
+               <!-- BEGIN TOP NAVIGATION MENU -->
+               <div class="pull-left">
+                   <ul class="nav quick-section">
+                       <li class="quicklinks"> 
+                           <a href="#" class="" id="layout-condensed-toggle">
+                               <div class="iconset top-menu-toggle-dark"></div>
+                           </a> 
+                       </li>
+                   </ul>       
                 </div>
-            <div id="header"></div><!-- aca la cabecera -->
+                <div id="header"></div><!-- aca la cabecera -->
             </div>   
             <!-- END TOP NAVIGATION MENU -->
         </div>
         <!-- END TOP NAVIGATION BAR -->
     </div>
     <!-- END HEADER -->
+
     <!-- BEGIN CONTAINER -->
     <div class="page-container row-fluid">
-      <!-- BEGIN SIDEBAR -->
-
-      <!-- END SIDEBAR -->
-      <!-- BEGIN PAGE CONTAINER-->
 
         <div id="sidebar" ></div><!-- aca va salir el sidebar -->
-
+  
         <div id="container" class="page-content">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
             <div id="portlet-config" class="modal hide">
@@ -104,13 +102,14 @@
             <div class="clearfix"></div>
             <div class="content">
                 <ul class="breadcrumb">
-                    <li> <p>TU ESTAS EN</p></li>
+                    <li><p>TU ESTAS EN</p></li>
                     <i class="icon-angle-right"></i>
-                    <li><a href="#" class="active">GESTION DE ENCARGADO</a> </li>
+                    <li><a href="#" class="active">GESTION DE TIPO DE SERVICIOS</a> </li>
                 </ul>
                 <div class="page-title"> <i class="icon-custom-left"></i>
-                    <h3>Configuraciín - <span class="semi-bold">Encargado</span></h3>
-                </div>	  
+                    <h3>Configuraciín - <span class="semi-bold">Tipo de Servicio</span></h3>
+                </div>
+
                 <div class="row-fluid">
                     <div class="span4">
                         <div class="grid simple">
@@ -119,60 +118,15 @@
                                 <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                             </div>
                             <div class="grid-body no-border"> <br />
-                                <form id="forml_validation" action="#" >
+                                <form id="forml_validation" action="#">
                                     <div class="row-fluid">
                                         <div class="span12">
                                             <div class="control-group">
-                                                <label class="control-label">Sucursal: </label>
-                                                <span class="help">Seleccionar Sucursal.</span>
-                                                <div id="cbDistrito" ></div>
-                                            </div>                        
-                                            <div class="control-group">
                                                 <label class="control-label">Nombre: </label>
-                                                <span class="help">Nombres de Encargado.</span>
+                                                <span class="help">Digite nombre de servicio.</span>
                                                 <div class="input-with-icon  right">                                       
                                                     <i class=""></i>
-                                                    <input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="Ingrese Nombre"  />                                 
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Apellidos:</label>
-                                                <span class="help">Apellidos de Encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtApellidos" id="txtApellidos" class="span12" placeholder="Ingrese Apellido"  />                                 
-                                                </div>
-                                            </div>                         
-                                            <div class="control-group">
-                                                <label class="control-label">Email:</label>
-                                                <span class="help"> muestra@gmail.com </span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtEmail" id="txtEmail" class="span12" placeholder="Ingrese Email"  />                                 
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Telefono:</label>
-                                                <span class="help"> #947445544 ó 044252224 </span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtTelefono" id="txtTelefono" class="span12" placeholder="Ingrese Telefono"  />                                 
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Usuario:</label>
-                                                <span class="help">Ususario de encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtUsuario" id="txtUsuario" class="span12" placeholder="Ingrese Usuario"  />                                 
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Password:</label>
-                                                <span class="help">Contraseña de encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtPassword" id="txtPassword" class="span12" placeholder="Ingrese Password"  />                                 
+                                                    <input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="ingrese nombre"  />                                 
                                                 </div>
                                             </div>
                                             <div class="control-group">
@@ -191,13 +145,13 @@
                                         </div>
                                     </div>
                                     <div class="form-actions">  
-                                        <div class="pull-right">
+					<div class="pull-right">
                                             <input type="hidden" id="Id"  name="Id" value="" />
                                             <button type="submit" class="btn btn-success btn-cons"><i class="icon-ok"></i> Aceptar</button>
                                             <button type="button" onclick="getLimpiar()" class="btn btn-white btn-cons">Cancelar</button>
-                                        </div>
+					</div>
                                     </div>
-                                </form>
+				</form>
                             </div>
                         </div>
                     </div>		
@@ -209,10 +163,10 @@
                             </div>                  
                             <div class="grid-body ">
                                 <div id="tabla"></div><!-- aca se va mostrar la tabla -->
-                            </div>                                    
+                            </div>
                         </div>
                     </div>
-                </div>	
+                </div>	 
             </div>
         </div>
     </div>
@@ -249,192 +203,148 @@
     <!-- END CORE TEMPLATE JS -->
     <!-- END JAVASCRIPTS -->
  
-    <script type="text/javascript">
-        function getLimpiar()
-        {   
-            sendMessage("Se Limpio correctamente");
-                $('#forml_validation')[0].reset();
-                $('#Id').val("");
-        };
-        function getHeader()
-        {
-            $.ajax({
-                url: 'controles/header.jsp',
-                type: 'POST',
-                success: function (data) {     
-                    $('#header').html(data);
-                },
-                contentType: false,
-                processData: false
-            });
-        };
-        getHeader();
-        function getSidebar()
-        {
-            $.ajax({
-                url: 'controles/sidebar.jsp',
-                type: 'POST',
-                success: function (data) {     
-                    $('#sidebar').html(data);
-                },
-                contentType: false,
-                processData: false
-            });
-        };
-        getSidebar();
-        function getTabla()
-        {
-             $('#tabla').html('<center><h4><img width="60" height="60" src="assets/img/cargando.gif" alt=""/>Espere <span class="semi-bold">...</span></h4></center>');
-             $.ajax({
-                url: 'controles/encargado/tabla.jsp',
-                type: 'POST',
-                success: function (data) {     
-                    $('#tabla').html(data);
-                },
-                contentType: false,
-                processData: false
-            });
-        };
-        getTabla();
-        function getCombo()
-        {
-            $.ajax({
-                url: 'controles/encargado/combo.jsp',
-                type: 'POST',
-                success: function (data) {     
-                    $('#cbDistrito').html(data);
-                },
-                contentType: false,
-                processData: false
-            });
-        };
-        getCombo();
-
-        $(document).ready(function() {			
-
-            //Traditional form validation sample
-            $('#forml_validation').validate({
+<script type="text/javascript">
+function getLimpiar()
+{   
+   sendMessage("Se Limpio correctamente");
+      $('#forml_validation')[0].reset();
+       $('#Id').val("");
+};
+function getHeader()
+{
+     $.ajax({
+            url: 'controles/header.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#header').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
+};
+getHeader();
+ function getSidebar()
+{
+     $.ajax({
+            url: 'controles/sidebar.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#sidebar').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
+};
+getSidebar();
+ function getTabla()
+{
+     $('#tabla').html('<center><h4><img width="60" height="60" src="assets/img/cargando.gif" alt=""/>Espere <span class="semi-bold">...</span></h4></center>');
+     $.ajax({
+            url: 'controles/servicio/tabla.jsp',
+            type: 'POST',
+            success: function (data) {     
+                     $('#tabla').html(data);
+            },
+            contentType: false,
+            processData: false
+        });
+};
+getTabla();
+      $(document).ready(function() {			
+ 
+	//Traditional form validation sample
+	$('#forml_validation').validate({
                 focusInvalid: false, 
                 ignore: "",
                 rules: {
-                    cbDistrito: {
-                        required: true
-                    },
                     txtNombre: {
-                        minlength: 3,
-                        required: true
-                    },
-                    txtApellidos: {
-                        minlength:3,
-                        required: true
-                    },
-                    txtEmail: {
-                        minlength:2,
-                        required: true
-                    },
-                    txtTelefono: {
-                        minlength:6,
-                        required: true
-                    },
-                    txtUsuario:{
-                        minlength:5,
-                        required: true
-                    },
-                    txtPassword:{
-                        minlength:5,
+                        minlength: 2,
                         required: true
                     }
                 },
                  messages: 
-                {
-                    cbDistrito: "Seleccione Sucursal.",
-                    txtNombre: "Ingrese Nombres de Encargado.",
-                    txtApellidos: "Ingrese Apellidos de Encargado.",
-                    txtEmail: "Ingrese Email de Encargado.",
-                    txtTelefono: "Ingrese Telefono de Encargado.",
-                    txtUsuario: "Ingrese Usuario de Encargado.",
-                    txtPassword: "Ingrese Password de Encargado."
+                         {
+                    txtNombre: "Ingrese Tipo de Habitación"
                 },
                 invalidHandler: function (event, validator) {
-                                        //display error alert on form submit    
+					//display error alert on form submit    
                 },
 
                 errorPlacement: function (label, element) { // render error placement for each input type   
-                    $('<span class="error"></span>').insertAfter(element).append(label)
+					$('<span class="error"></span>').insertAfter(element).append(label)
                     var parent = $(element).parent('.input-with-icon');
                     parent.removeClass('success-control').addClass('error-control');  
                 },
 
                 highlight: function (element) { // hightlight error inputs
-
+					
                 },
 
                 unhighlight: function (element) { // revert the change done by hightlight
-
+                    
                 },
 
                 success: function (label, element) {
-                    var parent = $(element).parent('.input-with-icon');
-                    parent.removeClass('error-control').addClass('success-control'); 
+					var parent = $(element).parent('.input-with-icon');
+					parent.removeClass('error-control').addClass('success-control'); 
                 },
-
+                
                 submitHandler: function() {   
-                    $("#myModal").modal('show');
-                    var url = "controles/encargado/insert.jsp"; 
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: $("#forml_validation").serialize(), 
-                        success: function(data)
-                        {
-                            $('#myModal').modal('hide');
-                            if(data>0)
+                    $("#myModal").modal('show');                                   
+                   
+                       var url = "controles/servicio/insert.jsp"; 
+                       $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: $("#forml_validation").serialize(), 
+                            success: function(data)
                             {
-                                sendMessage("Se Grabo Correctamente.");
-                                getTabla();    
-                                $('#forml_validation')[0].reset();
-                                $('#Id').val("");
-                            }else if(data==0)
-                            {
-                                sendMessage("Se actulizo correctamente.");
-                                getTabla();
-                                $('#forml_validation')[0].reset();
-                                $('#Id').val("");
-                            }else if(data==-1)
-                            {
-                                sendMessage("problemas con el servidor intentelo mas tarde");
+                              $('#myModal').modal('hide');
+                              if(data>0)
+                              {
+                                  sendMessage("Se Grabo Correctamente.");
+                                   getTabla();    
+                                   $('#forml_validation')[0].reset();
+                                    $('#Id').val("");
+                              }else if(data==0)
+                              {
+                                    sendMessage("Se actulizo correctamente.");
+                                    getTabla();
+                                     $('#forml_validation')[0].reset();
+                                      $('#Id').val("");
+                              }else if(data==-1)
+                              {
+                                 sendMessage("problemas con el servidor intentelo mas tarde");
+                              }
+
                             }
-
-                        }
-                    });    
-                }               
+                        });    
+                   }
+               
             });	
-        });	
+	
+	      
+	
+});	
 
-        function sendMessage(sms)
-        {
-            $.gritter.add({
-                // (string | mandatory) the heading of the notification
-                title: 'Mensaje',
-                // (string | mandatory) the text inside the notification
-                text: sms
-            }); 
-        };
-        function edit_form(id,distrito,nombre,apellido,email,telefono,usuario,password,estado) {
-            $('#Id').val(id);
-            $('#cbDistrito').val(distrito);
-            $('#txtNombre').val(nombre);
-            $('#txtApellidos').val(apellido);
-            $('#txtEmail').val(email);
-            $('#txtTelefono').val(telefono);
-            $('#txtUsuario').val(usuario);
-            $('#txtPassword').val(password);
+function sendMessage(sms)
+{
+    $.gritter.add({
+        // (string | mandatory) the heading of the notification
+        title: 'Mensaje',
+        // (string | mandatory) the text inside the notification
+        text: sms
+    }); 
+};
+function edit_form(id,nombre,estado) {
+    $('#Id').val(id);
+    $('#txtNombre').val(nombre);
 
-            if(estado==1)
-                $('input:radio[name=rEstado]')[0].checked = true;
-            else
-                $('input:radio[name=rEstado]')[1].checked = true;
-        };  	 
-    </script>
+    if(estado==1)
+        $('input:radio[name=rEstado]')[0].checked = true;
+    else
+        $('input:radio[name=rEstado]')[1].checked = true;
+};  	 
+</script>
 </body>
 

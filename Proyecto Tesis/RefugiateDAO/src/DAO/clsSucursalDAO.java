@@ -178,7 +178,7 @@ public class clsSucursalDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql= "SELECT sucursal.idSucursal,sucursal.idEmpresa,sucursal.idDistrito,distrito.nombre,estado \n" +
+            String sql= "SELECT sucursal.idSucursal,distrito.nombre\n" +
                         "FROM sucursal inner join distrito on sucursal.idDistrito = distrito.idDistrito where  estado = 1 and sucursal.idEmpresa = "+idempresa;            
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
@@ -190,14 +190,12 @@ public class clsSucursalDAO {
                 {
                     lista= new ArrayList<clsSucursal>();
                 }    
-                clsEmpresa objEmpresa = new clsEmpresa();
-                objEmpresa.setIdEmpresa(dr.getInt(2));
-
                 clsDistrito objDistrito = new clsDistrito();
-                objDistrito.setIdDistrito(dr.getInt(3));
+                objDistrito.setNombre(dr.getString(2));
 
                 clsSucursal entidad = new clsSucursal();
                 entidad.setIdSucursal(dr.getInt(1));
+                entidad.setObjDistrito(objDistrito);
                 
                 lista.add(entidad);                
             }

@@ -341,7 +341,10 @@ public class clsGestor {
     {
         return clsSucursalDAO.Listar(activo);
     }
-    
+    public static List<clsSucursal> listarSucursalPorDistrito(int idEmpresa) throws Exception
+    {
+        return clsSucursalDAO.ListarPorDistrito(idEmpresa);
+    }
     public  static int insertarSucursal(clsSucursal entidad) throws Exception
     {
         return clsSucursalDAO.insertar(entidad);
