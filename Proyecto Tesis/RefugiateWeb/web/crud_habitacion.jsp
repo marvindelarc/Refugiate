@@ -132,15 +132,15 @@
                                                 <span class="help">Numero de habitacion.</span>
                                                 <div class="input-with-icon  right">                                       
                                                     <i class=""></i>
-                                                    <input type="text" name="txtNumero" id="txtNumero" class="span12" placeholder="ingrese nombre"  />                                 
+                                                    <input type="text" name="txtNumero" id="txtNumero" class="span12" placeholder="Ingrese Numero"  />                                 
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label">Piso: </label>
-                                                <span class="help">nombre de tipo de habitacion.</span>
+                                                <span class="help">Numero Piso.</span>
                                                 <div class="input-with-icon  right">                                       
                                                     <i class=""></i>
-                                                    <input type="text" name="txtPiso" id="txtPiso" class="span12" placeholder="ingrese nombre"  />                                 
+                                                    <input type="text" name="txtPiso" id="txtPiso" class="span12" placeholder="Ingrese Numero Piso"  />                                 
                                                 </div>
                                             </div>
                                             <div class="control-group">

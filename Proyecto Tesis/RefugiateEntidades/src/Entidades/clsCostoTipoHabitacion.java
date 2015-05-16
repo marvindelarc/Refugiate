@@ -12,6 +12,7 @@ package Entidades;
 public class clsCostoTipoHabitacion {
     private int idCostoTipoHabitacion;
     private double costo;
+    private int numeroPersonas;
     private int totalHabitaciones;
     private int habitacionesOcupadas;
     private int estado;
@@ -31,6 +32,10 @@ public class clsCostoTipoHabitacion {
 
     public double getCosto() {
         return costo;
+    }
+    
+    public int getNumeroPersonas() {
+        return numeroPersonas;
     }
 
     public int getTotalHabitaciones() {
@@ -59,6 +64,10 @@ public class clsCostoTipoHabitacion {
 
     public void setCosto(double costo) {
         this.costo = costo;
+    }
+
+    public void setNumeroPersonas(int numeroPersonas) {
+        this.numeroPersonas = numeroPersonas;
     }
 
     public void setTotalHabitaciones(int totalHabitaciones) {

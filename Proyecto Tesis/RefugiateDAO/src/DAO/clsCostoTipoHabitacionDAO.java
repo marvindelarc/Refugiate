@@ -24,7 +24,7 @@ public class clsCostoTipoHabitacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idCostoTipoHabitacion,isTipoHabitacion,idSucursal,costo,totalHabitaicones,habitacionesOcupadas,estado FROM costotipohabitacion";
+            String sql="SELECT idCostoTipoHabitacion,idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado FROM costotipohabitacion";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -48,9 +48,10 @@ public class clsCostoTipoHabitacionDAO {
                 entidad.setObjTipohabitacion(objTipoHabitacion);
                 entidad.setObjSucursal(objSucursal);
                 entidad.setCosto(dr.getDouble(4));
-                entidad.setTotalHabitaciones(dr.getInt(5));
-                entidad.setHabitacionesOcupadas(dr.getInt(6));                
-                entidad.setEstado(dr.getInt(7));  
+                entidad.setNumeroPersonas(dr.getInt(5));
+                entidad.setTotalHabitaciones(dr.getInt(6));
+                entidad.setHabitacionesOcupadas(dr.getInt(7));                
+                entidad.setEstado(dr.getInt(8));  
                 lista.add(entidad);                
             }
         } catch (Exception e) {
@@ -74,7 +75,7 @@ public class clsCostoTipoHabitacionDAO {
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO costotipohabitacion(isTipoHabitacion,idSucursal,costo,totalHabitaicones,habitacionesOcupadas,estado)"
+           String sql= "INSERT INTO costotipohabitacion(idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado)"
                    + " VALUES(?,?,?,?,?,?);";
            
             conn = clsConexion.getConnection();
@@ -82,9 +83,10 @@ public class clsCostoTipoHabitacionDAO {
             stmt.setInt(1, entidad.getObjTipohabitacion().getIdTipoHabitacion());
             stmt.setInt(2, entidad.getObjSucursal().getIdSucursal());
             stmt.setDouble(3, entidad.getCosto());
-            stmt.setInt(4, entidad.getTotalHabitaciones());
-            stmt.setInt(5, entidad.getHabitacionesOcupadas());            
-            stmt.setInt(6, entidad.getEstado());
+            stmt.setInt(4, entidad.getNumeroPersonas());
+            stmt.setInt(5, entidad.getTotalHabitaciones());
+            stmt.setInt(6, entidad.getHabitacionesOcupadas());            
+            stmt.setInt(7, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -111,17 +113,18 @@ public class clsCostoTipoHabitacionDAO {
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE costotipohabitacion SET isTipoHabitacion = ?,idSucursal = ?,costo = ?,totalHabitaicones = ?,habitacionesOcupadas = ?,estado = ? WHERE idCostoTipoHabitacion = ?;";
+             String sql="UPDATE costotipohabitacion SET idTipoHabitacion = ?,idSucursal = ?,costo = ?,numeroPersonas = ?,totalHabitaicones = ?,habitacionesOcupadas = ?,estado = ? WHERE idCostoTipoHabitacion = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
             stmt.setInt(1, entidad.getObjTipohabitacion().getIdTipoHabitacion());
             stmt.setInt(2, entidad.getObjSucursal().getIdSucursal());
             stmt.setDouble(3, entidad.getCosto());
-            stmt.setInt(4, entidad.getTotalHabitaciones());
-            stmt.setInt(5, entidad.getHabitacionesOcupadas());            
-            stmt.setInt(6, entidad.getEstado());
-            stmt.setInt(7, entidad.getIdCostoTipoHabitacion());
+            stmt.setInt(4, entidad.getNumeroPersonas());
+            stmt.setInt(5, entidad.getTotalHabitaciones());
+            stmt.setInt(6, entidad.getHabitacionesOcupadas());            
+            stmt.setInt(7, entidad.getEstado());
+            stmt.setInt(8, entidad.getIdCostoTipoHabitacion());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

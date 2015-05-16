@@ -43,7 +43,7 @@
               <h4>Condensed <span class="semi-bold">Layout</span></h4>
             </div>
             <div class="grid-body no-border">
-            <form class="form-no-horizontal-spacing" id="form-condensed" />	
+            <form class="form-no-horizontal-spacing" id="form-condensed" >	
               <div class="row-fluid column-seperation">
                 <div class="span3">
                   <h4>Datos de Empresas</h4>            
@@ -158,37 +158,27 @@
                   
                   
                   
-                  <div class="span3">
-                  <h4>Basic Information</h4>       
-                    <div id="g_map" style=" min-height:400px;" class="span10"  ></div>
-                   
-                 
-                  
-                  
-                  
+                <div class="span3">
+                    <h4>Basic Information</h4>       
+                    <div id="g_map" style=" min-height:400px;" class="span10"  ></div>                  
                 </div>
                   
                   
                   
-                   <div class="span3">
-                  <h4>Subir Logo</h4>            
-                    
+                <div class="span3">
+                    <h4>Subir Logo</h4>                                
                     <div class="input-prepend">     
                         <div class="span11">
-                        <div id="fotoLogo" class="fileupload-preview thumbnail" ></div>    
-                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoLogo" id="archivoLogo" />
-                        <br>
-                        <a id="RemoverLogo" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
-                        
+                            <div id="fotoLogo" class="fileupload-preview thumbnail" ></div>    
+                            <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoLogo" id="archivoLogo" />
+                            <br>
+                            <a id="RemoverLogo" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
                         </div>
                     </div>
                     <div class="input-prepend">
                         <input type="text" name="txtFotoLogo" id="txtFotoLogo"/> 
                     </div>
-                  
-                  
-                   <h4>Subir Banner</h4>            
-                    
+                    <h4>Subir Banner</h4>            
                     <div class="input-prepend">     
                         <div class="span11">
                         <div id="fotoBanner" class="fileupload-preview thumbnail" ></div>    
@@ -201,35 +191,25 @@
                     <div class="input-prepend">
                         <input type="text" name="txtFotoBanner" id="txtFotoBanner"/> 
                     </div>
-                  
-                   
-                 
+                </div>                  
+            </div>
+            <div class="form-actions">
+                <div class="pull-left">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <input name="txtContrasena" id="txtContrasena" type="password" class="span12" placeholder="Ingrese Contraseña" />
+                        </div>  
+                        <div class="span6">
+                            <input name="txtRContrasena" id="txtRContrasena" type="password" class="span12" placeholder="Repita Contraseña" />
+                        </div>  
+                    </div>
                 </div>
-                  
-                  
-                  
-                  
-                  
-                  
-              </div>
-				<div class="form-actions">
-					<div class="pull-left">
-					 
-                                            <div class="row-fluid">
-                                                <div class="span6">
-                                                  <input name="txtContrasena" id="txtContrasena" type="password" class="span12" placeholder="Ingrese Contraseña" />
-                                                </div>  
-                                                 <div class="span6">
-                                                  <input name="txtRContrasena" id="txtRContrasena" type="password" class="span12" placeholder="Repita Contraseña" />
-                                                </div>  
-                                              </div>
-					</div>
-					<div class="pull-right">
-					  <button class="btn btn-danger btn-cons" type="submit"><i class="icon-ok"></i> Save</button>
-					  <button class="btn btn-white btn-cons" type="button">Cancel</button>
-					</div>
-				  </div>
-			</form>
+                <div class="pull-right">
+                    <button class="btn btn-danger btn-cons" type="submit"><i class="icon-ok"></i> Save</button>
+                    <button class="btn btn-white btn-cons" type="button">Cancel</button>
+                </div>
+            </div>
+        </form>
             </div>
           </div>
         </div>
@@ -570,9 +550,6 @@ function redimensionar(im,maxWidth,maxHeight,img){
                    }
                
             });	
-	
-	
-	
 });	
 
 function sendMessage(sms)

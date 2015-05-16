@@ -16,7 +16,7 @@
         </thead>
         <tbody>
             <%
-                List<clsHabitacion> lista=clsGestor.ListarHabitacion(false);
+                List<clsHabitacion> lista=clsGestor.ListarHabitacion(true);
                 if(lista!=null)
                 for(clsHabitacion entidad : lista)
                 {

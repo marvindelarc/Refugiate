@@ -28,7 +28,7 @@ public class clsHabitacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idHabitacion,idCostoTipoHabitacion,numero,piso,numeroPersonas,estado,vista FROM habitacion";
+            String sql="SELECT idHabitacion,idCostoTipoHabitacion,numero,piso,estado,vista FROM habitacion";
             if(activo)
                         sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -48,10 +48,9 @@ public class clsHabitacionDAO {
                 entidad.setIdHabitacion(dr.getInt(1));
                 entidad.setObjCostoTipoHabitacion(ObjCostoTipoHabitacion); 
                 entidad.setNumero(dr.getInt(3));  
-                entidad.setPiso(dr.getInt(4));  
-                entidad.setNumeroPersonas(dr.getInt(5));  
-                entidad.setEstado(dr.getInt(6));  
-                entidad.setVista(dr.getInt(7));  
+                entidad.setPiso(dr.getInt(4));                   
+                entidad.setEstado(dr.getInt(5));  
+                entidad.setVista(dr.getByte(6));  
                 lista.add(entidad);
             }
         } catch (Exception e) {
@@ -75,17 +74,16 @@ public class clsHabitacionDAO {
         PreparedStatement  stmt = null;
         try {
             
-            String sql= "INSERT INTO habitacion(idCostoTipoHabitacion,numero,piso,numeroPersonas,estado,vista)"
-                        + " VALUES(?,?,?,?,?,?)";
+            String sql= "INSERT INTO habitacion(idCostoTipoHabitacion,numero,piso,estado,vista)"
+                        + " VALUES(?,?,?,?,?)";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, entidad.getObjCostoTipoHabitacion().getIdCostoTipoHabitacion());
             stmt.setInt(2, entidad.getNumero());
-            stmt.setInt(3, entidad.getPiso());
-            stmt.setInt(4, entidad.getNumeroPersonas());
-            stmt.setInt(5, entidad.getEstado());
-            stmt.setInt(6, entidad.getVista());
+            stmt.setInt(3, entidad.getPiso());            
+            stmt.setInt(4, entidad.getEstado());
+            stmt.setByte(5, entidad.getVista());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -112,17 +110,15 @@ public class clsHabitacionDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql = "UPDATE habitacion SET idCostoTipoHabitacion = ?,numero = ?,piso = ?,numeroPersonas = ?,"
-                        + "estado = ?,vista = ? WHERE idHabitacion = ?;";
+            String sql = "UPDATE habitacion SET idCostoTipoHabitacion = ?,numero = ?,piso = ?,estado = ?,vista = ? WHERE idHabitacion = ?;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             stmt.setInt(1, entidad.getObjCostoTipoHabitacion().getIdCostoTipoHabitacion());
             stmt.setInt(2, entidad.getNumero());
-            stmt.setInt(3, entidad.getPiso());
-            stmt.setInt(4, entidad.getNumeroPersonas());
-            stmt.setInt(5, entidad.getEstado());
-            stmt.setInt(6, entidad.getVista());
-            stmt.setInt(7, entidad.getIdHabitacion());
+            stmt.setInt(3, entidad.getPiso());            
+            stmt.setInt(4, entidad.getEstado());
+            stmt.setByte(5, entidad.getVista());
+            stmt.setInt(6, entidad.getIdHabitacion());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);
