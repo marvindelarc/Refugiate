@@ -26,8 +26,9 @@
             <li> <a href="../crud_empresa.jsp">Gestion Empresa</a></li> 
             <li> <a href="../crud_encargado.jsp">Gestion Encargado</a></li> 
             <li> <a href="../crud_habitacion.jsp">Gestion Habitaciones</a></li>
+            <li> <a href="../crud_instalacion.jsp">Gestion Instalacion</a></li>
             <li> <a href="../crud_paquete.jsp">Gestion Paquetes</a></li>
-            <li> <a href="../crud_servicio.jsp">Gestion Paquetes</a></li>
+            <li> <a href="../crud_servicio.jsp">Gestion Servicio</a></li>            
             <li> <a href="../crud_tipo_habitacion.jsp">Gestion Tipo Habitación</a></li>            
         </ul>
       </li>

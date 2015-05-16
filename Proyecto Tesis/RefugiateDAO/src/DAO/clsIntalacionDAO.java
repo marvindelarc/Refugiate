@@ -29,7 +29,7 @@ public class clsIntalacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion FROM instalacion;";             
+            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado FROM instalacion;";             
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -50,7 +50,8 @@ public class clsIntalacionDAO {
                 entidad.setIdInstalacion(dr.getInt(1));
                 entidad.setObjServicio(objServicio); 
                 entidad.setObjSucursal(objSucursal);  
-                entidad.setDescripcion(dr.getString(4));  
+                entidad.setDescripcion(dr.getString(4));
+                entidad.setEstado(dr.getInt(5));
                 lista.add(entidad);                
             }
         } catch (Exception e) {
@@ -74,14 +75,15 @@ public class clsIntalacionDAO {
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO instalacion(idServicio,idSucursal,descripcion)"
-                   + " VALUES(?,?,?);";
+           String sql= "INSERT INTO instalacion(idServicio,idSucursal,descripcion,estado)"
+                   + " VALUES(?,?,?,?);";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, entidad.getObjServicio().getIdServicio());
             stmt.setInt(2, entidad.getObjSucursal().getIdSucursal());
             stmt.setString(3, entidad.getDescripcion());
+            stmt.setInt(4, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -107,13 +109,14 @@ public class clsIntalacionDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql = "UPDATE instalacion SET idServicio = ?,idSucursal = ?,descripcion = ? WHERE idInstalacion = ?;";
+            String sql = "UPDATE instalacion SET idServicio = ?,idSucursal = ?,descripcion = ?,estado = ? WHERE idInstalacion = ?;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             stmt.setInt(1, entidad.getObjServicio().getIdServicio());
             stmt.setInt(2, entidad.getObjSucursal().getIdSucursal());
             stmt.setString(3, entidad.getDescripcion());
-            stmt.setInt(4, entidad.getIdInstalacion());
+            stmt.setInt(4, entidad.getEstado());
+            stmt.setInt(5, entidad.getIdInstalacion());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar"+e.getMessage(), e);

@@ -14,7 +14,8 @@ public class clsIntalacion {
     private String descripcion;
     private clsServicio objServicio;
     private clsSucursal objSucursal;
-
+    private int estado;
+    
     public clsIntalacion() {
     }
 
@@ -34,6 +35,10 @@ public class clsIntalacion {
         return objSucursal;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
     public void setIdInstalacion(int idInstalacion) {
         this.idInstalacion = idInstalacion;
     }
@@ -48,5 +53,9 @@ public class clsIntalacion {
 
     public void setObjSucursal(clsSucursal objSucursal) {
         this.objSucursal = objSucursal;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 }
