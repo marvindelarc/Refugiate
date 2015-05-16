@@ -32,8 +32,6 @@
                     </td>
                     <td class="center">
                          <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdTipoHabitacion()%>,'<%=entidad.getNombreComercial()%>',<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center> 
-                
-                
                     </td>
                   </tr>
                 <%}%> 

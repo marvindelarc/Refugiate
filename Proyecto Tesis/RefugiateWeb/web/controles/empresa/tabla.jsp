@@ -1,29 +1,34 @@
 <%@page import="COM.clsGestor"%>
 <%@page import="java.util.List"%>
-<%@page import="Entidades.clsPaquete"%>
+<%@page import="Entidades.clsEmpresa"%>
 <div id="tabla">
 
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped" id="datatable" width="100%">
-                <thead>
-                  <tr>
+            <thead>
+                <tr>
                     <th>Id</th>
-                    <th>Meses</th>
-                    <th>Monto</th>
-                    <th>Estado</th>
-                    <th>Selecionar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                 <%
-                   List<clsPaquete> lista=clsGestor.ListarPaquete(false);
-                   if(lista!=null)
-                   for(clsPaquete entidad : lista)
-                   {
-                 %>
-                  <tr >
-                    <td><%=entidad.getIdPaquete()%></td>
-                     <td><%=entidad.getMeses()%></td>
-                     <td><%=entidad.getMonto()%></td>
+                    <th>Nombre C.</th>
+                    <th>Nombre</th>
+                    <th>Slogan</th>
+                    <th>R.U.C.</th>
+                    <th>estado</th>
+                    <th>puntos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                  List<clsEmpresa> lista=clsGestor.ListarEmpresa(true);
+                  if(lista!=null)
+                  for(clsEmpresa entidad : lista)
+                  {
+                %>
+                <tr >
+                    <td><%=entidad.getIdEmpresa()%></td>
+                    <td><%=entidad.getNombreComercial()%></td>
+                    <td><%=entidad.getNombre()%></td>
+                    <td><%=entidad.getSlogan()%></td>
+                    <td><%=entidad.getRuc()%></td>
+                    <td><%=entidad.getPuntos()%></td>
                     <td class="center">
                         <%
                         if(entidad.getEstado()==1)
@@ -33,14 +38,12 @@
                         %>      
                     </td>
                     <td class="center">
-                         <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdPaquete()%>,<%=entidad.getMonto()%>,<%=entidad.getMeses()%>,<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center> 
-                
-                
+                        <center> <a href="javascript:void(0)" onclick="edit_form(<%=entidad.getIdEmpresa()%>,'<%=entidad.getNombreComercial()%>','<%=entidad.getNombre()%>','<%=entidad.getSlogan()%>','<%=entidad.getRuc()%>',<%=entidad.getPuntos()%>,<%=entidad.getEstado()%>)" class="btn btn-primary btn-sm btn-small">Editar</a></center>
                     </td>
-                  </tr>
+                </tr>
                 <%}%> 
-                </tbody>
-              </table>
+            </tbody>
+        </table>
    <script type="text/javascript">
 $(function () { 
           

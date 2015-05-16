@@ -1,4 +1,3 @@
-
 <%@page import="Entidades.clsSucursal"%>
 <%@page import="Entidades.clsTipoHabitacion"%>
 <%@page import="Entidades.clsCostoTipoHabitacion"%>

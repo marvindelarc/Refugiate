@@ -74,9 +74,10 @@ public class clsEmpresaDAO {
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,logo,banner,estado)"
-                   + " VALUES(?,?,?,?,?,?,?,?,?);";
-           
+//           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,logo,banner,estado)"
+//                   + " VALUES(?,?,?,?,?,?,?,?,?);";
+            String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,estado)"
+                   + " VALUES(?,?,?,?,?,?);";
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, entidad.getNombreComercial());
@@ -84,10 +85,10 @@ public class clsEmpresaDAO {
             stmt.setString(3, entidad.getSlogan());
             stmt.setString(4, entidad.getRuc());
             stmt.setInt(5, entidad.getPuntos());
-            stmt.setDate(6, (Date) entidad.getFechaRegistro());
-            stmt.setBytes(7, entidad.getLogo());
-            stmt.setBytes(8, entidad.getBanner());
-            stmt.setInt(9, entidad.getEstado());
+//            stmt.setDate(6, (Date) entidad.getFechaRegistro());
+//            stmt.setBytes(7, entidad.getLogo());
+//            stmt.setBytes(8, entidad.getBanner());
+            stmt.setInt(6, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -114,7 +115,7 @@ public class clsEmpresaDAO {
         Connection conn =null;
         CallableStatement stmt = null;
         try {
-             String sql="UPDATE empresa SET nombreComercial = ?,nombre= ?,slogan = ?,ruc= ?,puntos = ?,fechaRegistro= ?,logo = ?,banner= ?,estado= ? WHERE idEmpresa = ?;";
+             String sql="UPDATE empresa SET nombreComercial = ?,nombre= ?,slogan = ?,ruc= ?,puntos = ?,fechaRegistro= NULL,logo = NULL,banner= NULL,estado= ? WHERE idEmpresa = ?;";
              
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);             
@@ -123,11 +124,11 @@ public class clsEmpresaDAO {
             stmt.setString(3, entidad.getSlogan());
             stmt.setString(4, entidad.getRuc());
             stmt.setInt(5, entidad.getPuntos());
-            stmt.setDate(6, (Date) entidad.getFechaRegistro());
-            stmt.setBytes(7, entidad.getLogo());
-            stmt.setBytes(8, entidad.getBanner());
-            stmt.setInt(9, entidad.getEstado());
-            stmt.setInt(10, entidad.getIdEmpresa());
+//            stmt.setDate(6, (Date) entidad.getFechaRegistro());
+//            stmt.setBytes(7, entidad.getLogo());
+//            stmt.setBytes(8, entidad.getBanner());
+            stmt.setInt(6, entidad.getEstado());
+            stmt.setInt(7, entidad.getIdEmpresa());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {
             throw new Exception("Error Actualizar "+e.getMessage(), e);

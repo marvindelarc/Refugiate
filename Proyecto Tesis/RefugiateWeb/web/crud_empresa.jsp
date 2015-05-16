@@ -122,7 +122,7 @@
                             <div class="span12">
                                 <div class="control-group">
                                     <label class="control-label">Nombre Comercial: </label>
-                                    <span class="help">Nombre Comercial de Empresa.</span>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtEmpresaNombreComercial" id="txtEmpresaNombreComercial" class="span12" placeholder="ingrese nombre comercial"  />                                 
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Nombre: </label>
-                                    <span class="help">Nombre Empresa.</span>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtEmpresaNombre" id="txtEmpresaNombre" class="span12" placeholder="Ingrese nombre"  />                                 
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Slogan: </label>
-                                    <span class="help">Slogan.</span>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtSlogan" id="txtSlogan" class="span12" placeholder="Ingrese nombre"  />                                 
@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">R.U.C.: </label>
-                                    <span class="help">R.U.C.</span>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtRuc" id="txtRuc" class="span12" placeholder="Ingrese R.U.C."  />                                 
@@ -154,26 +154,26 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Puntos: </label>
-                                    <span class="help">Puntos</span>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtPuntos" id="txtPuntos" class="span12" placeholder="Ingrese Puntos"  />                                 
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Fecha Ingreso: </label>
-                                    <span class="help">Fecha Ingreso</span>
+                                    <label class="control-label">Logo: </label>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
-                                        <input type="text" name="txtFechaIngreso" id="txtFechaIngreso" class="span12" placeholder="Ingrese Fecha Ingreso"  />                                 
+                                        
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Fecha Ingreso: </label>
-                                    <span class="help">Fecha Ingreso</span>
+                                    <label class="control-label">Banner: </label>
+                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
-                                        <input type="text" name="txtFechaIngreso" id="txtFechaIngreso" class="span12" placeholder="Ingrese Fecha Ingreso"  />                                 
+                                        
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -305,20 +305,31 @@ getTabla();
                 focusInvalid: false, 
                 ignore: "",
                 rules: {
-                    txtMonto: {
-                        number: true,
+                    txtEmpresaNombreComercial: {
+                        minlength: 3,
                         required: true
                     },
-                      txtMeses: {
-                        digits: true,
+                      txtEmpresaNombre: {
+                        minlength: 3,
                         required: true
+                    },txtSlogan: {
+                        minlength: 3,
+                        required: true
+                    },txtRuc:{
+                        minlength: 10,
+                        required: true
+                    },txtPuntos: {
+                        number: true,
+                        required:true
                     }
-                    
                 },
                  messages: 
                          {
-                    txtMonto: "Ingrese monto",
-                    txtMeses: "Ingrese meses"
+                    txtEmpresaNombreComercial: "Ingrese Nombre Comercial de la Empresa",
+                    txtEmpresaNombre: "Ingrese Nombre de la Empresa",
+                    txtSlogan: "Ingrese Slogan",
+                    txtRuc: "Ingrese R.U.C. de la Empresa",
+                    txtPuntos: "Ingresar Puntos"
                 },
                 invalidHandler: function (event, validator) {
 					//display error alert on form submit    
@@ -346,7 +357,7 @@ getTabla();
                 submitHandler: function() {   
                     $("#myModal").modal('show');                                   
                    
-                       var url = "controles/paquete/insert.jsp"; 
+                       var url = "controles/empresa/insert.jsp"; 
                        $.ajax({
                             type: "POST",
                             url: url,
@@ -387,11 +398,13 @@ function sendMessage(sms)
         text: sms
     }); 
 };
-function edit_form(id,monto,meses,estado) {
+function edit_form(id,txtEmpresaNombreComercial,txtEmpresaNombre,txtSlogan,txtRuc,txtPuntos,estado) {
     $('#Id').val(id);
-    $('#txtMonto').val(monto);
-    $('#txtMeses').val(meses);
-
+    $('#txtEmpresaNombreComercial').val(txtEmpresaNombreComercial);
+    $('#txtEmpresaNombre').val(txtEmpresaNombre);
+    $('#txtSlogan').val(txtSlogan);
+    $('#txtRuc').val(txtRuc);
+    $('#txtPuntos').val(txtPuntos);
     if(estado==1)
         $('input:radio[name=rEstado]')[0].checked = true;
     else

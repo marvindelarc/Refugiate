@@ -123,7 +123,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Tipo Habitacion: </label>
                                                 <span class="help">Seleccionar Tipo.</span>
-                                                <div id="cbTipoHabitacion" ></div>
+                                                <div id="cbTipoHabitacion"></div>
                                             </div>   
                                             <div class="control-group">
                                                 <label class="control-label">Costo: </label>

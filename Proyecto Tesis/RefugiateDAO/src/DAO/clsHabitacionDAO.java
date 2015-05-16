@@ -81,7 +81,7 @@ public class clsHabitacionDAO {
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, entidad.getObjCostoTipoHabitacion().getIdCostoTipoHabitacion());
             stmt.setInt(2, entidad.getNumero());
-            stmt.setInt(3, entidad.getPiso());            
+            stmt.setInt(3, entidad.getPiso());
             stmt.setInt(4, entidad.getEstado());
             stmt.setByte(5, entidad.getVista());
             stmt.executeUpdate();

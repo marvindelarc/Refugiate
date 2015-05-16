@@ -163,23 +163,15 @@
                 <div class="grid-title no-border">
                   <h4>Icon <span class="semi-bold">Validation</span></h4>
                   <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
-                </div>
-                  
+                </div>                  
             <div class="grid-body ">
                 <div id="tabla"></div><!-- aca se va mostrar la tabla -->
             </div>
-                  
-                  
-                  
               </div>
             </div>
-          </div>	  
-      
-     
+          </div>	 
     </div>
   </div>
-
-  
 </div>
 <!-- END PAGE -->
 

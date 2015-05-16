@@ -17,9 +17,9 @@ request.getParameter("rEstado") != null && request.getParameter("rEstado") != ""
     entidad.setPiso(Integer.parseInt(request.getParameter("txtPiso")));
     entidad.setNumero(Integer.parseInt(request.getParameter("txtNumero")));
     
-    entidad.setVista(0);
+    entidad.setVista(Byte.parseByte("0"));
     if(request.getParameter("rVista").equals("1"))
-     entidad.setVista(1);
+    entidad.setVista(Byte.parseByte("1"));
     
     entidad.setEstado(0);
     if(request.getParameter("rEstado").equals("1"))

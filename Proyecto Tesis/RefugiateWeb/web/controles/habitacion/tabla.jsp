@@ -29,9 +29,9 @@
                 <td class="center">
                     <%
                         if(entidad.getVista()==1)
-                            out.print("<span>Vista</span>");
+                            out.print("<span class='badge badge-success'>Vista</span>");
                         else
-                            out.print("<span>Sin Vista</span>");
+                            out.print("<span class='badge badge-warning'>Sin Vista</span>");
                     %>      
                 </td>
                 <td class="center">
