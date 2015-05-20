@@ -64,8 +64,7 @@ public class clsSucursalDAO {
                 entidad.setPuntuacion(dr.getInt(12));
                 entidad.setNivel(dr.getInt(13));
                 entidad.setEntrada(dr.getString(14)); 
-                entidad.setSalida(dr.getString(15)); 
-                entidad.setFecha(dr.getDate(16));
+                entidad.setFecha(dr.getDate(15));
                 entidad.setEstado(dr.getInt(17));  
                 lista.add(entidad);                
             }
