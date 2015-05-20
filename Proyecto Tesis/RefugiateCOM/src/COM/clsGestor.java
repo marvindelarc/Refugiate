@@ -150,7 +150,7 @@ public class clsGestor {
     
     public  static int insertarEncargado(clsEncargado entidad) throws Exception
     {
-        return clsEncargadoDAO.insertar(entidad);
+        return clsEncargadoDAO.insertarRegistro(entidad);
     }
     
     public static boolean actualizarEncargado(clsEncargado entidad) throws Exception

@@ -23,6 +23,8 @@ public class clsEmpresa {
     private int estado;
 
     public clsEmpresa() {
+        this.logo=null;
+        this.banner=null;
     }
 
     public int getIdEmpresa() {

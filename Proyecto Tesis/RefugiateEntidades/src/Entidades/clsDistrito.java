@@ -17,6 +17,10 @@ public class clsDistrito {
     public clsDistrito() {
     }
 
+    public clsDistrito(int idDistrito) {
+        this.idDistrito = idDistrito;
+    }
+
     public int getIdDistrito() {
         return idDistrito;
     }

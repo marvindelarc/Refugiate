@@ -19,7 +19,6 @@
 <link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css" />
-
 <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 <!-- END CORE CSS FRAMEWORK -->
 
@@ -121,6 +120,18 @@
                         </select>
                       </div>                     
                     </div>
+                  <div class="row-fluid">
+                      <div class="span11">
+                          <select id="cbNivel" name="cbNivel" class="span12" title="Por favor selecione un nivel!" required>
+                            <option value="">Selecione un Nivel</option>
+                            <option value="1">Una Estrella</option>
+                            <option value="2">Dos Estrellas</option>
+                            <option value="3">Tres Estrellas</option>
+                            <option value="4">Cuatro Estrellas</option>
+                            <option value="5">Cinco Estrellas</option>
+                        </select>
+                      </div>                     
+                    </div>
                    <div class="row-fluid">
                       <div class="span11">
                           <textarea name="txtDireccionSucrusla" id="txtDireccionSucrusla" placeholder="Direccion Sucursal ..." class="span12" rows="2"></textarea>
@@ -160,7 +171,7 @@
                   
                 <div class="span3">
                     <h4>Basic Information</h4>       
-                    <div id="g_map" style=" min-height:400px;" class="span10"  ></div>                  
+                    <div id="g_map" style=" min-height:420px;" class="span10"  ></div>                  
                 </div>
                   
                   
@@ -196,17 +207,20 @@
             <div class="form-actions">
                 <div class="pull-left">
                     <div class="row-fluid">
-                        <div class="span6">
+                        <div class="span4">
+                            <input name="txtUsuario" id="txtUsuario" type="text" class="span12" placeholder="Ingrese Usuario" />
+                        </div>  
+                        <div class="span4">
                             <input name="txtContrasena" id="txtContrasena" type="password" class="span12" placeholder="Ingrese Contraseña" />
                         </div>  
-                        <div class="span6">
+                        <div class="span4">
                             <input name="txtRContrasena" id="txtRContrasena" type="password" class="span12" placeholder="Repita Contraseña" />
                         </div>  
                     </div>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-danger btn-cons" type="submit"><i class="icon-ok"></i> Save</button>
-                    <button class="btn btn-white btn-cons" type="button">Cancel</button>
+                    <button class="btn btn-white btn-cons" onclick="cancelar()" type="button">Cancel</button>
                 </div>
             </div>
         </form>
@@ -239,11 +253,17 @@
 <script src="assets/plugins/jquery-gmap/gmap3.min.js" type="text/javascript"></script> 	
 
 <script src="assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
-	
+
 <!-- PAGE JS -->
 <script src="assets/js/google_maps.js" type="text/javascript"></script> 
 <!-- BEGIN CORE TEMPLATE JS --> 
 <script type="text/javascript">
+function cancelar(){
+ if (confirm('¿Estas seguro querer regresar?')){ 
+      window.location='index.jsp';
+    } 
+};
+     
 function comboDepartamento()
 {
      $.ajax({
@@ -428,8 +448,8 @@ function redimensionar(im,maxWidth,maxHeight,img){
                     },
                     txtRucEmpresa: {
                         digits: true,
-                        minlength: 8,
-                        maxlength: 8,
+                        minlength: 11,
+                        maxlength: 11,
                         required: true
                     },
                     txtNombrePersona: {
@@ -482,15 +502,17 @@ function redimensionar(im,maxWidth,maxHeight,img){
                     txtFotoBanner: {
                         required: true
                     },
-                    checkbox1: {
-                        required: true
-                    },
                     txtContrasena: {
                         minlength: 6,
                         required: true
                     },
                     txtRContrasena: {
                         equalTo: "#txtContrasena",
+                        required: true
+                    }
+                    ,
+                    txtUsuario: {
+                        minlength: 4,
                         required: true
                     }
                 },
@@ -520,11 +542,11 @@ function redimensionar(im,maxWidth,maxHeight,img){
                 submitHandler: function() {   
                     $("#myModal").modal('show');                                   
                    
-                       var url = "controles/tipo_habitacion/insert.jsp"; 
+                       var url = "controles/encargado/registrar.jsp"; 
                        $.ajax({
                             type: "POST",
                             url: url,
-                            data: $("#forml_validation").serialize(), 
+                            data: $("#form-condensed").serialize(), 
                             success: function(data)
                             {
                               $('#myModal').modal('hide');
@@ -532,14 +554,8 @@ function redimensionar(im,maxWidth,maxHeight,img){
                               {
                                   sendMessage("Se Grabo Correctamente.");
                                    getTabla();    
-                                   $('#forml_validation')[0].reset();
+                                   $('#form-condensed')[0].reset();
                                     $('#Id').val("");
-                              }else if(data==0)
-                              {
-                                    sendMessage("Se actulizo correctamente.");
-                                    getTabla();
-                                     $('#forml_validation')[0].reset();
-                                      $('#Id').val("");
                               }else if(data==-1)
                               {
                                  sendMessage("problemas con el servidor intentelo mas tarde");

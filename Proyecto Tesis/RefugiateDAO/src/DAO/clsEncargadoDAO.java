@@ -109,6 +109,85 @@ public class clsEncargadoDAO {
         return rpta;
     }
     
+    
+      public  static int insertarRegistro(clsEncargado entidad) throws Exception
+    {
+        int rpta = 0;
+        Connection conn = null;
+        try {
+            
+           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,logo,banner,fechaRegistro,estado)"
+                   + " VALUES(?,?,?,?,0,?,?,now(),1);";
+           
+            conn = clsConexion.getConnection();
+            conn.setAutoCommit(false);
+            PreparedStatement  stmtEmpresa = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmtEmpresa.setString(1, entidad.getObjSucursal().getObjEmpresa().getNombreComercial());
+            stmtEmpresa.setString(2, entidad.getObjSucursal().getObjEmpresa().getNombre());
+            stmtEmpresa.setString(3, entidad.getObjSucursal().getObjEmpresa().getSlogan());
+            stmtEmpresa.setString(4, entidad.getObjSucursal().getObjEmpresa().getRuc());
+            stmtEmpresa.setBytes(5, entidad.getObjSucursal().getObjEmpresa().getLogo());
+            stmtEmpresa.setBytes(6, entidad.getObjSucursal().getObjEmpresa().getBanner());
+            stmtEmpresa.executeUpdate();
+            ResultSet rsEmpresa = stmtEmpresa.getGeneratedKeys();
+            
+            if (rsEmpresa.next()){
+                rpta=rsEmpresa.getInt(1);
+                sql= "INSERT INTO sucursal(idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,limpieza,servicio,comodidad,puntuacion,nivel,entrada,fecha,estado)"
+                   + " VALUES(?,?,?,?,?,?,?,0,0,0,0,?,?,now(),1);";
+                PreparedStatement  stmtSucursal = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                stmtSucursal.setInt(1, rpta);
+                stmtSucursal.setInt(2, entidad.getObjSucursal().getObjDistrito().getIdDistrito());
+                stmtSucursal.setString(3, entidad.getObjSucursal().getDireccion());
+                stmtSucursal.setInt(4, entidad.getObjSucursal().getPisos());
+                stmtSucursal.setString(5, entidad.getObjSucursal().getTelefono());
+                stmtSucursal.setDouble(6, entidad.getObjSucursal().getLongitud());
+                stmtSucursal.setDouble(7, entidad.getObjSucursal().getLatitud());
+                stmtSucursal.setInt(8, entidad.getObjSucursal().getNivel());
+                stmtSucursal.setString(9, entidad.getObjSucursal().getEntrada());
+                stmtSucursal.executeUpdate();
+                ResultSet rsSucursal = stmtSucursal.getGeneratedKeys();            
+                if (rsSucursal.next()){
+                    rpta=rsSucursal.getInt(1);
+                    sql= "INSERT INTO encargado (idSucursal,nombre,apellido,email,celularPersonal,usuario,password,estado)"
+                        + " VALUES(?,?,?,?,?,?,?,0);";
+                     PreparedStatement  stmtEncargado = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                     stmtEncargado.setInt(1, rpta);
+                     stmtEncargado.setString(2, entidad.getNombre());
+                     stmtEncargado.setString(3, entidad.getApellido());
+                     stmtEncargado.setString(4, entidad.getEmail());
+                     stmtEncargado.setString(5, entidad.getCelular());
+                     stmtEncargado.setString(6, entidad.getUsuario());
+                     stmtEncargado.setString(7, entidad.getPassword());
+                     stmtEncargado.executeUpdate();
+                     ResultSet rsEncargado = stmtEncargado.getGeneratedKeys();            
+                     if (rsEncargado.next()){
+                         rpta=rsEncargado.getInt(1);
+
+                     }else
+                         conn.rollback();
+                    rsEncargado.close();
+                }else
+                    conn.rollback();
+                
+                rsSucursal.close();     
+            }
+            rsEmpresa.close();
+          conn.commit();
+        } catch (Exception e) {
+             if (conn != null) {
+                    conn.rollback();
+                }
+            throw new Exception("Insertar"+e.getMessage(), e);
+        }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return rpta;
+    }
     public static boolean actualizar(clsEncargado entidad) throws Exception
     {
         boolean rpta = false;
