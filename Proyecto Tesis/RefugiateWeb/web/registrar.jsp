@@ -39,7 +39,7 @@
         <div class="span12">
           <div class="grid simple">
             <div class="grid-title no-border">
-              <h4>Condensed <span class="semi-bold">Layout</span></h4>
+              <h3>Inscripcion de Empresa a <span class="semi-bold">Refugiate</span></h3>
             </div>
             <div class="grid-body no-border">
             <form class="form-no-horizontal-spacing" id="form-condensed" >	
@@ -97,7 +97,7 @@
                   
                   
                   
-                  <div class="span3">
+                <div class="span3">
                   <h4>Datos de Sucursal</h4>            
                     <div class="row-fluid">
                       <div class="span11">
@@ -167,57 +167,53 @@
                     </div>
                 </div>
                   
-                  
-                  
                 <div class="span3">
-                    <h4>Basic Information</h4>       
+                    <h4>Marcar Ubicacion Geografica</h4>       
                     <div id="g_map" style=" min-height:420px;" class="span10"  ></div>                  
                 </div>
                   
-                  
-                  
                 <div class="span3">
-                    <h4>Subir Logo</h4>                                
-                    <div class="input-prepend">     
+                    <h4>Datos de Ingreso:</h4>                               
+                    <div class="row-fluid">
                         <div class="span11">
-                            <div id="fotoLogo" class="fileupload-preview thumbnail" ></div>    
-                            <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoLogo" id="archivoLogo" />
-                            <br>
-                            <a id="RemoverLogo" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
-                        </div>
+                            <input name="txtUsuario" id="txtUsuario" type="text" class="span12" placeholder="Ingrese Usuario" />
+                        </div>                     
                     </div>
-                    <div class="input-prepend">
+                    <div class="row-fluid">
+                        <div class="span11">
+                            <input name="txtContrasena" id="txtContrasena" type="password" class="span12" placeholder="Ingrese Contraseña" />              
+                        </div>                     
+                    </div>
+                  
+                    <div class="row-fluid">
+                        <div class="span11">
+                            <input name="txtRContrasena" id="txtRContrasena" type="password" class="span12" placeholder="Repita Contraseña" />
+                        </div>                     
+                    </div>                  
+                </div>
+                
+                <div class="span3">
+                    <h4>Subir Logo</h4>                                                        
+                    <div class="span11">
+                        <div id="fotoLogo" class="fileupload-preview thumbnail" style="margin-bottom: -12px;"></div>    
+                         <br/><a id="RemoverLogo" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
+                         <input class="btn btn-primary btn-mini" type="file" name="archivoLogo" id="archivoLogo" style="margin-bottom: 3px;"/>                            
+                    </div>                    
+                    <div class="input-prepend row-fluid">
                         <input type="text" name="txtFotoLogo" id="txtFotoLogo"/> 
                     </div>
-                    <h4>Subir Banner</h4>            
-                    <div class="input-prepend">     
-                        <div class="span11">
-                        <div id="fotoBanner" class="fileupload-preview thumbnail" ></div>    
-                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoBanner" id="archivoBanner" />
-                        <br>
-                        <a id="RemoverBanner" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
-                        
-                        </div>
-                    </div>
-                    <div class="input-prepend">
+                    <h4  style="margin-top: -14px;">Subir Banner</h4>                                
+                    <div class="span11">
+                        <div id="fotoBanner" class="fileupload-preview thumbnail" style="margin-bottom: -12px;"></div>    
+                        <br/><a id="RemoverBanner" data-dismiss="fileupload" class="btn btn-inverse btn-xs btn-mini" href="#">Remover</a>
+                        <input class="btn btn-primary btn-xs btn-mini" type="file" name="archivoBanner" id="archivoBanner" style="margin-bottom: 3px;"/>                        
+                    </div>                    
+                    <div class="input-prepend row-fluid">
                         <input type="text" name="txtFotoBanner" id="txtFotoBanner"/> 
                     </div>
                 </div>                  
             </div>
-            <div class="form-actions">
-                <div class="pull-left">
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <input name="txtUsuario" id="txtUsuario" type="text" class="span12" placeholder="Ingrese Usuario" />
-                        </div>  
-                        <div class="span4">
-                            <input name="txtContrasena" id="txtContrasena" type="password" class="span12" placeholder="Ingrese Contraseña" />
-                        </div>  
-                        <div class="span4">
-                            <input name="txtRContrasena" id="txtRContrasena" type="password" class="span12" placeholder="Repita Contraseña" />
-                        </div>  
-                    </div>
-                </div>
+            <div class="form-actions">                
                 <div class="pull-right">
                     <button class="btn btn-danger btn-cons" type="submit"><i class="icon-ok"></i> Save</button>
                     <button class="btn btn-white btn-cons" onclick="cancelar()" type="button">Cancel</button>
@@ -228,18 +224,14 @@
           </div>
         </div>
       </div>
-      
-
-	  <div id="push"></div>
+    <div id="push"></div>
 </div>
- <div id="footer">
-      <div class="span12 error-container">
-          <br><br><br><br><br>
-          
-		<div class="copyright">
-			All work copyright of respective owner, 2013 webarch Incorporated
-		</div>
-		
+<div id="footer">
+    <div class="span12 error-container">
+        <br><br><br>
+        <div class="copyright">
+                All work copyright of respective owner, 2013 webarch Incorporated
+        </div>		
     </div>
 </div>
 <!-- END CONTAINER --> 
@@ -367,7 +359,7 @@ $( "#RemoverLogo" ).hide();
     var input=e.target,fr=new FileReader(),
 	tipos=/^image\/jpg|image\/jpeg|image\/png|image\/gif$/i;
 	if(input.files.length===0)return;
-	if(!tipos.test(input.files[0].type)){alert("El archivo selecionado es inválido");return;}
+	if(!tipos.test(input.files[0].type)){alert("Archivo selecionado es inválido");return;}
 	fr.onload=function(evt){
 		var im=evt.target.result;
 		redimensionar(im,100,100,0);
@@ -389,7 +381,7 @@ $( "#RemoverBanner" ).hide();
     var input=e.target,fr=new FileReader(),
 	tipos=/^image\/jpg|image\/jpeg|image\/png|image\/gif$/i;
 	if(input.files.length===0)return;
-	if(!tipos.test(input.files[0].type)){alert("El archivo selecionado es inválido");return;}
+	if(!tipos.test(input.files[0].type)){alert("Archivo selecionado es inválido");return;}
 	fr.onload=function(evt){
 		var im=evt.target.result;
 		redimensionar(im,280,280,1);
