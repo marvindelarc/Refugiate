@@ -4571,9 +4571,9 @@ form legend,
   margin-top: 3px;
 }
 .grid.box .grid-title .tools a {
-  background: url(@{base-img-url}/icon/portlet-tray.png) no-repeat;
-  width: 23px;
-  height: 23px;
+    background: url(@{base-img-url}/icon/portlet-tray.png) no-repeat;
+    width: 23px;
+    height: 23px;
 }
 .grid.box .grid-body {
   background-color: #ffffff;
