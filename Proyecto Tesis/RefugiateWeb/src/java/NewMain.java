@@ -21,7 +21,7 @@ public class NewMain {
 //        entidadWA.setEmail("m@dj.ca");
 //        entidadWA.setEstado(1);
 //        entidadWA.setIdWebAdmin(1);
-//        System.out.println(clsGestor.insertarWebAdmin(entidadWA));
+        System.out.println(clsGestor.loginEncargado("ederm", "123456").getApellido());
 //        System.out.println(clsGestor.actualizarWebAdmin(entidadWA));
 //        System.out.println(clsGestor.ListarWebAdmin(false).size());
         

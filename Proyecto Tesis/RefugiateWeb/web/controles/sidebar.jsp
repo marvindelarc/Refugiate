@@ -1,22 +1,29 @@
+<%@page import="sun.misc.BASE64Encoder"%>
+<%@page import="Entidades.clsEncargado"%>
+<%
+clsEncargado objEncargado=(clsEncargado) request.getSession().getAttribute("SessionEncargado");
+if(objEncargado!=null)
+{
+    BASE64Encoder e = new BASE64Encoder();
+%>
 <!-- BEGIN CONTAINER -->
 <div id="sidebar">
     <div class="page-sidebar" id="main-menu">
     <!-- BEGIN MINI-PROFILE -->
     <div class="user-info-wrapper">
-      <div class="profile-wrapper"> <img src="assets/img/profiles/avatar.jpg" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" width="69" height="69" /> </div>
+      <div class="profile-wrapper"> <img src="data:image/png;base64,<%=e.encodeBuffer(objEncargado.getObjSucursal().getObjEmpresa().getLogo())%>" width="69" height="69" /> </div>
       <div class="user-info">
-        <div class="greeting">Welcome</div>
-        <div class="username">John <span class="semi-bold">Smith</span></div>
-        <div class="status">Status<a href="#">
+        <div class="greeting">Bienvenido</div>
+        <div class="username"><%=objEncargado.getApellido()%> <span class="semi-bold"><%=objEncargado.getNombre()%></span></div>
+        <div class="status">Estado<a href="#">
           <div class="status-icon green"></div>
-          Online</a></div>
+          Linea</a></div>
       </div>
     </div>
     <!-- END MINI-PROFILE -->
     <!-- BEGIN MINI-WIGETS -->
     <!-- END MINI-WIGETS -->
     <!-- BEGIN SIDEBAR MENU -->
-    <p class="menu-title">BROWSE <span class="pull-right"><i class="icon-refresh"></i></span></p>
     <ul>
       <li class="start active "> <a href="index.html"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> <span class="selected"></span> <span class="badge badge-important pull-right">5</span></a> </li>
       <li class=""> <a href="email.html"> <i class="icon-envelope"></i> <span class="title">Email</span> <span class=" badge badge-disable pull-right ">203</span></a> </li>
@@ -32,7 +39,7 @@
             <li> <a href="../crud_tipo_habitacion.jsp">Gestion Tipo Habitación</a></li>            
         </ul>
       </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-custom-form"></i> <span class="title">Forms</span> <span class="arrow "></span> </a>
+      <li class=""> <a href="javascript:;"> <i class="icon-custom-form"></i> <span class="title">Forms</span> <span class="arrow "></span> <span class="badge badge-disable pull-right">5</span></a>
         <ul class="sub-menu">
           <li> <a href="form_elements.html">Form Elements </a> </li>
           <li> <a href="form_validations.html">Form Validations</a> </li>
@@ -148,3 +155,4 @@
 
 </div>
 <!-- END PAGE -->
+<%}%>   

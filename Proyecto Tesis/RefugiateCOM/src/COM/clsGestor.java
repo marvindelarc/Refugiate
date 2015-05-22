@@ -157,6 +157,11 @@ public class clsGestor {
     {
         return clsEncargadoDAO.actualizar(entidad);
     }    
+    public static clsEncargado loginEncargado(String usuario,String password) throws Exception
+    {
+        return clsEncargadoDAO.login(usuario, password);
+    }  
+    
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsHabitacion">

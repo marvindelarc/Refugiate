@@ -5,6 +5,8 @@
  */
 package DAO;
 
+import Entidades.clsDistrito;
+import Entidades.clsEmpresa;
 import Entidades.clsEncargado;
 import Entidades.clsSucursal;
 import java.sql.CallableStatement;
@@ -20,6 +22,78 @@ import java.util.List;
  * @author Paulo
  */
 public class clsEncargadoDAO {
+    
+    public static clsEncargado login(String usuario,String password) throws Exception
+    {
+        clsEncargado entidad = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT e.idEncargado,e.nombre,e.apellido,e.email,e.celularPersonal,e.usuario,e.password,e.estado,e.idSucursal,\n" +
+                        "s.idDistrito,s.direccion,s.pisos,s.telefono,s.longitud,s.latitud,s.limpieza,s.servicio,s.comodidad,s.puntuacion,\n" +
+                        "s.nivel,s.entrada,s.estado,s.idEmpresa,em.nombreComercial,em.nombre,em.slogan,em.ruc,em.puntos,em.logo,em.banner,\n" +
+                        "em.estado FROM encargado e inner join sucursal s on e.idSucursal=s.idSucursal inner join empresa em \n" +
+                        "on s.idEmpresa=em.idEmpresa where e.usuario='"+usuario+"' and e.password='"+password+"';";
+      
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            if(dr.next())
+            {
+                clsEmpresa objEmpresa = new clsEmpresa();
+                objEmpresa.setIdEmpresa(dr.getInt(23));
+                objEmpresa.setNombreComercial(dr.getString(24));
+                objEmpresa.setNombre(dr.getString(25));
+                objEmpresa.setSlogan(dr.getString(26));
+                objEmpresa.setRuc(dr.getString(27));
+                objEmpresa.setPuntos(dr.getInt(28));
+                objEmpresa.setLogo(dr.getBytes(29));
+                objEmpresa.setBanner(dr.getBytes(30));
+                objEmpresa.setEstado(dr.getInt(23));
+                
+                clsSucursal objSucursal = new clsSucursal();
+                objSucursal.setObjEmpresa(objEmpresa);
+                objSucursal.setIdSucursal(dr.getInt(9));
+                objSucursal.setObjDistrito(new clsDistrito(dr.getInt(10)));
+                objSucursal.setDireccion(dr.getString(11));
+                objSucursal.setPisos(dr.getInt(12));
+                objSucursal.setTelefono(dr.getString(13));
+                objSucursal.setLongitud(dr.getDouble(14));
+                objSucursal.setLatitud(dr.getDouble(15));
+                objSucursal.setLimpieza(dr.getInt(16));
+                objSucursal.setServicio(dr.getInt(17));
+                objSucursal.setComodidad(dr.getInt(18));
+                objSucursal.setPuntuacion(dr.getInt(19));
+                objSucursal.setNivel(dr.getInt(20));
+                objSucursal.setEntrada(dr.getString(21));
+                objSucursal.setEstado(dr.getInt(22));
+                
+                entidad = new clsEncargado();                
+                entidad.setObjSucursal(objSucursal);
+                entidad.setIdEncargado(dr.getInt(1));
+                entidad.setNombre(dr.getString(2));
+                entidad.setApellido(dr.getString(3));
+                entidad.setEmail(dr.getString(4));
+                entidad.setCelular(dr.getString(5));
+                entidad.setUsuario(dr.getString(6));
+                entidad.setPassword(dr.getString(7));
+                entidad.setEstado(dr.getInt(8));    
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return entidad;
+    }
     public static List<clsEncargado> Listar(boolean activo) throws Exception
     {
         List<clsEncargado> lista = null;

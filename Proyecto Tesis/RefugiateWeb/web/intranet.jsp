@@ -4,8 +4,14 @@
     Author     : EdHam
 --%>
 
+<%@page import="Entidades.clsEncargado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+clsEncargado objEncargado=(clsEncargado) request.getSession().getAttribute("SessionEncargado");
+if(objEncargado!=null)
+{
+%>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 <meta charset="utf-8" />
@@ -448,4 +454,6 @@ getSidebar();
 	 
 </script>
 </body>
+<%}else  
+    response.sendRedirect("index.jsp");%>   
 
