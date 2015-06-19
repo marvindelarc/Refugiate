@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RefugiateApp.iml" filepath="$PROJECT_DIR$/RefugiateApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dirandro.cda.apps.iml" filepath="$PROJECT_DIR$/dirandro.cda.apps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dirandro.cda.apps_final.iml" filepath="$PROJECT_DIR$/dirandro.cda.apps_final.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/imageViewPictureMain"
+            android:background="@drawable/ic_launcherd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayoutHeaderTexts"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_height_single_line_48_56"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="DIRANDRO APPS"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="?android:textColorPrimary" />
+
+    </LinearLayout>
+
+</LinearLayout>

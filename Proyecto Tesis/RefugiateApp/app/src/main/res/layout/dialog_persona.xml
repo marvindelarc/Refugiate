@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+    android:gravity="center"
+    android:focusableInTouchMode="true" >
+    
+<ScrollView
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+   >
+
+    
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+
+    android:background="@drawable/dialog"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordertit"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/str_lblPersonas"
+                android:layout_width="327dp"
+                android:layout_height="wrap_content"
+                android:typeface="normal"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/lbl_blanco" />
+        </LinearLayout>
+
+
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/fondo_background"
+
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal" >
+
+                <EditText
+                android:id="@+id/txtNombresPersona"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                    android:background="@drawable/border"
+                    android:paddingLeft="12dp"
+                    android:drawableLeft="@drawable/avatar"
+                android:layout_gravity="center"
+                android:hint="@string/str_txtNombresPersona"
+                android:textSize="14dp"
+                android:ems="10"
+                android:textColor="@color/lbl_negro" />
+                
+            </LinearLayout>                         
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/fondo_background"
+
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal" >
+
+                <EditText
+                android:id="@+id/txtApellidosPersona"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                    android:background="@drawable/border"
+                    android:paddingLeft="14dp"
+                    android:drawableLeft="@drawable/family"
+                android:layout_gravity="center"
+                android:hint="@string/str_txtApellidosPersona"
+                android:textSize="14dp"
+                android:ems="10"
+                android:textColor="@color/lbl_negro"/>
+                
+            </LinearLayout> 
+            
+ <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/fondo_background"
+
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal" >
+
+     <EditText
+                android:id="@+id/txtApelativoPersona"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                    android:background="@drawable/border"
+         android:paddingLeft="14dp"
+         android:drawableLeft="@drawable/apelativo"
+                android:layout_gravity="center"
+                android:hint="@string/str_txtApelativoPersona"
+                android:textSize="14dp"
+                android:ems="10"
+                android:textColor="@color/lbl_negro"/>
+                
+            </LinearLayout> 
+          
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/fondo_background"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
+        
+                <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="left"
+                android:hint="@string/str_lblDetallePersona"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/lbl_blanco" />
+                
+                <EditText
+                android:id="@+id/txtDetallePersona"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:ems="10"
+                android:hint="@string/str_txtDetallePersona"
+                android:layout_centerInParent="true"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:maxWidth="300sp"
+                android:minWidth="10.0dip"
+                android:scrollHorizontally="false"
+                android:textColor="@color/lbl_negro"/>
+                    
+
+            </LinearLayout>   
+            
+     
+     
+    </LinearLayout>
+    
+   
+ 
+            
+        
+        <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+         
+           <Button
+            android:id="@+id/btnAgregarPersona"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"  
+            android:layout_marginRight="2dp"    
+            android:layout_marginTop="5dp"    
+            android:layout_marginBottom="5dp"                             
+            android:text="@string/str_btnAgregar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:background="@drawable/theme"
+            android:textColor="@color/lbl_blanco"/>
+        
+           <Button
+            android:id="@+id/btnCancelarPersona"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"    
+            android:layout_marginLeft="2dp"  
+            android:layout_marginTop="5dp"    
+            android:layout_marginBottom="5dp"                             
+            android:text="@string/str_btnBorrar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:background="@drawable/theme"
+            android:textColor="@color/lbl_blanco"/>
+    </LinearLayout>
+         
+         
+         
+         
+          <ListView
+             android:layout_width="fill_parent"
+             android:layout_height="0dip"
+            android:layout_weight="1"
+            android:id="@+id/listaPersona"></ListView>
+
+         
+         
+    </LinearLayout>
+
+</ScrollView>
+    
+</LinearLayout>

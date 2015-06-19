@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:background="@color/md_white_1000"
+    android:orientation="vertical">
+
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        class="com.google.android.gms.maps.SupportMapFragment"/>
+
+
+
+
+
+
+    <Button
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/str_btnSelecionar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ubicaciongps"
+            android:background="@drawable/theme"
+            android:onClick="btnSelecionar"
+            android:textColor="@color/lbl_blanco"
+             android:layout_alignParentBottom="true"
+              android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/btnCancelarVehiculo"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/cancel"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/str_btnCancelar"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:onClick="btnCancelar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/theme"
+        android:textColor="@color/lbl_blanco"/>
+
+	
+    
+    
+  
+</RelativeLayout>
