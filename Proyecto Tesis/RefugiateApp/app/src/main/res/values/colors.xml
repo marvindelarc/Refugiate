@@ -663,11 +663,5 @@
     <color name="md_secondary_text_icons">#8a000000</color>
     <color name="md_disabled_hint_text">#4c000000</color>
     <color name="md_divider">#1f000000</color>
-    <color name="lbl_letras">#fff</color>
-    <color name="background_color">#fff</color>
-    <color name="fondo_background">#fff</color>
-    <color name="lbl_blanco">#fff</color>
-    <color name="lbl_negro">#000</color>
-    <color name="lbl_rojo">#FF0707</color>
-    <color name="lbl_azul">#0885ff</color>
+
 </resources>

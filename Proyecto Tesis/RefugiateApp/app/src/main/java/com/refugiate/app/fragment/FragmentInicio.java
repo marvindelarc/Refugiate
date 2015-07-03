@@ -37,8 +37,6 @@ import com.refugiate.app.entidades.gipVehiculo;
 import com.refugiate.app.ui.R;
 import com.refugiate.app.utilidades.ToSpeech;
 import com.refugiate.app.utilidades.Utilidades;
-import com.refugiate.app.ui.MapaActivity;
-import com.refugiate.app.ui.FotoActivity;
 import java.util.concurrent.ExecutionException;
 
 public class FragmentInicio extends Fragment {
@@ -51,7 +49,7 @@ private Button btnVehiculo;
 private Button btnEnviarHecho;
 private static int tiempoListener=300;
 
-private Spinner ComboTipoHecho;
+//private Spinner ComboTipoHecho;
 private EditText txtDetalleHecho;
 private gipPersona objPersona;
 private gipVehiculo objVehiculo;
@@ -65,15 +63,15 @@ private ProgressDialog pd;
         
         
         
-        ComboTipoHecho  = (Spinner)view.findViewById(R.id.ComboHecho);
+       // ComboTipoHecho  = (Spinner)view.findViewById(R.id.ComboHecho);
 
 
 
-        String[] listTipoHecho=getResources().getStringArray(R.array.array_tipo_hecho);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_dropdown_item,listTipoHecho);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ComboTipoHecho.setAdapter(adapter); 
-        ComboTipoHecho.setSelection(0);
+       // String[] listTipoHecho=getResources().getStringArray(R.array.array_tipo_hecho);
+       // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_dropdown_item,listTipoHecho);
+      //  adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+     //   ComboTipoHecho.setAdapter(adapter);
+     //   ComboTipoHecho.setSelection(0);
 
         
         btnEnviarHecho = (Button) view.findViewById(R.id.btnEnviarHecho);
@@ -89,10 +87,10 @@ private ProgressDialog pd;
         View.OnTouchListener btnGPSListener = new View.OnTouchListener() {
             public boolean  onTouch  (View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP && event.getEventTime() - event.getDownTime() >= tiempoListener){
-                    new ToSpeech(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.mapa_activity));
-                    Intent i=new Intent(FragmentInicio.this.getActivity(),MapaActivity.class);
-                    startActivity(i);
-                    FragmentInicio.this.getActivity().finish();
+                    new ToSpeech(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.app_name));
+                   // Intent i=new Intent(FragmentInicio.this.getActivity(),MapaActivity.class);
+                    //startActivity(i);
+                    //FragmentInicio.this.getActivity().finish();
                 }
                 return false;
             }
@@ -103,10 +101,10 @@ private ProgressDialog pd;
         View.OnTouchListener btnFotoListener = new View.OnTouchListener() {
             public boolean  onTouch  (View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP && event.getEventTime() - event.getDownTime() >= tiempoListener){
-                    new ToSpeech(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.foto_activity));
-                  Intent i=new Intent(FragmentInicio.this.getActivity(),FotoActivity.class);
-                    startActivity(i);
-                    FragmentInicio.this.getActivity().finish();
+                    new ToSpeech(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.app_name));
+                 // Intent i=new Intent(FragmentInicio.this.getActivity(),FotoActivity.class);
+                    //startActivity(i);
+                   // FragmentInicio.this.getActivity().finish();
                 }
                 return false;
             }
@@ -153,7 +151,7 @@ private ProgressDialog pd;
 
           cargarDatos();
 
-        ComboTipoHecho.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /**ComboTipoHecho.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 objHechoPublico.setTipoHechoPublico(pos);
                 gipHechoPublicoDAO.Actualizar(FragmentInicio.this.getActivity(), objHechoPublico);
@@ -162,7 +160,7 @@ private ProgressDialog pd;
             public void onNothingSelected(AdapterView<?> parent) {
                 //User selected same item. Nothing to do.
             }
-        });
+        });**/
         txtDetalleHecho.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -185,7 +183,7 @@ private ProgressDialog pd;
     }
     public void dialogPersona()
     {
-        new ToSpeech(this.getActivity(), this.getString(R.string.str_lblPersonas));
+        new ToSpeech(this.getActivity(), this.getString(R.string.app_name));
 
         final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -236,7 +234,7 @@ private ProgressDialog pd;
                     dialog.dismiss();
                   cargarDatos();
                 } else {
-                    Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.alert_Personas), true);
+                    Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.app_name), true);
                 }
             }
         });
@@ -254,7 +252,7 @@ private ProgressDialog pd;
 
     public void dialogVehiculo()
     {
-        new ToSpeech(this.getActivity(), this.getString(R.string.str_lblVehiculos_tts));
+        new ToSpeech(this.getActivity(), this.getString(R.string.app_name));
 
         final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -262,13 +260,13 @@ private ProgressDialog pd;
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_vehiculo);
 
-        final Spinner ComboTipoVehiculo  = (Spinner)dialog.findViewById(R.id.ComboTipoVehiculo);
+//        final Spinner ComboTipoVehiculo  = (Spinner)dialog.findViewById(R.id.ComboTipoVehiculo);
 
-        String[] listTipoVehiculo=getResources().getStringArray(R.array.array_tipo_vehiculo);
-        ArrayAdapter<String> adapterSexo = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_dropdown_item,listTipoVehiculo);
-        adapterSexo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ComboTipoVehiculo.setAdapter(adapterSexo);
-        ComboTipoVehiculo.setSelection(0);
+       // String[] listTipoVehiculo=getResources().getStringArray(R.array.array_tipo_vehiculo);
+       // ArrayAdapter<String> adapterSexo = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_dropdown_item,listTipoVehiculo);
+        //adapterSexo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //ComboTipoVehiculo.setAdapter(adapterSexo);
+        //ComboTipoVehiculo.setSelection(0);
 //
         final EditText txtModeloVehiculo = (EditText)dialog.findViewById(R.id.txtModeloVehiculo);
         txtModeloVehiculo.setText("");
@@ -296,7 +294,7 @@ private ProgressDialog pd;
             txtPlacaVehiculo.setText(objVehiculo.getPlaca());
             txtColorVehiculo.setText(objVehiculo.getColor());
             txtDetalleVehiculo.setText(objVehiculo.getDetalle());
-            ComboTipoVehiculo.setSelection(objVehiculo.getTipoVehiculo());
+            //ComboTipoVehiculo.setSelection(objVehiculo.getTipoVehiculo());
             btnCancelarVehiculo.setText(R.string.str_btnBorrar);
         }else
             btnCancelarVehiculo.setText(R.string.str_btnCancelar);
@@ -307,7 +305,7 @@ private ProgressDialog pd;
                 if (!txtPlacaVehiculo.getText().toString().equals("")) {
                     if (!txtPlacaVehiculo.getText().toString().equals("")) {
                         objVehiculo = new gipVehiculo();
-                        objVehiculo.setTipoVehiculo(ComboTipoVehiculo.getSelectedItemPosition());
+                       // objVehiculo.setTipoVehiculo(ComboTipoVehiculo.getSelectedItemPosition());
                         objVehiculo.setModelo(txtModeloVehiculo.getText().toString());
                         objVehiculo.setMarca(txtMarcaVehiculo.getText().toString());
                         objVehiculo.setPlaca(txtPlacaVehiculo.getText().toString());
@@ -319,7 +317,7 @@ private ProgressDialog pd;
                         dialog.dismiss();
                      cargarDatos();
                     } else {
-                        Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.alert_Vehiculos), true);
+                        Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.app_name), true);
                     }
                 }
 
@@ -340,7 +338,7 @@ private ProgressDialog pd;
 
     public void dialogInmueble()
     {
-        new ToSpeech(this.getActivity(), this.getString(R.string.str_lblInmuebles));
+        new ToSpeech(this.getActivity(), this.getString(R.string.app_name));
 
         final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -385,7 +383,7 @@ private ProgressDialog pd;
                 }
                 else
                 {
-                    Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.alert_Inmuebles), true);
+                    Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.app_name), true);
                 }
             }
         });
@@ -415,34 +413,34 @@ private ProgressDialog pd;
         }
         else
         {
-            ComboTipoHecho.setSelection(objHechoPublico.getTipoHechoPublico());
+            //ComboTipoHecho.setSelection(objHechoPublico.getTipoHechoPublico());
             txtDetalleHecho.setText(objHechoPublico.getDetalle());
         }
 
         if(objHechoPublico.getLatitud()==0D  && objHechoPublico.getLongitud()==0D)
-            btnGPS.setBackgroundResource(R.drawable.location);
+            btnGPS.setBackgroundResource(R.drawable.ic_launcherd);
         else
-            btnGPS.setBackgroundResource(R.drawable.locationon);
+            btnGPS.setBackgroundResource(R.drawable.ic_launcherd);
 
         if(Utilidades.getImagen()==null)
-            btnFoto.setBackgroundResource(R.drawable.camera);
+            btnFoto.setBackgroundResource(R.drawable.ic_launcherd);
         else
-            btnFoto.setBackgroundResource(R.drawable.cameraon);
+            btnFoto.setBackgroundResource(R.drawable.ic_launcherd);
 
         if(objPersona==null)
-            btnPersona.setBackgroundResource(R.drawable.user);
+            btnPersona.setBackgroundResource(R.drawable.ic_launcherd);
         else
-            btnPersona.setBackgroundResource(R.drawable.useron);
+            btnPersona.setBackgroundResource(R.drawable.ic_launcherd);
 
         if(objInmueble==null)
-            btnInmueble.setBackgroundResource(R.drawable.house);
+            btnInmueble.setBackgroundResource(R.drawable.ic_launcherd);
         else
-            btnInmueble.setBackgroundResource(R.drawable.houseon);
+            btnInmueble.setBackgroundResource(R.drawable.ic_launcherd);
 
         if(objVehiculo==null)
-            btnVehiculo.setBackgroundResource(R.drawable.truck);
+            btnVehiculo.setBackgroundResource(R.drawable.ic_launcherd);
         else
-            btnVehiculo.setBackgroundResource(R.drawable.truckon);
+            btnVehiculo.setBackgroundResource(R.drawable.ic_launcherd);
 
     }
 
@@ -457,7 +455,7 @@ private ProgressDialog pd;
             }
 
             pd = new ProgressDialog(this.getActivity());
-            pd.setMessage(this.getString(R.string.progres_dialog_envio));
+            pd.setMessage(this.getString(R.string.app_name));
             pd.setCancelable(false);
             pd.show();
             new Thread() {
@@ -488,7 +486,7 @@ private ProgressDialog pd;
             objHechoPublico = gipHechoPublicoDAO.Buscar(this.getActivity(), 1);
             if (!txtDetalleHecho.getText().toString().equals("")) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
-                alert.setTitle(getString(R.string.str_alert_envio));
+                alert.setTitle(getString(R.string.app_name));
                 alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
@@ -503,7 +501,7 @@ private ProgressDialog pd;
 
 
             } else {
-                Utilidades.alert(FragmentInicio.this.getActivity(), this.getString(R.string.alert_DetalleHecho), true);
+                Utilidades.alert(FragmentInicio.this.getActivity(), this.getString(R.string.app_name), true);
             }
 
         }else
@@ -531,19 +529,19 @@ private ProgressDialog pd;
                     gipInmuebleDAO.Borrar(FragmentInicio.this.getActivity());
                     gipHechoPublicoDAO.Borrar(FragmentInicio.this.getActivity());
                     Utilidades.getImagenDelete();
-                    ComboTipoHecho.setSelection(0);
+                    //ComboTipoHecho.setSelection(0);
                     txtDetalleHecho.setText("");
                     cargarDatos();
-                    Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.alert_envio_completo), true);
+                    Utilidades.alert(FragmentInicio.this.getActivity(), FragmentInicio.this.getString(R.string.app_name), true);
                 }
                 else
                 {
-                    Utilidades.alert(FragmentInicio.this.getActivity(),FragmentInicio.this.getString(R.string.alert_error_conexion),true);
+                    Utilidades.alert(FragmentInicio.this.getActivity(),FragmentInicio.this.getString(R.string.app_name),true);
                 }
 
             }
             else {
-                Utilidades.alert(FragmentInicio.this.getActivity(),FragmentInicio.this.getString(R.string.alert_error_conexion), true);
+                Utilidades.alert(FragmentInicio.this.getActivity(),FragmentInicio.this.getString(R.string.app_name), true);
             }
             pd.dismiss();
 

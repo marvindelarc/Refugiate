@@ -50,18 +50,10 @@ public class CargandoActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
 
-            if(estado)
-            {
+
                 Intent i=new Intent(mContext,MainActivity.class);
                 startActivity(i);
                 finish();
-            }
-            else
-            {
-                Intent i=new Intent(mContext,ConfiguracionActivity.class);
-                startActivity(i);
-                finish();
-            }
 
         }
 

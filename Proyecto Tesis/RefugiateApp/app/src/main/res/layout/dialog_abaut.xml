@@ -55,9 +55,9 @@ android:focusableInTouchMode="true" >
                 <ImageView
                     android:layout_width="55dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/cda" />
+                    android:src="@drawable/ic_launcherd" />
                 <TextView
-                    android:text="@string/str_lblAbaut"
+                    android:text="@string/app_name"
                     android:layout_width="198dp"
                     android:layout_height="wrap_content"
                     android:typeface="normal"
@@ -83,7 +83,7 @@ android:focusableInTouchMode="true" >
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
                     android:gravity="center"
-                    android:text="@string/str_lblDetalleAbaut"
+                    android:text="@string/app_name"
                     android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
 

@@ -3,52 +3,23 @@
 
     <string name="app_name">REFUGIATE APP</string>
 
+    <!--INICIO DRAWER -->
+    <string name="lbl_titulo_dw_1">BUSCAR</string>
+    <string name="lbl_item_dw_1_1">NOMBRE</string>
+    <string name="lbl_item_dw_1_2">UBIGEO</string>
+    <string name="lbl_item_dw_1_3">MAPA</string>
 
+    <string name="lbl_titulo_dw_2">CUENTA</string>
+    <string name="lbl_item_dw_2_1">MI PERFIL</string>
+    <string name="lbl_item_dw_2_2">MIS RESERVAS</string>
+    <string name="lbl_item_dw_2_3">MI HISTORIAL</string>
 
-    <string name="name">DIRECCION EJECUTIVA ANTIDROGAS</string>
-    <string name="email"></string>
-    <string name="lbl_desarrollador"><![CDATA[Developer]]></string>
-    <string name="str_lblDetalleTelefono">Línea Gratuita  de la Dirección Ejecutiva Antidrogas  de la Policía Nacional del Perú;  que tiene como objetivo que cualquier ciudadano pueda contribuir, de manera anónima denunciando  el Trafico ,  consumo de drogas y estupefacientes . Tu llamada es confidencial, se guarda reserva de tus datos personales, si deseas puedes identificarte  usando un seudónimo. Si la información que has proporcionado conlleva a la detención, comiso de drogas o armas serás recompensado económicamente.</string>
-    <string name="str_btnLlamar">0-800-19900</string>
-
-
-    <!--Check-->
-    <string name="str_check_habilitado">Activo</string>
-    <string name="str_check_inhabilitado">Inactivo</string>
-
-
-
-
-    <string name="menu_inicio">INICIO</string>
-    <string name="menu_telefono">LÍNEA GRATUITA</string>
-    <string name="menu_nosotros">NOSOTROS</string>
-
-
-
-    <string name="str_lblCargando">CARGANDO</string>
-
-
-
-    <string name="configuracion_activity">Bienvenido APP DIRANDRO-PNP</string>
-
-
-
-    <string name="menu_activity">DIRANDRO</string>
-    <string name="mapa_activity">Seleccione Ubicación</string>
-    <string name="foto_activity">Agregar Imagen</string>
-
+    <string name="action_settings">CONFIGURACION</string>
+    <string name="action_about">ACERCA DE..</string>
     <string name="drawer_open">Abrir Menu</string>
     <string name="drawer_close">Cerrar Menu</string>
-    <string name="action_settings">Configuración</string>
-    <string name="action_about">Acerca de</string>
+    <!--FIN DRAWER -->
 
-    <string name="str_lblAbaut">CENTRAL DE ANALISIS</string>
-    <string name="str_lblDetalleAbaut">Esta aplicación fue desarrollada por la CENTRAL DE ANÁLISIS de la DIRANDRO-PNP</string>
-
-
-    <string name="str_lblTelefono">LÍNEA GRATUITA</string>
-
-    <string name="str_btnGPS">AGREGAR COORDENADAS</string>
     <string name="str_btnAgregar">Agregar</string>
     <string name="str_btnAceptar">Aceptar</string>
     <string name="str_btnSelecionar">Selecionar</string>
@@ -56,158 +27,7 @@
     <string name="str_btnCerrar">Cerrar</string>
     <string name="str_btnBorrar">Borrar</string>
     <string name="str_btnEnviar">Enviar</string>
-    <string name="str_alert_envio">ENVIAR INFORMACIÓN?</string>
 
 
-
-
-
-
-    <string name="str_lblPersonas">AGREGAR PERSONAS</string>
-    <string name="str_lblDetallePersona">Detalle</string>
-    <string name="str_txtNombresPersona">Agregar Nombres</string>
-    <string name="str_txtApellidosPersona">Agregar Apellidos</string>
-    <string name="str_txtApelativoPersona">Agregar Apelativo</string>
-    <string name="str_txtDetallePersona">Agregar Detalle</string>
-    <string name="alert_Personas">Por favor agregue un nombre o apelativo </string>
-
-    <string name="str_lblVehiculos">AGREGAR VEHICULOS</string>
-    <string name="str_lblVehiculos_tts">agregar veículos</string>
-    <string name="str_lblDetalleVehiculo">Detalle</string>
-    <string name="str_txtModeloVehiculo">Agregar Modelo</string>
-    <string name="str_txtMarcaVehiculo">Agregar Marca</string>
-    <string name="str_txtPlacaVehiculo">Agregar Placa</string>
-    <string name="str_txtColorVehiculo">Agregar Color</string>
-    <string name="str_txtDetalleVehiculo">Agregar Detalle</string>
-    <string name="alert_Vehiculos">Por favor agregue una placa</string>
-    <string name="alert_VehiculosTipo">Por favor seleccione una opcción</string>
-    <string-array name="array_tipo_vehiculo">
-        <item>SELECCIONE UNA OPCION</item>
-        <item>TERRESTRE</item>
-        <item>AEREO</item>
-        <item>ACUATICO</item>
-    </string-array>
-
-
-    <string name="str_lblInmuebles">AGREGAR INMUEBLES</string>
-    <string name="str_lblDetalleInmueble">Detalle</string>
-    <string name="str_txtDireccionInmueble">Agregar Dirección</string>
-    <string name="str_txtColorInmueble">Agregar Color</string>
-    <string name="str_txtDetalleInmueble">Agregar Detalle</string>
-    <string name="alert_Inmuebles">Por favor agregue una dirección</string>
-
-    <string name="str_lblHecho">AGREGAR INFORMACIÓN</string>
-    <string name="str_lblDetalleHecho">Detalle</string>
-    <string name="str_txtDetalleHecho">Agregar Detalle</string>
-    <string name="alert_tipoHecho">Por favor seleccione una Opción valida</string>
-    <string name="alert_DetalleHecho">Por favor agregue un detalle</string>
-    <string-array name="array_tipo_hecho">
-        <item>TRAFICO ILICITO DE DROGAS</item>
-        <item>MICROCOMERCIALIZACION</item>
-    </string-array>
-
-    <string name="str_chkMailConfiguracion">Permitir el uso de su cuenta de correo para reportar un hecho.</string>
-    <string name="str_chkVozConfiguracion">Activar  asistente de voz.</string>
-    <string name="str_lblTerminisConfiguracion">La información  brindada será reservada. Gracias por tu colaboración.</string>
-    <string name="str_lblConfiguracion">CONFIGURACIÓN DIRANDRO APPS </string>
-    <string name="lbl_titulosaludo">DIRECCION EJECUTIVA ANTIDROGAS</string>
-    <string name="lbl_saludo">Al iniciar mi mensaje a todos ustedes hermanos, deseo agradecer a Dios por permitirme el privilegio de comandar una unidad policial de elite. Si bien, es cierto que inicialmente el narcotráfico puede generar de manera inicial un bienestar aparente, acaba sumiendo en la violencia generalizada y el retiro de importantes actividades productivas.La responsabilidad de luchar contra las drogas es una tarea que todos debemos contribuir para tener un Peru mas prospero </string>
-    <string name="lbl_director">GENERAL PNP. JULIO A. MERCADO CASTILLO</string>
-    <string name="lbl_direjandro">DIRECTOR EJECUTIVO ANTIDROGAS</string>
-
-
-    <string name="lbl_titulomision">MISIÓN</string>
-    <string name="lbl_dcomision">Como Dirección Especializada y Sistémica de la Policía Nacional del Perú, planear, organizar y ejecutar operaciones policiales a nivel nacional e internacional para combatir el trafico ilícito de drogas y delitos conexos; previniendo, investigando y denunciando estos delitos; protegiendo a la sociedad de la drogadicción, coadyuvando al desarrollo social, mediante un servicio de excelencia con personal especializado, basado en los principios de integridad, solidaridad y justicia.</string>
-    <string name="lbl_titulovision">VISIÓN</string>
-    <string name="lbl_dvision">Ser una Dirección Especializada de la Policía Nacional del Perú, de reconocido prestigio nacional e internacional, que aplica adecuadas estrategias para garantizar una efectiva lucha contra el tráfico ilícito de drogas y delitos conexos; dentro del marco de la ley e irrestricto respeto de los derechos humanos.</string>
-<string name="benef">
-        <![CDATA[
-        <html>
-        <head></head>
-        <body style="text-align:justify;color:gray;background-color:black;">
-         "Ser una Dirección Especializada de la Policía Nacional del Perú, de reconocido prestigio nacional e internacional, que aplica adecuadas estrategias para garantizar una efectiva lucha contra el tráfico ilícito de drogas y delitos conexos; dentro del marco de la ley e irrestricto respeto de los derechos humanos."
- </body>
-</html>
-]]>
-</string>
-
-    <string name="lbl_menu1">Denuncias</string>
-    <string name="lbl_menu2">Linea gratuita</string>
-    <string name="lbl_menu3">Dirección Ejecutiva</string>
-    <string name="lbl_menu4">Nosotros</string>
-    <string name="lbl_menu5">Misión</string>
-    <string name="lbl_menu6">Visión</string>
-    <string name="lbl_menu7">Esandro</string>
-    <string name="lbl_menu8">Himno</string>
-    <string name="lbl_menu9">Enlaces</string>
-
-    <string name="lbl_thistoria">HISTORIA</string>
-    <string name="lbl_dhistoria">El 30 de marzo de 1961, se aprobó, en Viena, la Convención Única sobre Estupefacientes de las Naciones Unidas, en al cual la hoja de coca fue incluida en la Lista que enumera a las circunstancias o preparados considerados en calidad de estupefacientes y por lo tanto, sujetas a fiscalización nacional e internacional. Perú suscribió la convención y todas sus listas, siendo esta luego ratificada en el Congreso de la Republica,  el 22de julo de  1964.
-
-    </string>
-    <string name="lbl_thinvocacion">La  Dirección Ejecutiva Antidrogas ratificar su compromiso de trabajar denodadamente junto a la comunidad para erradicar el tráfico ilícito de Drogas y su secuelas,  especialmente la prevención del consumo indebido de Drogas, con el mensaje a nuestros jóvenes.</string>
-    <string name="lbl_drogas">¡¡A LA VIDA ….DILE …SI; A LA DROGA … DILE  … NO!!</string>
-    <string name="lbl_otros">Institucional</string>
-    <string name="lbl_tesandro">ESCUELA ANTIDROGAS DEL PERÚ</string>
-    <string name="lbl_desandro">La Escuela Antidrogas, es el órgano responsable de gerenciar la capacitación,
-        especialización y perfeccionamiento del personal policial del sistema policial antidrogas así como
-        promover la investigación científica en materias inherentes a la interdicción, prevención e investigación
-        del Tráfico Ilícito de Drogas propiciando el fortalecimiento de sus políticas y estrategias a nivel nacional
-        para disminuir la criminalidad en relación al Tráfico Ilícito de Drogas y Delitos conexos.</string>
-    <string name="lbl_mesandro">Proximamente Cursos</string>
-    <string name="lbl_htitulo">HIMNO DIRANDRO</string>
-    <string name="lbl_hestrofa">SOY EL ORGULLO DEL PERÚ\n
-                        CUANDO POR DIOS, MI MATRIA Y LEY\n
-                                PROTEJO A LA JUVENTUD\n
-                            DE NO VIVIR, CON LAS DROGAS\n\n
-
-                        SOY ANTIDROGAS DEL PERÚ\n
-                        QUE LUCHA Y MUERE  AL SENTIR\n
-                        CUANDO ALGUEN QUIERE DESTRUIR\n
-                        CON LAS DROGAS A MI PAÍS\n\n
-
-                        EN LA SELVA, SIERRA Y LA COSTA\n
-                        TODOS LUCHAMOS POR UN GRAN PERÚ\n
-                        COMO AYER ELLOS LUCHARON\n
-                        POR LA DIRANDRO EN NUESTRO PERÚ\n
-                        SOY POLICÍA, SOY ANTIDROGAS,\n
-                        SOY POLICÍA DEL PERÚ\n\n
-
-                        JOSE PENZA SE INMOLÓ,\n
-                        AL DAR SU VIDA CON HONOR\n
-                        SU SACRIFICIO NOS SIRVIÓ  \n
-                        PARA LUCHAR CON MÁS VALOR\n
-                        NO DUDARÉ NUNCA JAMÁS\n
-                        TRABAJARÉ CON FÉ Y HONOR (FIN)
-
-
-</string>
-
-
-    <!--Links-->
-    <string name="lbl_link1">POLICIA NACIONAL DEL PERÚ</string>
-    <string name="lbl_dpnp">DIOS PATRIA Y LEY</string>
-    <string name="lbl_link2">DIRECCIÓN EJECUTIVA ANTIDROGAS</string>
-    <string name="lbl_ddirandro">LUCHANDO POR EL PERÚ Y EL MUNDO</string>
-    <string name="lbl_link3">RENIEC</string>
-    <string name="lbl_dreniec">REGISTRO NACIONAL DE IDENTIFICACIÓN</string>
-    <string name="lbl_link4">SUNAT</string>
-    <string name="lbl_dsunat">SUPERINTENDENCIA NACIONAL DE TRIBUTOS</string>
-    <string name="lbl_link5">MIGRACIONES</string>
-    <string name="lbl_link6">COMISARIAS</string>
-    <string name="lbl_dcomisarias">UBICACION DE COMISARIAS</string>
-    <string name="lbl_link7">FACEBOOK</string>
-    <string name="lbl_facebook">COMPARTIR</string>
-    <string name="lbl_mensaje">TU INFORMACIÓN ES IMPORTANTE</string>
-    <string name="lbl_mensaje2">JUNTOS CONTRA LAS DROGAS</string>
-    <!--fin-->
-
-
-    <string name="alert_error_conexion">Problemas con la conexión, por favor intentelo luego.</string>
-    <string name="alert_envio_completo">Gracias.</string>
-
-    <string name="progres_dialog_envio">Enviando...</string>
-
-    <string name="alert_salir">¿Desea Salir?</string>
 </resources>
 

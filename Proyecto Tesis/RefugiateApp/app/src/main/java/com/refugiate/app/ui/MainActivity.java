@@ -37,15 +37,8 @@ import com.refugiate.app.RecyclerView.Classes.DrawerItem;
 import com.refugiate.app.RecyclerView.Utils.ItemClickSupport;
 import com.refugiate.app.dao.gipUsuarioDAO;
 import com.refugiate.app.entidades.gipUsuario;
-import com.refugiate.app.fragment.FragmentEsandro;
-import com.refugiate.app.fragment.FragmentHimno;
 import com.refugiate.app.fragment.FragmentInicio;
-import com.refugiate.app.fragment.FragmentLinks;
-import com.refugiate.app.fragment.FragmentMision;
-import com.refugiate.app.fragment.FragmentDireccion;
-import com.refugiate.app.fragment.FragmentNosotros;
 import com.refugiate.app.fragment.FragmentTelefono;
-import com.refugiate.app.fragment.FragmentVision;
 import com.refugiate.app.utilidades.ToSpeech;
 
 
@@ -65,12 +58,12 @@ public class MainActivity extends  AppCompatActivity {
     ScrollView scrollViewNavigationDrawerContent;
     ViewTreeObserver viewTreeObserverNavigationDrawerScrollView;
     ViewTreeObserver.OnScrollChangedListener onScrollChangedListener;
-    RecyclerView recyclerViewDrawer1, recyclerViewDrawer2, recyclerViewDrawer3, recyclerViewDrawerSettings;
-    RecyclerView.Adapter drawerAdapter1, drawerAdapter2, drawerAdapter3, drawerAdapterSettings;
-    ArrayList<DrawerItem> drawerItems1, drawerItems2, drawerItems3, drawerItemsSettings;
+    RecyclerView recyclerViewDrawer1, recyclerViewDrawer2, recyclerViewDrawerSettings;
+    RecyclerView.Adapter drawerAdapter1, drawerAdapter2, drawerAdapterSettings;
+    ArrayList<DrawerItem> drawerItems1, drawerItems2,  drawerItemsSettings;
     float drawerHeight, scrollViewHeight;
-    LinearLayoutManager linearLayoutManager, linearLayoutManager2, linearLayoutManager3, linearLayoutManagerSettings;
-    ItemClickSupport itemClickSupport1, itemClickSupport2, itemClickSupport3, itemClickSupportSettings;
+    LinearLayoutManager linearLayoutManager, linearLayoutManager2, linearLayoutManagerSettings;
+    ItemClickSupport itemClickSupport1, itemClickSupport2,  itemClickSupportSettings;
     TypedValue typedValueColorPrimary, typedValueTextColorPrimary, typedValueTextColorControlHighlight, typedValueColorBackground;
     int colorPrimary, textColorPrimary, colorControlHighlight, colorBackground;
     private gipUsuario entidad;
@@ -242,9 +235,9 @@ public class MainActivity extends  AppCompatActivity {
         recyclerViewDrawer1.setLayoutManager(linearLayoutManager);
 
         drawerItems1 = new ArrayList<>();
-        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_police),this.getString(R.string.lbl_menu1)));
-        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_call_volume), this.getString(R.string.lbl_menu2)));
-        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.police), this.getString(R.string.lbl_menu3)));
+        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_nombre),this.getString(R.string.lbl_item_dw_1_1)));
+        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_ubigeo), this.getString(R.string.lbl_item_dw_1_2)));
+        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_mapa), this.getString(R.string.lbl_item_dw_1_3)));
 
 
         drawerAdapter1 = new DrawerAdapter(drawerItems1);
@@ -260,9 +253,9 @@ public class MainActivity extends  AppCompatActivity {
         recyclerViewDrawer2.setLayoutManager(linearLayoutManager2);
 
         drawerItems2 = new ArrayList<>();
-        drawerItems2.add(new DrawerItem(getResources().getDrawable(R.drawable.police_c), this.getString(R.string.lbl_menu4)));
-        drawerItems2.add(new DrawerItem(getResources().getDrawable(R.drawable.passport), this.getString(R.string.lbl_menu5)));
-        drawerItems2.add(new DrawerItem(getResources().getDrawable(R.drawable.policeman), this.getString(R.string.lbl_menu6)));
+        drawerItems2.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_perfil), this.getString(R.string.lbl_item_dw_2_1)));
+        drawerItems2.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_reservas), this.getString(R.string.lbl_item_dw_2_2)));
+        drawerItems2.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_historial), this.getString(R.string.lbl_item_dw_2_3)));
 
         drawerAdapter2 = new DrawerAdapter(drawerItems2);
         recyclerViewDrawer2.setAdapter(drawerAdapter2);
@@ -270,22 +263,6 @@ public class MainActivity extends  AppCompatActivity {
         recyclerViewDrawer2.setMinimumHeight(convertDpToPx(144));
         recyclerViewDrawer2.setHasFixedSize(true);
 
-        // RecyclerView 3
-        recyclerViewDrawer3 = (RecyclerView) findViewById(R.id.recyclerViewDrawer3);
-        linearLayoutManager3 = new LinearLayoutManager(MainActivity.this);
-        recyclerViewDrawer3.setLayoutManager(linearLayoutManager3);
-
-
-        drawerItems3 = new ArrayList<>();
-        drawerItems3.add(new DrawerItem(getResources().getDrawable(R.drawable.ice_action_dirandro), this.getString(R.string.lbl_menu7)));
-        drawerItems3.add(new DrawerItem(getResources().getDrawable(R.drawable.paper), this.getString(R.string.lbl_menu8)));
-        drawerItems3.add(new DrawerItem(getResources().getDrawable(R.drawable.www), this.getString(R.string.lbl_menu9)));
-
-        drawerAdapter3 = new DrawerAdapter(drawerItems3);
-        recyclerViewDrawer3.setAdapter(drawerAdapter3);
-
-        recyclerViewDrawer3.setMinimumHeight(convertDpToPx(144));
-        recyclerViewDrawer3.setHasFixedSize(true);
 
 
         // RecyclerView Settings
@@ -294,8 +271,8 @@ public class MainActivity extends  AppCompatActivity {
         recyclerViewDrawerSettings.setLayoutManager(linearLayoutManagerSettings);
 
         drawerItemsSettings = new ArrayList<>();
-        drawerItemsSettings.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_action_settings), "Configuracion"));
-        drawerItemsSettings.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_action_help), "Developer"));
+        drawerItemsSettings.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_action_settings),this.getString(R.string.action_settings)));
+        drawerItemsSettings.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_action_help),this.getString(R.string.action_about)));
 
         drawerAdapterSettings = new DrawerAdapter(drawerItemsSettings);
         recyclerViewDrawerSettings.setAdapter(drawerAdapterSettings);
@@ -371,19 +348,7 @@ public class MainActivity extends  AppCompatActivity {
                     textViewDrawerItemTitle.setTextColor(textColorPrimary);
                     linearLayoutItem.setBackgroundColor(colorBackground);
                 }
-                for (int i = 0; i < recyclerViewDrawer3.getChildCount(); i++) {
-                    ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
-                    TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
-                    LinearLayout linearLayoutItem = (LinearLayout) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.linearLayoutItem);
-                    imageViewDrawerItemIcon.setColorFilter(textColorPrimary);
-                    if (Build.VERSION.SDK_INT > 15) {
-                        imageViewDrawerItemIcon.setImageAlpha(67);
-                    } else {
-                        imageViewDrawerItemIcon.setAlpha(67);
-                    }
-                    textViewDrawerItemTitle.setTextColor(textColorPrimary);
-                    linearLayoutItem.setBackgroundColor(colorBackground);
-                }
+
                 for (int i = 0; i < recyclerViewDrawerSettings.getChildCount(); i++) {
                     ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawerSettings.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
                     TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawerSettings.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
@@ -460,19 +425,7 @@ public class MainActivity extends  AppCompatActivity {
                     textViewDrawerItemTitle.setTextColor(textColorPrimary);
                     linearLayoutItem.setBackgroundColor(colorBackground);
                 }
-                for (int i = 0; i < recyclerViewDrawer3.getChildCount(); i++) {
-                    ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
-                    TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
-                    LinearLayout linearLayoutItem = (LinearLayout) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.linearLayoutItem);
-                    imageViewDrawerItemIcon.setColorFilter(textColorPrimary);
-                    textViewDrawerItemTitle.setTextColor(textColorPrimary);
-                    if (Build.VERSION.SDK_INT > 15) {
-                        imageViewDrawerItemIcon.setImageAlpha(67);
-                    } else {
-                        imageViewDrawerItemIcon.setAlpha(67);
-                    }
-                    linearLayoutItem.setBackgroundColor(colorBackground);
-                }
+
                 getitemClickSupport1(position);
             }
         });
@@ -518,79 +471,11 @@ public class MainActivity extends  AppCompatActivity {
                     textViewDrawerItemTitle.setTextColor(textColorPrimary);
                     linearLayoutItem.setBackgroundColor(colorBackground);
                 }
-                for (int i = 0; i < recyclerViewDrawer3.getChildCount(); i++) {
-                    ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
-                    TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
-                    LinearLayout linearLayoutItem = (LinearLayout) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.linearLayoutItem);
-                    imageViewDrawerItemIcon.setColorFilter(textColorPrimary);
-                    if (Build.VERSION.SDK_INT > 15) {
-                        imageViewDrawerItemIcon.setImageAlpha(67);
-                    } else {
-                        imageViewDrawerItemIcon.setAlpha(67);
-                    }
-                    textViewDrawerItemTitle.setTextColor(textColorPrimary);
-                    linearLayoutItem.setBackgroundColor(colorBackground);
-                }
+
                 getitemClickSupport2(position);
             }
         });
-        itemClickSupport3 = ItemClickSupport.addTo(recyclerViewDrawer3);
-        itemClickSupport3.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClick(RecyclerView parent, View view, int position, long id) {
-                for (int i = 0; i < recyclerViewDrawer3.getChildCount(); i++) {
-                    ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
-                    TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
-                    LinearLayout linearLayoutItem = (LinearLayout) recyclerViewDrawer3.getChildAt(i).findViewById(R.id.linearLayoutItem);
-                    if (i == position) {
-                        imageViewDrawerItemIcon.setColorFilter(colorPrimary);
-                        if (Build.VERSION.SDK_INT > 15) {
-                            imageViewDrawerItemIcon.setImageAlpha(138);
-                        } else {
-                            imageViewDrawerItemIcon.setAlpha(138);
-                        }
-                        textViewDrawerItemTitle.setTextColor(colorPrimary);
-                        linearLayoutItem.setBackgroundColor(colorControlHighlight);
-                    } else {
-                        imageViewDrawerItemIcon.setColorFilter(textColorPrimary);
-                        if (Build.VERSION.SDK_INT > 15) {
-                            imageViewDrawerItemIcon.setImageAlpha(67);
-                        } else {
-                            imageViewDrawerItemIcon.setAlpha(67);
-                        }
-                        textViewDrawerItemTitle.setTextColor(textColorPrimary);
-                        linearLayoutItem.setBackgroundColor(colorBackground);
-                    }
-                }
-                for (int i = 0; i < recyclerViewDrawer1.getChildCount(); i++) {
-                    ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawer1.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
-                    TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawer1.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
-                    LinearLayout linearLayoutItem = (LinearLayout) recyclerViewDrawer1.getChildAt(i).findViewById(R.id.linearLayoutItem);
-                    imageViewDrawerItemIcon.setColorFilter(textColorPrimary);
-                    if (Build.VERSION.SDK_INT > 15) {
-                        imageViewDrawerItemIcon.setImageAlpha(138);
-                    } else {
-                        imageViewDrawerItemIcon.setAlpha(138);
-                    }
-                    textViewDrawerItemTitle.setTextColor(textColorPrimary);
-                    linearLayoutItem.setBackgroundColor(colorBackground);
-                }
-                for (int i = 0; i < recyclerViewDrawer2.getChildCount(); i++) {
-                    ImageView imageViewDrawerItemIcon = (ImageView) recyclerViewDrawer2.getChildAt(i).findViewById(R.id.imageViewDrawerItemIcon);
-                    TextView textViewDrawerItemTitle = (TextView) recyclerViewDrawer2.getChildAt(i).findViewById(R.id.textViewDrawerItemTitle);
-                    LinearLayout linearLayoutItem = (LinearLayout) recyclerViewDrawer2.getChildAt(i).findViewById(R.id.linearLayoutItem);
-                    imageViewDrawerItemIcon.setColorFilter(textColorPrimary);
-                    if (Build.VERSION.SDK_INT > 15) {
-                        imageViewDrawerItemIcon.setImageAlpha(138);
-                    } else {
-                        imageViewDrawerItemIcon.setAlpha(138);
-                    }
-                    textViewDrawerItemTitle.setTextColor(textColorPrimary);
-                    linearLayoutItem.setBackgroundColor(colorBackground);
-                }
-                getitemClickSupport3(position);
-            }
-        });
+
         itemClickSupportSettings = ItemClickSupport.addTo(recyclerViewDrawerSettings);
         itemClickSupportSettings.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -626,7 +511,7 @@ public class MainActivity extends  AppCompatActivity {
         switch (position)
         {
             case 0:
-                dialog = new Dialog(this);
+               /** dialog = new Dialog(this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.activity_configuracion);
@@ -682,7 +567,7 @@ public class MainActivity extends  AppCompatActivity {
                 });
 
                 dialog.show();
-
+**/
                 break;
             case 1:
 
@@ -720,7 +605,7 @@ public class MainActivity extends  AppCompatActivity {
                 getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
                 break;
             case 2:
-                setFragment(new FragmentDireccion());
+                setFragment(new FragmentTelefono());
                 getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
                 break;
             default:
@@ -733,15 +618,15 @@ public class MainActivity extends  AppCompatActivity {
         switch (position)
         {
             case 0:
-                setFragment(new FragmentNosotros());
+                setFragment(new FragmentTelefono());
                 getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             case 1:
-                setFragment(new FragmentMision());
+                setFragment(new FragmentTelefono());
                 getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             case 2:
-                setFragment(new FragmentVision());
+                setFragment(new FragmentTelefono());
                 getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             default:
@@ -750,26 +635,6 @@ public class MainActivity extends  AppCompatActivity {
     }
 
 
-    public void getitemClickSupport3(int position)
-    {
-        switch (position)
-        {
-            case 0:
-                setFragment(new FragmentEsandro());
-                getSupportActionBar().setTitle(drawerItems3.get(position).getItemTitle());
-                break;
-            case 1:
-                setFragment(new FragmentHimno());
-                getSupportActionBar().setTitle(drawerItems3.get(position).getItemTitle());
-                break;
-            case 2:
-                setFragment(new FragmentLinks());
-                getSupportActionBar().setTitle(drawerItems3.get(position).getItemTitle());
-                break;
-            default:
-                break;
-        }
-    }
 
 
     @Override
@@ -777,7 +642,7 @@ public class MainActivity extends  AppCompatActivity {
     {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(getString(R.string.alert_salir));
+        alert.setTitle(getString(R.string.app_name));
         alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 finish();

@@ -4,5 +4,5 @@
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         />
-    <solid android:color="#dbdbdb"  />
+    <solid android:color="?actionModeBackground"  />
 </shape>
