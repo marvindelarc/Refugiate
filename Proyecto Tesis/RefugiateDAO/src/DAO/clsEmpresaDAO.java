@@ -8,11 +8,11 @@ package DAO;
 import Entidades.clsEmpresa;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +21,28 @@ import java.util.List;
  * @author Paulo
  */
 public class clsEmpresaDAO {
-    public static List<clsEmpresa> Listar(boolean activo) throws Exception{
+    public static List<clsEmpresa> Listar(boolean activo,Long actualizacion) throws Exception{
         List<clsEmpresa> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql = "SELECT idEmpresa,nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,logo,banner,estado FROM empresa";
-            if (activo) 
-                sql+=" where estado=1"; 
+            String sql = "SELECT idEmpresa,nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,fechaUpdate,logo,banner,estado FROM empresa";
+
+            if(actualizacion!=null)
+                sql+=" where fechaUpdate>?"; 
+            else
+            {
+                if (activo) 
+                    sql+=" where estado=1"; 
+            }
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
+            if(actualizacion!=null)
+            {
+                stmt.setTimestamp(1, new Timestamp(actualizacion));
+            }
+            
             dr = stmt.executeQuery();
             while (dr.next()) 
             {
@@ -47,9 +58,10 @@ public class clsEmpresaDAO {
                 entidad.setRuc(dr.getString(5));
                 entidad.setPuntos(dr.getInt(6));
                 entidad.setFechaRegistro(dr.getTimestamp(7));
-                entidad.setLogo(dr.getBytes(8));
-                entidad.setBanner(dr.getBytes(9));
-                entidad.setEstado(dr.getInt(10));
+                entidad.setFechaRegistro(dr.getTimestamp(8));
+                entidad.setLogo(dr.getBytes(9));
+                entidad.setBanner(dr.getBytes(10));
+                entidad.setEstado(dr.getInt(11));
                 lista.add(entidad);                
             }
             
@@ -74,21 +86,18 @@ public class clsEmpresaDAO {
         PreparedStatement  stmt = null;
         try {
             
-//           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,logo,banner,estado)"
-//                   + " VALUES(?,?,?,?,?,?,?,?,?);";
-            String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,estado)"
-                   + " VALUES(?,?,?,?,?,?);";
+           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,logo,banner,estado,puntos,fechaRegistro,fechaUpdate)"
+                   + " VALUES(?,?,?,?,?,?,1,0,now(),now());";
+//            String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,estado)"
+//                   + " VALUES(?,?,?,?,?,?);";
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, entidad.getNombreComercial());
             stmt.setString(2, entidad.getNombre());
             stmt.setString(3, entidad.getSlogan());
             stmt.setString(4, entidad.getRuc());
-            stmt.setInt(5, entidad.getPuntos());
-//            stmt.setDate(6, (Date) entidad.getFechaRegistro());
-//            stmt.setBytes(7, entidad.getLogo());
-//            stmt.setBytes(8, entidad.getBanner());
-            stmt.setInt(6, entidad.getEstado());
+            stmt.setBytes(5, entidad.getLogo());
+            stmt.setBytes(6, entidad.getBanner());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             

@@ -1,4 +1,4 @@
-package com.refugiate.app.RecyclerView.Utils;
+package com.refugiate.app.utilidades.RecyclerView.Utils;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

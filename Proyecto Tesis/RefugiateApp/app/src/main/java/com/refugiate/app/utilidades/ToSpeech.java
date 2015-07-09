@@ -7,8 +7,6 @@ import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
-import com.refugiate.app.dao.gipUsuarioDAO;
-
 public class ToSpeech {
 
 	public TextToSpeech tts;
@@ -23,7 +21,7 @@ public class ToSpeech {
 		
 	public void init()
 	{
-		if(gipUsuarioDAO.Buscar(context,1).isVoz()) {
+		//if(gipUsuarioDAO.Buscar(context,1).isVoz()) {
 			tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
 
 				public void onInit(int status) {
@@ -43,7 +41,7 @@ public class ToSpeech {
 					}
 				}
 			);
-		}
+		//}
 		
 	}
 	private void speak() {

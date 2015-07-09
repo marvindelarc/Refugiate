@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class clsIntalacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado FROM instalacion;";             
+            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado,update FROM instalacion;";             
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -52,6 +53,62 @@ public class clsIntalacionDAO {
                 entidad.setObjSucursal(objSucursal);  
                 entidad.setDescripcion(dr.getString(4));
                 entidad.setEstado(dr.getInt(5));
+                entidad.setUpdate(dr.getTimestamp(6));
+                lista.add(entidad);                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
+    
+    public static List<clsIntalacion> ListarServicio(Long actualizacion) throws Exception
+    {
+        List<clsIntalacion> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado,update FROM instalacion";     
+             if(actualizacion!=null)
+                sql+=" where update>?;"; 
+            else
+                sql+=" where estado=1;"; 
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            if(actualizacion!=null)
+            {
+                stmt.setTimestamp(1, new Timestamp(actualizacion));
+            }
+            dr = stmt.executeQuery();
+
+            while(dr.next())
+            {
+                if(lista==null)
+                {
+                    lista= new ArrayList<clsIntalacion>();                
+                }
+                clsServicio objServicio = new clsServicio();
+                objServicio.setIdServicio(dr.getInt(2));
+
+                clsSucursal objSucursal = new clsSucursal();
+                objSucursal.setIdSucursal(dr.getInt(3));
+
+                clsIntalacion entidad = new clsIntalacion();
+                entidad.setIdInstalacion(dr.getInt(1));
+                entidad.setObjServicio(objServicio); 
+                entidad.setObjSucursal(objSucursal);  
+                entidad.setDescripcion(dr.getString(4));
+                entidad.setEstado(dr.getInt(5));
+                entidad.setUpdate(dr.getTimestamp(6));
                 lista.add(entidad);                
             }
         } catch (Exception e) {
@@ -75,8 +132,8 @@ public class clsIntalacionDAO {
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO instalacion(idServicio,idSucursal,descripcion,estado)"
-                   + " VALUES(?,?,?,?);";
+           String sql= "INSERT INTO instalacion(idServicio,idSucursal,descripcion,estado,update)"
+                   + " VALUES(?,?,?,?,now());";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -109,7 +166,7 @@ public class clsIntalacionDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql = "UPDATE instalacion SET idServicio = ?,idSucursal = ?,descripcion = ?,estado = ? WHERE idInstalacion = ?;";
+            String sql = "UPDATE instalacion SET idServicio = ?,idSucursal = ?,descripcion = ?,estado = ?,update=now() WHERE idInstalacion = ?;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             stmt.setInt(1, entidad.getObjServicio().getIdServicio());

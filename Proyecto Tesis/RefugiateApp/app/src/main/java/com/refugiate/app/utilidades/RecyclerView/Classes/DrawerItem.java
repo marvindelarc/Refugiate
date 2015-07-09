@@ -1,4 +1,4 @@
-package com.refugiate.app.RecyclerView.Classes;
+package com.refugiate.app.utilidades.RecyclerView.Classes;
 
 import android.graphics.drawable.Drawable;
 

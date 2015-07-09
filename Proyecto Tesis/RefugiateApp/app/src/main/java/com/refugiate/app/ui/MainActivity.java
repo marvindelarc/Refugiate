@@ -24,7 +24,6 @@ import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,14 +31,12 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.refugiate.app.RecyclerView.Adapters.DrawerAdapter;
-import com.refugiate.app.RecyclerView.Classes.DrawerItem;
-import com.refugiate.app.RecyclerView.Utils.ItemClickSupport;
-import com.refugiate.app.dao.gipUsuarioDAO;
-import com.refugiate.app.entidades.gipUsuario;
+import com.refugiate.app.fragment.FragmentMapa;
+import com.refugiate.app.utilidades.RecyclerView.Adapters.DrawerAdapter;
+import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
+import com.refugiate.app.utilidades.RecyclerView.Utils.ItemClickSupport;
 import com.refugiate.app.fragment.FragmentInicio;
 import com.refugiate.app.fragment.FragmentTelefono;
-import com.refugiate.app.utilidades.ToSpeech;
 
 
 import java.util.ArrayList;
@@ -66,7 +63,6 @@ public class MainActivity extends  AppCompatActivity {
     ItemClickSupport itemClickSupport1, itemClickSupport2,  itemClickSupportSettings;
     TypedValue typedValueColorPrimary, typedValueTextColorPrimary, typedValueTextColorControlHighlight, typedValueColorBackground;
     int colorPrimary, textColorPrimary, colorControlHighlight, colorBackground;
-    private gipUsuario entidad;
 
 
     @Override
@@ -601,7 +597,7 @@ public class MainActivity extends  AppCompatActivity {
                 getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
                 break;
             case 1:
-                setFragment(new FragmentTelefono());
+                setFragment(new FragmentMapa());
                 getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
                 break;
             case 2:

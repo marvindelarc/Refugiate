@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Paulo
@@ -18,6 +20,7 @@ public class clsCostoTipoHabitacion {
     private int estado;
     private clsTipoHabitacion objTipohabitacion;
     private clsSucursal objSucursal;
+    private Date update;
 
     public clsCostoTipoHabitacion() {
     }
@@ -85,4 +88,13 @@ public class clsCostoTipoHabitacion {
     public void setObjTipohabitacion(clsTipoHabitacion objTipohabitacion) {
         this.objTipohabitacion = objTipohabitacion;
     }
+
+    public Date getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Date update) {
+        this.update = update;
+    }
+    
 }

@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class clsSucursalDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idSucursal,idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,estado FROM sucursal";
+            String sql="SELECT idSucursal,idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,"
+                    + "limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,update,estado FROM sucursal";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -64,8 +66,10 @@ public class clsSucursalDAO {
                 entidad.setPuntuacion(dr.getInt(12));
                 entidad.setNivel(dr.getInt(13));
                 entidad.setEntrada(dr.getString(14)); 
-                entidad.setFecha(dr.getDate(15));
-                entidad.setEstado(dr.getInt(17));  
+                entidad.setSalida(dr.getString(15)); 
+                entidad.setFecha(dr.getTimestamp(16));
+                entidad.setUpdate(dr.getTimestamp(17));
+                entidad.setEstado(dr.getInt(18));  
                 lista.add(entidad);                
             }
         } catch (Exception e) {
@@ -82,6 +86,73 @@ public class clsSucursalDAO {
         return lista;
     }
     
+    public static List<clsSucursal> ListarServicio(Long actualizacion) throws Exception
+    {
+        List<clsSucursal> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT idSucursal,idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,"
+                    + "limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,update,estado FROM sucursal";
+            if(actualizacion!=null)
+                sql+=" where update>?"; 
+            else
+                sql+=" where estado=1"; 
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            if(actualizacion!=null)
+            {
+                stmt.setTimestamp(1, new Timestamp(actualizacion));
+            }
+            dr = stmt.executeQuery();
+
+            while(dr.next())
+            {
+                if(lista==null)
+                {
+                    lista= new ArrayList<clsSucursal>();
+                }    
+                clsEmpresa objEmpresa = new clsEmpresa();
+                objEmpresa.setIdEmpresa(dr.getInt(2));
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setIdDistrito(dr.getInt(3));
+
+                clsSucursal entidad = new clsSucursal();
+                entidad.setIdSucursal(dr.getInt(1));
+                entidad.setObjEmpresa(objEmpresa);
+                entidad.setObjDistrito(objDistrito);
+                entidad.setDireccion(dr.getString(4)); 
+                entidad.setPisos(dr.getInt(5));
+                entidad.setTelefono(dr.getString(6)); 
+                entidad.setLongitud(dr.getDouble(7));
+                entidad.setLongitud(dr.getDouble(8));
+                entidad.setLimpieza(dr.getInt(9));
+                entidad.setServicio(dr.getInt(10));
+                entidad.setComodidad(dr.getInt(11));
+                entidad.setPuntuacion(dr.getInt(12));
+                entidad.setNivel(dr.getInt(13));
+                entidad.setEntrada(dr.getString(14)); 
+                entidad.setSalida(dr.getString(15)); 
+                entidad.setFecha(dr.getTimestamp(16));
+                entidad.setUpdate(dr.getTimestamp(17));
+                entidad.setEstado(dr.getInt(18));  
+                lista.add(entidad);                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
     public  static int insertar(clsSucursal entidad) throws Exception
     {
         int rpta = 0;

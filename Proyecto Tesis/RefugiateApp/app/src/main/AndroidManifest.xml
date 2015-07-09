@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.refugiate.app.ui">
 
-   <!-- <permission
+   <permission
         android:name="com.refugiate.app.ui.ui.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/> -->
+        android:protectionLevel="signature"/>
 
     <uses-permission android:name="com.refugiate.app.ui.permission.MAPS_RECEIVE"/>
 
@@ -46,7 +46,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD5iEe1MkMNhjN1e93KB_RLwHjQY3lUvVQ"/>
+            android:value="AIzaSyCFlxF4e_-3ld1FfGo9oy3IIGdLyq10bo4"/>
     </application>
 
 </manifest>

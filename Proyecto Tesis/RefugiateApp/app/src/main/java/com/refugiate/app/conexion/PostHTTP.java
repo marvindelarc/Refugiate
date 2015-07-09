@@ -3,11 +3,6 @@ package com.refugiate.app.conexion;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.refugiate.app.entidades.gipHechoPublico;
-import com.refugiate.app.entidades.gipInmueble;
-import com.refugiate.app.entidades.gipPersona;
-import com.refugiate.app.entidades.gipVehiculo;
 import com.refugiate.app.utilidades.Utilidades;
 
 import org.apache.http.HttpEntity;
@@ -32,6 +27,7 @@ public class PostHTTP extends AsyncTask<Object, Integer, String>
 	@Override
 	protected String doInBackground(Object... params)
 	{
+        /**
         gipHechoPublico objHechoPublico = (gipHechoPublico)params[0];
         gipPersona objPersona = (gipPersona)params[1];
         gipVehiculo objVehiculo = (gipVehiculo)params[2];
@@ -98,7 +94,8 @@ public class PostHTTP extends AsyncTask<Object, Integer, String>
         {
         	Log.e(e.getClass().getName(), e.getMessage());
         }
-        return result;
+        return result;**/
+        return null;
 	}
 
 	@Override

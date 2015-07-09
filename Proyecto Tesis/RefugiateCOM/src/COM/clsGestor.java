@@ -126,9 +126,9 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsEmpresa">
-    public static List<clsEmpresa> ListarEmpresa(boolean activo) throws Exception
+    public static List<clsEmpresa> ListarEmpresa(boolean activo,Long actualizacion) throws Exception
     {
-        return clsEmpresaDAO.Listar(activo);
+        return clsEmpresaDAO.Listar(activo,actualizacion);
     }
     
     public  static int insertarEmpresa(clsEmpresa entidad) throws Exception
@@ -185,6 +185,10 @@ public class clsGestor {
     public static List<clsIntalacion> ListarIntalacion(boolean activo) throws Exception
     {
         return clsIntalacionDAO.Listar(activo);
+    }
+    public static List<clsIntalacion> ListarIntalacionServicio(Long actualizacion) throws Exception
+    {
+        return clsIntalacionDAO.ListarServicio(actualizacion);
     }
     
     public  static int insertarIntalacion(clsIntalacion entidad) throws Exception

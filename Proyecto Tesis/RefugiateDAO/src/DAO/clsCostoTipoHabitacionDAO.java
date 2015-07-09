@@ -24,7 +24,7 @@ public class clsCostoTipoHabitacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idCostoTipoHabitacion,idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado FROM costotipohabitacion";
+            String sql="SELECT idCostoTipoHabitacion,idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado,updae FROM costotipohabitacion";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -52,6 +52,7 @@ public class clsCostoTipoHabitacionDAO {
                 entidad.setTotalHabitaciones(dr.getInt(6));
                 entidad.setHabitacionesOcupadas(dr.getInt(7));                
                 entidad.setEstado(dr.getInt(8));  
+                entidad.setUpdate(dr.getTimestamp(9));  
                 lista.add(entidad);                
             }
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.refugiate.app.RecyclerView.Adapters;
+package com.refugiate.app.utilidades.RecyclerView.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.refugiate.app.ui.R;
 
-import com.refugiate.app.RecyclerView.Classes.DrawerItem;
+import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
 
 import java.util.ArrayList;
 

@@ -5,10 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.refugiate.app.dao.gipUsuarioDAO;
 
 public class CargandoActivity extends Activity {
 
@@ -23,8 +19,7 @@ public class CargandoActivity extends Activity {
         AsyncTaskCargaDatos ATCargaDatos = new AsyncTaskCargaDatos(this);
         ATCargaDatos.execute();
 
-        if( gipUsuarioDAO.Buscar(this, 1)!=null)
-            estado=true;
+
     }
 
     public class AsyncTaskCargaDatos extends AsyncTask<Void, Integer, Void> {

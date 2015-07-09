@@ -190,8 +190,8 @@ public class clsEncargadoDAO {
         Connection conn = null;
         try {
             
-           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,logo,banner,fechaRegistro,estado)"
-                   + " VALUES(?,?,?,?,0,?,?,now(),1);";
+           String sql= "INSERT INTO empresa(nombreComercial,nombre,slogan,ruc,puntos,logo,banner,fechaRegistro,fechaUpdate,estado)"
+                   + " VALUES(?,?,?,?,0,?,?,now(),now(),1);";
            
             conn = clsConexion.getConnection();
             conn.setAutoCommit(false);

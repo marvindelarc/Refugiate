@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entidades;
+package com.refugiate.app.entidades;
 
 import java.util.Date;
 /**
@@ -18,7 +18,6 @@ public class clsEmpresa {
     private String ruc;    
     private int puntos;
     private Date fechaRegistro;
-    private Date fechaUpdate;
     private byte[] logo;
     private byte[] banner;
     private int estado;
@@ -107,13 +106,4 @@ public class clsEmpresa {
     public void setBanner(byte[] banner) {
         this.banner = banner;
     }
-
-    public Date getFechaUpdate() {
-        return fechaUpdate;
-    }
-
-    public void setFechaUpdate(Date fechaUpdate) {
-        this.fechaUpdate = fechaUpdate;
-    }
-    
 }

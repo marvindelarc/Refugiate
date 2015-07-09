@@ -1,4 +1,4 @@
-package com.refugiate.app.RecyclerView.Utils;
+package com.refugiate.app.utilidades.RecyclerView.Utils;
 
 import android.annotation.TargetApi;
 import android.os.Build;
