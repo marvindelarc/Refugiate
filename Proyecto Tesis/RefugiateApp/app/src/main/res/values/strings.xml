@@ -28,6 +28,12 @@
     <string name="str_btnBorrar">Borrar</string>
     <string name="str_btnEnviar">Enviar</string>
 
-
+    <!--INICIO TABS -->
+    <string name="lbl_tab_1">TAB 1</string>
+    <string name="lbl_tab_2">TAB 2</string>
+    <string name="lbl_tab_3">TAB 3</string>
+    <string name="lbl_tab_4">TAB 4</string>
+    <string name="lbl_tab_5">TAB 5</string>
+    <!--FIN TABS -->
 </resources>
 

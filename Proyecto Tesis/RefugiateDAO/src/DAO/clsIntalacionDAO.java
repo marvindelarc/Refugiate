@@ -15,7 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class clsIntalacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado,update FROM instalacion;";             
+            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado,fechaUpdate FROM instalacion;";             
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -77,17 +79,16 @@ public class clsIntalacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado,update FROM instalacion";     
-             if(actualizacion!=null)
-                sql+=" where update>?;"; 
+            String sql="SELECT idInstalacion,idServicio,idSucursal,descripcion,estado,fechaUpdate FROM instalacion";     
+            if(actualizacion!=null)
+            {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+                sql+=" where fechaUpdate<'"+format.format(new Date(actualizacion))+"'"; 
+            }
             else
                 sql+=" where estado=1;"; 
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
-            if(actualizacion!=null)
-            {
-                stmt.setTimestamp(1, new Timestamp(actualizacion));
-            }
             dr = stmt.executeQuery();
 
             while(dr.next())
@@ -132,7 +133,7 @@ public class clsIntalacionDAO {
         PreparedStatement  stmt = null;
         try {
             
-           String sql= "INSERT INTO instalacion(idServicio,idSucursal,descripcion,estado,update)"
+           String sql= "INSERT INTO instalacion(idServicio,idSucursal,descripcion,estado,fechaUpdate)"
                    + " VALUES(?,?,?,?,now());";
            
             conn = clsConexion.getConnection();
@@ -166,7 +167,7 @@ public class clsIntalacionDAO {
         Connection conn = null;
         CallableStatement stmt = null;
         try {
-            String sql = "UPDATE instalacion SET idServicio = ?,idSucursal = ?,descripcion = ?,estado = ?,update=now() WHERE idInstalacion = ?;";
+            String sql = "UPDATE instalacion SET idServicio = ?,idSucursal = ?,descripcion = ?,estado = ?,fechaUpdate=now() WHERE idInstalacion = ?;";
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             stmt.setInt(1, entidad.getObjServicio().getIdServicio());

@@ -12,8 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +22,57 @@ import java.util.List;
  * @author Paulo
  */
 public class clsEmpresaDAO {
-    public static List<clsEmpresa> Listar(boolean activo,Long actualizacion) throws Exception{
+    public static List<clsEmpresa> Listar(boolean activo) throws Exception{
+        List<clsEmpresa> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql = "SELECT idEmpresa,nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,fechaUpdate,logo,banner,estado FROM empresa";
+
+                if (activo) 
+                    sql+=" where estado=1"; 
+         
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+            while (dr.next()) 
+            {
+                if (lista == null) 
+                {
+                    lista = new ArrayList<clsEmpresa>();
+                }
+                clsEmpresa entidad =  new clsEmpresa();
+                entidad.setIdEmpresa(dr.getInt(1));
+                entidad.setNombreComercial(dr.getString(2));
+                entidad.setNombre(dr.getString(3));
+                entidad.setSlogan(dr.getString(4));
+                entidad.setRuc(dr.getString(5));
+                entidad.setPuntos(dr.getInt(6));
+                entidad.setFechaRegistro(dr.getTimestamp(7));
+                entidad.setFechaRegistro(dr.getTimestamp(8));
+                entidad.setLogo(dr.getBytes(9));
+                entidad.setBanner(dr.getBytes(10));
+                entidad.setEstado(dr.getInt(11));
+                lista.add(entidad);                
+            }
+            
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
+    
+    public static List<clsEmpresa> ListarServicio(Long actualizacion) throws Exception
+    {
         List<clsEmpresa> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
@@ -30,19 +81,14 @@ public class clsEmpresaDAO {
             String sql = "SELECT idEmpresa,nombreComercial,nombre,slogan,ruc,puntos,fechaRegistro,fechaUpdate,logo,banner,estado FROM empresa";
 
             if(actualizacion!=null)
-                sql+=" where fechaUpdate>?"; 
-            else
             {
-                if (activo) 
-                    sql+=" where estado=1"; 
+               SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+                sql+=" where fechaUpdate<'"+format.format(new Date(actualizacion))+"'"; 
             }
+            else
+                sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
-            if(actualizacion!=null)
-            {
-                stmt.setTimestamp(1, new Timestamp(actualizacion));
-            }
-            
             dr = stmt.executeQuery();
             while (dr.next()) 
             {

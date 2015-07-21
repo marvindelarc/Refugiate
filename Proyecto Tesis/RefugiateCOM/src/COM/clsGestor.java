@@ -126,9 +126,13 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsEmpresa">
-    public static List<clsEmpresa> ListarEmpresa(boolean activo,Long actualizacion) throws Exception
+    public static List<clsEmpresa> ListarEmpresa(boolean activo) throws Exception
     {
-        return clsEmpresaDAO.Listar(activo,actualizacion);
+        return clsEmpresaDAO.Listar(activo);
+    }
+    public static List<clsEmpresa> ListarEmpresaServicio(Long actualizacion) throws Exception
+    {
+        return clsEmpresaDAO.ListarServicio(actualizacion);
     }
     
     public  static int insertarEmpresa(clsEmpresa entidad) throws Exception
@@ -334,6 +338,11 @@ public class clsGestor {
         return clsServicioDAO.Listar(activo);
     }
     
+    public static List<clsServicio> ListarServicioServicio(Long actualizacion) throws Exception
+    {
+        return clsServicioDAO.ListarServicio(actualizacion);
+    }
+    
     public  static int insertarServicio(clsServicio entidad) throws Exception
     {
         return clsServicioDAO.insertar(entidad);
@@ -349,6 +358,10 @@ public class clsGestor {
     public static List<clsSucursal> listarSucursal(boolean activo) throws Exception
     {
         return clsSucursalDAO.Listar(activo);
+    }
+    public static List<clsSucursal> listarServicioSucursal(Long actualizacion) throws Exception
+    {
+        return clsSucursalDAO.ListarServicio(actualizacion);
     }
     public static List<clsSucursal> listarSucursalPorDistrito(int idEmpresa) throws Exception
     {

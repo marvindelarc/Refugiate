@@ -10,13 +10,14 @@ import Entidades.clsEmpresa;
 import Entidades.clsSucursal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -94,19 +95,17 @@ public class clsSucursalDAO {
         ResultSet dr = null;
         try {
             String sql="SELECT idSucursal,idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,"
-                    + "limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,update,estado FROM sucursal";
-            if(actualizacion!=null)
-                sql+=" where update>?"; 
-            else
-                sql+=" where estado=1"; 
-            conn = clsConexion.getConnection();
-            stmt = conn.prepareCall(sql);
+                    + "limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,fechaUpdate,estado FROM sucursal";
             if(actualizacion!=null)
             {
-                stmt.setTimestamp(1, new Timestamp(actualizacion));
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+                sql+=" where fechaUpdate<'"+format.format(new Date(actualizacion))+"'"; 
             }
+            else
+                sql+=" where estado=1"; 
+              conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
-
             while(dr.next())
             {
                 if(lista==null)
@@ -179,7 +178,7 @@ public class clsSucursalDAO {
             stmt.setInt(12, entidad.getNivel());
             stmt.setString(13, entidad.getEntrada());
             stmt.setString(14, entidad.getSalida());
-            stmt.setDate(15, (Date) entidad.getFecha());
+            //stmt.setDate(15, (Date) entidad.getFecha());
             stmt.setInt(16, entidad.getEstado());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -225,7 +224,7 @@ public class clsSucursalDAO {
             stmt.setInt(12, entidad.getNivel());
             stmt.setString(13, entidad.getEntrada());
             stmt.setString(14, entidad.getSalida());
-            stmt.setDate(15, (Date) entidad.getFecha());
+         //   stmt.setDate(15, (Date) entidad.getFecha());
             stmt.setInt(16, entidad.getEstado());
             stmt.setInt(17, entidad.getIdSucursal());
             rpta = stmt.executeUpdate() == 1;

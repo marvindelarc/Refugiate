@@ -31,7 +31,9 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.refugiate.app.fragment.FragmentListNombre;
 import com.refugiate.app.fragment.FragmentMapa;
+import com.refugiate.app.fragment.FragmentTab1;
 import com.refugiate.app.utilidades.RecyclerView.Adapters.DrawerAdapter;
 import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
 import com.refugiate.app.utilidades.RecyclerView.Utils.ItemClickSupport;
@@ -614,11 +616,11 @@ public class MainActivity extends  AppCompatActivity {
         switch (position)
         {
             case 0:
-                setFragment(new FragmentTelefono());
+                setFragment(new FragmentTab1());
                 getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             case 1:
-                setFragment(new FragmentTelefono());
+                setFragment(new FragmentListNombre());
                 getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             case 2:

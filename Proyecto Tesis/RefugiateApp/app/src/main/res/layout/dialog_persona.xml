@@ -7,13 +7,13 @@
     android:descendantFocusability="beforeDescendants"
     android:gravity="center"
     android:focusableInTouchMode="true" >
-    
+
 <ScrollView
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
    >
 
-    
+
     <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -73,8 +73,8 @@ android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:ems="10"
                 android:textColor="?android:textColorPrimary" />
-                
-            </LinearLayout>                         
+
+            </LinearLayout>
             <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -96,9 +96,9 @@ android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:ems="10"
                 android:textColor="?android:textColorPrimary"/>
-                
-            </LinearLayout> 
-            
+
+            </LinearLayout>
+
  <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -120,9 +120,9 @@ android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:ems="10"
                 android:textColor="?android:textColorPrimary"/>
-                
-            </LinearLayout> 
-          
+
+            </LinearLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@ android:layout_height="wrap_content"
             android:background="?android:colorBackground"
             android:layout_marginTop="4dp"
             android:orientation="vertical" >
-        
+
                 <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@ android:layout_height="wrap_content"
                 android:hint="@string/app_name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="?android:colorBackground" />
-                
+
                 <EditText
                 android:id="@+id/txtDetallePersona"
                 android:layout_width="fill_parent"
@@ -159,18 +159,18 @@ android:layout_height="wrap_content"
                 android:minWidth="10.0dip"
                 android:scrollHorizontally="false"
                 android:textColor="?android:textColorPrimary"/>
-                    
 
-            </LinearLayout>   
-            
-     
-     
+
+            </LinearLayout>
+
+
+
     </LinearLayout>
-    
-   
- 
-            
-        
+
+
+
+
+
         <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -178,46 +178,47 @@ android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:gravity="center"
     android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-         
+            android:layout_marginTop="8dp"
+         >
+
            <Button
             android:id="@+id/btnAgregarPersona"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"  
-            android:layout_marginRight="2dp"    
-            android:layout_marginTop="5dp"    
-            android:layout_marginBottom="5dp"                             
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/str_btnAgregar"
             android:textSize="15dp"
             android:textStyle="bold"
             android:background="@drawable/theme"
             android:textColor="?android:colorBackground"/>
-        
+
            <Button
             android:id="@+id/btnCancelarPersona"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"    
-            android:layout_marginLeft="2dp"  
-            android:layout_marginTop="5dp"    
-            android:layout_marginBottom="5dp"                             
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/str_btnBorrar"
             android:textSize="15dp"
             android:textStyle="bold"
             android:background="@drawable/theme"
             android:textColor="?android:colorBackground"/>
     </LinearLayout>
-         
-         
-         
-         
+
+
+
+
           <ListView
              android:layout_width="fill_parent"
              android:layout_height="0dip"
             android:layout_weight="1"
             android:id="@+id/listaPersona"></ListView>
 
-         
-         
+
+
     </LinearLayout>
 
 </ScrollView>

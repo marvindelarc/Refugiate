@@ -1,6 +1,5 @@
 package DAO;
 
-import DAO.clsConexion;
 import Entidades.clsBajaEmpresaPersona;
 import Entidades.clsEmpresa;
 import Entidades.clsPersona;
@@ -10,7 +9,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 /**

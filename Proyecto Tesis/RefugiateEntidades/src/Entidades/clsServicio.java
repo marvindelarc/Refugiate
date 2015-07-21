@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Paulo
@@ -13,8 +15,17 @@ public class clsServicio {
     private int idServicio;
     private String nombre;
     private int estado;
+    private Date update;
 
     public clsServicio() {
+    }
+
+    public Date getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Date update) {
+        this.update = update;
     }
 
     public int getIdServicio() {

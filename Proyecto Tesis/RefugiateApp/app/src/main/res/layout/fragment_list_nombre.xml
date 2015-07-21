@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white_1000">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+            <EditText
+                android:id="@+id/txtNombresPersona"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:paddingLeft="12dp"
+                android:drawableRight="@drawable/ic_search"
+                android:gravity="center"
+                android:hint="@string/app_name"
+                android:textSize="14dp"
+                android:ems="10"
+                android:textColor="?android:textColorPrimary" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:layout_weight="5"
+            android:orientation="horizontal" >
+            <Button
+                android:id="@+id/btnLlamarTelefono"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button"
+                android:drawableTop="@drawable/ic_filter"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <ListView
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/listHoteles"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+</LinearLayout>

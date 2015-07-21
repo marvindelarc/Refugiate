@@ -6,13 +6,21 @@
 
 package Servicio;
 
+import COM.clsGestor;
+import Entidades.clsEmpresa;
+import Entidades.clsSucursal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -35,16 +43,60 @@ public class servicio extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet servicio</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet servicio at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             JSONObject obj=new JSONObject();
+            
+            JSONArray listEmpresaJSON = new JSONArray();
+            List<clsEmpresa> listaEmpresa=clsGestor.ListarEmpresaServicio(null);
+            if(listaEmpresa!=null)
+            {               
+               for(clsEmpresa entidad : listaEmpresa)
+                {
+                    JSONObject entidadJSON=new JSONObject();
+                    entidadJSON.put("idEmpresa",entidad.getIdEmpresa());
+                    entidadJSON.put("nombreComercial",entidad.getNombreComercial());
+                    entidadJSON.put("nombre",entidad.getNombre());
+                    entidadJSON.put("slogan",entidad.getSlogan());
+                    entidadJSON.put("ruc",entidad.getRuc());
+                    entidadJSON.put("puntos",entidad.getPuntos());
+                    entidadJSON.put("estado",entidad.getEstado());
+                    listEmpresaJSON.add(entidadJSON);
+                }
+               
+            }
+            obj.put("listEmpresaJSON",listEmpresaJSON);
+            
+            JSONArray listSucursalJSON = new JSONArray();
+            List<clsSucursal> listaSucursal=clsGestor.listarServicioSucursal(null);
+            if(listaSucursal!=null)
+            {               
+               for(clsSucursal entidad : listaSucursal)
+                {
+                    JSONObject entidadJSON=new JSONObject();
+                    entidadJSON.put("idSucursal",entidad.getIdSucursal());
+                    entidadJSON.put("direccion",entidad.getDireccion());
+                    entidadJSON.put("pisos",entidad.getPisos());
+                    entidadJSON.put("telefono",entidad.getTelefono());
+                    entidadJSON.put("longitud",entidad.getLongitud());
+                    entidadJSON.put("latitud",entidad.getLatitud());
+                    entidadJSON.put("limpieza",entidad.getLimpieza());
+                    entidadJSON.put("servicio",entidad.getServicio());
+                    entidadJSON.put("comodidad",entidad.getComodidad());
+                    entidadJSON.put("puntuacion",entidad.getPuntuacion());
+                    entidadJSON.put("nivel",entidad.getNivel());
+                    entidadJSON.put("entrada",entidad.getEntrada());
+                    entidadJSON.put("estado",entidad.getEstado());
+                    entidadJSON.put("idDistrito",entidad.getObjDistrito().getIdDistrito());
+                    entidadJSON.put("idEmpresa",entidad.getObjEmpresa().getIdEmpresa());
+
+                    listSucursalJSON.add(entidadJSON);
+                }
+               
+            }
+            obj.put("listSucursalJSON",listSucursalJSON);
+            
+            out.println(obj);
+        } catch (Exception ex) {
+            Logger.getLogger(servicio.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }
