@@ -15,7 +15,7 @@ public class NewMain {
 //        System.out.println(clsGestor.ListarEmpresaServicio(a).size());
 //        System.out.println(clsGestor.listarServicioSucursal(a).size());
 //        System.out.println(clsGestor.ListarIntalacionServicio(a).size());
-            System.out.println(clsGestor.ListarServicioServicio(a).size());
+            System.out.println(clsGestor.ListarCostoTipoHabitacionServicio(a).size());
 //        System.out.println(clsGestor.actualizarWebAdmin(entidadWA));
 //    
     }    

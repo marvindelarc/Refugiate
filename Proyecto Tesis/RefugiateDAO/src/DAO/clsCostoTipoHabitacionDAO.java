@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public class clsCostoTipoHabitacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idCostoTipoHabitacion,idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado,updae FROM costotipohabitacion";
+            String sql="SELECT idCostoTipoHabitacion,idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado,fechaUpdate FROM costotipohabitacion";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();
@@ -52,7 +54,7 @@ public class clsCostoTipoHabitacionDAO {
                 entidad.setTotalHabitaciones(dr.getInt(6));
                 entidad.setHabitacionesOcupadas(dr.getInt(7));                
                 entidad.setEstado(dr.getInt(8));  
-                entidad.setUpdate(dr.getTimestamp(9));  
+                entidad.setFechaUpdate(dr.getTimestamp(9));  
                 lista.add(entidad);                
             }
         } catch (Exception e) {
@@ -68,7 +70,63 @@ public class clsCostoTipoHabitacionDAO {
         }
         return lista;
     }
-    
+      public static List<clsCostoTipoHabitacion> ListarServicio(Long actualizacion) throws Exception
+    {
+        List<clsCostoTipoHabitacion> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT idCostoTipoHabitacion,idTipoHabitacion,idSucursal,costo,numeroPersonas,totalHabitaicones,habitacionesOcupadas,estado,fechaUpdate FROM costotipohabitacion";
+            if(actualizacion!=null)
+            {
+               SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+                sql+=" where fechaUpdate<'"+format.format(new Date(actualizacion))+"'"; 
+            }
+            else
+                sql+=" where estado=1"; 
+            
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            while(dr.next())
+            {
+                if(lista==null)
+                {
+                    lista= new ArrayList<clsCostoTipoHabitacion>(); 
+                }  
+                clsTipoHabitacion objTipoHabitacion = new clsTipoHabitacion();
+                objTipoHabitacion.setIdTipoHabitacion(dr.getInt(2));
+                
+                clsSucursal objSucursal = new clsSucursal();
+                objSucursal.setIdSucursal(dr.getInt(3));
+                
+                clsCostoTipoHabitacion entidad = new clsCostoTipoHabitacion();
+                entidad.setIdCostoTipoHabitacion(dr.getInt(1));
+                entidad.setObjTipohabitacion(objTipoHabitacion);
+                entidad.setObjSucursal(objSucursal);
+                entidad.setCosto(dr.getDouble(4));
+                entidad.setNumeroPersonas(dr.getInt(5));
+                entidad.setTotalHabitaciones(dr.getInt(6));
+                entidad.setHabitacionesOcupadas(dr.getInt(7));                
+                entidad.setEstado(dr.getInt(8));  
+                entidad.setFechaUpdate(dr.getTimestamp(9));  
+                lista.add(entidad);                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
     public  static int insertar(clsCostoTipoHabitacion entidad) throws Exception
     {
         int rpta = 0;

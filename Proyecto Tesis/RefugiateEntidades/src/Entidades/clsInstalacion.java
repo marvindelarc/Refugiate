@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Paulo
  */
-public class clsIntalacion {
+public class clsInstalacion {
     private int idInstalacion;
     private String descripcion;
     private clsServicio objServicio;
@@ -19,7 +19,7 @@ public class clsIntalacion {
     private int estado;
     private Date update;
     
-    public clsIntalacion() {
+    public clsInstalacion() {
     }
 
     public int getIdInstalacion() {

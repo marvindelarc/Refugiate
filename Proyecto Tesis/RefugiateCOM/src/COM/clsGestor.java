@@ -31,7 +31,7 @@ import Entidades.clsDistrito;
 import Entidades.clsEmpresa;
 import Entidades.clsEncargado;
 import Entidades.clsHabitacion;
-import Entidades.clsIntalacion;
+import Entidades.clsInstalacion;
 import Entidades.clsPagoEmpresa;
 import Entidades.clsPaquete;
 import Entidades.clsPersona;
@@ -83,9 +83,14 @@ public class clsGestor {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsCostoTipoHabitacion">
+    
     public static List<clsCostoTipoHabitacion> ListarCostoTipoHabitacion(boolean activo) throws Exception
     {
         return clsCostoTipoHabitacionDAO.Listar(activo);
+    }
+    public static List<clsCostoTipoHabitacion> ListarCostoTipoHabitacionServicio(Long actualizacion) throws Exception
+    {
+        return clsCostoTipoHabitacionDAO.ListarServicio(actualizacion);
     }
     public static int insertarCostoTipoHabitacion(clsCostoTipoHabitacion entidad) throws Exception
     {
@@ -185,22 +190,22 @@ public class clsGestor {
     }    
     // </editor-fold>
     
-    //<editor-fold defaultstate="collapsed" desc="clsIntalacion">
-    public static List<clsIntalacion> ListarIntalacion(boolean activo) throws Exception
+    //<editor-fold defaultstate="collapsed" desc="clsInstalacion">
+    public static List<clsInstalacion> ListarIntalacion(boolean activo) throws Exception
     {
         return clsIntalacionDAO.Listar(activo);
     }
-    public static List<clsIntalacion> ListarIntalacionServicio(Long actualizacion) throws Exception
+    public static List<clsInstalacion> ListarIntalacionServicio(Long actualizacion) throws Exception
     {
         return clsIntalacionDAO.ListarServicio(actualizacion);
     }
     
-    public  static int insertarIntalacion(clsIntalacion entidad) throws Exception
+    public  static int insertarIntalacion(clsInstalacion entidad) throws Exception
     {
         return clsIntalacionDAO.insertar(entidad);
     }
     
-    public static boolean actualizarIntalacion(clsIntalacion entidad) throws Exception
+    public static boolean actualizarIntalacion(clsInstalacion entidad) throws Exception
     {
         return clsIntalacionDAO.actualizar(entidad);
     }    

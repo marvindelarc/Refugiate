@@ -29,7 +29,7 @@ import java.io.IOException;
 public class Utilidades {
     //public static String url="http://172.16.1.87:8080/GIP-Web/servicio";//linux
     //public static String url="http://172.16.1.57:8080/servicio";//local
-    public static String url="http://200.60.76.61:8080/GIP-Web/servicio";//servidor
+    public static String url="http://192.168.1.39:8084/servicio";//servidor
 
 
     public static String fileImage="Temp";

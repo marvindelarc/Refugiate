@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Entidades.clsIntalacion;
+import Entidades.clsInstalacion;
 import Entidades.clsServicio;
 import Entidades.clsSucursal;
 import java.sql.CallableStatement;
@@ -25,9 +25,9 @@ import java.util.List;
  * @author Paulo
  */
 public class clsIntalacionDAO {
-    public static List<clsIntalacion> Listar(boolean activo) throws Exception
+    public static List<clsInstalacion> Listar(boolean activo) throws Exception
     {
-        List<clsIntalacion> lista = null;
+        List<clsInstalacion> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
@@ -41,7 +41,7 @@ public class clsIntalacionDAO {
             {
                 if(lista==null)
                 {
-                    lista= new ArrayList<clsIntalacion>();                
+                    lista= new ArrayList<clsInstalacion>();                
                 }
                 clsServicio objServicio = new clsServicio();
                 objServicio.setIdServicio(dr.getInt(2));
@@ -49,7 +49,7 @@ public class clsIntalacionDAO {
                 clsSucursal objSucursal = new clsSucursal();
                 objSucursal.setIdSucursal(dr.getInt(3));
 
-                clsIntalacion entidad = new clsIntalacion();
+                clsInstalacion entidad = new clsInstalacion();
                 entidad.setIdInstalacion(dr.getInt(1));
                 entidad.setObjServicio(objServicio); 
                 entidad.setObjSucursal(objSucursal);  
@@ -72,9 +72,9 @@ public class clsIntalacionDAO {
         return lista;
     }
     
-    public static List<clsIntalacion> ListarServicio(Long actualizacion) throws Exception
+    public static List<clsInstalacion> ListarServicio(Long actualizacion) throws Exception
     {
-        List<clsIntalacion> lista = null;
+        List<clsInstalacion> lista = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
@@ -95,7 +95,7 @@ public class clsIntalacionDAO {
             {
                 if(lista==null)
                 {
-                    lista= new ArrayList<clsIntalacion>();                
+                    lista= new ArrayList<clsInstalacion>();                
                 }
                 clsServicio objServicio = new clsServicio();
                 objServicio.setIdServicio(dr.getInt(2));
@@ -103,7 +103,7 @@ public class clsIntalacionDAO {
                 clsSucursal objSucursal = new clsSucursal();
                 objSucursal.setIdSucursal(dr.getInt(3));
 
-                clsIntalacion entidad = new clsIntalacion();
+                clsInstalacion entidad = new clsInstalacion();
                 entidad.setIdInstalacion(dr.getInt(1));
                 entidad.setObjServicio(objServicio); 
                 entidad.setObjSucursal(objSucursal);  
@@ -126,7 +126,7 @@ public class clsIntalacionDAO {
         return lista;
     }
     
-    public  static int insertar(clsIntalacion entidad) throws Exception
+    public  static int insertar(clsInstalacion entidad) throws Exception
     {
         int rpta = 0;
         Connection conn = null;
@@ -162,7 +162,7 @@ public class clsIntalacionDAO {
         return rpta;
     } 
     
-    public static boolean actualizar(clsIntalacion entidad) throws Exception{
+    public static boolean actualizar(clsInstalacion entidad) throws Exception{
         boolean rpta = false;
         Connection conn = null;
         CallableStatement stmt = null;

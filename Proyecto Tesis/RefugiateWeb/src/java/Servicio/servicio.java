@@ -7,10 +7,15 @@
 package Servicio;
 
 import COM.clsGestor;
+import Entidades.clsCostoTipoHabitacion;
 import Entidades.clsEmpresa;
+import Entidades.clsInstalacion;
+import Entidades.clsServicio;
 import Entidades.clsSucursal;
+import UTILIDADES.Base64;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,57 +49,124 @@ public class servicio extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
              JSONObject obj=new JSONObject();
-            
-            JSONArray listEmpresaJSON = new JSONArray();
-            List<clsEmpresa> listaEmpresa=clsGestor.ListarEmpresaServicio(null);
-            if(listaEmpresa!=null)
-            {               
-               for(clsEmpresa entidad : listaEmpresa)
-                {
-                    JSONObject entidadJSON=new JSONObject();
-                    entidadJSON.put("idEmpresa",entidad.getIdEmpresa());
-                    entidadJSON.put("nombreComercial",entidad.getNombreComercial());
-                    entidadJSON.put("nombre",entidad.getNombre());
-                    entidadJSON.put("slogan",entidad.getSlogan());
-                    entidadJSON.put("ruc",entidad.getRuc());
-                    entidadJSON.put("puntos",entidad.getPuntos());
-                    entidadJSON.put("estado",entidad.getEstado());
-                    listEmpresaJSON.add(entidadJSON);
+        if(request.getParameter("idServicio") != null && request.getParameter("idServicio") != "" )
+        {
+            int idServicio=Integer.parseInt(request.getParameter("idServicio"));
+            if(idServicio==1 && request.getParameter("fecha") != null && request.getParameter("fecha") != "" )
+            {
+                Long fecha;
+                if(request.getParameter("fecha").equals("null"))
+                    fecha=null;
+                else
+                     fecha=Long.parseLong(request.getParameter("fecha"));
+                
+                JSONArray listEmpresaJSON = new JSONArray();
+                List<clsEmpresa> listaEmpresa=clsGestor.ListarEmpresaServicio(fecha);
+                if(listaEmpresa!=null)
+                {               
+                   for(clsEmpresa entidad : listaEmpresa)
+                    {
+                        JSONObject entidadJSON=new JSONObject();
+                        entidadJSON.put("idEmpresa",entidad.getIdEmpresa());
+                        entidadJSON.put("nombreComercial",entidad.getNombreComercial());
+                        entidadJSON.put("nombre",entidad.getNombre());
+                        entidadJSON.put("slogan",entidad.getSlogan());
+                        entidadJSON.put("ruc",entidad.getRuc());
+                        entidadJSON.put("puntos",entidad.getPuntos());
+                        entidadJSON.put("estado",entidad.getEstado());
+                        entidadJSON.put("banner",Base64.encodeToString(entidad.getBanner(),Base64.NO_WRAP|Base64.URL_SAFE));
+                        entidadJSON.put("logo",Base64.encodeToString(entidad.getLogo(),Base64.NO_WRAP|Base64.URL_SAFE));
+                        listEmpresaJSON.add(entidadJSON);
+                    }
                 }
-               
-            }
-            obj.put("listEmpresaJSON",listEmpresaJSON);
-            
-            JSONArray listSucursalJSON = new JSONArray();
-            List<clsSucursal> listaSucursal=clsGestor.listarServicioSucursal(null);
-            if(listaSucursal!=null)
-            {               
-               for(clsSucursal entidad : listaSucursal)
-                {
-                    JSONObject entidadJSON=new JSONObject();
-                    entidadJSON.put("idSucursal",entidad.getIdSucursal());
-                    entidadJSON.put("direccion",entidad.getDireccion());
-                    entidadJSON.put("pisos",entidad.getPisos());
-                    entidadJSON.put("telefono",entidad.getTelefono());
-                    entidadJSON.put("longitud",entidad.getLongitud());
-                    entidadJSON.put("latitud",entidad.getLatitud());
-                    entidadJSON.put("limpieza",entidad.getLimpieza());
-                    entidadJSON.put("servicio",entidad.getServicio());
-                    entidadJSON.put("comodidad",entidad.getComodidad());
-                    entidadJSON.put("puntuacion",entidad.getPuntuacion());
-                    entidadJSON.put("nivel",entidad.getNivel());
-                    entidadJSON.put("entrada",entidad.getEntrada());
-                    entidadJSON.put("estado",entidad.getEstado());
-                    entidadJSON.put("idDistrito",entidad.getObjDistrito().getIdDistrito());
-                    entidadJSON.put("idEmpresa",entidad.getObjEmpresa().getIdEmpresa());
+                obj.put("listEmpresaJSON",listEmpresaJSON);
 
-                    listSucursalJSON.add(entidadJSON);
+                JSONArray listSucursalJSON = new JSONArray();
+                List<clsSucursal> listaSucursal=clsGestor.listarServicioSucursal(fecha);
+                if(listaSucursal!=null)
+                {               
+                   for(clsSucursal entidad : listaSucursal)
+                    {
+                        JSONObject entidadJSON=new JSONObject();
+                        entidadJSON.put("idSucursal",entidad.getIdSucursal());
+                        entidadJSON.put("direccion",entidad.getDireccion());
+                        entidadJSON.put("pisos",entidad.getPisos());
+                        entidadJSON.put("telefono",entidad.getTelefono());
+                        entidadJSON.put("longitud",entidad.getLongitud());
+                        entidadJSON.put("latitud",entidad.getLatitud());
+                        entidadJSON.put("limpieza",entidad.getLimpieza());
+                        entidadJSON.put("servicio",entidad.getServicio());
+                        entidadJSON.put("comodidad",entidad.getComodidad());
+                        entidadJSON.put("puntuacion",entidad.getPuntuacion());
+                        entidadJSON.put("nivel",entidad.getNivel());
+                        entidadJSON.put("entrada",entidad.getEntrada());
+                        entidadJSON.put("estado",entidad.getEstado());
+                        entidadJSON.put("idDistrito",entidad.getObjDistrito().getIdDistrito());
+                        entidadJSON.put("idEmpresa",entidad.getObjEmpresa().getIdEmpresa());
+
+                        listSucursalJSON.add(entidadJSON);
+                    }
                 }
-               
+                obj.put("listSucursalJSON",listSucursalJSON);
+
+
+                JSONArray listServicioJSON = new JSONArray();
+                List<clsServicio> listaServicio=clsGestor.ListarServicioServicio(fecha);
+                if(listaServicio!=null)
+                {               
+                   for(clsServicio entidad : listaServicio)
+                    {
+                        JSONObject entidadJSON=new JSONObject();
+                         entidadJSON.put("idServicio",entidad.getIdServicio());
+                        entidadJSON.put("nombre",entidad.getNombre());
+
+                        listServicioJSON.add(entidadJSON);
+                    }
+                }
+                obj.put("listServicioJSON",listServicioJSON);
+
+                JSONArray listInstalacionJSON = new JSONArray();
+                List<clsInstalacion> listaInstalacion=clsGestor.ListarIntalacionServicio(fecha);
+                if(listaInstalacion!=null)
+                {      
+                   for(clsInstalacion entidad : listaInstalacion)
+                    {
+                        JSONObject entidadJSON=new JSONObject();
+                        entidadJSON.put("idInstalacion",entidad.getIdInstalacion());
+                        entidadJSON.put("descripcion",entidad.getDescripcion());
+                        entidadJSON.put("idServicio",entidad.getObjServicio().getIdServicio());
+                        entidadJSON.put("idSucursal",entidad.getObjSucursal().getIdSucursal());
+
+                        listInstalacionJSON.add(entidadJSON);
+                    }
+                }
+                obj.put("listInstalacionJSON",listInstalacionJSON);
+
+                JSONArray listCostoTipoHabitacionJSON = new JSONArray();
+                List<clsCostoTipoHabitacion> listaCostoTipoHabitacion=clsGestor.ListarCostoTipoHabitacionServicio(fecha);
+                if(listaCostoTipoHabitacion!=null)
+                {      
+                   for(clsCostoTipoHabitacion entidad : listaCostoTipoHabitacion)
+                    {  
+                        JSONObject entidadJSON=new JSONObject();
+                        entidadJSON.put("idCostoTipoHabitacion",entidad.getIdCostoTipoHabitacion());
+                        entidadJSON.put("costo",entidad.getCosto());
+                        entidadJSON.put("numeroPersonas",entidad.getNumeroPersonas());
+                        entidadJSON.put("totalHabitaciones",entidad.getTotalHabitaciones());
+                        entidadJSON.put("habitacionesOcupadas",entidad.getHabitacionesOcupadas());
+                        entidadJSON.put("estado",entidad.getEstado());
+                        entidadJSON.put("idTipoHabitacion",entidad.getObjTipohabitacion().getIdTipoHabitacion());
+                        entidadJSON.put("idSucursal",entidad.getObjSucursal().getIdSucursal());
+
+                        listCostoTipoHabitacionJSON.add(entidadJSON);
+                    }
+                }
+                obj.put("listCostoTipoHabitacionJSON",listCostoTipoHabitacionJSON);
             }
-            obj.put("listSucursalJSON",listSucursalJSON);
             
-            out.println(obj);
+            
+        }
+        out.println(obj);
         } catch (Exception ex) {
             Logger.getLogger(servicio.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

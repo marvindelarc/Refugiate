@@ -68,6 +68,54 @@ public class clsComentarioDAO {
         return lista;
     }
     
+    
+     public static List<clsComentario> ListarServicio(boolean activo) throws Exception
+    {
+        List<clsComentario> lista = null;
+        Connection conn = null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql = "SELECT idComentario,idReserva,descripcion,fecha,estado FROM comentario";
+            if(activo)
+                sql+=" where estado=1";
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+            
+            while (dr.next()) 
+            {
+                if (lista==null)
+                {
+                    lista = new ArrayList<clsComentario>();
+                }
+                clsReserva objReserva = new clsReserva();
+                objReserva.setIdReserva(dr.getInt(2));
+
+                clsComentario entidad = new clsComentario();
+                entidad.setIdComentario(dr.getInt(1));
+                entidad.setDescripcion(dr.getString(3));
+                entidad.setFecha(dr.getTimestamp(4));
+                entidad.setEstado(dr.getInt(5));
+                entidad.setObjReserva(objReserva);
+                lista.add(entidad);                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar"+e.getMessage(), e);
+        }
+        finally
+        {
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return lista;
+    }
+     
+     
     public static int insertar(clsComentario entidad) throws Exception
     {
         int rpta = 0;

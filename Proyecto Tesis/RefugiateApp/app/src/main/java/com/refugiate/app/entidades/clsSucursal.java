@@ -26,6 +26,7 @@ public class clsSucursal {
     private String entrada;
     private String salida;
     private Date fecha;
+    private Date update;
     private int estado;
     private clsDistrito objDistrito;
     private clsEmpresa objEmpresa;
@@ -168,4 +169,13 @@ public class clsSucursal {
     public void setObjEmpresa(clsEmpresa objEmpresa) {
         this.objEmpresa = objEmpresa;
     }
+
+    public Date getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Date update) {
+        this.update = update;
+    }
+    
 }

@@ -22,10 +22,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.refugiate.app.conexion.PostHTTP;
+import com.refugiate.app.conexion.ServicioHTTP;
 import com.refugiate.app.ui.R;
 import com.refugiate.app.utilidades.ToSpeech;
 import com.refugiate.app.utilidades.Utilidades;
+
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 public class FragmentInicio extends Fragment {
@@ -355,7 +357,7 @@ private ProgressDialog pd;
                     try {
                         Message message = handler.obtainMessage();
                         Bundle bundle = new Bundle();
-                        PostHTTP http = new PostHTTP();
+                        ServicioHTTP http = new ServicioHTTP();
                         //http.execute(objHechoPublico, objPersona, objVehiculo, objInmueble);
                         bundle.putString("data",http.get());
 
@@ -372,6 +374,18 @@ private ProgressDialog pd;
 
     public void btnEnviarHecho()
     {
+        ServicioHTTP servicioHTTP=new ServicioHTTP();
+        servicioHTTP.execute(""+(new Date().getTime()));
+        try {
+
+            //servicioHTTP.get();
+            Utilidades.alert(FragmentInicio.this.getActivity(), servicioHTTP.get(), false);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        /**
         LocationManager  locationManager = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
         if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
            // objHechoPublico = gipHechoPublicoDAO.Buscar(this.getActivity(), 1);
@@ -399,7 +413,7 @@ private ProgressDialog pd;
         {
             Intent in = new Intent(android.provider.Settings.ACTION_NETWORK_OPERATOR_SETTINGS );
         }
-
+*/
     }
 
     private final Handler handler = new Handler() {
