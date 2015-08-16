@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.refugiate.app.conexion.ServicioHTTP;
+import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.ui.R;
 import com.refugiate.app.utilidades.ToSpeech;
 import com.refugiate.app.utilidades.Utilidades;
@@ -374,17 +375,19 @@ private ProgressDialog pd;
 
     public void btnEnviarHecho()
     {
-        ServicioHTTP servicioHTTP=new ServicioHTTP();
+
+        Utilidades.alert(FragmentInicio.this.getActivity(),""+ clsSucursalSQL.Listar(FragmentInicio.this.getActivity()).size(), false);
+        /*ServicioHTTP servicioHTTP=new ServicioHTTP();
         servicioHTTP.execute(""+(new Date().getTime()));
         try {
 
             //servicioHTTP.get();
-            Utilidades.alert(FragmentInicio.this.getActivity(), servicioHTTP.get(), false);
+           //
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        }
+        }*/
         /**
         LocationManager  locationManager = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
         if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {

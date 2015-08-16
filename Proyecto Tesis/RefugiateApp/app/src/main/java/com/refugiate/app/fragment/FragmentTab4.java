@@ -2,18 +2,18 @@ package com.refugiate.app.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
 
 
-/**
- * Created by Roller on 04/06/2015.
- */
+
 public class FragmentTab4 extends Fragment {
 
 
@@ -63,40 +63,27 @@ public class FragmentTab4 extends Fragment {
 
     private void btnTabs(int position)
     {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment fragment;
+        Fragment fragment=null;
         switch (position)
         {
             case 1:
-
                 fragment = new FragmentTab1();
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 2:
                 fragment = new FragmentTab2();
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 3:
 
                 fragment = new FragmentTab3();
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 5:
                 fragment = new FragmentTab5();
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             default:
 
                 break;
         }
+        ((MainActivity)getActivity()).setFragment(fragment);
     }
 
 

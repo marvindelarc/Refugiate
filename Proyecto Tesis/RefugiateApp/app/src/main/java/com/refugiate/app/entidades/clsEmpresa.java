@@ -28,6 +28,10 @@ public class clsEmpresa {
         this.banner=null;
     }
 
+    public clsEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
     public int getIdEmpresa() {
         return idEmpresa;
     }

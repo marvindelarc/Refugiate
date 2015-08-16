@@ -17,6 +17,10 @@ public class clsTipoHabitacion {
     public clsTipoHabitacion() {
     }
 
+    public clsTipoHabitacion(int idTipoHabitacion) {
+        this.idTipoHabitacion = idTipoHabitacion;
+    }
+
     public int getIdTipoHabitacion() {
         return idTipoHabitacion;
     }

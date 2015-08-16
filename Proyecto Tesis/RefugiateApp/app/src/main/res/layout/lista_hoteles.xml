@@ -11,18 +11,14 @@ android:orientation="horizontal"
 >
 
 <LinearLayout
-    android:background="@drawable/border"
 android:layout_width="65dp"
-android:layout_height="65dp">
+android:layout_height="65dp"
+android:gravity="center">
 
   <ImageView
         android:id="@+id/image"
-      android:layout_marginLeft="3dp"
-      android:layout_marginRight="3dp"
-      android:layout_marginTop="3dp"
-      android:layout_marginBottom="3dp"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcherd" />
 </LinearLayout>
@@ -32,13 +28,12 @@ android:layout_height="65dp">
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:gravity="center"
-android:background="?colorPrimary"
 android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:background="?android:colorBackground"
         android:layout_marginBottom="1dp"
         android:orientation="vertical">
         <TextView
@@ -59,6 +54,13 @@ android:orientation="vertical">
             android:stepSize="1.0"
             android:rating="2.0" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:background="?colorPrimary"
+        android:orientation="vertical"/>
 
 </LinearLayout>
 

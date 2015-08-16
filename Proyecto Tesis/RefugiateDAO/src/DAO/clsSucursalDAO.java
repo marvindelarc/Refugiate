@@ -126,7 +126,7 @@ public class clsSucursalDAO {
                 entidad.setPisos(dr.getInt(5));
                 entidad.setTelefono(dr.getString(6)); 
                 entidad.setLongitud(dr.getDouble(7));
-                entidad.setLongitud(dr.getDouble(8));
+                entidad.setLatitud(dr.getDouble(8));
                 entidad.setLimpieza(dr.getInt(9));
                 entidad.setServicio(dr.getInt(10));
                 entidad.setComodidad(dr.getInt(11));

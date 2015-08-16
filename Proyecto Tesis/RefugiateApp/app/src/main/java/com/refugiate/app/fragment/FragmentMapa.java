@@ -1,17 +1,30 @@
 package com.refugiate.app.fragment;
 
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import static android.content.Context.LOCATION_SERVICE;
 import com.google.android.gms.common.ConnectionResult;
@@ -21,14 +34,27 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.refugiate.app.dao.clsSucursalSQL;
+import com.refugiate.app.entidades.clsSucursal;
+import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
+import com.refugiate.app.utilidades.route.Routing;
+import com.refugiate.app.utilidades.route.RoutingListener;
 
-public class FragmentMapa extends Fragment implements LocationListener ,GoogleMap.OnMapClickListener {
+import java.util.List;
+
+public class FragmentMapa extends Fragment implements LocationListener,GoogleMap.OnMarkerClickListener,RoutingListener {
     MapView mapView;
     private GoogleMap googleMap;
-    private double latitude;
-    private double longitude;
+    private int color = Color.RED;
+    private ProgressDialog pd;
+    private LatLng puntosGPS;
+    private LatLng puntosSeleccion;
     // flag for GPS status
     boolean isGPSEnabled = false;
 
@@ -47,13 +73,31 @@ public class FragmentMapa extends Fragment implements LocationListener ,GoogleMa
 
     // Declaring a Location Manager
     protected LocationManager locationManager;
+    
+    private List<clsSucursal> itens;
 
+    private Button btnClear;
+
+    private Polyline line;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_mapa, container, false);
+        ((MainActivity)  getActivity()).getSupportActionBar().setTitle(this.getString(R.string.lbl_item_dw_1_2));
+
+        btnClear = (Button) v.findViewById(R.id.btnClear);
+        btnClear.setVisibility(View.INVISIBLE);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
+                googleMap.moveCamera(CameraUpdateFactory.zoomTo(18));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(puntosGPS));
+                line.remove();
+                btnClear.setVisibility(View.INVISIBLE);
 
+            }
+        });
         // Getting Google Play availability status
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(FragmentMapa.this.getActivity());
 
@@ -75,11 +119,59 @@ public class FragmentMapa extends Fragment implements LocationListener ,GoogleMa
 
             // Enabling MyLocation Layer of Google Map
             googleMap.setMyLocationEnabled(true);
-            googleMap.setOnMapClickListener(this);
+            googleMap.setOnMarkerClickListener(this);
             getLocation();
+            addMaker();
+            /**
+            googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                public View getInfoWindow(Marker marker) {
+                    View v = getActivity().getLayoutInflater().inflate(R.layout.map_infowindow, null);
+                    final int position = Integer.parseInt(marker.getSnippet());
+                    TextView lblNombre = (TextView)v.findViewById(R.id.lblNombre);
+                    lblNombre.setText(itens.get(position).getObjEmpresa().getNombreComercial());
+
+                    RatingBar ratingEstrellas = (RatingBar) v.findViewById(R.id.ratingEstrellas);
+                    ratingEstrellas.setRating(itens.get(position).getNivel());
+
+                    ImageView image = (ImageView)v.findViewById(R.id.image);
+                    if(itens.get(position).getObjEmpresa().getLogo()!=null)
+                        image.setImageDrawable( new BitmapDrawable(BitmapFactory.decodeByteArray(itens.get(position).getObjEmpresa().getLogo(), 0, itens.get(position).getObjEmpresa().getLogo().length)));
+
+                    return v;
+                }
+
+                public View getInfoContents(Marker arg0) {
+
+
+                    return null;
+
+                }
+            });
+
+            googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    final int posicion = Integer.parseInt(marker.getSnippet());
+
+                    CharSequence[] items = {"Ver Detalle", "Llegar a Pie", "Llegar en Carro", "Cancelar"};
+                    AlertDialog.Builder alert = new AlertDialog.Builder(FragmentMapa.this.getActivity());
+                    alert.setTitle(listSucursal.get(posicion).getObjEmpresa().getNombre());
+
+                    alert.setItems(items, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+                           // opccionesMapa(posicion, item);
+                        }
+                    });
+                    alert.show();
+                }
+            });
+            */
         }
         return v;
     }
+
+
 
     @Override
     public void onResume() {
@@ -163,10 +255,9 @@ public class FragmentMapa extends Fragment implements LocationListener ,GoogleMa
 
 
         if(zoon)
-        {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            LatLng  latLng = new LatLng(latitude, longitude);
+        {;
+
+            puntosGPS = new LatLng(location.getLatitude(), location.getLongitude());
            /** if(entidad.getLatitud()!=0D  && entidad.getLongitud()!=0D)
             {
                 latitude=entidad.getLatitud();
@@ -175,8 +266,8 @@ public class FragmentMapa extends Fragment implements LocationListener ,GoogleMa
                 googleMap.addMarker(new MarkerOptions().position(latLng).
                         icon(BitmapDescriptorFactory.fromResource(R.drawable.ubicacion)));
             }*/
-            googleMap.moveCamera(CameraUpdateFactory.zoomTo(18));
-            googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            googleMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLng(puntosGPS));
 
 
             zoon=false;
@@ -204,23 +295,117 @@ public class FragmentMapa extends Fragment implements LocationListener ,GoogleMa
     {
 
     }
-
-
-
-
-
-
-
-
-    public void onMapClick(LatLng puntoPulsado) {
+    public void addMaker()
+    {
         googleMap.clear();
-        googleMap.addMarker(new MarkerOptions().position(puntoPulsado).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_ubigeo)));
+        itens= clsSucursalSQL.Listar(this.getActivity());
+        if(itens!=null) {
+            for (int i = 0; i < itens.size(); i++) {
+                googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_ubigeo)).snippet("" + i).position(new LatLng(itens.get(i).getLatitud(), itens.get(i).getLongitud())));
+            }
+        }
 
-        latitude = puntoPulsado.latitude;
-        longitude = puntoPulsado.longitude;
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        final int posicion = Integer.parseInt(marker.getSnippet());
+        final Dialog dialog = new Dialog(this.getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        //dialog.setCancelable(false);
+        dialog.setContentView(R.layout.map_infowindow);
+        TextView lblNombre = (TextView)dialog.findViewById(R.id.lblNombre);
+        lblNombre.setText(itens.get(posicion).getObjEmpresa().getNombreComercial());
+
+        RatingBar ratingEstrellas = (RatingBar) dialog.findViewById(R.id.ratingEstrellas);
+        ratingEstrellas.setRating(itens.get(posicion).getNivel());
+
+        ImageView image = (ImageView)dialog.findViewById(R.id.image);
+        if(itens.get(posicion).getObjEmpresa().getLogo()!=null)
+            image.setImageDrawable( new BitmapDrawable(BitmapFactory.decodeByteArray(itens.get(posicion).getObjEmpresa().getLogo(), 0, itens.get(posicion).getObjEmpresa().getLogo().length)));
 
 
+        final Button btnDetalle = (Button) dialog.findViewById(R.id.btnDetalle);
+        btnDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnDetalle(posicion);
+                dialog.dismiss();
+            }
+        });
+
+        Button btnCaminando = (Button) dialog.findViewById(R.id.btnCaminando);
+        btnCaminando.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getRuta(posicion,true);
+                dialog.dismiss();
+            }
+        });
+        Button btnVehiculo = (Button) dialog.findViewById(R.id.btnVehiculo);
+        btnVehiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getRuta(posicion,false);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        return true;
+    }
+
+    @Override
+    public void onRoutingFailure() {
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(PolylineOptions mPolyOptions) {
+        PolylineOptions polyoptions = new PolylineOptions();
+        polyoptions.color(color);
+        polyoptions.width(5);
+        polyoptions.addAll(mPolyOptions.getPoints());
+        line =googleMap.addPolyline(polyoptions);
+        pd.dismiss();
+        btnClear.setVisibility(View.VISIBLE);
+
+    }
+
+    public void getRuta(int Posicion,boolean travelMode) {
+        puntosSeleccion= new LatLng(itens.get(Posicion).getLatitud(),itens.get(Posicion).getLongitud());
+        Routing routing = new Routing(Routing.TravelMode.DRIVING);
+        if(travelMode)
+        {
+            routing = new Routing(Routing.TravelMode.WALKING);
+            color = getResources().getColor(R.color.md_light_green_800);
+        }
+        else
+            color =  getResources().getColor(R.color.md_light_blue_800);
+
+        routing.registerListener(this);
+        routing.execute(puntosGPS, puntosSeleccion);
+        pd = new ProgressDialog(this.getActivity());
+        pd.setMessage(getString(R.string.lbl_pd_cargando_ruta));
+        pd.show();
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(puntosGPS);
+        builder.include(puntosSeleccion);
+        LatLngBounds bounds = builder.build();
+        int padding = 100;
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+    }
+    public void btnDetalle(int posicion)
+    {
+        clsSucursalSQL.setSeleccionado(this.getActivity(),itens.get(posicion).getIdSucursal());
+        ((MainActivity)getActivity()).setFragment(new FragmentTab1());
+
+    }
 
 }

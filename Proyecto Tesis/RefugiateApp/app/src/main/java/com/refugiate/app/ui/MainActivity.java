@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,11 +35,13 @@ import android.widget.TextView;
 import com.refugiate.app.fragment.FragmentListNombre;
 import com.refugiate.app.fragment.FragmentMapa;
 import com.refugiate.app.fragment.FragmentTab1;
+import com.refugiate.app.fragment.FragmentTab2;
 import com.refugiate.app.utilidades.RecyclerView.Adapters.DrawerAdapter;
 import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
 import com.refugiate.app.utilidades.RecyclerView.Utils.ItemClickSupport;
 import com.refugiate.app.fragment.FragmentInicio;
 import com.refugiate.app.fragment.FragmentTelefono;
+import com.refugiate.app.utilidades.Utilidades;
 
 
 import java.util.ArrayList;
@@ -75,7 +78,6 @@ public class MainActivity extends  AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dirandro");
         setupNavigationDrawer();
 
         fragmentManager = this.getSupportFragmentManager();
@@ -495,6 +497,8 @@ public class MainActivity extends  AppCompatActivity {
 
     public void setFragment(Fragment fragment)    {
 
+
+
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
@@ -592,19 +596,18 @@ public class MainActivity extends  AppCompatActivity {
 
     public void getitemClickSupport1(int position)
     {
-        switch (position)
-        {
+        switch (position) {
             case 0:
-                setFragment(new FragmentInicio());
-                getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
+                setFragment(new FragmentListNombre());
+
                 break;
             case 1:
                 setFragment(new FragmentMapa());
-                getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
+
                 break;
             case 2:
                 setFragment(new FragmentTelefono());
-                getSupportActionBar().setTitle(drawerItems1.get(position).getItemTitle());
+
                 break;
             default:
                 break;
@@ -617,41 +620,52 @@ public class MainActivity extends  AppCompatActivity {
         {
             case 0:
                 setFragment(new FragmentTab1());
-                getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             case 1:
                 setFragment(new FragmentListNombre());
-                getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             case 2:
                 setFragment(new FragmentTelefono());
-                getSupportActionBar().setTitle(drawerItems2.get(position).getItemTitle());
                 break;
             default:
                 break;
         }
     }
 
-
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(getString(R.string.app_name));
-        alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                finish();
+            Fragment currentFrag =  getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            if (currentFrag!=null) {
+                switch (currentFrag.getClass().getSimpleName())
+                {
+                    case "FragmentMapa":
+                    case "FragmentListNombre":
+                        this.finish();
+                        break;
+                    case "FragmentTab1":
+                    case "FragmentTab2":
+                    case "FragmentTab3":
+                    case "FragmentTab4":
+                    case "FragmentTab5":
+                        setFragment(new FragmentMapa());
+                        break;
+                    default:
+                        break;
+                }
             }
-        });
-        alert.setNegativeButton(getString(R.string.str_btnCancelar), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-            }
-        });
-        alert.show();
-        return false;
+           // this.finish();
+                return false;
+        }
 
+        return super.onKeyDown(keyCode, event);
     }
+
+
+
+
 }
+

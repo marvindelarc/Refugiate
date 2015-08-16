@@ -10,6 +10,13 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
-    
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_marginTop="12dp"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:background="@drawable/clear_map"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"/>
   
 </RelativeLayout>

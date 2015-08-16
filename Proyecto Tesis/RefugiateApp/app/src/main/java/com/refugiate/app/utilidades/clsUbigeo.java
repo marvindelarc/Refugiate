@@ -14,10 +14,6 @@ import com.refugiate.app.entidades.clsProvincia;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Babsy Gamboa
- */
 public class clsUbigeo {
 
        

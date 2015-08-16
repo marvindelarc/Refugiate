@@ -4,10 +4,10 @@
     <string name="app_name">REFUGIATE APP</string>
 
     <!--INICIO DRAWER -->
-    <string name="lbl_titulo_dw_1">BUSCAR</string>
-    <string name="lbl_item_dw_1_1">NOMBRE</string>
-    <string name="lbl_item_dw_1_2">UBIGEO</string>
-    <string name="lbl_item_dw_1_3">MAPA</string>
+    <string name="lbl_titulo_dw_1">HOTELES</string>
+    <string name="lbl_item_dw_1_1">BUSCAR POR NOMBRES</string>
+    <string name="lbl_item_dw_1_2">BUSCAR EN MAPA</string>
+    <string name="lbl_item_dw_1_3">PROMOCIONES</string>
 
     <string name="lbl_titulo_dw_2">CUENTA</string>
     <string name="lbl_item_dw_2_1">MI PERFIL</string>
@@ -27,6 +27,9 @@
     <string name="str_btnCerrar">Cerrar</string>
     <string name="str_btnBorrar">Borrar</string>
     <string name="str_btnEnviar">Enviar</string>
+    <string name="str_btnVerDetalle">Ver Detalle</string>
+    <string name="str_btnCaminando">Ir Caminando</string>
+    <string name="str_btnVehiculo">Ir en Vehiculo</string>
 
     <!--INICIO TABS -->
     <string name="lbl_tab_1">TAB 1</string>
@@ -35,5 +38,51 @@
     <string name="lbl_tab_4">TAB 4</string>
     <string name="lbl_tab_5">TAB 5</string>
     <!--FIN TABS -->
+
+    <!--INICIO ConfiguracionActivity -->
+    <string name="lbl_configuracion_titulo">CONFIGURACIÓN REFUGIATE APP</string>
+    <string name="lbl_configuracion_sub_titulo">AQUÍ PODRÁ PERSONALIZAR ALGUNAS FUNCIONALIDADES DE ESTA APLICACIÓN.</string>
+    <string name="lbl_configuracion_tiempo_actulizacion">TIEMPO DE ACTUALIZACIÓN:</string>
+    <string name="lbl_configuracion_tiempo_reserva">TIEMPO ANTES DE CADA RESERVA:</string>
+    <string name="lbl_configuracion_tipo_propaganda">TIPO DE PROPAGANDAS:</string>
+    <string name="lbl_configuracion_repetir">DESEA REPETIR EL AVISO DE SU RESERVA.</string>
+    <string name="lbl_configuracion_tiempo_repetir">TIEMPO QUE DESEA REPETIR:</string>
+    <string name="lbl_espere_momento">esperen un momento</string>
+    <string name="lbl_cargando_datos">Estableciendo Conexión</string>
+    <string name="lbl_cargando_hoteles">Cargando Lista de Hoteles</string>
+    <string name="lbl_cargando_sucursales">Cargando Lista de Sucursales</string>
+
+    <string-array name="array_configuracion_tiempo_repetir">
+        <item >Cada Hora</item>
+        <item >Cada 2 Horas</item>
+        <item >Cada 3 Horas</item>
+    </string-array><string-array name="array_configuracion_tiempo_reserva">
+    <item >1 día antes</item>
+    <item >2 días antes</item>
+    <item >3 días antes</item>
+</string-array>
+    <string-array name="array_configuracion_tiempo_actulizacion">
+        <item >1 hora</item>
+        <item >3 horas</item>
+        <item >6 horas</item>
+        <item >12 horas</item>
+        <item >24 horas</item>
+    </string-array>
+    <string-array name="array_configuracion_tipo_propaganda">
+        <item >Hoteles de 1 estrellas a mas</item>
+        <item >Hoteles de 2 estrellas a mas</item>
+        <item >Hoteles de 3 estrellas a mas</item>
+        <item >Hoteles de 4 estrellas a mas</item>
+        <item >Hoteles de 5 estrellas</item>
+    </string-array>
+
+    <!--FIN ConfiguracionActivity -->
+
+
+
+    <!--INICIO FragmentMapa -->
+    <string name="lbl_pd_cargando_ruta">Cargando ruta..</string>
+    <!--FIN FragmentMapa -->
+
 </resources>
 

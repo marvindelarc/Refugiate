@@ -20,6 +20,10 @@ public class clsServicio {
     public clsServicio() {
     }
 
+    public clsServicio(int idServicio) {
+        this.idServicio = idServicio;
+    }
+
     public Date getUpdate() {
         return update;
     }

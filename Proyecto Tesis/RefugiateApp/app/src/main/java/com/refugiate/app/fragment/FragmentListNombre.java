@@ -1,24 +1,29 @@
 package com.refugiate.app.fragment;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.entidades.clsSucursal;
+import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by Roller on 04/06/2015.
- */
 public class FragmentListNombre extends Fragment {
 
     private List<clsSucursal> itens;
@@ -29,7 +34,7 @@ public class FragmentListNombre extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_nombre, container, false);
-
+        ((MainActivity)  getActivity()).getSupportActionBar().setTitle(this.getString(R.string.lbl_item_dw_1_1));
         listHoteles = (ListView)view.findViewById(R.id.listHoteles);
         getLista();
 
@@ -57,13 +62,8 @@ public class FragmentListNombre extends Fragment {
         }
         */
 
-        itens=new ArrayList<clsSucursal>();
+        itens= clsSucursalSQL.Listar(this.getActivity());
 
-        itens.add(new clsSucursal() );
-        itens.add(new clsSucursal() );
-        itens.add(new clsSucursal() );
-        itens.add(new clsSucursal() );
-        itens.add(new clsSucursal() );
 
         adaptador = new AdaptadorTitulares(this.getActivity());
 
@@ -83,13 +83,17 @@ public class FragmentListNombre extends Fragment {
             LayoutInflater inflater = context.getLayoutInflater();
             View item = inflater.inflate(R.layout.lista_hoteles, null);
 
-           /**
-            TextView lblUsuarioTabComentario = (TextView)item.findViewById(R.id.lblUsuarioTabComentario);
-            lblUsuarioTabComentario.setText(hora.format(itens.get(position).getDat_Fecha())+" - "+fecha.format(itens.get(position).getDat_Fecha()));
 
-            TextView lblComentarioTabComentario = (TextView)item.findViewById(R.id.lblComentarioTabComentario);
-            lblComentarioTabComentario.setText("Hotel:"+itens.get(position).getStr_Usuario()+"\nComentario:"+itens.get(position).getStr_Descripcion());
-        */
+            TextView lblNombre = (TextView)item.findViewById(R.id.lblNombre);
+            lblNombre.setText(itens.get(position).getObjEmpresa().getNombreComercial());
+
+            RatingBar ratingEstrellas = (RatingBar) item.findViewById(R.id.ratingEstrellas);
+            ratingEstrellas.setRating(itens.get(position).getNivel());
+
+            ImageView image = (ImageView)item.findViewById(R.id.image);
+            if(itens.get(position).getObjEmpresa().getLogo()!=null)
+                image.setImageDrawable( new BitmapDrawable(BitmapFactory.decodeByteArray(itens.get(position).getObjEmpresa().getLogo(), 0, itens.get(position).getObjEmpresa().getLogo().length)));
+
             return(item);
         }
     }

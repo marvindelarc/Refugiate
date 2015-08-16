@@ -6,17 +6,22 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import com.refugiate.app.dao.clsConfiguracionSQL;
+import com.refugiate.app.entidades.clsConfiguracion;
+
 public class CargandoActivity extends Activity {
 
+    public boolean configuracion=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargando);
-
-        //AsyncTaskCargaDatos ATCargaDatos = new AsyncTaskCargaDatos(this);
-        //ATCargaDatos.execute();
+        clsConfiguracion entidad=clsConfiguracionSQL.Buscar(this);
+        if(entidad!=null)
+            configuracion=false;
+        AsyncTaskCargaDatos ATCargaDatos = new AsyncTaskCargaDatos(this);
+        ATCargaDatos.execute();
     }
-/**
     public class AsyncTaskCargaDatos extends AsyncTask<Void, Integer, Void> {
 
         Context mContext;
@@ -38,11 +43,15 @@ public class CargandoActivity extends Activity {
 
         @Override
         protected void onPostExecute(Void result) {
-                Intent i=new Intent(mContext,MainActivity.class);
-                startActivity(i);
-                finish();
+            Intent i;
+            if(configuracion)
+                i = new Intent(mContext, ConfiguracionActivity.class);
+            else
+                i = new Intent(mContext, MainActivity.class);
+
+            startActivity(i);
+            finish();
         }
 
     }
-        */
 }

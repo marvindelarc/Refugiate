@@ -34,6 +34,10 @@ public class clsSucursal {
     public clsSucursal() {
     }
 
+    public clsSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+
     public int getIdSucursal() {
         return idSucursal;
     }
