@@ -4,10 +4,7 @@
  */
 package com.refugiate.app.entidades;
 
-/**
- *
- * @author Babsy Gamboa
- */
+
 public class clsProvincia {
   private int int_id_provincia;
   private String str_nombre;  

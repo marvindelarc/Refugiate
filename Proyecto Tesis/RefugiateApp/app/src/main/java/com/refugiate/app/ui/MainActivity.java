@@ -1,15 +1,13 @@
 package com.refugiate.app.ui;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,30 +16,36 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.refugiate.app.fragment.FragmentListNombre;
-import com.refugiate.app.fragment.FragmentMapa;
-import com.refugiate.app.fragment.FragmentTab1;
-import com.refugiate.app.fragment.FragmentTab2;
+import com.refugiate.app.dao.clsConfiguracionSQL;
+import com.refugiate.app.entidades.clsConfiguracion;
+import com.refugiate.app.fragment.hoteles.FragmentListNombre;
+import com.refugiate.app.fragment.hoteles.FragmentMapa;
+import com.refugiate.app.fragment.cuenta.FragmentPerfil;
+import com.refugiate.app.fragment.cuenta.FragmentRegistro;
+import com.refugiate.app.fragment.cuenta.FragmentReservas;
 import com.refugiate.app.utilidades.RecyclerView.Adapters.DrawerAdapter;
 import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
 import com.refugiate.app.utilidades.RecyclerView.Utils.ItemClickSupport;
-import com.refugiate.app.fragment.FragmentInicio;
-import com.refugiate.app.fragment.FragmentTelefono;
-import com.refugiate.app.utilidades.Utilidades;
 
 
 import java.util.ArrayList;
@@ -68,7 +72,8 @@ public class MainActivity extends  AppCompatActivity {
     ItemClickSupport itemClickSupport1, itemClickSupport2,  itemClickSupportSettings;
     TypedValue typedValueColorPrimary, typedValueTextColorPrimary, typedValueTextColorControlHighlight, typedValueColorBackground;
     int colorPrimary, textColorPrimary, colorControlHighlight, colorBackground;
-
+    public Menu mOptionsMenu=null;
+    private int mapa=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -505,71 +510,148 @@ public class MainActivity extends  AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
-
-    public void getItemClickSupportSettings(int position)
+    public void getItemClickSupportSettings(int pos)
     {
         final Dialog dialog;
         drawerLayout.closeDrawers();
-        switch (position)
+        switch (pos)
         {
             case 0:
-               /** dialog = new Dialog(this);
+               dialog = new Dialog(this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setCancelable(false);
-                dialog.setContentView(R.layout.activity_configuracion);
+                dialog.setContentView(R.layout.dialog_configuracion);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                entidad = gipUsuarioDAO.Buscar(this, 1);
+                final Spinner ComboTiempoActulizacion = (Spinner)dialog.findViewById(R.id.ComboTiempoActulizacion);
+                final Spinner ComboTiempoPrevioReserva = (Spinner)dialog.findViewById(R.id.ComboTiempoPrevioReserva);
+                final Spinner ComboTipoPropagandas = (Spinner)dialog.findViewById(R.id.ComboTipoPropagandas);
+                final Spinner ComboRepetirTiempo = (Spinner)dialog.findViewById(R.id.ComboRepetirTiempo);
+                final View ViewChbRepetir = (View)dialog.findViewById(R.id.ViewChbRepetir);
+                final CheckBox chbRepetir = (CheckBox)dialog.findViewById(R.id.chbRepetir);
+                final clsConfiguracion objConfiguracion= clsConfiguracionSQL.Buscar(this);
 
-                final CheckBox chkVoz = (CheckBox) dialog.findViewById(R.id.chkVoz);
-                final CheckBox chkMail = (CheckBox) dialog.findViewById(R.id.chkMail);
+                String[] itensActulizacion=getResources().getStringArray(R.array.array_configuracion_tiempo_actulizacion);
+                ArrayAdapter<String> adapterActulizacion = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,itensActulizacion);
+                adapterActulizacion.setDropDownViewResource(android.R.layout.simple_list_item_checked);
+                ComboTiempoActulizacion.setAdapter(adapterActulizacion);
+                ComboTiempoActulizacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//               tipoHabitacion=itens.get(position);
+                        if (position == 0)
+                            objConfiguracion.setTiempo_actulizacion(1);
+                        else if (position == 1)
+                            objConfiguracion.setTiempo_actulizacion(3);
+                        else if (position == 2)
+                            objConfiguracion.setTiempo_actulizacion(6);
+                        else if (position == 3)
+                            objConfiguracion.setTiempo_actulizacion(12);
+                        else if (position == 4)
+                            objConfiguracion.setTiempo_actulizacion(24);
+                    }
 
-                entidad = gipUsuarioDAO.Buscar(this,1);
-                if(entidad==null)
-                    entidad = new gipUsuario();
-                else
-                {
-                    chkVoz.setChecked(entidad.isVoz());
-                    chkMail.setChecked(entidad.isMail());
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //User selected same item. Nothing to do.
+                    }
+                });
+                if(objConfiguracion.getTiempo_actulizacion()==1)
+                    ComboTiempoActulizacion.setSelection(0);
+                else if(objConfiguracion.getTiempo_actulizacion()==3)
+                    ComboTiempoActulizacion.setSelection(1);
+                else if(objConfiguracion.getTiempo_actulizacion()==6)
+                    ComboTiempoActulizacion.setSelection(2);
+                else if(objConfiguracion.getTiempo_actulizacion()==12)
+                    ComboTiempoActulizacion.setSelection(3);
+                else if(objConfiguracion.getTiempo_actulizacion()==24)
+                    ComboTiempoActulizacion.setSelection(4);
+
+
+                String[] itensTiempoPrevioReserva=getResources().getStringArray(R.array.array_configuracion_tiempo_reserva);
+                ArrayAdapter<String> adapterTiempoPrevioReserva = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,itensTiempoPrevioReserva);
+                adapterTiempoPrevioReserva.setDropDownViewResource(android.R.layout.simple_list_item_checked);
+                ComboTiempoPrevioReserva.setAdapter(adapterTiempoPrevioReserva);
+                ComboTiempoPrevioReserva.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        objConfiguracion.setTiempo_previo_reserva(position + 1);
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //User selected same item. Nothing to do.
+                    }
+                });
+
+                ComboTiempoPrevioReserva.setSelection(objConfiguracion.getTiempo_previo_reserva() - 1);
+
+
+                String[] itensTipoPropagandas=getResources().getStringArray(R.array.array_configuracion_tipo_propaganda);
+                ArrayAdapter<String> adapterTipoPropagandas = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,itensTipoPropagandas);
+                adapterTipoPropagandas.setDropDownViewResource(android.R.layout.simple_list_item_checked);
+                ComboTipoPropagandas.setAdapter(adapterTipoPropagandas);
+                ComboTipoPropagandas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        objConfiguracion.setTipo_propagandas(position + 1);
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //User selected same item. Nothing to do.
+                    }
+                });
+                ComboTipoPropagandas.setSelection(objConfiguracion.getTipo_propagandas()-1);
+
+
+                String[] itensRepetirTiempo=getResources().getStringArray(R.array.array_configuracion_tiempo_repetir);
+                ArrayAdapter<String> adapterRepetirTiempo = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,itensRepetirTiempo);
+                adapterRepetirTiempo.setDropDownViewResource(android.R.layout.simple_list_item_checked);
+                ComboRepetirTiempo.setAdapter(adapterRepetirTiempo);
+                ComboRepetirTiempo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        objConfiguracion.setRepetir_tiempo(position + 1);
+
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //User selected same item. Nothing to do.
+                    }
+                });
+
+                ComboRepetirTiempo.setSelection(objConfiguracion.getRepetir_tiempo() - 1);
+
+                chbRepetir.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (chbRepetir.isChecked()) {
+                            ComboRepetirTiempo.setEnabled(true);
+                            ViewChbRepetir.setVisibility(View.VISIBLE);
+                            objConfiguracion.setRepetir(1);
+                        } else {
+                            ComboRepetirTiempo.setEnabled(false);
+                            ViewChbRepetir.setVisibility(View.GONE);
+                            objConfiguracion.setRepetir(2);
+                        }
+                    }
+                });
+                if( objConfiguracion.getRepetir()==1) {
+                    ComboRepetirTiempo.setEnabled(true);
+                    ViewChbRepetir.setVisibility(View.VISIBLE);
+                    chbRepetir.setChecked(true);
+                }
+                else if( objConfiguracion.getRepetir()==2) {
+                    chbRepetir.setChecked(false);
+                    ComboRepetirTiempo.setEnabled(false);
+                    ViewChbRepetir.setVisibility(View.GONE);
                 }
 
-                chkVoz.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        entidad.setVoz(chkVoz.isChecked());
-                        new ToSpeech(MainActivity.this, MainActivity.this.getString(R.string.str_chkVozConfiguracion));
-                        if (chkVoz.isChecked())
-                            new ToSpeech(MainActivity.this, MainActivity.this.getString(R.string.str_check_habilitado));
-                        else
-                            new ToSpeech(MainActivity.this, MainActivity.this.getString(R.string.str_check_inhabilitado));
-                    }
-                });
 
-                chkMail.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        entidad.setMail(chkMail.isChecked());
-                        new ToSpeech(MainActivity.this, MainActivity.this.getString(R.string.str_chkMailConfiguracion));
-                        if (chkMail.isChecked())
-                            new ToSpeech(MainActivity.this, MainActivity.this.getString(R.string.str_check_habilitado));
-                        else
-                            new ToSpeech(MainActivity.this, MainActivity.this.getString(R.string.str_check_inhabilitado));
-                    }
-                });
-
-                Button btnAceptarConfiguracion = (Button) dialog.findViewById(R.id.btnAceptarConfiguracion);
-                btnAceptarConfiguracion.setOnClickListener(new View.OnClickListener() {
+                Button btnAceptar = (Button) dialog.findViewById(R.id.btnAceptar);
+                btnAceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        gipUsuarioDAO.Actualizar(MainActivity.this, entidad);
+                        clsConfiguracionSQL.Agregar(MainActivity.this, objConfiguracion);
                     }
                 });
 
+
                 dialog.show();
-**/
                 break;
             case 1:
 
@@ -577,15 +659,15 @@ public class MainActivity extends  AppCompatActivity {
                 dialog = new Dialog(this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                dialog.setCancelable(false);
-                dialog.setContentView(R.layout.dialog_abaut);
-                Button btnCancelarAbaut = (Button) dialog.findViewById(R.id.btnCancelarAbaut);
+                //dialog.setCancelable(false);
+                dialog.setContentView(R.layout.dialog_calificacion);
+                /*Button btnCancelarAbaut = (Button) dialog.findViewById(R.id.btnCancelarAbaut);
                 btnCancelarAbaut.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
-                });
+                });*/
                 dialog.show();
 
                 break;
@@ -596,17 +678,22 @@ public class MainActivity extends  AppCompatActivity {
 
     public void getitemClickSupport1(int position)
     {
+        if(mOptionsMenu!=null)
+            mOptionsMenu.getItem(0).setVisible(false);
         switch (position) {
             case 0:
+                mapa=1;
                 setFragment(new FragmentListNombre());
+                //setFragment(new FragmentTab1());
 
                 break;
             case 1:
+                mapa=0;
                 setFragment(new FragmentMapa());
 
                 break;
             case 2:
-                setFragment(new FragmentTelefono());
+                //setFragment(new FragmentTelefono());
 
                 break;
             default:
@@ -616,16 +703,19 @@ public class MainActivity extends  AppCompatActivity {
 
     public void getitemClickSupport2(int position)
     {
+        if(mOptionsMenu!=null)
+            mOptionsMenu.getItem(0).setVisible(false);
         switch (position)
         {
             case 0:
-                setFragment(new FragmentTab1());
+                setFragment(new FragmentPerfil());
                 break;
             case 1:
-                setFragment(new FragmentListNombre());
+                setFragment(new FragmentReservas());
                 break;
             case 2:
-                setFragment(new FragmentTelefono());
+                setFragment(new FragmentRegistro());
+                //setFragment(new FragmentHistorial());
                 break;
             default:
                 break;
@@ -651,7 +741,11 @@ public class MainActivity extends  AppCompatActivity {
                     case "FragmentTab3":
                     case "FragmentTab4":
                     case "FragmentTab5":
+                        if(mapa==0)
                         setFragment(new FragmentMapa());
+                        else
+                        setFragment(new FragmentListNombre());
+                        mOptionsMenu.getItem(0).setVisible(false);
                         break;
                     default:
                         break;
@@ -666,6 +760,46 @@ public class MainActivity extends  AppCompatActivity {
 
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        mOptionsMenu=menu;
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.telefono:
+                /*
+                clsSucursal objSucural= clsSucursalSQL.getSeleccionado(this);
+                if(objSucural!=null)
+                    if(!objSucural.getTelefono().equals("") && !objSucural.getTelefono().equals(null)) {
+                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:" + objSucural.getTelefono()));
+                        startActivity(intent);
+                    }*/
+                return true;
+            case R.id.compartir:
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.compartir_sms));
+                startActivity(Intent.createChooser(sharingIntent,getString(R.string.compartir_via)));
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // TODO Auto-generated method stub
+            menu.getItem(0).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
 }
+
 

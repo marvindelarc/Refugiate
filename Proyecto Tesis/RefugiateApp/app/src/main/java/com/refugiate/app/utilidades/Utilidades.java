@@ -27,7 +27,7 @@ import java.io.IOException;
  * @author EdHam
  */
 public class Utilidades {
-    public static String url="http://192.168.1.15:8088/servicio";//servidor
+    public static String url="http://192.168.1.56:8088/servicio";//servidor
 
 
     public static String fileImage="Temp";

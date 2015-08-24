@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">REFUGIATE APP</string>
+    <string name="app_name">RefugiateApp</string>
 
     <!--INICIO DRAWER -->
     <string name="lbl_titulo_dw_1">HOTELES</string>
@@ -27,17 +27,47 @@
     <string name="str_btnCerrar">Cerrar</string>
     <string name="str_btnBorrar">Borrar</string>
     <string name="str_btnEnviar">Enviar</string>
+    <string name="str_btnFiltrar">Filtrar</string>
     <string name="str_btnVerDetalle">Ver Detalle</string>
     <string name="str_btnCaminando">Ir Caminando</string>
     <string name="str_btnVehiculo">Ir en Vehiculo</string>
 
+    <!--INICIO REGISTRO -->
+    <string name="lbl_nombres_registro">Ingrese Nombres.</string>
+    <string name="lbl_apellidos_registro">Ingrese Apeliidos.</string>
+    <string name="lbl_telefono_registro">Ingrese Telefono.</string>
+    <string name="lbl_email_registro">Ingrese Correo Electronico</string>
+    <string name="lbl_dni_registro">Ingrese DNI</string>
+    <string name="lbl_usuario_registro">Ingrese Usuario</string>
+    <string name="lbl_clave_registro">Ingrese Clave</string>
+    <string name="lbl_reclave_registro">Repita Clave</string>
+    <string name="lbl_fec_nac_registro">Fecha de Nacimiento</string>
+    <string name="lbl_tituloregistro">REGISTRO DE USUARIO</string>
+    <!--FIN REGISTRO -->
+
+
     <!--INICIO TABS -->
-    <string name="lbl_tab_1">TAB 1</string>
-    <string name="lbl_tab_2">TAB 2</string>
-    <string name="lbl_tab_3">TAB 3</string>
-    <string name="lbl_tab_4">TAB 4</string>
-    <string name="lbl_tab_5">TAB 5</string>
+    <string name="lbl_tab_1">INFO.</string>
+    <string name="lbl_tab_2">LOC.</string>
+    <string name="lbl_tab_3">HABI.</string>
+    <string name="lbl_tab_4">FOTOS</string>
     <!--FIN TABS -->
+
+    <!--INICIO MENU -->
+    <string name="menu_compatir">Compartir</string>
+    <string name="menu_telefono">Llamar.</string>
+    <string name="compartir_sms">Colocar mensaje</string>
+    <string name="compartir_via">COMPARTIR CON:</string>
+
+    <!--FIN TABS -->
+
+    <!--INICIO FragmentLogin -->
+    <string name="lbl_usuario">Ingresar Usuario</string>
+    <string name="lbl_clave">Ingresar Clave</string>
+    <string name="lbl_iniciar_sesion">INICIAR SESION</string>
+    <string name="lbl_ingrese_credenciales">INGRESAR CREDENCIALES</string>
+    <string name="lbl_registro">Registrarse Aquí</string>
+    <!--FIN FragmentLogin -->
 
     <!--INICIO ConfiguracionActivity -->
     <string name="lbl_configuracion_titulo">CONFIGURACIÓN REFUGIATE APP</string>
@@ -49,9 +79,14 @@
     <string name="lbl_configuracion_tiempo_repetir">TIEMPO QUE DESEA REPETIR:</string>
     <string name="lbl_espere_momento">esperen un momento</string>
     <string name="lbl_cargando_datos">Estableciendo Conexión</string>
-    <string name="lbl_cargando_hoteles">Cargando Lista de Hoteles</string>
-    <string name="lbl_cargando_sucursales">Cargando Lista de Sucursales</string>
 
+
+    <string name="lbl_cargando_instalaciones">Cargando Instalaciones</string>
+    <string name="lbl_cargando_hoteles">Cargando Hoteles</string>
+    <string name="lbl_cargando_sucursales">Cargando Sucursales</string>
+    <string name="lbl_cargando_servicios">Cargando Servicios</string>
+    <string name="lbl_cargando_costo_tipo_habitacion">Cargando Costo de Habitaciones</string>
+    <string name="lbl_cargando_tipo_habitacion">Cargando Tipo Habitacion</string>
     <string-array name="array_configuracion_tiempo_repetir">
         <item >Cada Hora</item>
         <item >Cada 2 Horas</item>
@@ -83,6 +118,22 @@
     <!--INICIO FragmentMapa -->
     <string name="lbl_pd_cargando_ruta">Cargando ruta..</string>
     <!--FIN FragmentMapa -->
+
+    <!--INICIO FragmentTab1 -->
+    <string name="lbl_comodidad">Comodidad:</string>
+    <string name="lbl_limpieza">Limpieza:</string>
+    <string name="lbl_servicio">Servicio:</string>
+    <string name="lbl_puntos">Puntos:</string>
+    <string name="lbl_estrellas">Estrellas:</string>
+    <string name="lbl_departamento">Departamento:</string>
+    <string name="lbl_provincia">Provincia:</string>
+    <string name="lbl_distrito">Distrito:</string>
+
+    <string name="lbl_horario">Horario:</string>
+    <string name="lbl_telefono">Telefono:</string>
+    <string name="lbl_pisos">Pisos:</string>
+    <!--FIN FragmentTab1 -->
+
 
 </resources>
 

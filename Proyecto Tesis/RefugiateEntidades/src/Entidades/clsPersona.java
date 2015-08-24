@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Paulo
@@ -16,6 +18,7 @@ public class clsPersona {
     private String telefono;
     private String email;
     private String DNI;    
+    private Date fecnac;
     private String usuario;
     private String password;
     private int informacion;
@@ -23,6 +26,9 @@ public class clsPersona {
     private int honrrades;
     private int educacion;
     private int calificacion;
+    private boolean sexo;
+    private Date fecha;
+    private Date update;
 
     public clsPersona() {
     }
@@ -129,5 +135,37 @@ public class clsPersona {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public Date getFecnac() {
+        return fecnac;
+    }
+
+    public void setFecnac(Date fecnac) {
+        this.fecnac = fecnac;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Date getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Date update) {
+        this.update = update;
+    }
+
+    public boolean isSexo() {
+        return sexo;
+    }
+
+    public void setSexo(boolean sexo) {
+        this.sexo = sexo;
     }
 }

@@ -48,7 +48,7 @@
             android:gravity="center"
             android:text="@string/app_name"
             android:textStyle="bold"
-            android:textSize="@dimen/item_height_single_line_48_56"
+            android:textSize="36dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="?android:textColorPrimaryInverse" />
 

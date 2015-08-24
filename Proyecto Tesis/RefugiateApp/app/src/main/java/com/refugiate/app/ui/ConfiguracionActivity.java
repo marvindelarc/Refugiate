@@ -20,8 +20,13 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import com.refugiate.app.conexion.ServicioHTTP;
 import com.refugiate.app.dao.clsConfiguracionSQL;
+import com.refugiate.app.dao.clsCostoTipoHabitacionSQL;
 import com.refugiate.app.dao.clsEmpresaSQL;
+import com.refugiate.app.dao.clsIntalacionSQL;
+import com.refugiate.app.dao.clsServicioSQL;
 import com.refugiate.app.dao.clsSucursalSQL;
+import com.refugiate.app.dao.clsTipoHabitacionSQL;
+import com.refugiate.app.dao.clsUbigeoSQL;
 import com.refugiate.app.entidades.clsConfiguracion;
 import com.refugiate.app.entidades.clsCostoTipoHabitacion;
 import com.refugiate.app.entidades.clsDistrito;
@@ -64,6 +69,12 @@ public class ConfiguracionActivity extends Activity {
           getComboTiempoPrevioReserva();
           getComboTipoPropagandas();
           getComboComboRepetirTiempo();
+          chbRepetir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chbRepetir();
+            }
+            });
           chbRepetir.setChecked(true);
           Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
 
@@ -135,16 +146,7 @@ public class ConfiguracionActivity extends Activity {
             ComboTipoPropagandas.setAdapter(adapter);     
             ComboTipoPropagandas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                    objConfiguracion.setTipo_propagandas(1);
-                else if(position==1)
-                    objConfiguracion.setTipo_propagandas(2);
-                else if(position==2)
-                    objConfiguracion.setTipo_propagandas(3);
-                else if(position==3)
-                    objConfiguracion.setTipo_propagandas(4);
-                else if(position==4)
-                    objConfiguracion.setTipo_propagandas(5);
+                    objConfiguracion.setTipo_propagandas(position+1);
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 //User selected same item. Nothing to do.
@@ -174,7 +176,7 @@ public class ConfiguracionActivity extends Activity {
         ComboRepetirTiempo.setSelection(1);
     }
         
-        public void chbRepetir(View v)
+        public void chbRepetir()
         {
             
            if(chbRepetir.isChecked())
@@ -245,12 +247,7 @@ public class ConfiguracionActivity extends Activity {
                         entidad.setRuc(json_data.getString("ruc"));
                         entidad.setPuntos(json_data.getInt("puntos"));
                         entidad.setEstado(json_data.getInt("estado"));
-                        String Banner=json_data.getString("banner");
                         String Logo=json_data.getString("logo");
-                        if(Banner!=null)
-                        {
-                            entidad.setBanner(Base64.decode(Banner, Base64.NO_WRAP | Base64.URL_SAFE));
-                        }
                         if(Logo!=null)
                         {
                             entidad.setLogo(Base64.decode(Logo, Base64.NO_WRAP | Base64.URL_SAFE));
@@ -282,13 +279,16 @@ public class ConfiguracionActivity extends Activity {
                     clsSucursalSQL.Agregar(ConfiguracionActivity.this, entidad);
 
                 }
+                pdCargar.setTitle(getString(R.string.lbl_cargando_servicios));
                 JSONArray listServicioJSON = new JSONArray(objeto.getString("listServicioJSON"));
                 for(int i=0;i<listServicioJSON.length();i++){
                     JSONObject json_data = listServicioJSON.getJSONObject(i);
                     clsServicio entidad= new clsServicio();
                     entidad.setIdServicio(json_data.getInt("idServicio"));
                     entidad.setNombre(json_data.getString("nombre"));
+                    clsServicioSQL.Agregar(ConfiguracionActivity.this, entidad);
                 }
+                pdCargar.setTitle(getString(R.string.lbl_cargando_instalaciones));
                 JSONArray listInstalacionJSON = new JSONArray(objeto.getString("listInstalacionJSON"));
                 for(int i=0;i<listInstalacionJSON.length();i++){
                     JSONObject json_data = listInstalacionJSON.getJSONObject(i);
@@ -297,7 +297,9 @@ public class ConfiguracionActivity extends Activity {
                     entidad.setDescripcion(json_data.getString("descripcion"));
                     entidad.setObjServicio(new clsServicio(json_data.getInt("idServicio")));
                     entidad.setObjSucursal(new clsSucursal(json_data.getInt("idSucursal")));
+                    clsIntalacionSQL.Agregar(ConfiguracionActivity.this, entidad);
                 }
+                pdCargar.setTitle(getString(R.string.lbl_cargando_costo_tipo_habitacion));
                 JSONArray listCostoTipoHabitacionJSON = new JSONArray(objeto.getString("listCostoTipoHabitacionJSON"));
                 for(int i=0;i<listCostoTipoHabitacionJSON.length();i++){
                     JSONObject json_data = listCostoTipoHabitacionJSON.getJSONObject(i);
@@ -310,7 +312,20 @@ public class ConfiguracionActivity extends Activity {
                     entidad.setEstado(json_data.getInt("estado"));
                     entidad.setObjTipohabitacion(new clsTipoHabitacion(json_data.getInt("idTipoHabitacion")));
                     entidad.setObjSucursal(new clsSucursal(json_data.getInt("idSucursal")));
+                    clsCostoTipoHabitacionSQL.Agregar(ConfiguracionActivity.this, entidad);
                 }
+                pdCargar.setTitle(getString(R.string.lbl_cargando_tipo_habitacion));
+                JSONArray listTipoHabitacionJSON = new JSONArray(objeto.getString("listTipoHabitacionJSON"));
+                for(int i=0;i<listTipoHabitacionJSON.length();i++){
+                    JSONObject json_data = listTipoHabitacionJSON.getJSONObject(i);
+                    clsTipoHabitacion entidad= new clsTipoHabitacion();
+                    entidad.setIdTipoHabitacion(json_data.getInt("idTipoHabitacion"));
+                    entidad.setNombreComercial(json_data.getString("nombreComercial"));
+                    clsTipoHabitacionSQL.Agregar(ConfiguracionActivity.this, entidad);
+                }
+                clsUbigeoSQL.AgregarDepartamento(ConfiguracionActivity.this);
+                clsUbigeoSQL.AgregarProvincia(ConfiguracionActivity.this);
+                clsUbigeoSQL.AgregarDistrito(ConfiguracionActivity.this);
 
                 clsConfiguracionSQL.Agregar(ConfiguracionActivity.this, objConfiguracion);
                 pdCargar.dismiss();
@@ -318,6 +333,7 @@ public class ConfiguracionActivity extends Activity {
                 startActivity(i);
                 finish();
             } catch (JSONException e) {
+               // pdCargar.dismiss();
                 e.printStackTrace();
             }
 

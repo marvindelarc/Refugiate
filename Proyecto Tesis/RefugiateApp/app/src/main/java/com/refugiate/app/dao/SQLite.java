@@ -68,6 +68,35 @@ public class SQLite extends SQLiteOpenHelper {
                             + "idTipoHabitacion integer ,"
                             + "idSucursal integer)";
 
+    private static final String CREATE_TIPOHABITACION = "CREATE TABLE TIPOHABITACION ("
+            + "idTipoHabitacion integer NOT NULL PRIMARY KEY,"
+            + "nombreComercial text)";
+
+    private static final String CREATE_DEPARTAMENTO = "CREATE TABLE DEPARTAMENTO ("
+            + "int_id_depatamento integer NOT NULL PRIMARY KEY,"
+            + "str_nombre text)";
+
+    private static final String CREATE_PROVINCIA = "CREATE TABLE PROVINCIA ("
+            + "int_id_provincia integer NOT NULL PRIMARY KEY,"
+            + "int_id_depatamento integer ,"
+            + "str_nombre text)";
+
+    private static final String CREATE_DISTRITO = "CREATE TABLE DISTRITO ("
+            + "int_id_distrito integer NOT NULL PRIMARY KEY,"
+            + "int_id_provincia integer ,"
+            + "str_nombre text)";
+
+    private static final String CREATE_PERSONA = "CREATE TABLE PERSONA ("
+            + "IdPersona integer NOT NULL PRIMARY KEY,"
+            + "nombre text ,"
+            + "apellido text ,"
+            + "telefono text ,"
+            + "email text ,"
+            + "DNI text ,"
+            + "fecnac numeric ,"
+            + "usuario text ,"
+            + "password text)";
+
 	public SQLite(Context context, CursorFactory factory) {
 		super(context, DATABASE_NAME, factory, DATABASE_VERSION);
 	}
@@ -80,6 +109,12 @@ public class SQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_SERVICIO);
                 db.execSQL(CREATE_INSTALACION);
                 db.execSQL(CREATE_COSTOTIPOHABITACION);
+                db.execSQL(CREATE_TIPOHABITACION);
+                db.execSQL(CREATE_PERSONA);
+                db.execSQL(CREATE_DEPARTAMENTO);
+                db.execSQL(CREATE_PROVINCIA);
+                db.execSQL(CREATE_DISTRITO);
+
         }
          
 	@Override
@@ -94,6 +129,16 @@ public class SQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_SERVICIO);
                 db.execSQL("drop table if exists COSTOTIPOHABITACION");
                 db.execSQL(CREATE_COSTOTIPOHABITACION);
+                db.execSQL("drop table if exists TIPOHABITACION");
+                db.execSQL(CREATE_TIPOHABITACION);
+                db.execSQL("drop table if exists PERSONA");
+                db.execSQL(CREATE_PERSONA);
+                db.execSQL("drop table if exists DEPARTAMENTO");
+                db.execSQL(CREATE_DEPARTAMENTO);
+                db.execSQL("drop table if exists PROVINCIA");
+                db.execSQL(CREATE_PROVINCIA);
+                db.execSQL("drop table if exists DISTRITO");
+                db.execSQL(CREATE_DISTRITO);
 	}	
         
 }

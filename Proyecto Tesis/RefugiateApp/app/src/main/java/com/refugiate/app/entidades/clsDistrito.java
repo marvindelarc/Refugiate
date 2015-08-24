@@ -6,10 +6,7 @@
 
 package com.refugiate.app.entidades;
 
-/**
- *
- * @author EdHam
- */
+
 public class clsDistrito {
   private int int_id_distrito;
   private String str_nombre;  

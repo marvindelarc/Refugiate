@@ -5,6 +5,8 @@
  */
 package com.refugiate.app.entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Paulo
@@ -18,6 +20,7 @@ public class clsPersona {
     private String DNI;    
     private String usuario;
     private String password;
+    private Date fecnac;
     private int informacion;
     private int puntualidad;
     private int honrrades;
@@ -130,5 +133,13 @@ public class clsPersona {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public Date getFecnac() {
+        return fecnac;
+    }
+
+    public void setFecnac(Date fecnac) {
+        this.fecnac = fecnac;
     }
 }

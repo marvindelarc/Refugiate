@@ -31,4 +31,74 @@
         <item name="color">@android:color/white</item>
     </style>
 
+    <style name="Clear" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/clear_ratingbar</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:thumb">@null</item>
+        <item name="android:layout_width">44dip</item>
+        <item name="android:layout_height">44dip</item>
+        <item name="android:layout_marginLeft">4dip</item>
+    </style>
+
+    <style name="ClearSmall" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/clear_ratingbar_small</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+
+    <style name="Comodidad" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/comodidad_ratingbar</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:thumb">@null</item>
+        <item name="android:layout_width">44dip</item>
+        <item name="android:layout_height">44dip</item>
+        <item name="android:layout_marginLeft">4dip</item>
+    </style>
+
+    <style name="ComodidadSmall" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/comodidad_ratingbar_small</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+
+    <style name="Puntos" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/service_ratingbar</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:thumb">@null</item>
+        <item name="android:layout_width">44dip</item>
+        <item name="android:layout_height">44dip</item>
+        <item name="android:layout_marginLeft">4dip</item>
+    </style>
+
+    <style name="PuntosSmall" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/service_ratingbar_small</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+    <style name="Service" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/puntos_ratingbar</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:thumb">@null</item>
+        <item name="android:layout_width">44dip</item>
+        <item name="android:layout_height">44dip</item>
+        <item name="android:layout_marginLeft">4dip</item>
+    </style>
+
+    <style name="ServiceSmall" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/puntos_ratingbar_small</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
 </resources>

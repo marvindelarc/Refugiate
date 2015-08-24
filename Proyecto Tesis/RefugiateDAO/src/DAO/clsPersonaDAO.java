@@ -74,8 +74,10 @@ public class clsPersonaDAO {
         Connection conn = null;
         PreparedStatement  stmt = null;
         try {            
-            String sql= "INSERT INTO persona(nombres,apellidos,telefono,email,dni,usuario,password,informacion,puntualidad,honrades,educacion,calificacion)"
-                   + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
+            String sql= "INSERT INTO persona(nombres,apellidos,telefono,email,dni,"
+                    + "usuario,password,sexo,fecnac,informacion,puntualidad,honrades,educacion,"
+                    + "calificacion,fecha,fechaUpdate)"
+                   + " VALUES(?,?,?,?,?,?,?,?,?,0,0,0,0,0,now(),now());";
            
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -86,11 +88,8 @@ public class clsPersonaDAO {
             stmt.setString(5, entidad.getDNI());
             stmt.setString(6, entidad.getUsuario());
             stmt.setString(7, entidad.getPassword());            
-            stmt.setInt(8, entidad.getInformacion());
-            stmt.setInt(9, entidad.getPuntualidad());
-            stmt.setInt(10, entidad.getHonrrades());
-            stmt.setInt(11, entidad.getEducacion());            
-            stmt.setInt(12, entidad.getCalificacion());
+            stmt.setBoolean(8, entidad.isSexo());
+            stmt.setDate(9, new java.sql.Date(entidad.getFecha().getTime()));
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             

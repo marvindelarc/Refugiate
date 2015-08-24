@@ -16,8 +16,8 @@ import java.util.List;
 
 public class clsUbigeo {
 
-       
-    public static  List<clsDepartamento> getListDepartamento()
+
+    public static List<clsDepartamento> getListDepartamento()
     {
         List<clsDepartamento> ListaDepartamento= new ArrayList<clsDepartamento>();        
         ListaDepartamento.add( new clsDepartamento(1, "Amazonas"));
@@ -50,7 +50,7 @@ public class clsUbigeo {
         
     }
 
-    private static List<clsProvincia> getListProvincia()
+    public static List<clsProvincia> getListProvincia()
     {
         List<clsProvincia> ListaProvincia =new ArrayList<clsProvincia>();
         ListaProvincia.add(new clsProvincia(1,new clsDepartamento(1),"Bagua"));
@@ -251,8 +251,8 @@ public class clsUbigeo {
         return ListaProvincia;
 
 }
-    
-    private static  List<clsDistrito> getListDistrito()
+
+    public static  List<clsDistrito> getListDistrito()
     {
         List<clsDistrito> ListaDistrito= new ArrayList<clsDistrito>();
         ListaDistrito.add( new clsDistrito(1,new clsProvincia(1),"Bagua"));
@@ -2090,38 +2090,5 @@ public class clsUbigeo {
          return ListaDistrito;
         
     }
-    
-    
-    public static List<clsProvincia> getListProvinciaXDepartamento(int idDepartamento)
-    {
-        List<clsProvincia> ListaProvincia=new ArrayList<clsProvincia>();
-         for(clsProvincia entidad :getListProvincia())
-         if(entidad.getObjDepartamento().getInt_id_depatamento()==idDepartamento)
-         ListaProvincia.add(entidad);
-         
-         return ListaProvincia;
-    }  
-  
-    public static List<clsDistrito> getListDistritoXProvincia(int idProvincia)
-    {
-        List<clsDistrito> ListaDistrito=new ArrayList<clsDistrito>();
-        for(clsDistrito entidad :getListDistrito())
-            if(entidad.getObjProvincia().getInt_id_provincia()==idProvincia)
-                ListaDistrito.add(entidad);
-         
-        return ListaDistrito;
-    }  
-    
-    public static clsDistrito getDistrito(int idDistrito)
-    {
-        for(clsDistrito entidad : getListDistrito())
-            if(entidad.getInt_id_distrito()==idDistrito)
-               return entidad;
-        return null;        
-    }
-    
-
-
-    
     
 }

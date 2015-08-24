@@ -11,20 +11,25 @@ android:orientation="horizontal"
 >
 
 <LinearLayout
+    android:background="@drawable/border"
 android:layout_width="65dp"
 android:layout_height="65dp"
 android:gravity="center">
 
   <ImageView
         android:id="@+id/image"
-        android:layout_width="63dp"
-        android:layout_height="63dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:scaleType="centerCrop"
+      android:layout_marginBottom="2dp"
+      android:layout_marginTop="2dp"
+      android:layout_marginRight="2dp"
+      android:layout_marginLeft="2dp"
         android:src="@drawable/ic_launcherd" />
 </LinearLayout>
 
 
-<LinearLayout 
+<LinearLayout
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:gravity="center"
@@ -56,7 +61,7 @@ android:orientation="vertical">
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginBottom="2dp"
         android:gravity="center"
         android:background="?colorPrimary"

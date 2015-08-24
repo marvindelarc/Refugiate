@@ -12,6 +12,8 @@ import Entidades.clsEmpresa;
 import Entidades.clsInstalacion;
 import Entidades.clsServicio;
 import Entidades.clsSucursal;
+import Entidades.clsTipoHabitacion;
+import Entidades.clsUsuario;
 import UTILIDADES.Base64;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -74,7 +76,6 @@ public class servicio extends HttpServlet {
                         entidadJSON.put("ruc",entidad.getRuc());
                         entidadJSON.put("puntos",entidad.getPuntos());
                         entidadJSON.put("estado",entidad.getEstado());
-                        entidadJSON.put("banner",Base64.encodeToString(entidad.getBanner(),Base64.NO_WRAP|Base64.URL_SAFE));
                         entidadJSON.put("logo",Base64.encodeToString(entidad.getLogo(),Base64.NO_WRAP|Base64.URL_SAFE));
                         listEmpresaJSON.add(entidadJSON);
                     }
@@ -162,6 +163,35 @@ public class servicio extends HttpServlet {
                     }
                 }
                 obj.put("listCostoTipoHabitacionJSON",listCostoTipoHabitacionJSON);
+                
+                
+                JSONArray listTipoHabitacionJSON = new JSONArray();
+                List<clsTipoHabitacion> listaTipoHabitacion=clsGestor.ListarTipoHabitacion(false);
+                if(listaTipoHabitacion!=null)
+                {      
+                   for(clsTipoHabitacion entidad : listaTipoHabitacion)
+                    {  
+                        JSONObject entidadJSON=new JSONObject();
+                        entidadJSON.put("idTipoHabitacion",entidad.getIdTipoHabitacion());
+                        entidadJSON.put("nombreComercial",entidad.getNombreComercial());
+
+                        listTipoHabitacionJSON.add(entidadJSON);
+                    }
+                }
+                obj.put("listTipoHabitacionJSON",listTipoHabitacionJSON);
+            }
+            else  if(idServicio==2 && request.getParameter("nombre") != null && request.getParameter("nombre") != "" 
+                    && request.getParameter("apellido") != null && request.getParameter("apellido") != ""
+                    && request.getParameter("telefono") != null && request.getParameter("telefono") != ""
+                    && request.getParameter("email") != null && request.getParameter("email") != ""
+                    && request.getParameter("dni") != null && request.getParameter("dni") != ""
+                    && request.getParameter("usuario") != null && request.getParameter("usuario") != ""
+                    && request.getParameter("password") != null && request.getParameter("password") != ""
+                    && request.getParameter("sexo") != null && request.getParameter("sexo") != ""
+                    && request.getParameter("fecnac") != null && request.getParameter("fecnac") != "")
+            {
+                
+                
             }
             
             

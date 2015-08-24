@@ -18,5 +18,35 @@
         android:background="@drawable/clear_map"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/btnLlamarTelefono"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:drawableTop="@drawable/ic_filter"/>
+    <Button
+        android:id="@+id/btnLlamarTelefono2"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:drawableTop="@drawable/ic_filter"/>
+    <Button
+        android:id="@+id/btnLlamarTelefono1"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:drawableTop="@drawable/ic_filter"/>
   
 </RelativeLayout>

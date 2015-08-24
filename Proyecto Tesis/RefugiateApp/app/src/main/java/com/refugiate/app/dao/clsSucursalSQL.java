@@ -11,8 +11,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.refugiate.app.entidades.clsDepartamento;
 import com.refugiate.app.entidades.clsDistrito;
 import com.refugiate.app.entidades.clsEmpresa;
+import com.refugiate.app.entidades.clsProvincia;
 import com.refugiate.app.entidades.clsSucursal;
 
 import java.util.ArrayList;
@@ -61,12 +63,30 @@ public class clsSucursalSQL {
             String query="select suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
-                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner from "+NOMBRE_TABLA +
-                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa  where suc.estado=2";
+                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre from "+NOMBRE_TABLA +
+                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
+                    "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
+                    "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
+                    "dep.int_id_depatamento=pro.int_id_depatamento where suc.estado=2";
 
             Cursor fila=bd.rawQuery(query,null);
             if (fila.moveToFirst())
             {
+                clsDepartamento ObjDepartamento = new clsDepartamento();
+                ObjDepartamento.setInt_id_depatamento(fila.getInt(26));
+                ObjDepartamento.setStr_nombre(fila.getString(27));
+
+                clsProvincia objProvincia = new clsProvincia();
+                objProvincia.setInt_id_provincia(fila.getInt(24));
+                objProvincia.setStr_nombre(fila.getString(25));
+                objProvincia.setObjDepartamento(ObjDepartamento);
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setInt_id_distrito(fila.getInt(13));
+                objDistrito.setStr_nombre(fila.getString(23));
+                objDistrito.setObjProvincia(objProvincia);
+
                 clsEmpresa objEmpresa=new clsEmpresa();
                 objEmpresa.setIdEmpresa(fila.getInt(14));
                 objEmpresa.setNombreComercial(fila.getString(15));
@@ -92,7 +112,7 @@ public class clsSucursalSQL {
                 entidad.setNivel(fila.getInt(10));
                 entidad.setEntrada(fila.getString(11));
                 entidad.setEstado(fila.getInt(12));
-                entidad.setObjDistrito(new clsDistrito(fila.getInt(13)));
+                entidad.setObjDistrito(objDistrito);
                 entidad.setObjEmpresa(objEmpresa);
 
             }
@@ -111,12 +131,31 @@ public class clsSucursalSQL {
             String query="select suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
-                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner from "+NOMBRE_TABLA +
-                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa  where suc.idSucursal="+id;
+                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre from "+NOMBRE_TABLA +
+                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
+                    "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
+                    "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
+                    "dep.int_id_depatamento=pro.int_id_depatamento  where suc.idSucursal="+id;
 
             Cursor fila=bd.rawQuery(query,null);
             if (fila.moveToFirst())
             {
+
+                clsDepartamento ObjDepartamento = new clsDepartamento();
+                ObjDepartamento.setInt_id_depatamento(fila.getInt(26));
+                ObjDepartamento.setStr_nombre(fila.getString(27));
+
+                clsProvincia objProvincia = new clsProvincia();
+                objProvincia.setInt_id_provincia(fila.getInt(24));
+                objProvincia.setStr_nombre(fila.getString(25));
+                objProvincia.setObjDepartamento(ObjDepartamento);
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setInt_id_distrito(fila.getInt(13));
+                objDistrito.setStr_nombre(fila.getString(23));
+                objDistrito.setObjProvincia(objProvincia);
+
                 clsEmpresa objEmpresa=new clsEmpresa();
                 objEmpresa.setIdEmpresa(fila.getInt(14));
                 objEmpresa.setNombreComercial(fila.getString(15));
@@ -142,7 +181,7 @@ public class clsSucursalSQL {
                 entidad.setNivel(fila.getInt(10));
                 entidad.setEntrada(fila.getString(11));
                 entidad.setEstado(fila.getInt(12));
-                entidad.setObjDistrito(new clsDistrito(fila.getInt(13)));
+                entidad.setObjDistrito(objDistrito);
                 entidad.setObjEmpresa(objEmpresa);
 
             }
@@ -181,14 +220,32 @@ public class clsSucursalSQL {
             String query="select suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
-                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner from "+NOMBRE_TABLA +
-                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa";
+                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre from "+NOMBRE_TABLA +
+                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
+                    "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
+                    "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
+                    "dep.int_id_depatamento=pro.int_id_depatamento";
 
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();
             fila.moveToFirst();
             for (int i = 0; i < numRows; ++i)
             {
+
+                clsDepartamento ObjDepartamento = new clsDepartamento();
+                ObjDepartamento.setInt_id_depatamento(fila.getInt(26));
+                ObjDepartamento.setStr_nombre(fila.getString(27));
+
+                clsProvincia objProvincia = new clsProvincia();
+                objProvincia.setInt_id_provincia(fila.getInt(24));
+                objProvincia.setStr_nombre(fila.getString(25));
+                objProvincia.setObjDepartamento(ObjDepartamento);
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setInt_id_distrito(fila.getInt(13));
+                objDistrito.setStr_nombre(fila.getString(23));
+                objDistrito.setObjProvincia(objProvincia);
 
                 clsEmpresa objEmpresa=new clsEmpresa();
                 objEmpresa.setIdEmpresa(fila.getInt(14));
@@ -215,7 +272,7 @@ public class clsSucursalSQL {
                 entidad.setNivel(fila.getInt(10));
                 entidad.setEntrada(fila.getString(11));
                 entidad.setEstado(fila.getInt(12));
-                entidad.setObjDistrito(new clsDistrito(fila.getInt(13)));
+                entidad.setObjDistrito(objDistrito);
                 entidad.setObjEmpresa(objEmpresa);
                 list.add(entidad);
 
