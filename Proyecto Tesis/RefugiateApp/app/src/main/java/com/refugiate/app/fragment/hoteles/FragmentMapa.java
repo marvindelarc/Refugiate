@@ -86,7 +86,7 @@ public class FragmentMapa extends Fragment implements LocationListener,GoogleMap
             @Override
             public void onClick(View v) {
 
-
+                addMaker();
                 googleMap.moveCamera(CameraUpdateFactory.zoomTo(18));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(puntosGPS));
 
@@ -380,6 +380,7 @@ public class FragmentMapa extends Fragment implements LocationListener,GoogleMap
         polyoptions.color(color);
         polyoptions.width(5);
         polyoptions.addAll(mPolyOptions.getPoints());
+        googleMap.addPolyline(polyoptions);
         pd.dismiss();
         btnClear.setVisibility(View.VISIBLE);
 

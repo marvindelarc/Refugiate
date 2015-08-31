@@ -41,6 +41,7 @@ public class SQLite extends SQLiteOpenHelper {
                                   + "limpieza integer ,"
                                   + "servicio integer ,"
                                   + "comodidad integer ,"
+                                 + "paquete integer ,"
                                   + "puntuacion integer ,"
                                   + "nivel integer ,"
                                   + "entrada text ,"
@@ -94,6 +95,7 @@ public class SQLite extends SQLiteOpenHelper {
             + "email text ,"
             + "DNI text ,"
             + "fecnac numeric ,"
+            + "sexo integer ,"
             + "usuario text ,"
             + "password text)";
 

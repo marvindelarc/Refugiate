@@ -20,13 +20,15 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal" >
             <EditText
-                android:id="@+id/txtNombresPersona"
+                android:id="@+id/txtFiltro"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/border"
                 android:paddingLeft="12dp"
                 android:drawableRight="@drawable/ic_search"
                 android:gravity="center"
+                android:inputType="text"
+                android:digits="0123456789áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ_-#@ "
                 android:hint="@string/app_name"
                 android:textSize="14dp"
                 android:ems="10"
@@ -55,10 +57,10 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button"
-        android:layout_below="@+id/btnLlamarTelefono2"
+        android:layout_below="@+id/btnRangoFiltro"
         android:drawableTop="@drawable/ic_filter"/>
     <Button
-        android:id="@+id/btnLlamarTelefono2"
+        android:id="@+id/btnRangoFiltro"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"

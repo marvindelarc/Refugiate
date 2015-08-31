@@ -57,8 +57,8 @@ private clsSucursal entidad;
                 btnTabs(4);
             }
         });
-/*
-        if(entidad.getObjEmpresa().isPaquete()) {
+
+        if(entidad.isPaquete()) {
             Tab3.setVisibility(View.VISIBLE);
             Tab4.setVisibility(View.VISIBLE);
         }
@@ -66,7 +66,9 @@ private clsSucursal entidad;
         {
             Tab3.setVisibility(View.INVISIBLE);
             Tab4.setVisibility(View.INVISIBLE);
-        }*/
+        }
+        TextView lblHotel = (TextView)view.findViewById(R.id.lblHotel);
+        lblHotel.setText(entidad.getObjEmpresa().getNombreComercial());
 
         TextView lblSlogan = (TextView)view.findViewById(R.id.lblSlogan);
         lblSlogan.setText(entidad.getObjEmpresa().getSlogan());

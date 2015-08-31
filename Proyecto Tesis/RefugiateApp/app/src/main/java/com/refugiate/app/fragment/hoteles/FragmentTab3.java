@@ -7,18 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.refugiate.app.dao.clsSucursalSQL;
+import com.refugiate.app.entidades.clsSucursal;
 import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
 
 
 public class FragmentTab3 extends Fragment {
 
+    private clsSucursal entidad;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tabs_3, container, false);
-
+        entidad= clsSucursalSQL.getSeleccionado(this.getActivity());
         Button btnTab1 = (Button) view.findViewById(R.id.btnTab1);
 
         btnTab1.setOnClickListener(new View.OnClickListener() {

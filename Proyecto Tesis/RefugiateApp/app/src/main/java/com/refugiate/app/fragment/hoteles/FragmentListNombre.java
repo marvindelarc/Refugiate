@@ -1,25 +1,33 @@
 package com.refugiate.app.fragment.hoteles;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.entidades.clsSucursal;
 import com.refugiate.app.fragment.hoteles.FragmentTab1;
 import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
+import com.refugiate.app.utilidades.Utilidades;
+import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 import java.util.List;
 
@@ -29,40 +37,54 @@ public class FragmentListNombre extends Fragment {
     private List<clsSucursal> itens;
     private AdaptadorTitulares adaptador;
     private ListView listHoteles;
+    private EditText txtFiltro;
+    private RangeSeekBar rangebarEstrellas;
+    private RangeSeekBar rangebarPuntos;
+    private RangeSeekBar rangebarComodidad;
+    private RangeSeekBar ratingLimpieza;
+    private RangeSeekBar ratingServicio;
+
+    private int inicioEstrellas=0;
+    private int finEstrellas=5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_nombre, container, false);
         ((MainActivity)  getActivity()).getSupportActionBar().setTitle(this.getString(R.string.lbl_item_dw_1_1));
+        Button btnRangoFiltro = (Button) view.findViewById(R.id.btnRangoFiltro);
+        btnRangoFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnRangoFiltro();
+            }
+        });
         listHoteles = (ListView)view.findViewById(R.id.listHoteles);
-        getLista();
+        txtFiltro = (EditText)view.findViewById(R.id.txtFiltro);
+        txtFiltro.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,int count) {
+                getLista(s.toString().trim());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        getLista("");
 
         return view;
     }
 
-    public void getLista()
+    public void getLista(String filtro)
     {
-        /*
-        itens=clsComentarioSQL.Listar(this);
-        if(itens!=null && itens.size()>0)
-        {
-            adaptador = new AdaptadorTitulares(this);
 
-            listHoteles.setAdapter(adaptador);
-            listHoteles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View v, int posicion, long id) {
-//                    selecion(posicion);
-
-
-                }
-            });
-
-        }
-        */
-
-        itens= clsSucursalSQL.Listar(this.getActivity());
+        itens= clsSucursalSQL.Filtrar(this.getActivity(),filtro);
 
 
         adaptador = new AdaptadorTitulares(this.getActivity());
@@ -91,6 +113,11 @@ public class FragmentListNombre extends Fragment {
             LayoutInflater inflater = context.getLayoutInflater();
             View item = inflater.inflate(R.layout.lista_hoteles, null);
 
+            TextView lblUbigeo = (TextView)item.findViewById(R.id.lblUbigeo);
+            lblUbigeo.setText(itens.get(position).getObjDistrito().getObjProvincia().getObjDepartamento().getStr_nombre()
+                            +" - "+itens.get(position).getObjDistrito().getObjProvincia().getStr_nombre()
+                            +" - "+itens.get(position).getObjDistrito().getStr_nombre());
+
 
             TextView lblNombre = (TextView)item.findViewById(R.id.lblNombre);
             lblNombre.setText(itens.get(position).getObjEmpresa().getNombreComercial());
@@ -112,6 +139,98 @@ public class FragmentListNombre extends Fragment {
         clsSucursalSQL.setSeleccionado(this.getActivity(),itens.get(posicion).getIdSucursal());
         ((MainActivity)getActivity()).setFragment(new FragmentTab1());
 
+    }
+    public void btnRangoFiltro()
+    {
+        Dialog dialog = new Dialog(this.getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        //dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_filtro_rango);
+
+        final TextView lblrangebarEstrellas = (TextView)dialog.findViewById(R.id.lblrangebarEstrellas);
+        lblrangebarEstrellas.setText("1 a 5");
+
+        rangebarEstrellas = (RangeSeekBar)dialog.findViewById(R.id.rangebarEstrellas);
+        //rangeSeekBar.setRangeValues(15, 90);
+
+        rangebarEstrellas.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                // handle changed range values
+                lblrangebarEstrellas.setText("" + minValue + " a " + maxValue);
+            }
+        });
+
+        final TextView lblrangebarPuntos = (TextView)dialog.findViewById(R.id.lblrangebarPuntos);
+        lblrangebarPuntos.setText("1 a 5");
+
+        rangebarPuntos = (RangeSeekBar)dialog.findViewById(R.id.rangebarPuntos);
+        //rangeSeekBar.setRangeValues(15, 90);
+
+        rangebarPuntos.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                // handle changed range values
+                lblrangebarPuntos.setText("" + minValue + " a " + maxValue);
+            }
+        });
+
+
+        final TextView lblrangebarComodidad = (TextView)dialog.findViewById(R.id.lblrangebarComodidad);
+        lblrangebarComodidad.setText("1 a 5");
+
+        rangebarComodidad = (RangeSeekBar)dialog.findViewById(R.id.rangebarComodidad);
+        rangebarComodidad.setRangeValues(15, 90);
+
+        rangebarComodidad.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                // handle changed range values
+                lblrangebarComodidad.setText("" + minValue + " a " + maxValue);
+            }
+        });
+
+
+        final TextView lblrangebarLimpieza = (TextView)dialog.findViewById(R.id.lblrangebarLimpieza);
+        lblrangebarLimpieza.setText("1 a 5");
+
+        ratingLimpieza = (RangeSeekBar)dialog.findViewById(R.id.rangebarComodidad);
+        //rangebarComodidad.setRangeValues(15, 90);
+
+        ratingLimpieza.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                // handle changed range values
+                lblrangebarLimpieza.setText("" + minValue + " a " + maxValue);
+            }
+        });
+
+
+        final TextView lblrangebarServicio = (TextView)dialog.findViewById(R.id.lblrangebarServicio);
+        lblrangebarServicio.setText("1 a 5");
+
+        ratingServicio = (RangeSeekBar)dialog.findViewById(R.id.ratingServicio);
+        //rangebarComodidad.setRangeValues(15, 90);
+
+        ratingServicio.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                // handle changed range values
+                lblrangebarServicio.setText("" + minValue + " a " + maxValue);
+            }
+        });
+
+
+
+                /*Button btnCancelarAbaut = (Button) dialog.findViewById(R.id.btnCancelarAbaut);
+                btnCancelarAbaut.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });*/
+        dialog.show();
     }
 
 }

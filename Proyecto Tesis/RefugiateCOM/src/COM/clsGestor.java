@@ -260,6 +260,11 @@ public class clsGestor {
     {
         return clsPersonaDAO.actualizar(entidad);
     }    
+    
+    public static clsPersona loginPersona(String usuario,String password) throws Exception
+    {
+        return clsPersonaDAO.login(usuario, password);
+    } 
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsPromociones">

@@ -22,12 +22,11 @@ public class clsEmpresa {
     private byte[] logo;
     private byte[] banner;
     private int estado;
-    private boolean paquete;
+
 
     public clsEmpresa() {
         this.logo=null;
         this.banner=null;
-        this.paquete=false;
     }
 
     public clsEmpresa(int idEmpresa) {
@@ -122,11 +121,4 @@ public class clsEmpresa {
         this.fechaUpdate = fechaUpdate;
     }
 
-    public boolean isPaquete() {
-        return paquete;
-    }
-
-    public void setPaquete(boolean paquete) {
-        this.paquete = paquete;
-    }
 }

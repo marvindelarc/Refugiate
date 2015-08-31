@@ -4,12 +4,18 @@
     tools:context=".MainActivity">
 
     <item android:id="@+id/telefono"
-        android:title="@string/menu_telefono"
+        android:title="@string/menu_sesion"
         android:icon="@drawable/fono"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/sesion"
+        android:title="@string/menu_compatir"
+        android:icon="@drawable/sesion"
         app:showAsAction="always" />
 
     <item android:id="@+id/compartir"
         android:title="@string/menu_compatir"
         android:icon="@drawable/shared"
         app:showAsAction="always" />
+
 </menu>

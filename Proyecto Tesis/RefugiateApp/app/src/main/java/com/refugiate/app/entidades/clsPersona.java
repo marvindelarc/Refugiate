@@ -26,6 +26,7 @@ public class clsPersona {
     private int honrrades;
     private int educacion;
     private int calificacion;
+    private boolean sexo;
 
     public clsPersona() {
     }
@@ -141,5 +142,13 @@ public class clsPersona {
 
     public void setFecnac(Date fecnac) {
         this.fecnac = fecnac;
+    }
+
+    public boolean isSexo() {
+        return sexo;
+    }
+
+    public void setSexo(boolean sexo) {
+        this.sexo = sexo;
     }
 }

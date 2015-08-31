@@ -1,8 +1,10 @@
 package com.refugiate.app.ui;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,7 +40,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.refugiate.app.dao.clsConfiguracionSQL;
+import com.refugiate.app.dao.clsPersonaSQL;
+import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.entidades.clsConfiguracion;
+import com.refugiate.app.entidades.clsPersona;
+import com.refugiate.app.entidades.clsSucursal;
+import com.refugiate.app.fragment.cuenta.FragmentHistorial;
+import com.refugiate.app.fragment.cuenta.FragmentLogin;
 import com.refugiate.app.fragment.hoteles.FragmentListNombre;
 import com.refugiate.app.fragment.hoteles.FragmentMapa;
 import com.refugiate.app.fragment.cuenta.FragmentPerfil;
@@ -74,6 +83,9 @@ public class MainActivity extends  AppCompatActivity {
     int colorPrimary, textColorPrimary, colorControlHighlight, colorBackground;
     public Menu mOptionsMenu=null;
     private int mapa=0;
+    private int registro=0;
+
+    private clsPersona entidad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +97,12 @@ public class MainActivity extends  AppCompatActivity {
         setSupportActionBar(toolbar);
         setupNavigationDrawer();
 
+        entidad= clsPersonaSQL.getSeleccionado(this);
+
         fragmentManager = this.getSupportFragmentManager();
 
         getitemClickSupport1(0);
+
 
     }
 
@@ -660,7 +675,7 @@ public class MainActivity extends  AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 //dialog.setCancelable(false);
-                dialog.setContentView(R.layout.dialog_calificacion);
+                dialog.setContentView(R.layout.dialog_filtro_rango);
                 /*Button btnCancelarAbaut = (Button) dialog.findViewById(R.id.btnCancelarAbaut);
                 btnCancelarAbaut.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -705,17 +720,33 @@ public class MainActivity extends  AppCompatActivity {
     {
         if(mOptionsMenu!=null)
             mOptionsMenu.getItem(0).setVisible(false);
+        entidad= clsPersonaSQL.getSeleccionado(this);
         switch (position)
         {
             case 0:
+                if(entidad==null) {
+                    registro=0;
+                    setFragment(new FragmentLogin());
+                }
+                else
                 setFragment(new FragmentPerfil());
+
                 break;
             case 1:
+                if(entidad==null) {
+                    registro=1;
+                    setFragment(new FragmentLogin());
+                }
+                else
                 setFragment(new FragmentReservas());
                 break;
             case 2:
-                setFragment(new FragmentRegistro());
-                //setFragment(new FragmentHistorial());
+                if(entidad==null) {
+                    registro=2;
+                    setFragment(new FragmentLogin());
+                }
+                else
+                setFragment(new FragmentHistorial());
                 break;
             default:
                 break;
@@ -742,10 +773,30 @@ public class MainActivity extends  AppCompatActivity {
                     case "FragmentTab4":
                     case "FragmentTab5":
                         if(mapa==0)
-                        setFragment(new FragmentMapa());
+                            setFragment(new FragmentMapa());
                         else
-                        setFragment(new FragmentListNombre());
+                            setFragment(new FragmentListNombre());
                         mOptionsMenu.getItem(0).setVisible(false);
+                        break;
+                    case "FragmentLogin":
+
+                        getitemClickSupport2(registro);
+                        break;
+                    case "FragmentRegistro":
+                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                        alert.setTitle(getString(R.string.alert_retroceder));
+                        alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                setFragment(new FragmentLogin());
+                            }
+                        });
+                        alert.setNegativeButton(getString(R.string.str_btnCancelar), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }
+                        });
+                        alert.show();
+
                         break;
                     default:
                         break;
@@ -771,14 +822,13 @@ public class MainActivity extends  AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.telefono:
-                /*
                 clsSucursal objSucural= clsSucursalSQL.getSeleccionado(this);
                 if(objSucural!=null)
                     if(!objSucural.getTelefono().equals("") && !objSucural.getTelefono().equals(null)) {
                         Intent intent = new Intent(Intent.ACTION_CALL);
                         intent.setData(Uri.parse("tel:" + objSucural.getTelefono()));
                         startActivity(intent);
-                    }*/
+                    }
                 return true;
             case R.id.compartir:
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -786,6 +836,22 @@ public class MainActivity extends  AppCompatActivity {
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.compartir_sms));
                 startActivity(Intent.createChooser(sharingIntent,getString(R.string.compartir_via)));
 
+                return true;
+            case R.id.sesion:
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle(getString(R.string.alert_sesion));
+                alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        clsPersonaSQL.Borrar(MainActivity.this);
+                        mOptionsMenu.getItem(1).setVisible(false);
+                    }
+                });
+                alert.setNegativeButton(getString(R.string.str_btnCancelar), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                });
+                alert.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -797,6 +863,8 @@ public class MainActivity extends  AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
             menu.getItem(0).setVisible(false);
+            if(entidad==null)
+                menu.getItem(1).setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
 

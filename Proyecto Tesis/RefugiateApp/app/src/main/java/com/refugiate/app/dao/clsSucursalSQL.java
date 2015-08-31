@@ -45,6 +45,8 @@ public class clsSucursalSQL {
             registro.put("nivel", entidad.getNivel());
             registro.put("entrada", entidad.getEntrada());
             registro.put("estado", entidad.getEstado());
+            registro.put("paquete", (entidad.isPaquete())?1:0);
+
             registro.put("int_id_distrito", entidad.getObjDistrito().getInt_id_distrito());
             registro.put("idEmpresa", entidad.getObjEmpresa().getIdEmpresa());
             id = (int) bd.insert(NOMBRE_TABLA, null, registro);
@@ -64,7 +66,7 @@ public class clsSucursalSQL {
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
                     "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
-                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre from "+NOMBRE_TABLA +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre,suc.paquete from "+NOMBRE_TABLA +
                     " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
@@ -114,6 +116,7 @@ public class clsSucursalSQL {
                 entidad.setEstado(fila.getInt(12));
                 entidad.setObjDistrito(objDistrito);
                 entidad.setObjEmpresa(objEmpresa);
+                entidad.setPaquete((fila.getInt(28) == 1) ? true : false);
 
             }
         }
@@ -132,7 +135,7 @@ public class clsSucursalSQL {
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
                     "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
-                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre from "+NOMBRE_TABLA +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre,suc.paquete from "+NOMBRE_TABLA +
                     " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
@@ -183,6 +186,7 @@ public class clsSucursalSQL {
                 entidad.setEstado(fila.getInt(12));
                 entidad.setObjDistrito(objDistrito);
                 entidad.setObjEmpresa(objEmpresa);
+                entidad.setPaquete((fila.getInt(28) == 1) ? true:false);
 
             }
         }
@@ -221,7 +225,7 @@ public class clsSucursalSQL {
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
                     "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
-                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre from "+NOMBRE_TABLA +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre,suc.paquete from "+NOMBRE_TABLA +
                     " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
@@ -274,6 +278,84 @@ public class clsSucursalSQL {
                 entidad.setEstado(fila.getInt(12));
                 entidad.setObjDistrito(objDistrito);
                 entidad.setObjEmpresa(objEmpresa);
+                entidad.setPaquete((fila.getInt(28) == 1) ? true:false);
+                list.add(entidad);
+
+                fila.moveToNext();
+            }
+        }
+        bd.close();
+        return list;
+    }
+
+    public static List<clsSucursal> Filtrar(Context context,String filtro)
+    {
+        List<clsSucursal> list=new ArrayList<clsSucursal>();
+        SQLite admin=new SQLite(context, null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        if(bd!=null)
+        {
+            String query="select suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
+                    "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
+                    "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
+                    "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
+                    "pro.int_id_provincia,pro.str_nombre,dep.int_id_depatamento,dep.str_nombre,suc.paquete from "+NOMBRE_TABLA +
+                    " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
+                    "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
+                    "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
+                    "dep.int_id_depatamento=pro.int_id_depatamento where suc.direccion like '%"+filtro+"%' or suc.pisos like '%"+filtro+"%' " +
+                    "or suc.telefono like '%"+filtro+"%' or suc.entrada like '%"+filtro+"%' or emp.nombreComercial like '%"+filtro+"%' " +
+                    "or emp.slogan like '%"+filtro+"%' or emp.ruc like '%"+filtro+"%' or dist.str_nombre like '%"+filtro+"%' " +
+                    "or pro.str_nombre like '%"+filtro+"%' or dep.str_nombre like '%"+filtro+"%'";
+
+            Cursor fila=bd.rawQuery(query,null);
+            int numRows = fila.getCount();
+            fila.moveToFirst();
+            for (int i = 0; i < numRows; ++i)
+            {
+
+                clsDepartamento ObjDepartamento = new clsDepartamento();
+                ObjDepartamento.setInt_id_depatamento(fila.getInt(26));
+                ObjDepartamento.setStr_nombre(fila.getString(27));
+
+                clsProvincia objProvincia = new clsProvincia();
+                objProvincia.setInt_id_provincia(fila.getInt(24));
+                objProvincia.setStr_nombre(fila.getString(25));
+                objProvincia.setObjDepartamento(ObjDepartamento);
+
+                clsDistrito objDistrito = new clsDistrito();
+                objDistrito.setInt_id_distrito(fila.getInt(13));
+                objDistrito.setStr_nombre(fila.getString(23));
+                objDistrito.setObjProvincia(objProvincia);
+
+                clsEmpresa objEmpresa=new clsEmpresa();
+                objEmpresa.setIdEmpresa(fila.getInt(14));
+                objEmpresa.setNombreComercial(fila.getString(15));
+                objEmpresa.setNombre(fila.getString(16));
+                objEmpresa.setSlogan(fila.getString(17));
+                objEmpresa.setRuc(fila.getString(18));
+                objEmpresa.setPuntos(fila.getInt(19));
+                objEmpresa.setEstado(fila.getInt(20));
+                objEmpresa.setLogo(fila.getBlob(21));
+                objEmpresa.setBanner(fila.getBlob(22));
+
+                clsSucursal entidad= new clsSucursal();
+                entidad.setIdSucursal(fila.getInt(0));
+                entidad.setDireccion(fila.getString(1));
+                entidad.setPisos(fila.getInt(2));
+                entidad.setTelefono(fila.getString(3));
+                entidad.setLongitud(fila.getDouble(4));
+                entidad.setLatitud(fila.getDouble(5));
+                entidad.setLimpieza(fila.getInt(6));
+                entidad.setServicio(fila.getInt(7));
+                entidad.setComodidad(fila.getInt(8));
+                entidad.setPuntuacion(fila.getInt(9));
+                entidad.setNivel(fila.getInt(10));
+                entidad.setEntrada(fila.getString(11));
+                entidad.setEstado(fila.getInt(12));
+                entidad.setObjDistrito(objDistrito);
+                entidad.setObjEmpresa(objEmpresa);
+                entidad.setPaquete((fila.getInt(28) == 1) ? true:false);
                 list.add(entidad);
 
                 fila.moveToNext();

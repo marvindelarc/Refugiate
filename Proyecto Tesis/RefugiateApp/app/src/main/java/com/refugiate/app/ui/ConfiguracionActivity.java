@@ -273,6 +273,7 @@ public class ConfiguracionActivity extends Activity {
                     entidad.setPuntuacion(json_data.getInt("puntuacion"));
                     entidad.setNivel(json_data.getInt("nivel"));
                     entidad.setEntrada(json_data.getString("entrada"));
+                    entidad.setPaquete(json_data.getBoolean("paquete"));
                     entidad.setEstado(json_data.getInt("estado"));
                     entidad.setObjDistrito(new clsDistrito(json_data.getInt("idDistrito")));
                     entidad.setObjEmpresa(new clsEmpresa(json_data.getInt("idEmpresa")));

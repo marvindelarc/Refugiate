@@ -36,6 +36,7 @@ public class clsPersonaSQL {
             registro.put("fecnac", entidad.getFecnac().getTime());
             registro.put("usuario", entidad.getUsuario());
             registro.put("password", entidad.getPassword());
+            registro.put("sexo",(entidad.isSexo()) ? 1 : 0);
             id = (int) bd.insert(NOMBRE_TABLA, null, registro);
 
         bd.close();
@@ -49,7 +50,7 @@ public class clsPersonaSQL {
         SQLiteDatabase bd=admin.getWritableDatabase();
         if(bd!=null)
         {
-            String query="select IdPersona,nombre,apellido,telefono,email,DNI,fecnac,usuario,password from "+NOMBRE_TABLA;
+            String query="select IdPersona,nombre,apellido,telefono,email,DNI,fecnac,usuario,password,sexo from "+NOMBRE_TABLA;
 
             Cursor fila=bd.rawQuery(query,null);
             if (fila.moveToFirst())
@@ -64,6 +65,7 @@ public class clsPersonaSQL {
                 entidad.setFecnac(new Date(fila.getLong(6)));
                 entidad.setUsuario(fila.getString(7));
                 entidad.setPassword(fila.getString(8));
+                entidad.setSexo((fila.getInt(9)==1)?true:false);
 
             }
         }

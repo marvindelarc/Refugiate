@@ -8,6 +8,7 @@ package DAO;
 import Entidades.clsPersona;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,7 +90,7 @@ public class clsPersonaDAO {
             stmt.setString(6, entidad.getUsuario());
             stmt.setString(7, entidad.getPassword());            
             stmt.setBoolean(8, entidad.isSexo());
-            stmt.setDate(9, new java.sql.Date(entidad.getFecha().getTime()));
+            stmt.setDate(9, new Date(entidad.getFecnac().getTime()));
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -146,4 +147,45 @@ public class clsPersonaDAO {
         }
         return rpta;
     } 
+    
+    public static clsPersona login(String usuario,String password) throws Exception
+    {
+        clsPersona entidad = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT idPersona,nombres,apellidos,telefono,email,dni,"
+                    + "sexo,fecnac from persona where usuario='"+usuario+"' and password='"+password+"';";
+      
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            if(dr.next())
+            {
+                entidad = new clsPersona();  
+                entidad.setIdPersona(dr.getInt(1));
+                entidad.setNombre(dr.getString(2));
+                entidad.setApellido(dr.getString(3));
+                entidad.setTelefono(dr.getString(4));
+                entidad.setEmail(dr.getString(5));
+                entidad.setDNI(dr.getString(6));
+                entidad.setSexo(dr.getBoolean(7));
+                entidad.setFecnac(dr.getTimestamp(8));
+                
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return entidad;
+    }
 }

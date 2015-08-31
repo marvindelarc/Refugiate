@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 android {
+    signingConfigs {
+    }
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
     defaultConfig {
@@ -15,6 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             zipAlignEnabled true
         }
+        debug {
+        }
     }
     productFlavors {
     }
@@ -27,5 +31,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.+'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.google.android.gms:play-services:7.5.0'
+    compile 'com.yahoo.mobile.client.android.util.rangeseekbar:rangeseekbar-library:0.1.0'
 }
 

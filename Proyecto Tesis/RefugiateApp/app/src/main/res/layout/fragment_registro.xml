@@ -105,6 +105,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:typeface="normal"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:maxLength="9"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="18dp"
@@ -159,11 +162,59 @@
                     android:typeface="normal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:maxLength="8"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:drawableLeft="@drawable/ic_action_dni"
                     android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/radioSex"
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radioMale"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:drawableRight="@drawable/male"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/radio_male" />
+
+                    <RadioButton
+                        android:id="@+id/radioFemale"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:drawableRight="@drawable/female"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/radio_female" />
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -267,6 +318,7 @@
                     android:typeface="normal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:inputType="textPassword"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -295,6 +347,7 @@
                     android:layout_marginRight="5dp"
                     android:textSize="18dp"
                     android:textStyle="bold"
+                    android:inputType="textPassword"
                     android:gravity="center"
                     android:drawableLeft="@drawable/ic_action_pass"
                     android:textAppearance="?android:attr/textAppearanceLarge"/>

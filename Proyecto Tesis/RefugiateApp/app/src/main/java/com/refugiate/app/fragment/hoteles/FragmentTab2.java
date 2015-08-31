@@ -64,7 +64,7 @@ public class FragmentTab2 extends Fragment implements LocationListener,GoogleMap
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // 10 meters
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 20; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 10; // 1 minute
 
     // Declaring a Location Manager
     protected LocationManager locationManager;
@@ -80,7 +80,7 @@ public class FragmentTab2 extends Fragment implements LocationListener,GoogleMap
         Tab4=  (View) view.findViewById(R.id.Tab4);
         entidad= clsSucursalSQL.getSeleccionado(this.getActivity());
 
-        if(entidad.getObjEmpresa().isPaquete()) {
+        if(entidad.isPaquete()) {
             Tab3.setVisibility(View.VISIBLE);
             Tab4.setVisibility(View.VISIBLE);
         }
@@ -125,7 +125,6 @@ public class FragmentTab2 extends Fragment implements LocationListener,GoogleMap
             public void onClick(View v) {
 
                 recorrido=false;
-                googleMap.clear();
                 addMaker();
                 btnClear.setVisibility(View.INVISIBLE);
 
@@ -163,7 +162,7 @@ public class FragmentTab2 extends Fragment implements LocationListener,GoogleMap
 
     public void addMaker()
     {
-
+        googleMap.clear();
         BitmapDescriptor bitmapDescriptor=BitmapDescriptorFactory.fromResource(R.drawable.ic_action_ubigeo);
 
         if(entidad.getNivel()==1)

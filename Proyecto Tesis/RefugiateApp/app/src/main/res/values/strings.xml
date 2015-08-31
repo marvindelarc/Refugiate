@@ -31,6 +31,8 @@
     <string name="str_btnVerDetalle">Ver Detalle</string>
     <string name="str_btnCaminando">Ir Caminando</string>
     <string name="str_btnVehiculo">Ir en Vehiculo</string>
+    <string name="alert_retroceder">¿Desea Retroceder?</string>
+    <string name="alert_sesion">¿Desea Cerrar Sesión?</string>
 
     <!--INICIO REGISTRO -->
     <string name="lbl_nombres_registro">Ingrese Nombres.</string>
@@ -41,9 +43,16 @@
     <string name="lbl_usuario_registro">Ingrese Usuario</string>
     <string name="lbl_clave_registro">Ingrese Clave</string>
     <string name="lbl_reclave_registro">Repita Clave</string>
-    <string name="lbl_fec_nac_registro">Fecha de Nacimiento</string>
+    <string name="lbl_fec_nac_registro">Seleccione Fecha de Nacimiento</string>
     <string name="lbl_tituloregistro">REGISTRO DE USUARIO</string>
+    <string name="lbl_sexo_registro">Seleccione Sexo</string>
+    <string name="radio_male">Hombre</string>
+    <string name="radio_female">Mujer</string>
     <!--FIN REGISTRO -->
+
+
+
+
 
 
     <!--INICIO TABS -->
@@ -56,6 +65,7 @@
     <!--INICIO MENU -->
     <string name="menu_compatir">Compartir</string>
     <string name="menu_telefono">Llamar.</string>
+    <string name="menu_sesion">Cerrar Sesion.</string>
     <string name="compartir_sms">Colocar mensaje</string>
     <string name="compartir_via">COMPARTIR CON:</string>
 
@@ -66,6 +76,7 @@
     <string name="lbl_clave">Ingresar Clave</string>
     <string name="lbl_iniciar_sesion">INICIAR SESION</string>
     <string name="lbl_ingrese_credenciales">INGRESAR CREDENCIALES</string>
+    <string name="lbl_error_credenciales">ERROR CREDENCIALES</string>
     <string name="lbl_registro">Registrarse Aquí</string>
     <!--FIN FragmentLogin -->
 

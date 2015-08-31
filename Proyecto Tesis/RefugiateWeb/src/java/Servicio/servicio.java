@@ -10,6 +10,7 @@ import COM.clsGestor;
 import Entidades.clsCostoTipoHabitacion;
 import Entidades.clsEmpresa;
 import Entidades.clsInstalacion;
+import Entidades.clsPersona;
 import Entidades.clsServicio;
 import Entidades.clsSucursal;
 import Entidades.clsTipoHabitacion;
@@ -102,6 +103,7 @@ public class servicio extends HttpServlet {
                         entidadJSON.put("nivel",entidad.getNivel());
                         entidadJSON.put("entrada",entidad.getEntrada());
                         entidadJSON.put("estado",entidad.getEstado());
+                        entidadJSON.put("paquete",entidad.isPaquete());                        
                         entidadJSON.put("idDistrito",entidad.getObjDistrito().getIdDistrito());
                         entidadJSON.put("idEmpresa",entidad.getObjEmpresa().getIdEmpresa());
 
@@ -190,8 +192,37 @@ public class servicio extends HttpServlet {
                     && request.getParameter("sexo") != null && request.getParameter("sexo") != ""
                     && request.getParameter("fecnac") != null && request.getParameter("fecnac") != "")
             {
+                    clsPersona entidad = new clsPersona();
+                    entidad.setNombre(request.getParameter("nombre"));
+                    entidad.setApellido(request.getParameter("apellido"));
+                    entidad.setTelefono(request.getParameter("telefono"));
+                    entidad.setEmail(request.getParameter("email"));
+                    entidad.setDNI(request.getParameter("dni"));
+                    entidad.setUsuario(request.getParameter("usuario"));
+                    entidad.setPassword(request.getParameter("password"));                    
+                    entidad.setSexo(Boolean.parseBoolean(request.getParameter("sexo")));                    
+                    entidad.setFecnac(new Date(Long.parseLong(request.getParameter("fecnac"))));
+                    
+                    obj.put("idPersona",clsGestor.insertarPersona(entidad));
+                   
                 
-                
+            }
+            else  if(idServicio==3 && request.getParameter("usuario") != null && request.getParameter("usuario") != "" 
+                    && request.getParameter("password") != null && request.getParameter("password") != "")
+            {
+                clsPersona entidad=clsGestor.loginPersona(request.getParameter("usuario"), request.getParameter("password"));
+                if(entidad!=null)
+                {
+                    obj.put("idPersona",entidad.getIdPersona());
+                    obj.put("nombre",entidad.getNombre());
+                    obj.put("apellido",entidad.getApellido());
+                    obj.put("telefono",entidad.getTelefono());
+                    obj.put("email",entidad.getEmail());
+                    obj.put("dni",entidad.getDNI());
+                    obj.put("sexo",entidad.isSexo());
+                    obj.put("fecnac",entidad.getFecnac().getTime());
+                    
+                }
             }
             
             

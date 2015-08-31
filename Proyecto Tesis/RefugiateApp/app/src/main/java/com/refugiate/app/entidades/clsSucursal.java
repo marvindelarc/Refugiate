@@ -30,6 +30,7 @@ public class clsSucursal {
     private int estado;
     private clsDistrito objDistrito;
     private clsEmpresa objEmpresa;
+    private boolean paquete;
 
     public clsSucursal() {
     }
@@ -181,5 +182,12 @@ public class clsSucursal {
     public void setUpdate(Date update) {
         this.update = update;
     }
-    
+
+    public boolean isPaquete() {
+        return paquete;
+    }
+
+    public void setPaquete(boolean paquete) {
+        this.paquete = paquete;
+    }
 }

@@ -94,15 +94,19 @@ public class clsSucursalDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idSucursal,idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,"
-                    + "limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,fechaUpdate,estado FROM sucursal";
+            String sql="SELECT su.idSucursal,su.idEmpresa,su.idDistrito,su.direccion,su.pisos,"
+                    + "su.telefono,su.longitud,su.latitud,su.limpieza,su.servicio,su.comodidad,"
+                    + "su.puntuacion,su.nivel,su.entrada,su.salida,su.fecha,su.fechaUpdate,su.estado,"
+                    + "(CASE WHEN (select id_pago_empresa from pago_empresa where id_sucursal=su.idSucursal "
+                    + "and fechaInicio<now() and now()< fechaFin order by id_pago_empresa desc  limit 1) "
+                    + "is not null THEN 1 ELSE 0 END)as pago FROM sucursal su";
             if(actualizacion!=null)
             {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
-                sql+=" where fechaUpdate<'"+format.format(new Date(actualizacion))+"'"; 
+                sql+=" where su.fechaUpdate<'"+format.format(new Date(actualizacion))+"'"; 
             }
             else
-                sql+=" where estado=1"; 
+                sql+=" where su.estado=1"; 
               conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
@@ -137,6 +141,7 @@ public class clsSucursalDAO {
                 entidad.setFecha(dr.getTimestamp(16));
                 entidad.setUpdate(dr.getTimestamp(17));
                 entidad.setEstado(dr.getInt(18));  
+                entidad.setPaquete(dr.getBoolean(19));  
                 lista.add(entidad);                
             }
         } catch (Exception e) {
