@@ -221,7 +221,7 @@ public class clsSucursalSQL {
         SQLiteDatabase bd=admin.getWritableDatabase();
         if(bd!=null)
         {
-            String query="select suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
+            String query="select distinct suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
                     "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
@@ -229,7 +229,8 @@ public class clsSucursalSQL {
                     " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
-                    "dep.int_id_depatamento=pro.int_id_depatamento";
+                    "dep.int_id_depatamento=pro.int_id_depatamento inner join COSTOTIPOHABITACION as " +
+                    "cos on cos.idSucursal=suc.idSucursal";
 
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();
@@ -288,14 +289,17 @@ public class clsSucursalSQL {
         return list;
     }
 
-    public static List<clsSucursal> Filtrar(Context context,String filtro)
+    public static List<clsSucursal> Filtrar(Context context,String filtro,int iniEstrellas,int finEstrellas,
+                                            int iniPuntos,int finPuntos,int iniComodidad,int finComodidad,
+                                            int iniLimpieza,int finLimpieza,int iniServicio,int finServicio,
+                                            int iniPrecios,int finPrecios)
     {
         List<clsSucursal> list=new ArrayList<clsSucursal>();
         SQLite admin=new SQLite(context, null);
         SQLiteDatabase bd=admin.getWritableDatabase();
         if(bd!=null)
         {
-            String query="select suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
+            String query="select distinct suc.idSucursal,suc.direccion,suc.pisos,suc.telefono,suc.longitud," +
                     "suc.latitud,suc.limpieza,suc.servicio,suc.comodidad,suc.puntuacion,suc.nivel," +
                     "suc.entrada,suc.estado,suc.int_id_distrito,suc.idEmpresa,emp.nombreComercial," +
                     "emp.nombre,emp.slogan,emp.ruc,emp.puntos,emp.estado,emp.logo,emp.banner,dist.str_nombre," +
@@ -303,10 +307,15 @@ public class clsSucursalSQL {
                     " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
-                    "dep.int_id_depatamento=pro.int_id_depatamento where suc.direccion like '%"+filtro+"%' or suc.pisos like '%"+filtro+"%' " +
+                    "dep.int_id_depatamento=pro.int_id_depatamento inner join COSTOTIPOHABITACION as cos on " +
+                    "cos.idSucursal=suc.idSucursal where (suc.direccion like '%"+filtro+"%' or suc.pisos like '%"+filtro+"%' " +
                     "or suc.telefono like '%"+filtro+"%' or suc.entrada like '%"+filtro+"%' or emp.nombreComercial like '%"+filtro+"%' " +
                     "or emp.slogan like '%"+filtro+"%' or emp.ruc like '%"+filtro+"%' or dist.str_nombre like '%"+filtro+"%' " +
-                    "or pro.str_nombre like '%"+filtro+"%' or dep.str_nombre like '%"+filtro+"%'";
+                    "or pro.str_nombre like '%"+filtro+"%' or dep.str_nombre like '%"+filtro+"%') and suc.nivel>="
+                    +iniEstrellas+" and suc.nivel<="+finEstrellas+" and suc.puntuacion>="+iniPuntos+" and suc.puntuacion<="+finPuntos
+                    +" and suc.comodidad>="+iniComodidad+" and suc.comodidad<="+finComodidad+" and suc.limpieza>="+iniLimpieza
+                    +" and suc.limpieza<="+finLimpieza+" and suc.servicio>="+iniServicio+" and suc.servicio<="+finServicio
+                    +" and cos.costo>="+iniPrecios+" and cos.costo<="+finPrecios;
 
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();

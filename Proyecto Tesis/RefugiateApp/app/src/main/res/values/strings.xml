@@ -139,7 +139,7 @@
     <string name="lbl_departamento">Departamento:</string>
     <string name="lbl_provincia">Provincia:</string>
     <string name="lbl_distrito">Distrito:</string>
-
+    <string name="lbl_precios">Precios: S/.</string>
     <string name="lbl_horario">Horario:</string>
     <string name="lbl_telefono">Telefono:</string>
     <string name="lbl_pisos">Pisos:</string>

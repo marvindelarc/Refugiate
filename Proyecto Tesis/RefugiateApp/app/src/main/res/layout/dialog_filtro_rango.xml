@@ -64,6 +64,55 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/lbl_precios"
+                    android:textColor="?android:textColorPrimary"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:typeface="monospace"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/lblrangebarPrecios"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/lbl_estrellas"
+                    android:textColor="?android:textColorPrimary"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:typeface="monospace"
+                    android:textSize="12dp" />
+            </LinearLayout>
+            <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+                android:id="@+id/rangebarPrecios"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary"
+                rsb:absoluteMinValue="1"
+                rsb:absoluteMaxValue="5"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/margin_padding_4"
+                android:orientation="vertical"
+                android:background="?colorPrimary"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:weightSum="1"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/lbl_estrellas"
                     android:textColor="?android:textColorPrimary"
                     android:layout_marginTop="5dp"
@@ -230,7 +279,7 @@
                     android:textSize="12dp" />
             </LinearLayout>
             <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
-                android:id="@+id/ratingLimpieza"
+                android:id="@+id/rangebarLimpieza"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?android:textColorPrimary"
@@ -277,7 +326,7 @@
                     android:textSize="12dp" />
             </LinearLayout>
             <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
-                android:id="@+id/ratingServicio"
+                android:id="@+id/rangebarServicio"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?android:textColorPrimary"

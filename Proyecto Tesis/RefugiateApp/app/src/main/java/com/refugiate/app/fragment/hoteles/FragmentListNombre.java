@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.refugiate.app.dao.clsCostoTipoHabitacionSQL;
 import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.entidades.clsSucursal;
 import com.refugiate.app.fragment.hoteles.FragmentTab1;
@@ -39,18 +41,38 @@ public class FragmentListNombre extends Fragment {
     private ListView listHoteles;
     private EditText txtFiltro;
     private RangeSeekBar rangebarEstrellas;
-    private RangeSeekBar rangebarPuntos;
-    private RangeSeekBar rangebarComodidad;
-    private RangeSeekBar ratingLimpieza;
-    private RangeSeekBar ratingServicio;
-
-    private int inicioEstrellas=0;
+    private int iniEstrellas=1;
     private int finEstrellas=5;
+
+    private RangeSeekBar rangebarPuntos;
+    private int iniPuntos=1;
+    private int finPuntos=5;
+
+    private RangeSeekBar rangebarComodidad;
+    private int iniComodidad=1;
+    private int finComodidad=5;
+
+    private RangeSeekBar rangebarLimpieza;
+    private int iniLimpieza=1;
+    private int finLimpieza=5;
+
+    private RangeSeekBar rangebarServicio;
+    private int iniServicio=1;
+    private int finServicio=5;
+
+    private RangeSeekBar rangebarPrecios;
+    private int iniPrecios;
+    private int finPrecios;
+    private int minCosto;
+    private int maxCosto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_nombre, container, false);
+        iniPrecios=minCosto=clsCostoTipoHabitacionSQL.getMimCosto(this.getActivity());
+        finPrecios=maxCosto=clsCostoTipoHabitacionSQL.getMaxCosto(this.getActivity());
+
         ((MainActivity)  getActivity()).getSupportActionBar().setTitle(this.getString(R.string.lbl_item_dw_1_1));
         Button btnRangoFiltro = (Button) view.findViewById(R.id.btnRangoFiltro);
         btnRangoFiltro.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +106,9 @@ public class FragmentListNombre extends Fragment {
     public void getLista(String filtro)
     {
 
-        itens= clsSucursalSQL.Filtrar(this.getActivity(),filtro);
+        itens= clsSucursalSQL.Filtrar(this.getActivity(),filtro,iniEstrellas,finEstrellas
+                ,iniPuntos,finPuntos,iniComodidad,finComodidad,iniLimpieza,finLimpieza
+                ,iniServicio,finServicio,iniPrecios,finPrecios);
 
 
         adaptador = new AdaptadorTitulares(this.getActivity());
@@ -142,94 +166,125 @@ public class FragmentListNombre extends Fragment {
     }
     public void btnRangoFiltro()
     {
-        Dialog dialog = new Dialog(this.getActivity());
+        final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         //dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_filtro_rango);
+        
+        final TextView lblrangebarPrecios = (TextView)dialog.findViewById(R.id.lblrangebarPrecios);
+        lblrangebarPrecios.setText("" + iniPrecios + " a " + finPrecios);
+        rangebarPrecios = (RangeSeekBar)dialog.findViewById(R.id.rangebarPrecios);
+        rangebarPrecios.setRangeValues(minCosto, maxCosto);
+        rangebarPrecios.setSelectedMinValue(iniPrecios);
+        rangebarPrecios.setSelectedMaxValue(finPrecios);
+        rangebarPrecios.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                // handle changed range values
+                iniPrecios = minValue;
+                finPrecios = maxValue;
+                lblrangebarPrecios.setText("" + iniPrecios + " a " + finPrecios);
+            }
+        });
+
 
         final TextView lblrangebarEstrellas = (TextView)dialog.findViewById(R.id.lblrangebarEstrellas);
         lblrangebarEstrellas.setText("1 a 5");
-
         rangebarEstrellas = (RangeSeekBar)dialog.findViewById(R.id.rangebarEstrellas);
         //rangeSeekBar.setRangeValues(15, 90);
-
+        rangebarEstrellas.setSelectedMinValue(iniEstrellas);
+        rangebarEstrellas.setSelectedMaxValue(finEstrellas);
         rangebarEstrellas.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
                 // handle changed range values
-                lblrangebarEstrellas.setText("" + minValue + " a " + maxValue);
+
+                iniEstrellas = minValue;
+                finEstrellas = maxValue;
+                lblrangebarEstrellas.setText("" + iniEstrellas + " a " + finEstrellas);
             }
         });
+
 
         final TextView lblrangebarPuntos = (TextView)dialog.findViewById(R.id.lblrangebarPuntos);
         lblrangebarPuntos.setText("1 a 5");
 
         rangebarPuntos = (RangeSeekBar)dialog.findViewById(R.id.rangebarPuntos);
         //rangeSeekBar.setRangeValues(15, 90);
-
+        rangebarPuntos.setSelectedMinValue(iniPuntos);
+        rangebarPuntos.setSelectedMaxValue(finPuntos);
         rangebarPuntos.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
                 // handle changed range values
-                lblrangebarPuntos.setText("" + minValue + " a " + maxValue);
+                iniPuntos = minValue;
+                finPuntos = maxValue;
+                lblrangebarPuntos.setText("" + iniPuntos + " a " + finPuntos);
             }
         });
 
 
         final TextView lblrangebarComodidad = (TextView)dialog.findViewById(R.id.lblrangebarComodidad);
         lblrangebarComodidad.setText("1 a 5");
-
         rangebarComodidad = (RangeSeekBar)dialog.findViewById(R.id.rangebarComodidad);
-        rangebarComodidad.setRangeValues(15, 90);
-
+        //rangebarComodidad.setRangeValues(15, 90);
+        rangebarComodidad.setSelectedMinValue(iniComodidad);
+        rangebarComodidad.setSelectedMaxValue(finComodidad);
         rangebarComodidad.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
                 // handle changed range values
-                lblrangebarComodidad.setText("" + minValue + " a " + maxValue);
+                iniComodidad = minValue;
+                finComodidad = maxValue;
+                lblrangebarComodidad.setText("" + iniComodidad + " a " + finComodidad);
             }
         });
 
 
         final TextView lblrangebarLimpieza = (TextView)dialog.findViewById(R.id.lblrangebarLimpieza);
         lblrangebarLimpieza.setText("1 a 5");
-
-        ratingLimpieza = (RangeSeekBar)dialog.findViewById(R.id.rangebarComodidad);
+        rangebarLimpieza = (RangeSeekBar)dialog.findViewById(R.id.rangebarLimpieza);
         //rangebarComodidad.setRangeValues(15, 90);
-
-        ratingLimpieza.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+        rangebarLimpieza.setSelectedMinValue(iniLimpieza);
+        rangebarLimpieza.setSelectedMaxValue(finLimpieza);
+        rangebarLimpieza.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
                 // handle changed range values
-                lblrangebarLimpieza.setText("" + minValue + " a " + maxValue);
+                iniLimpieza = minValue;
+                finLimpieza = maxValue;
+                lblrangebarLimpieza.setText("" + iniLimpieza + " a " + finLimpieza);
             }
         });
 
 
         final TextView lblrangebarServicio = (TextView)dialog.findViewById(R.id.lblrangebarServicio);
         lblrangebarServicio.setText("1 a 5");
-
-        ratingServicio = (RangeSeekBar)dialog.findViewById(R.id.ratingServicio);
+        rangebarServicio = (RangeSeekBar)dialog.findViewById(R.id.rangebarServicio);
         //rangebarComodidad.setRangeValues(15, 90);
-
-        ratingServicio.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+        rangebarServicio.setSelectedMinValue(iniServicio);
+        rangebarServicio.setSelectedMaxValue(finServicio);
+        rangebarServicio.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
                 // handle changed range values
-                lblrangebarServicio.setText("" + minValue + " a " + maxValue);
+                iniServicio = minValue;
+                finServicio = maxValue;
+                lblrangebarServicio.setText("" + iniServicio + " a " + finServicio);
             }
         });
 
 
 
-                /*Button btnCancelarAbaut = (Button) dialog.findViewById(R.id.btnCancelarAbaut);
-                btnCancelarAbaut.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });*/
+        Button btnAceptar = (Button) dialog.findViewById(R.id.btnAceptar);
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  getLista(txtFiltro.getText().toString());
+                  dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 

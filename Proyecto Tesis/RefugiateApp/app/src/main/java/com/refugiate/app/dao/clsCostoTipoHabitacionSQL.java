@@ -8,6 +8,7 @@ package com.refugiate.app.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.refugiate.app.entidades.clsCostoTipoHabitacion;
@@ -38,7 +39,43 @@ public class clsCostoTipoHabitacionSQL {
         return id;
 
     }
+    public static int getMimCosto(Context context)
+    {
+        int rpta=0;
+        SQLite admin=new SQLite(context, null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        if(bd!=null)
+        {
+            String query="select min(costo) from "+NOMBRE_TABLA;
 
+            Cursor fila=bd.rawQuery(query,null);
+            if (fila.moveToFirst())
+            {
+                rpta=(int)fila.getDouble(0)-1;
+            }
+        }
+        bd.close();
+        return rpta;
+    }
+
+    public static int getMaxCosto(Context context)
+    {
+        int rpta=0;
+        SQLite admin=new SQLite(context, null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        if(bd!=null)
+        {
+            String query="select max(costo) from "+NOMBRE_TABLA;
+
+            Cursor fila=bd.rawQuery(query,null);
+            if (fila.moveToFirst())
+            {
+                rpta=(int)fila.getDouble(0)+1;
+            }
+        }
+        bd.close();
+        return rpta;
+    }
 
      public static void Borrar(Context context) {
          SQLite admin=new SQLite(context, null);
