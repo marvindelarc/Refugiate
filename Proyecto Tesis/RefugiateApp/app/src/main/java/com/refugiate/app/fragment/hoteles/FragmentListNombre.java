@@ -2,11 +2,13 @@ package com.refugiate.app.fragment.hoteles;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -23,7 +25,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.refugiate.app.dao.clsCostoTipoHabitacionSQL;
+import com.refugiate.app.dao.clsServicioSQL;
 import com.refugiate.app.dao.clsSucursalSQL;
+import com.refugiate.app.entidades.clsServicio;
 import com.refugiate.app.entidades.clsSucursal;
 import com.refugiate.app.fragment.hoteles.FragmentTab1;
 import com.refugiate.app.ui.MainActivity;
@@ -31,11 +35,14 @@ import com.refugiate.app.ui.R;
 import com.refugiate.app.utilidades.Utilidades;
 import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class FragmentListNombre extends Fragment {
 
+    private List<clsServicio> listServicios;
+    private boolean[] booleanSelectArray;
     private List<clsSucursal> itens;
     private AdaptadorTitulares adaptador;
     private ListView listHoteles;
@@ -66,13 +73,16 @@ public class FragmentListNombre extends Fragment {
     private int minCosto;
     private int maxCosto;
 
+    private int ordenar=0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_nombre, container, false);
         iniPrecios=minCosto=clsCostoTipoHabitacionSQL.getMimCosto(this.getActivity());
         finPrecios=maxCosto=clsCostoTipoHabitacionSQL.getMaxCosto(this.getActivity());
-
+        listServicios= clsServicioSQL.Listar(this.getActivity());
+        booleanSelectArray = new boolean[listServicios.size()];
         ((MainActivity)  getActivity()).getSupportActionBar().setTitle(this.getString(R.string.lbl_item_dw_1_1));
         Button btnRangoFiltro = (Button) view.findViewById(R.id.btnRangoFiltro);
         btnRangoFiltro.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +91,23 @@ public class FragmentListNombre extends Fragment {
                 btnRangoFiltro();
             }
         });
+
+        Button btnOrdenar = (Button) view.findViewById(R.id.btnOrdenar);
+        btnOrdenar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnOrdenar();
+            }
+        });
+
+        Button btnServicios = (Button) view.findViewById(R.id.btnServicios);
+        btnServicios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnServicios();
+            }
+        });
+
         listHoteles = (ListView)view.findViewById(R.id.listHoteles);
         txtFiltro = (EditText)view.findViewById(R.id.txtFiltro);
         txtFiltro.addTextChangedListener(new TextWatcher() {
@@ -105,10 +132,17 @@ public class FragmentListNombre extends Fragment {
 
     public void getLista(String filtro)
     {
+        List<clsServicio> lista=new ArrayList<clsServicio>();
+        for(int i=0;i<booleanSelectArray.length;i++)
+        {
+            if(booleanSelectArray[i])
+                lista.add(listServicios.get(i));
+        }
+
 
         itens= clsSucursalSQL.Filtrar(this.getActivity(),filtro,iniEstrellas,finEstrellas
                 ,iniPuntos,finPuntos,iniComodidad,finComodidad,iniLimpieza,finLimpieza
-                ,iniServicio,finServicio,iniPrecios,finPrecios);
+                ,iniServicio,finServicio,iniPrecios,finPrecios,ordenar,lista);
 
 
         adaptador = new AdaptadorTitulares(this.getActivity());
@@ -286,6 +320,49 @@ public class FragmentListNombre extends Fragment {
             }
         });
         dialog.show();
+    }
+
+    public void btnOrdenar()
+    {
+        CharSequence[] items = getResources().getStringArray(R.array.array_ordenar);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
+        alert.setTitle(getString(R.string.str_ordenar));
+
+        alert.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                ordenar = item;
+                getLista(txtFiltro.getText().toString());
+            }});
+        alert.show();
+    }
+
+    public void btnServicios()
+    {
+        final CharSequence[] items = new String[listServicios.size()];;
+        for(int i=0;i<listServicios.size();i++)
+        {
+            items[i]=listServicios.get(i).getNombre();
+        }
+
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this.getActivity());
+        builder.setTitle(getString(R.string.str_instalacion));
+        builder.setPositiveButton(R.string.str_btnAceptar, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getLista(txtFiltro.getText().toString());
+            }
+        });
+
+//setMultiChoiceItems will allow use to select multiple items from list by clicking on checkbox
+        builder.setMultiChoiceItems(items, booleanSelectArray , new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+            }
+        });
+        builder.show();
     }
 
 }

@@ -22,7 +22,7 @@ import com.refugiate.app.conexion.ServicioHTTP;
 import com.refugiate.app.dao.clsConfiguracionSQL;
 import com.refugiate.app.dao.clsCostoTipoHabitacionSQL;
 import com.refugiate.app.dao.clsEmpresaSQL;
-import com.refugiate.app.dao.clsIntalacionSQL;
+import com.refugiate.app.dao.clsInstalacionSQL;
 import com.refugiate.app.dao.clsServicioSQL;
 import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.dao.clsTipoHabitacionSQL;
@@ -35,7 +35,6 @@ import com.refugiate.app.entidades.clsInstalacion;
 import com.refugiate.app.entidades.clsServicio;
 import com.refugiate.app.entidades.clsSucursal;
 import com.refugiate.app.entidades.clsTipoHabitacion;
-import com.refugiate.app.utilidades.Utilidades;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,7 +92,7 @@ public class ConfiguracionActivity extends Activity {
       private void getComboTiempoActulizacion()
     {
             String[] itens=getResources().getStringArray(R.array.array_configuracion_tiempo_actulizacion);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,itens);       
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,itens);
             adapter.setDropDownViewResource(android.R.layout.simple_list_item_checked);
             ComboTiempoActulizacion.setAdapter(adapter);     
             ComboTiempoActulizacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
@@ -298,7 +297,7 @@ public class ConfiguracionActivity extends Activity {
                     entidad.setDescripcion(json_data.getString("descripcion"));
                     entidad.setObjServicio(new clsServicio(json_data.getInt("idServicio")));
                     entidad.setObjSucursal(new clsSucursal(json_data.getInt("idSucursal")));
-                    clsIntalacionSQL.Agregar(ConfiguracionActivity.this, entidad);
+                    clsInstalacionSQL.Agregar(ConfiguracionActivity.this, entidad);
                 }
                 pdCargar.setTitle(getString(R.string.lbl_cargando_costo_tipo_habitacion));
                 JSONArray listCostoTipoHabitacionJSON = new JSONArray(objeto.getString("listCostoTipoHabitacionJSON"));

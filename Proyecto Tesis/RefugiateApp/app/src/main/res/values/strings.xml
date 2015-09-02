@@ -33,6 +33,23 @@
     <string name="str_btnVehiculo">Ir en Vehiculo</string>
     <string name="alert_retroceder">¿Desea Retroceder?</string>
     <string name="alert_sesion">¿Desea Cerrar Sesión?</string>
+    <string name="str_ordenar">Ordenar por:</string>
+    <string name="str_instalacion">Selecionar Instalciones:</string>
+    <string-array name="array_ordenar">
+        <item >Por Nombre</item>
+        <item >Precio Menor a Mayor</item>
+        <item >Precio Mayor a Menor</item>
+        <item >Menos a mas Estrellas</item>
+        <item >Mas a menos Estrellas</item>
+    </string-array>
+
+    <string name="str_distancia">Busqueda por Distancia:</string>
+    <string-array name="array_distancia">
+        <item >Todos</item>
+        <item >1 Kilometro</item>
+        <item >5 Kilometros</item>
+        <item >10 Kilometros</item>
+    </string-array>
 
     <!--INICIO REGISTRO -->
     <string name="lbl_nombres_registro">Ingrese Nombres.</string>

@@ -8,9 +8,13 @@ package com.refugiate.app.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.refugiate.app.entidades.clsServicio;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class clsServicioSQL {
@@ -34,6 +38,32 @@ public class clsServicioSQL {
 
     }
 
+    public static List<clsServicio> Listar(Context context)
+    {
+        List<clsServicio> list=new ArrayList<clsServicio>();
+        SQLite admin=new SQLite(context, null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        if(bd!=null)
+        {
+            String query="select distinct ser.idServicio,ser.nombre from "+NOMBRE_TABLA+" as ser inner join " +
+                    "INSTALACION as ins on ins.idServicio=ser.idServicio";
+
+            Cursor fila=bd.rawQuery(query,null);
+            int numRows = fila.getCount();
+            fila.moveToFirst();
+            for (int i = 0; i < numRows; ++i)
+            {
+                clsServicio entidad= new clsServicio();
+                entidad.setIdServicio(fila.getInt(0));
+                entidad.setNombre(fila.getString(1));
+                list.add(entidad);
+
+                fila.moveToNext();
+            }
+        }
+        bd.close();
+        return list;
+    }
 
      public static void Borrar(Context context) {
          SQLite admin=new SQLite(context, null);

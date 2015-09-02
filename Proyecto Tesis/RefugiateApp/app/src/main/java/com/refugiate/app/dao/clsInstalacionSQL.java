@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.refugiate.app.entidades.clsInstalacion;
 
 
-public class clsIntalacionSQL {
+public class clsInstalacionSQL {
 
     private static String NOMBRE_TABLA="INSTALACION";
 
@@ -37,8 +37,7 @@ public class clsIntalacionSQL {
 
     }
 
-
-     public static void Borrar(Context context) {
+    public static void Borrar(Context context) {
          SQLite admin=new SQLite(context, null);
          SQLiteDatabase bd=admin.getWritableDatabase();
          bd.delete(NOMBRE_TABLA, null, null);

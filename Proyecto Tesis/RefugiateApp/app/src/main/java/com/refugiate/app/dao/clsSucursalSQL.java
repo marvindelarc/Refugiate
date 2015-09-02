@@ -15,6 +15,7 @@ import com.refugiate.app.entidades.clsDepartamento;
 import com.refugiate.app.entidades.clsDistrito;
 import com.refugiate.app.entidades.clsEmpresa;
 import com.refugiate.app.entidades.clsProvincia;
+import com.refugiate.app.entidades.clsServicio;
 import com.refugiate.app.entidades.clsSucursal;
 
 import java.util.ArrayList;
@@ -214,7 +215,10 @@ public class clsSucursalSQL {
             return false;
 
     }
-    public static List<clsSucursal> Listar(Context context)
+    public static List<clsSucursal> Listar(Context context,int iniEstrellas,int finEstrellas,
+                                           int iniPuntos,int finPuntos,int iniComodidad,int finComodidad,
+                                           int iniLimpieza,int finLimpieza,int iniServicio,int finServicio,
+                                           int iniPrecios,int finPrecios,List<clsServicio> listaServicios)
     {
         List<clsSucursal> list=new ArrayList<clsSucursal>();
         SQLite admin=new SQLite(context, null);
@@ -229,8 +233,30 @@ public class clsSucursalSQL {
                     " as suc inner join EMPRESA as emp on suc.idEmpresa=emp.idEmpresa inner join DISTRITO as dist " +
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
-                    "dep.int_id_depatamento=pro.int_id_depatamento inner join COSTOTIPOHABITACION as " +
-                    "cos on cos.idSucursal=suc.idSucursal";
+                    "dep.int_id_depatamento=pro.int_id_depatamento inner join COSTOTIPOHABITACION as cos on " +
+                    "cos.idSucursal=suc.idSucursal inner join INSTALACION as ins on ins.idSucursal=suc.idSucursal " +
+                    "inner join SERVICIO as ser on ins.idServicio=ser.idServicio where suc.nivel>="
+                    +iniEstrellas+" and suc.nivel<="+finEstrellas+" and suc.puntuacion>="+iniPuntos+" and suc.puntuacion<="+finPuntos
+                    +" and suc.comodidad>="+iniComodidad+" and suc.comodidad<="+finComodidad+" and suc.limpieza>="+iniLimpieza
+                    +" and suc.limpieza<="+finLimpieza+" and suc.servicio>="+iniServicio+" and suc.servicio<="+finServicio
+                    +" and cos.costo>="+iniPrecios+" and cos.costo<="+finPrecios;
+
+            String servicios="";
+            if(listaServicios.size()>0)
+            {
+                String ids="";
+                for(int i=0;i<listaServicios.size();i++)
+                {
+                    if(i==0)
+                        ids=ids+listaServicios.get(i).getIdServicio();
+                    else
+                        ids=ids+","+listaServicios.get(i).getIdServicio();
+                }
+                servicios=" and ser.idServicio in ("+ids+")";
+            }
+            query=query+servicios;
+
+
 
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();
@@ -292,7 +318,7 @@ public class clsSucursalSQL {
     public static List<clsSucursal> Filtrar(Context context,String filtro,int iniEstrellas,int finEstrellas,
                                             int iniPuntos,int finPuntos,int iniComodidad,int finComodidad,
                                             int iniLimpieza,int finLimpieza,int iniServicio,int finServicio,
-                                            int iniPrecios,int finPrecios)
+                                            int iniPrecios,int finPrecios,int ordenar,List<clsServicio> listaServicios)
     {
         List<clsSucursal> list=new ArrayList<clsSucursal>();
         SQLite admin=new SQLite(context, null);
@@ -308,7 +334,8 @@ public class clsSucursalSQL {
                     "on dist.int_id_distrito=suc.int_id_distrito inner join PROVINCIA as pro on " +
                     "pro.int_id_provincia=dist.int_id_provincia  inner join DEPARTAMENTO as dep on " +
                     "dep.int_id_depatamento=pro.int_id_depatamento inner join COSTOTIPOHABITACION as cos on " +
-                    "cos.idSucursal=suc.idSucursal where (suc.direccion like '%"+filtro+"%' or suc.pisos like '%"+filtro+"%' " +
+                    "cos.idSucursal=suc.idSucursal inner join INSTALACION as ins on ins.idSucursal=suc.idSucursal " +
+                    "inner join SERVICIO as ser on ins.idServicio=ser.idServicio where (suc.direccion like '%"+filtro+"%' or suc.pisos like '%"+filtro+"%' " +
                     "or suc.telefono like '%"+filtro+"%' or suc.entrada like '%"+filtro+"%' or emp.nombreComercial like '%"+filtro+"%' " +
                     "or emp.slogan like '%"+filtro+"%' or emp.ruc like '%"+filtro+"%' or dist.str_nombre like '%"+filtro+"%' " +
                     "or pro.str_nombre like '%"+filtro+"%' or dep.str_nombre like '%"+filtro+"%') and suc.nivel>="
@@ -316,6 +343,34 @@ public class clsSucursalSQL {
                     +" and suc.comodidad>="+iniComodidad+" and suc.comodidad<="+finComodidad+" and suc.limpieza>="+iniLimpieza
                     +" and suc.limpieza<="+finLimpieza+" and suc.servicio>="+iniServicio+" and suc.servicio<="+finServicio
                     +" and cos.costo>="+iniPrecios+" and cos.costo<="+finPrecios;
+
+            String servicios="";
+            if(listaServicios.size()>0)
+            {
+                String ids="";
+                for(int i=0;i<listaServicios.size();i++)
+                {
+                    if(i==0)
+                    ids=ids+listaServicios.get(i).getIdServicio();
+                    else
+                        ids=ids+","+listaServicios.get(i).getIdServicio();
+                }
+                servicios=" and ser.idServicio in ("+ids+")";
+            }
+            query=query+servicios;
+
+            String strOrdenar="";
+            if(ordenar==0)
+                strOrdenar=" order by emp.nombreComercial asc";
+            else if(ordenar==1)
+                strOrdenar=" order by cos.costo asc";
+            else if(ordenar==2)
+                strOrdenar=" order by cos.costo desc";
+            else if(ordenar==3)
+                strOrdenar=" order by suc.nivel asc";
+            else if(ordenar==4)
+                strOrdenar=" order by suc.nivel desc";
+                query=query+strOrdenar;
 
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();
