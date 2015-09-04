@@ -41,16 +41,14 @@ public class clsHabitacionDAO {
                 {
                     lista= new ArrayList<clsHabitacion>();                
                 }
-                clsCostoTipoHabitacion ObjCostoTipoHabitacion = new clsCostoTipoHabitacion();
-                ObjCostoTipoHabitacion.setIdCostoTipoHabitacion(dr.getInt(2));
-
+               
                 clsHabitacion entidad = new clsHabitacion();
                 entidad.setIdHabitacion(dr.getInt(1));
-                entidad.setObjCostoTipoHabitacion(ObjCostoTipoHabitacion); 
+                entidad.setObjCostoTipoHabitacion(new clsCostoTipoHabitacion(dr.getInt(2)));  
                 entidad.setNumero(dr.getInt(3));  
                 entidad.setPiso(dr.getInt(4));                   
                 entidad.setEstado(dr.getInt(5));  
-                entidad.setVista(dr.getByte(6));  
+                entidad.setVista(dr.getBoolean(6));  
                 lista.add(entidad);
             }
         } catch (Exception e) {
@@ -67,6 +65,47 @@ public class clsHabitacionDAO {
         return lista;
     }
     
+    public static List<clsHabitacion> ListarDisponibilidad(int idCostoTipoHabitacion) throws Exception
+    {
+        List<clsHabitacion> lista = null;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="SELECT idHabitacion,idCostoTipoHabitacion,numero,piso,estado,vista FROM habitacion "
+                    + "where estado=1 and idCostoTipoHabitacion="+idCostoTipoHabitacion;
+     
+            conn = clsConexion.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            while(dr.next())
+            {
+                if(lista==null)
+                    lista= new ArrayList<clsHabitacion>();    
+                
+                clsHabitacion entidad = new clsHabitacion();
+                entidad.setIdHabitacion(dr.getInt(1));
+                entidad.setObjCostoTipoHabitacion(new clsCostoTipoHabitacion(dr.getInt(2))); 
+                entidad.setNumero(dr.getInt(3));  
+                entidad.setPiso(dr.getInt(4));                   
+                entidad.setEstado(dr.getInt(5));  
+                entidad.setVista(dr.getBoolean(6));  
+                lista.add(entidad);
+            }
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return lista;
+    }
     public  static int insertar(clsHabitacion entidad) throws Exception
     {
         int rpta = 0;
@@ -83,7 +122,7 @@ public class clsHabitacionDAO {
             stmt.setInt(2, entidad.getNumero());
             stmt.setInt(3, entidad.getPiso());
             stmt.setInt(4, entidad.getEstado());
-            stmt.setByte(5, entidad.getVista());
+            stmt.setBoolean(5, entidad.isVista());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             
@@ -117,7 +156,7 @@ public class clsHabitacionDAO {
             stmt.setInt(2, entidad.getNumero());
             stmt.setInt(3, entidad.getPiso());            
             stmt.setInt(4, entidad.getEstado());
-            stmt.setByte(5, entidad.getVista());
+            stmt.setBoolean(5, entidad.isVista());
             stmt.setInt(6, entidad.getIdHabitacion());
             rpta = stmt.executeUpdate() == 1;
         } catch (Exception e) {

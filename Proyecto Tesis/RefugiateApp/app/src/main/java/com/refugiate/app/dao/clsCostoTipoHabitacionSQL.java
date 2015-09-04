@@ -12,6 +12,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.refugiate.app.entidades.clsCostoTipoHabitacion;
+import com.refugiate.app.entidades.clsTipoHabitacion;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class clsCostoTipoHabitacionSQL {
@@ -75,6 +79,43 @@ public class clsCostoTipoHabitacionSQL {
         }
         bd.close();
         return rpta;
+    }
+    public static List<clsCostoTipoHabitacion> Listar(Context context,int idSucursal,int idTipoHabitacion)
+    {
+        List<clsCostoTipoHabitacion> list=new ArrayList<clsCostoTipoHabitacion>();
+        SQLite admin=new SQLite(context, null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        if(bd!=null)
+        {
+            String query="select cos.idCostoTipoHabitacion,cos.costo,cos.numeroPersonas," +
+                    "cos.totalHabitaciones,cos.idTipoHabitacion,tip.nombreComercial from "+NOMBRE_TABLA+
+                    " as cos inner join TIPOHABITACION as tip on cos.idTipoHabitacion=tip.idTipoHabitacion " +
+                    "where cos.idSucursal="+idSucursal;
+            if(idTipoHabitacion>0)
+                query=query+" and tip.idTipoHabitacion="+idTipoHabitacion;
+            Cursor fila=bd.rawQuery(query,null);
+            int numRows = fila.getCount();
+            fila.moveToFirst();
+            for (int i = 0; i < numRows; ++i)
+            {
+                clsTipoHabitacion objTipoHabitacion = new clsTipoHabitacion();
+                objTipoHabitacion.setIdTipoHabitacion(fila.getInt(4));
+                objTipoHabitacion.setNombreComercial(fila.getString(5));
+
+                clsCostoTipoHabitacion entidad= new clsCostoTipoHabitacion();
+                entidad.setIdCostoTipoHabitacion(fila.getInt(0));
+                entidad.setCosto(fila.getDouble(1));
+                entidad.setNumeroPersonas(fila.getInt(2));
+                entidad.setTotalHabitaciones(fila.getInt(3));
+                entidad.setObjTipohabitacion(objTipoHabitacion);
+
+                list.add(entidad);
+
+                fila.moveToNext();
+            }
+        }
+        bd.close();
+        return list;
     }
 
      public static void Borrar(Context context) {

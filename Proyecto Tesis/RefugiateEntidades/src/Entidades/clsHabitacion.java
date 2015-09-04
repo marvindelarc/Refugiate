@@ -14,7 +14,7 @@ public class clsHabitacion {
     private int numero;
     private int piso;
     private int estado;
-    private byte vista;
+    private boolean vista;
     private clsCostoTipoHabitacion objCostoTipoHabitacion;
 
     public clsHabitacion() {
@@ -36,9 +36,14 @@ public class clsHabitacion {
         return estado;
     }
 
-    public byte getVista() {
+    public boolean isVista() {
         return vista;
     }
+
+    public void setVista(boolean vista) {
+        this.vista = vista;
+    }
+
 
     public clsCostoTipoHabitacion getObjCostoTipoHabitacion() {
         return objCostoTipoHabitacion;
@@ -60,9 +65,7 @@ public class clsHabitacion {
         this.estado = estado;
     }
 
-    public void setVista(byte vista) {
-        this.vista = vista;
-    }
+ 
 
     public void setObjCostoTipoHabitacion(clsCostoTipoHabitacion objCostoTipoHabitacion) {
         this.objCostoTipoHabitacion = objCostoTipoHabitacion;

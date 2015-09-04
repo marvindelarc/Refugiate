@@ -52,6 +52,7 @@ import com.refugiate.app.fragment.hoteles.FragmentMapa;
 import com.refugiate.app.fragment.cuenta.FragmentPerfil;
 import com.refugiate.app.fragment.cuenta.FragmentRegistro;
 import com.refugiate.app.fragment.cuenta.FragmentReservas;
+import com.refugiate.app.fragment.hoteles.FragmentReserva;
 import com.refugiate.app.utilidades.RecyclerView.Adapters.DrawerAdapter;
 import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
 import com.refugiate.app.utilidades.RecyclerView.Utils.ItemClickSupport;
@@ -708,7 +709,7 @@ public class MainActivity extends  AppCompatActivity {
 
                 break;
             case 2:
-                //setFragment(new FragmentTelefono());
+                setFragment(new FragmentReserva());
 
                 break;
             default:

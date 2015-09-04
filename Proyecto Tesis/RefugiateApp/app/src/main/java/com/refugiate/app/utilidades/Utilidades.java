@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -123,5 +124,19 @@ public class Utilidades {
         return getLista;
     }
 
+    public static String pad(int c) {
+        if (c >= 10)
+            return String.valueOf(c);
+        else
+            return "0" + String.valueOf(c);
+    }
 
+    public static int getDiferenciaEnDias(Date fechaInicial, Date fechaFinal) {
+
+        long fechaInicialMs = fechaInicial.getTime();
+        long fechaFinalMs = fechaFinal.getTime();
+        long diferencia = fechaFinalMs - fechaInicialMs;
+        double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        return ( (int) dias);
+    }
 }

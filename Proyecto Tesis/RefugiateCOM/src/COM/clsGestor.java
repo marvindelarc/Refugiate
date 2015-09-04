@@ -187,7 +187,11 @@ public class clsGestor {
     public static boolean actualizarHabitacion(clsHabitacion entidad) throws Exception
     {
         return clsHabitacionDAO.actualizar(entidad);
-    }    
+    }  
+    public static List<clsHabitacion> ListarDisponibilidadHabitacion(int idCostoTipoHabitacion) throws Exception
+    {
+        return clsHabitacionDAO.ListarDisponibilidad(idCostoTipoHabitacion);
+    }
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsInstalacion">

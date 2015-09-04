@@ -25,6 +25,10 @@ public class clsCostoTipoHabitacion {
     public clsCostoTipoHabitacion() {
     }
 
+    public clsCostoTipoHabitacion(int idCostoTipoHabitacion) {
+        this.idCostoTipoHabitacion = idCostoTipoHabitacion;
+    }
+
     public clsSucursal getObjSucursal() {
         return objSucursal;
     }

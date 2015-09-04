@@ -67,7 +67,13 @@
     <string name="radio_female">Mujer</string>
     <!--FIN REGISTRO -->
 
-
+    <!--INICIO FragmentReserva -->
+    <string name="lbl_titulo_reserva">Reservarción</string>
+    <string name="lbl_fecha_inicio_reserva">Fecha Inicío</string>
+    <string name="lbl_fecha_fin_reserva">Fecha Fin</string>
+    <string name="lbl_fecha_hora_reserva">Hora</string>
+    <string name="lbl_total_dias_reserva">Total Días</string>
+    <!--FIN FragmentReserva -->
 
 
 
@@ -161,6 +167,14 @@
     <string name="lbl_telefono">Telefono:</string>
     <string name="lbl_pisos">Pisos:</string>
     <!--FIN FragmentTab1 -->
+
+
+    <!--INICIO FragmentTab3 -->
+    <string name="lbl_nombre_tab3">HABITACIÓN</string>
+    <string name="lbl_total_tab3">Total:</string>
+    <string name="lbl_capacidad_tab3">Capacidad:</string>
+    <string name="lbl_costo_tab3">Precio: S/.</string>
+    <!--FIN FragmentTab3 -->
 
 
 </resources>

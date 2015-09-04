@@ -17,6 +17,11 @@ public class clsTipoHabitacion {
     public clsTipoHabitacion() {
     }
 
+    public clsTipoHabitacion(int idTipoHabitacion, String nombreComercial) {
+        this.idTipoHabitacion = idTipoHabitacion;
+        this.nombreComercial = nombreComercial;
+    }
+
     public clsTipoHabitacion(int idTipoHabitacion) {
         this.idTipoHabitacion = idTipoHabitacion;
     }

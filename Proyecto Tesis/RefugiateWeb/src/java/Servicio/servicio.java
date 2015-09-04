@@ -9,6 +9,7 @@ package Servicio;
 import COM.clsGestor;
 import Entidades.clsCostoTipoHabitacion;
 import Entidades.clsEmpresa;
+import Entidades.clsHabitacion;
 import Entidades.clsInstalacion;
 import Entidades.clsPersona;
 import Entidades.clsServicio;
@@ -223,6 +224,29 @@ public class servicio extends HttpServlet {
                     obj.put("fecnac",entidad.getFecnac().getTime());
                     
                 }
+            }
+            else  if(idServicio==4 && request.getParameter("idCostoTipoHabitacion") != null 
+                    && request.getParameter("idCostoTipoHabitacion") != "")
+            {
+                 JSONArray listaHabitacionJSON = new JSONArray();
+                List<clsHabitacion> listaHabitacion=clsGestor.ListarDisponibilidadHabitacion(Integer.parseInt(request.getParameter("idCostoTipoHabitacion")));
+                if(listaHabitacion!=null)
+                {      
+                   for(clsHabitacion entidad : listaHabitacion)
+                    {
+                        JSONObject entidadJSON=new JSONObject();
+                        entidadJSON.put("idHabitacion",entidad.getIdHabitacion());
+                        entidadJSON.put("idCostoTipoHabitacion",entidad.getObjCostoTipoHabitacion().getIdCostoTipoHabitacion());
+                        entidadJSON.put("numero",entidad.getNumero());
+                        entidadJSON.put("piso",entidad.getPiso());
+                        entidadJSON.put("vista",entidad.isVista());
+                        entidadJSON.put("estado",entidad.getEstado());
+                        listaHabitacionJSON.add(entidadJSON);
+                    }
+                }
+                obj.put("listaHabitacionJSON",listaHabitacionJSON);
+
+              
             }
             
             

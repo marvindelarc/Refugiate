@@ -11,18 +11,18 @@ import java.util.Date;
  *
  * @author Paulo
  */
-public class clsServicio {
-    private int idServicio;
-    private String nombre;
-    private int estado;
-    private Date update;
+public class  clsServicio {
+        private int idServicio;
+        private String nombre;
+        private int estado;
+        private Date update;
 
-    public clsServicio() {
-    }
+        public clsServicio() {
+        }
 
-    public clsServicio(int idServicio) {
-        this.idServicio = idServicio;
-    }
+        public clsServicio(int idServicio) {
+            this.idServicio = idServicio;
+        }
 
     public Date getUpdate() {
         return update;
