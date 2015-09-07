@@ -33,6 +33,10 @@ public class clsPersona {
     public clsPersona() {
     }
 
+    public clsPersona(int IdPersona) {
+        this.IdPersona = IdPersona;
+    }
+
     public int getIdPersona() {
         return IdPersona;
     }

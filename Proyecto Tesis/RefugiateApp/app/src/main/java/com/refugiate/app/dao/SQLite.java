@@ -99,6 +99,32 @@ public class SQLite extends SQLiteOpenHelper {
             + "usuario text ,"
             + "password text)";
 
+    private static final String CREATE_HABITACION = "CREATE TABLE HABITACION ("
+            + "idHabitacion integer NOT NULL PRIMARY KEY,"
+            + "numero integer ,"
+            + "piso integer ,"
+            + "estado integer ,"
+            + "vista integer ,"
+            + "idCostoTipoHabitacion integer)";
+
+    private static final String CREATE_RESERVA = "CREATE TABLE RESERVA ("
+            + "idReserva integer NOT NULL PRIMARY KEY,"
+            + "fechaResgistro numeric ,"
+            + "fechaIngreso numeric ,"
+            + "fechaEgreso numeric ,"
+            + "estado integer ,"
+            + "dias integer ,"
+            + "costo numeric ,"
+            + "servicio integer ,"
+            + "comodidad integer ,"
+            + "limpieza integer ,"
+            + "comentario text ,"
+            + "vista integer ,"
+            + "numero integer ,"
+            + "piso integer ,"
+            + "idHabitacion integer ,"
+            + "idCostoTipoHabitacion integer)";
+
 	public SQLite(Context context, CursorFactory factory) {
 		super(context, DATABASE_NAME, factory, DATABASE_VERSION);
 	}
@@ -116,6 +142,8 @@ public class SQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_DEPARTAMENTO);
                 db.execSQL(CREATE_PROVINCIA);
                 db.execSQL(CREATE_DISTRITO);
+                db.execSQL(CREATE_HABITACION);
+                db.execSQL(CREATE_RESERVA);
 
         }
          
@@ -141,6 +169,10 @@ public class SQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_PROVINCIA);
                 db.execSQL("drop table if exists DISTRITO");
                 db.execSQL(CREATE_DISTRITO);
-	}	
+                db.execSQL("drop table if exists HABITACION");
+                db.execSQL(CREATE_HABITACION);
+                db.execSQL("drop table if exists RESERVA");
+                db.execSQL(CREATE_RESERVA);
+	}
         
 }

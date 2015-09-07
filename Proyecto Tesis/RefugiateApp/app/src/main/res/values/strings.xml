@@ -3,6 +3,7 @@
 
     <string name="app_name">RefugiateApp</string>
 
+    <string name="alert_error">Error Intentelo mas tarde.</string>
     <!--INICIO DRAWER -->
     <string name="lbl_titulo_dw_1">HOTELES</string>
     <string name="lbl_item_dw_1_1">BUSCAR POR NOMBRES</string>
@@ -73,6 +74,16 @@
     <string name="lbl_fecha_fin_reserva">Fecha Fin</string>
     <string name="lbl_fecha_hora_reserva">Hora</string>
     <string name="lbl_total_dias_reserva">Total Días</string>
+    <string name="lbl_total_reserva">Total Costo:</string>
+    <string name="lbl_costo_reserva">Costo: S/.</string>
+    <string name="lbl_seleccione_reserva">Seleccione una Habitación</string>
+    <string name="lbl_numero_reserva">Número de Habitación:</string>
+    <string name="lbl_vista_interior_reserva">Vista: Interior</string>
+    <string name="lbl_vista_exteriot_reserva">Vista: Exterior</string>
+    <string name="lbl_piso_reserva">Piso:</string>
+    <string name="alert_reserva">Registrando Reserva.</string>
+    <string name="lbl_confirmacion_reserva">Se Reservo Coreectamente.</string>
+    <string name="lbl_reserva">¿Desea Realizar la Reseva?</string>
     <!--FIN FragmentReserva -->
 
 
@@ -174,8 +185,34 @@
     <string name="lbl_total_tab3">Total:</string>
     <string name="lbl_capacidad_tab3">Capacidad:</string>
     <string name="lbl_costo_tab3">Precio: S/.</string>
+    <string name="lbl_verificando_tab3">Verificando disponibilidad</string>
+    <string name="lbl_disponibilidad_tab3">Desea Verifar disponibilidad</string>
+    <string name="lbl_sin_disponibilidad_tab3">Habitaciones sin disponibilidad</string>
     <!--FIN FragmentTab3 -->
 
+    <!--INICIO FragmentReservas -->
+    <string name="lbl_titulo_reservas">MIS RESERVAS</string>
+    <string name="lbl_numero_reservas">Habitación N°:</string>
+    <string name="lbl_cancelar_reservas">¿Desea Cancelar la Reserva?</string>
+    <string name="alert_reservas">Cancelandro Reserva</string>
+    <string name="lbl_conf_cancelar_reservas">Se Cancelo la Reserva correctamente</string>
+    <!--FIN FragmentReservas -->
 
+
+    <!--INICIO FragmentHistorial -->
+    <string name="lbl_titulo_historial">MI HISTORIAL</string>
+    <string name="lbl_comentario_historial">Comentario:</string>
+    <string name="lbl_agregar_comentario_historial">Agregue un Comentario.</string>
+    <string name="lbl_titulo_comentario_historial">Cailificar</string>
+    <string name="lbl_agregar_cometario_historial">Registrando Calificación</string>
+    <string name="lbl_sms_cometario_historial">Se Registro la Calificación correctamente</string>
+    <string name="lbl_cal_servicio_historial">Califique el Servicio</string>
+    <string name="lbl_cal_limpieza_historial">Califique la Limpieza</string>
+    <string name="lbl_cal_comodidad_historial">Califique la Comodidad</string>
+    <string name="lbl_estado0_historial">reserva cancelada por la adminstración</string>
+    <string name="lbl_estado1_historial">reserva finalizada</string>
+    <string name="lbl_estado2_historial">reserva cancelada</string>
+    <!--FIN FragmentReservas -->
 </resources>
+
 

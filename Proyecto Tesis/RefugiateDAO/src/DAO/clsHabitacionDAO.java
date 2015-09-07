@@ -72,8 +72,13 @@ public class clsHabitacionDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idHabitacion,idCostoTipoHabitacion,numero,piso,estado,vista FROM habitacion "
-                    + "where estado=1 and idCostoTipoHabitacion="+idCostoTipoHabitacion;
+            String sql="SELECT hab.idHabitacion,hab.idCostoTipoHabitacion,hab.numero,hab.piso,"
+                    + "hab.estado,hab.vista FROM habitacion as hab inner join reserva as res on "
+                    + "hab.idHabitacion=res.idHabitacion where (res.fechaEgreso<now() or res.estado!=1) and hab.estado=1 and "
+                    + "hab.idCostoTipoHabitacion="+idCostoTipoHabitacion+" union SELECT hab.idHabitacion,"
+                    + "hab.idCostoTipoHabitacion,hab.numero,hab.piso,hab.estado,hab.vista FROM habitacion "
+                    + "as hab left join reserva as res on hab.idHabitacion=res.idHabitacion where "
+                    + "res.idReserva is null and hab.estado=1 and hab.idCostoTipoHabitacion="+idCostoTipoHabitacion;
      
             conn = clsConexion.getConnection();
             stmt = conn.prepareCall(sql);
@@ -172,4 +177,9 @@ public class clsHabitacionDAO {
         }
         return rpta;
     }
+    
+    
+    
+  
+    
 }

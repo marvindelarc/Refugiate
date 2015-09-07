@@ -50,35 +50,6 @@ LOCK TABLES `bajaempresapersona` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `comentario`
---
-
-DROP TABLE IF EXISTS `comentario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comentario` (
-  `idComentario` int(11) NOT NULL AUTO_INCREMENT,
-  `idReserva` int(11) DEFAULT NULL,
-  `descripcion` varchar(250) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `fechaUpdate` datetime DEFAULT NULL,
-  PRIMARY KEY (`idComentario`),
-  KEY `fk_Comentario_Reserva1_idx` (`idReserva`),
-  CONSTRAINT `fk_Comentario_Reserva1` FOREIGN KEY (`idReserva`) REFERENCES `reserva` (`idReserva`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comentario`
---
-
-LOCK TABLES `comentario` WRITE;
-/*!40000 ALTER TABLE `comentario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comentario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `costotipohabitacion`
 --
 
@@ -109,7 +80,7 @@ CREATE TABLE `costotipohabitacion` (
 
 LOCK TABLES `costotipohabitacion` WRITE;
 /*!40000 ALTER TABLE `costotipohabitacion` DISABLE KEYS */;
-INSERT INTO `costotipohabitacion` VALUES (1,1,4,125.00,2,2,0,1,'2015-05-19 19:19:32'),(2,4,4,102.50,1,5,0,1,'2015-05-19 19:19:32'),(3,1,5,25.00,1,1,0,1,'2015-05-19 19:19:32'),(4,1,4,100.00,2,1,0,1,'2015-05-19 19:19:32');
+INSERT INTO `costotipohabitacion` VALUES (1,1,4,125.00,2,2,0,1,'2015-05-19 19:19:32'),(2,4,5,102.50,1,5,0,1,'2015-05-19 19:19:32'),(3,2,5,25.00,1,1,0,1,'2015-05-19 19:19:32'),(4,3,5,100.00,2,1,0,1,'2015-05-19 19:19:32');
 /*!40000 ALTER TABLE `costotipohabitacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,39 +106,6 @@ LOCK TABLES `departamento` WRITE;
 /*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
 INSERT INTO `departamento` VALUES (1,'Amazonas'),(2,'Ancash'),(3,'Apurimac'),(4,'Arequipa'),(5,'Ayacucho'),(6,'Cajamarca'),(7,'Cusco'),(8,'Huancavelica'),(9,'Huanuco'),(10,'Ica'),(11,'Juní'),(12,'La Libertad'),(13,'Lambayeque'),(14,'Lima'),(15,'Prov. Const. del   Callao'),(16,'Loreto'),(17,'Madre de Dios'),(18,'Moquegua'),(19,'Pasco'),(20,'Piura'),(21,'Puno'),(22,'San Martí'),(23,'Tacna'),(24,'Tumbes'),(25,'Ucayali');
 /*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `detallereserva`
---
-
-DROP TABLE IF EXISTS `detallereserva`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `detallereserva` (
-  `idDetalleReserva` int(11) NOT NULL AUTO_INCREMENT,
-  `idReserva` int(11) DEFAULT NULL,
-  `numeroHabitaciones` int(11) DEFAULT NULL,
-  `fechaIngresp` datetime DEFAULT NULL,
-  `dias` int(11) DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `idHabitacion` int(11) NOT NULL,
-  PRIMARY KEY (`idDetalleReserva`),
-  KEY `fk_DetalleReserva_Reserva1_idx` (`idReserva`),
-  KEY `fk_DetalleReserva_Habitacion1_idx` (`idHabitacion`),
-  CONSTRAINT `fk_DetalleReserva_Habitacion1` FOREIGN KEY (`idHabitacion`) REFERENCES `habitacion` (`idHabitacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `fk_DetalleReserva_Reserva1` FOREIGN KEY (`idReserva`) REFERENCES `reserva` (`idReserva`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `detallereserva`
---
-
-LOCK TABLES `detallereserva` WRITE;
-/*!40000 ALTER TABLE `detallereserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detallereserva` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -280,7 +218,7 @@ CREATE TABLE `habitacion` (
   PRIMARY KEY (`idHabitacion`),
   KEY `fk_Habitacion_CostoTipoHabitacion1_idx` (`idCostoTipoHabitacion`),
   CONSTRAINT `fk_Habitacion_CostoTipoHabitacion1` FOREIGN KEY (`idCostoTipoHabitacion`) REFERENCES `costotipohabitacion` (`idCostoTipoHabitacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -289,7 +227,7 @@ CREATE TABLE `habitacion` (
 
 LOCK TABLES `habitacion` WRITE;
 /*!40000 ALTER TABLE `habitacion` DISABLE KEYS */;
-INSERT INTO `habitacion` VALUES (1,1,2,4,1,''),(2,1,1,1,1,''),(3,1,1,2,1,'');
+INSERT INTO `habitacion` VALUES (1,4,2,4,1,''),(2,4,1,1,1,'\0'),(3,4,2,2,1,''),(4,2,1,1,1,'');
 /*!40000 ALTER TABLE `habitacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -484,35 +422,6 @@ INSERT INTO `provincia` VALUES (1,'Bagua',1),(2,'Bongará',1),(3,'Condorcanqui',
 UNLOCK TABLES;
 
 --
--- Table structure for table `puntuacionhotel`
---
-
-DROP TABLE IF EXISTS `puntuacionhotel`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `puntuacionhotel` (
-  `idPuntuacionHotel` int(11) NOT NULL AUTO_INCREMENT,
-  `idReserva` int(11) DEFAULT NULL,
-  `limpieza` int(11) DEFAULT NULL,
-  `servicio` int(11) DEFAULT NULL,
-  `comodidad` int(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
-  PRIMARY KEY (`idPuntuacionHotel`),
-  KEY `fk_Puntuacion_Reserva1_idx` (`idReserva`),
-  CONSTRAINT `fk_Puntuacion_Reserva1` FOREIGN KEY (`idReserva`) REFERENCES `reserva` (`idReserva`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `puntuacionhotel`
---
-
-LOCK TABLES `puntuacionhotel` WRITE;
-/*!40000 ALTER TABLE `puntuacionhotel` DISABLE KEYS */;
-/*!40000 ALTER TABLE `puntuacionhotel` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `puntuacionusuario`
 --
 
@@ -551,15 +460,24 @@ DROP TABLE IF EXISTS `reserva`;
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL AUTO_INCREMENT,
   `idPersona` int(11) DEFAULT NULL,
-  `idSucursal` int(11) DEFAULT NULL,
+  `idHabitacion` int(11) DEFAULT NULL,
+  `fechaIngreso` datetime DEFAULT NULL,
+  `fechaEgreso` datetime DEFAULT NULL,
+  `costo` double DEFAULT NULL,
+  `dias` tinyint(4) DEFAULT NULL,
+  `limpieza` tinyint(4) DEFAULT NULL,
+  `servicio` tinyint(4) DEFAULT NULL,
+  `comodidad` tinyint(4) DEFAULT NULL,
+  `comentario` varchar(250) DEFAULT NULL,
   `fechaRegistro` datetime DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
+  `fechaUpdate` datetime DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idReserva`),
-  KEY `fk_Reserva_Persona1_idx` (`idPersona`),
-  KEY `fk_Reserva_Sucursal1_idx` (`idSucursal`),
-  CONSTRAINT `fk_Reserva_Persona1` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Reserva_Sucursal1` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `reserva_habitacion_fk_idx` (`idHabitacion`),
+  KEY `reserva_persona_fk_idx` (`idPersona`),
+  CONSTRAINT `reserva_habitacion_fk` FOREIGN KEY (`idHabitacion`) REFERENCES `habitacion` (`idHabitacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `reserva_persona_fk` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -568,6 +486,7 @@ CREATE TABLE `reserva` (
 
 LOCK TABLES `reserva` WRITE;
 /*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
+INSERT INTO `reserva` VALUES (21,2,4,'2015-09-07 00:00:00','2015-09-08 00:00:00',102.5,1,NULL,NULL,NULL,NULL,'2015-09-06 22:52:40','2015-09-06 22:52:47',2);
 /*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -705,4 +624,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-02  0:31:36
+-- Dump completed on 2015-09-06 23:02:26

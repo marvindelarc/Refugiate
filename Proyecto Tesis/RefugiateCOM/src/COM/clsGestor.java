@@ -1,49 +1,7 @@
 package COM;
 
-import DAO.clsBajaEmpresaPersonaDAO;
-import DAO.clsComentarioDAO;
-import DAO.clsCostoTipoHabitacionDAO;
-import DAO.clsDepartamentoDAO;
-import DAO.clsDetalleReservaDAO;
-import DAO.clsDistritoDAO;
-import DAO.clsEmpresaDAO;
-import DAO.clsEncargadoDAO;
-import DAO.clsHabitacionDAO;
-import DAO.clsIntalacionDAO;
-import DAO.clsPagoEmpresaDAO;
-import DAO.clsPaqueteDAO;
-import DAO.clsPersonaDAO;
-import DAO.clsPromocionesDAO;
-import DAO.clsProvinciaDAO;
-import DAO.clsPuntuacionHotelDAO;
-import DAO.clsPuntuacionUsuarioDAO;
-import DAO.clsReservaDAO;
-import DAO.clsServicioDAO;
-import DAO.clsSucursalDAO;
-import DAO.clsTipoHabitacionDAO;
-import DAO.clsWebAdminDAO;
-import Entidades.clsBajaEmpresaPersona;
-import Entidades.clsComentario;
-import Entidades.clsCostoTipoHabitacion;
-import Entidades.clsDepartamento;
-import Entidades.clsDetalleReserva;
-import Entidades.clsDistrito;
-import Entidades.clsEmpresa;
-import Entidades.clsEncargado;
-import Entidades.clsHabitacion;
-import Entidades.clsInstalacion;
-import Entidades.clsPagoEmpresa;
-import Entidades.clsPaquete;
-import Entidades.clsPersona;
-import Entidades.clsPromociones;
-import Entidades.clsProvincia;
-import Entidades.clsPuntuacionHotel;
-import Entidades.clsPuntuacionUsuario;
-import Entidades.clsReserva;
-import Entidades.clsServicio;
-import Entidades.clsSucursal;
-import Entidades.clsTipoHabitacion;
-import Entidades.clsWebAdmin;
+import DAO.*;
+import Entidades.*;
 import java.util.List;
 
 /**
@@ -64,21 +22,6 @@ public class clsGestor {
     public static boolean ActualizarBajaEmpresaPersona(clsBajaEmpresaPersona entidad) throws Exception
     {
         return clsBajaEmpresaPersonaDAO.actualizar(entidad);
-    }
-    // </editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="clsComentario">
-    public static List<clsComentario> ListarComentario(boolean activo) throws Exception
-    {
-        return clsComentarioDAO.Listar(activo);
-    }
-    public static int insertarComentario(clsComentario entidad) throws Exception
-    {
-        return clsComentarioDAO.insertar(entidad);
-    }
-    public static boolean actualizarComentario(clsComentario entidad) throws Exception
-    {
-        return clsComentarioDAO.actualizar(entidad);
     }
     // </editor-fold>
     
@@ -107,22 +50,7 @@ public class clsGestor {
         return clsDepartamentoDAO.Listar(activo);
     }
     // </editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="clsDetalleReserva">
-    public static List<clsDetalleReserva> ListarDetalleReservas(boolean ectivo) throws Exception
-    {
-        return clsDetalleReservaDAO.Listar(ectivo);
-    }
-    public static int insertarDetalleReserva(clsDetalleReserva entidad) throws Exception
-    {
-        return clsDetalleReservaDAO.insertar(entidad);
-    }
-    public static boolean actualizarDetalleReserva(clsDetalleReserva entidad) throws Exception
-    {
-        return clsDetalleReservaDAO.actualizar(entidad);
-    }
-    // </editor-fold>
-    
+  
     //<editor-fold defaultstate="collapsed" desc="clsDistrito">
     public static List<clsDistrito> listarDistrito(int idProvincia) throws Exception
     {
@@ -294,24 +222,7 @@ public class clsGestor {
         return clsProvinciaDAO.Listar(IdDepartamento);
     }
     // </editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="clsPuntuacionHotel">
-    public static List<clsPuntuacionHotel> listarPuntuacionHotel(boolean activo) throws Exception
-    {
-        return clsPuntuacionHotelDAO.Listar(activo);
-    }
-    
-    public  static int insertarPuntuacionHotel(clsPuntuacionHotel entidad) throws Exception
-    {
-        return clsPuntuacionHotelDAO.insertar(entidad);
-    }
-    
-    public static boolean actualizarPuntuacionHotel(clsPuntuacionHotel entidad) throws Exception
-    {
-        return clsPuntuacionHotelDAO.actualizar(entidad);
-    }    
-    // </editor-fold>
-    
+   
     //<editor-fold defaultstate="collapsed" desc="clsPuntuacionUsuario">
     public static List<clsPuntuacionUsuario> listarPuntuacionUsuario(boolean activo) throws Exception
     {
@@ -343,7 +254,20 @@ public class clsGestor {
     public static boolean actualizarReserva(clsReserva entidad) throws Exception
     {
         return clsReservaDAO.actualizar(entidad);
-    }    
+    }   
+    public static boolean actualizarPuntacionReserva(clsReserva entidad) throws Exception
+    {
+        return clsReservaDAO.actualizarPuntacion(entidad);
+    }   
+    
+     public static boolean actualizarEstadoReserva(int idReserva, int Estado) throws Exception
+    {
+        return clsReservaDAO.actualizarEstado(idReserva,Estado);
+    }   
+     public static List<clsReserva> ListarServicioReserva(Long actualizacion,int idPersona) throws Exception
+    {
+        return clsReservaDAO.ListarServicio(actualizacion, idPersona);
+    }   
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="clsServicio">

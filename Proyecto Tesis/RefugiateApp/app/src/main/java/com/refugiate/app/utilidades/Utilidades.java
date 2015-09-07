@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -138,5 +139,24 @@ public class Utilidades {
         long diferencia = fechaFinalMs - fechaInicialMs;
         double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
         return ( (int) dias);
+    }
+
+    public static int getDiferenciaEnHoras(Date fechaInicial, Date fechaFinal) {
+
+        long fechaInicialMs = fechaInicial.getTime();
+        long fechaFinalMs = fechaFinal.getTime();
+        long diferencia = fechaFinalMs - fechaInicialMs;
+        double dias = Math.floor(diferencia / (1000 * 60 * 60));
+        return ( (int) dias);
+    }
+    public static String getFecha(Date fecha)
+    {
+        SimpleDateFormat e=new SimpleDateFormat("dd/MM/yyyy");
+        return e.format(fecha);
+    }
+    public static String getHora(Date fecha)
+    {
+        SimpleDateFormat e=new SimpleDateFormat("HH:mm");
+        return e.format(fecha);
     }
 }

@@ -14,11 +14,14 @@ import android.widget.TextView;
 
 import com.refugiate.app.conexion.LoginHTTP;
 import com.refugiate.app.dao.clsPersonaSQL;
+import com.refugiate.app.dao.clsReservaSQL;
 import com.refugiate.app.entidades.clsPersona;
+import com.refugiate.app.fragment.hoteles.FragmentTab3;
 import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
 import com.refugiate.app.utilidades.Utilidades;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,11 +36,14 @@ public class FragmentLogin extends Fragment {
     private EditText txtUsuario;
     private EditText txtClave;
     private ProgressDialog pdCargar;
+    private int fragment=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.dialog_login, container, false);
+
+        fragment = getArguments().getInt("fragment");
 
         txtUsuario = (EditText)view.findViewById(R.id.txtUsuario);
         txtUsuario.setText("");
@@ -67,7 +73,11 @@ public class FragmentLogin extends Fragment {
 
     public void lblRegistro()
     {
-        ((MainActivity)getActivity()).setFragment(new FragmentRegistro());
+        FragmentRegistro frag = new FragmentRegistro();
+        Bundle bundle = new Bundle();
+        bundle.putInt("fragment", fragment); // use as per your need
+        frag.setArguments(bundle);
+        ((MainActivity)getActivity()).setFragment(frag);
     }
     public void btnAceptar()
     {
@@ -125,7 +135,31 @@ public class FragmentLogin extends Fragment {
                    entidad.setUsuario(txtUsuario.getText().toString());
                    entidad.setPassword(txtClave.getText().toString());
                    clsPersonaSQL.Agregar(FragmentLogin.this.getActivity(), entidad);
+
+                   JSONArray listReservaJSON = new JSONArray(objeto.getString("listReservaJSON"));
+                   if(listReservaJSON.length()>0) {
+                       clsReservaSQL.AgregarServicio(FragmentLogin.this.getActivity(), listReservaJSON);
+                   }
+
                    ((MainActivity)  getActivity()).mOptionsMenu.getItem(1).setVisible(true);
+
+                   if(fragment==0)
+                   {
+                       ((MainActivity)getActivity()).setFragment(new FragmentPerfil());
+                   }
+                   else if(fragment==1)
+                   {
+                       ((MainActivity)getActivity()).setFragment(new FragmentReservas());
+                   }
+                   else if(fragment==2)
+                   {
+                       ((MainActivity)getActivity()).setFragment(new FragmentHistorial());
+                   }
+                   else if(fragment==3)
+                   {
+                       ((MainActivity)getActivity()).setFragment(new FragmentTab3());
+                   }
+
                }
                else
                    Utilidades.alert(FragmentLogin.this.getActivity(), getString(R.string.lbl_error_credenciales), false);

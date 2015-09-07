@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.refugiate.app.conexion.RegistroHTTP;
 import com.refugiate.app.dao.clsPersonaSQL;
 import com.refugiate.app.entidades.clsPersona;
+import com.refugiate.app.fragment.hoteles.FragmentTab3;
 import com.refugiate.app.ui.MainActivity;
 import com.refugiate.app.ui.R;
 import com.refugiate.app.utilidades.Utilidades;
@@ -52,13 +53,14 @@ public class FragmentRegistro extends Fragment {
     private EditText txtUsuario;
     private EditText txtClave;
     private EditText txtRClave;
-
+    private int fragment;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_registro, container, false);
+        fragment = getArguments().getInt("fragment");
         entidad =new clsPersona();
         btnAceptar = (Button)view.findViewById(R.id.btnAceptar);
         btnAceptar.setOnClickListener(new View.OnClickListener() {
@@ -209,6 +211,22 @@ public class FragmentRegistro extends Fragment {
                                                     clsPersonaSQL.Agregar(this.getActivity(), entidad);
                                                     ((MainActivity)  getActivity()).mOptionsMenu.getItem(1).setVisible(true);
                                                     Utilidades.alert(this.getActivity(), "Se Registro Correctamente", false);
+                                                    if(fragment==0)
+                                                    {
+                                                        ((MainActivity)getActivity()).setFragment(new FragmentPerfil());
+                                                    }
+                                                    else if(fragment==1)
+                                                    {
+                                                        ((MainActivity)getActivity()).setFragment(new FragmentReservas());
+                                                    }
+                                                    else if(fragment==2)
+                                                    {
+                                                        ((MainActivity)getActivity()).setFragment(new FragmentHistorial());
+                                                    }
+                                                    else if(fragment==3)
+                                                    {
+                                                        ((MainActivity)getActivity()).setFragment(new FragmentTab3());
+                                                    }
                                                 }
 
                                             } catch (JSONException e) {

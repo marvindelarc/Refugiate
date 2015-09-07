@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Entidades;
+package com.refugiate.app.entidades;
 
 import java.util.Date;
 
 /**
- *
- * @author Paulo
+ * Created by EdHam on 05/09/2015.
  */
 public class clsReserva {
     private int idReserva;
     private Date fechaResgistro;
-     private Date fechaUpdate;
     private Date fechaIngreso;
     private Date fechaEgreso;
-    
     private int servicio;
     private int comodidad;
     private int limpieza;
@@ -29,6 +21,7 @@ public class clsReserva {
     private clsPersona objPersona;
 
     public clsReserva() {
+        this.estado=1;
     }
 
     public int getIdReserva() {
@@ -102,7 +95,6 @@ public class clsReserva {
     public void setObjHabitacion(clsHabitacion objHabitacion) {
         this.objHabitacion = objHabitacion;
     }
-
     public int getServicio() {
         return servicio;
     }
@@ -135,12 +127,4 @@ public class clsReserva {
         this.comentario = comentario;
     }
 
-    public Date getFechaUpdate() {
-        return fechaUpdate;
-    }
-
-    public void setFechaUpdate(Date fechaUpdate) {
-        this.fechaUpdate = fechaUpdate;
-    }
-    
 }

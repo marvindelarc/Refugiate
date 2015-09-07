@@ -126,7 +126,7 @@ public class FragmentListNombre extends Fragment {
             }
         });
         getLista("");
-
+        ((MainActivity)getActivity()).mapa=1;
         return view;
     }
 

@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Entidades;
+package com.refugiate.app.entidades;
 
 /**
- *
- * @author Paulo
+ * Created by EdHam on 05/09/2015.
  */
 public class clsHabitacion {
     private int idHabitacion;
@@ -18,10 +12,6 @@ public class clsHabitacion {
     private clsCostoTipoHabitacion objCostoTipoHabitacion;
 
     public clsHabitacion() {
-    }
-
-    public clsHabitacion(int idHabitacion) {
-        this.idHabitacion = idHabitacion;
     }
 
     public int getIdHabitacion() {
@@ -69,7 +59,7 @@ public class clsHabitacion {
         this.estado = estado;
     }
 
- 
+
 
     public void setObjCostoTipoHabitacion(clsCostoTipoHabitacion objCostoTipoHabitacion) {
         this.objCostoTipoHabitacion = objCostoTipoHabitacion;

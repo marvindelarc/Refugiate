@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginLeft="2dp"
+                android:src="@drawable/ic_launcherd" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:layout_marginBottom="1dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/lblNombre"
+                    android:textAllCaps="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="?android:textColorPrimary"
+                    android:gravity="center"
+                    android:typeface="monospace"
+                    android:textSize="20dp" />
+                <RatingBar
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:id="@+id/ratingEstrellas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="1.0"
+                    android:rating="2.0" />
+                <TextView
+                    android:id="@+id/lblUbigeo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="?android:textColorPrimary"
+                    android:gravity="center"
+                    android:typeface="monospace"
+                    android:textSize="16dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:background="?colorPrimary"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/lblEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:text="@string/app_name"
+            android:textColor="?android:textColorPrimary"
+            android:gravity="center"
+            android:typeface="monospace"
+            android:textSize="18dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:background="?colorPrimary"
+            android:orientation="vertical"/>
+
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="2dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_fecha_inicio_reserva"
+                android:textColor="?android:textColorPrimary"
+                android:gravity="center"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/lblFecInicio"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:typeface="normal"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_action_calendar"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="2dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_fecha_fin_reserva"
+                android:textColor="?android:textColorPrimary"
+                android:gravity="center"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/lblFecFin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:typeface="normal"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_action_calendar"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="2dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_fecha_hora_reserva"
+                android:textColor="?android:textColorPrimary"
+                android:gravity="center"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/lblHora"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:typeface="normal"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_action_reloj"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="2dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_total_reserva"
+                android:textColor="?android:textColorPrimary"
+                android:gravity="center"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/lblTotal"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/border"
+                android:typeface="normal"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="2dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lblNumero"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_costo_reserva"
+                android:textColor="?android:textColorPrimary"
+                android:gravity="center"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="2dp"
+
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lblVista"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_total_reserva"
+                android:textColor="?android:textColorPrimary"
+                android:gravity="center"
+                android:textSize="14dp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/viewComentario"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:background="?colorPrimary"
+            android:orientation="vertical"/>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_comodidad"
+                    android:textColor="?android:textColorPrimary"
+                    android:gravity="center"
+                    android:textSize="14dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+                    <RatingBar
+                        android:id="@+id/ratingComodidad"
+                        style="@style/ComodidadSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:isIndicator="true"
+                        android:stepSize="1.0"
+                        android:rating="2.0" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="2dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_limpieza"
+                    android:textColor="?android:textColorPrimary"
+                    android:gravity="center"
+                    android:textSize="14dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <RatingBar
+                    android:id="@+id/ratingLimpieza"
+                    style="@style/ClearSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:isIndicator="true"
+                    android:stepSize="1.0"
+                    android:rating="2.0" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="2dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_servicio"
+                    android:textColor="?android:textColorPrimary"
+                    android:gravity="center"
+                    android:textSize="14dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+
+                <RatingBar
+                    android:id="@+id/ratingServicio"
+                    style="@style/ServiceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:isIndicator="true"
+                    android:stepSize="1.0"
+                    android:rating="2.0" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_comentario_historial"
+            android:textColor="?android:textColorPrimary"
+            android:gravity="center"
+            android:textSize="14dp" />
+        <TextView
+            android:id="@+id/lblComentario"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="5dp"
+            android:typeface="normal"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCerrar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/service_on_rating"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

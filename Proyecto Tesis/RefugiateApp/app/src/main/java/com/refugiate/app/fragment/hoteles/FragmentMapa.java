@@ -490,6 +490,7 @@ public class FragmentMapa extends Fragment implements LocationListener,GoogleMap
     public void btnDetalle(int posicion)
     {
         clsSucursalSQL.setSeleccionado(this.getActivity(),itens.get(posicion).getIdSucursal());
+        ((MainActivity)getActivity()).mapa=0;
         ((MainActivity)getActivity()).setFragment(new FragmentTab1());
 
     }

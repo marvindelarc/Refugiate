@@ -12,6 +12,7 @@ import Entidades.clsEmpresa;
 import Entidades.clsHabitacion;
 import Entidades.clsInstalacion;
 import Entidades.clsPersona;
+import Entidades.clsReserva;
 import Entidades.clsServicio;
 import Entidades.clsSucursal;
 import Entidades.clsTipoHabitacion;
@@ -223,6 +224,37 @@ public class servicio extends HttpServlet {
                     obj.put("sexo",entidad.isSexo());
                     obj.put("fecnac",entidad.getFecnac().getTime());
                     
+                    
+                    
+                    JSONArray listReservaJSON = new JSONArray();
+                    List<clsReserva> listaReserva=clsGestor.ListarServicioReserva(null,entidad.getIdPersona());
+                    if(listaReserva!=null)
+                    {      
+                        for(clsReserva objReserva : listaReserva)
+                        {  
+                            JSONObject entidadJSON=new JSONObject();
+                            entidadJSON.put("idReserva",objReserva.getIdReserva());
+                            entidadJSON.put("fechaResgistro",objReserva.getFechaResgistro().getTime());
+                            entidadJSON.put("fechaIngreso",objReserva.getFechaIngreso().getTime());
+                            entidadJSON.put("fechaEgreso",objReserva.getFechaEgreso().getTime());
+                            entidadJSON.put("estado",objReserva.getEstado());
+                            entidadJSON.put("dias",objReserva.getDias());
+                            entidadJSON.put("costo",objReserva.getCosto());
+                            entidadJSON.put("servicio",objReserva.getServicio());
+                            entidadJSON.put("comodidad",objReserva.getComodidad());
+                            entidadJSON.put("limpieza",objReserva.getLimpieza());
+                            entidadJSON.put("comentario",objReserva.getComentario());
+                            entidadJSON.put("vista",objReserva.getObjHabitacion().isVista());
+                            entidadJSON.put("numero",objReserva.getObjHabitacion().getNumero());
+                            entidadJSON.put("piso",objReserva.getObjHabitacion().getPiso());
+                            entidadJSON.put("idHabitacion",objReserva.getObjHabitacion().getIdHabitacion());
+                            entidadJSON.put("idCostoTipoHabitacion",objReserva.getObjHabitacion().getObjCostoTipoHabitacion().getIdCostoTipoHabitacion());
+
+                            listReservaJSON.add(entidadJSON);
+                        }
+                    }
+                    obj.put("listReservaJSON",listReservaJSON);
+                    
                 }
             }
             else  if(idServicio==4 && request.getParameter("idCostoTipoHabitacion") != null 
@@ -248,7 +280,41 @@ public class servicio extends HttpServlet {
 
               
             }
-            
+            else  if(idServicio==5 && request.getParameter("idPersona") != null && request.getParameter("idPersona") != ""
+                    && request.getParameter("idHabitacion") != null && request.getParameter("idHabitacion") != ""
+                    && request.getParameter("fechaIngreso") != null && request.getParameter("fechaIngreso") != ""
+                    && request.getParameter("fechaEgreso") != null && request.getParameter("fechaEgreso") != ""
+                    && request.getParameter("costo") != null && request.getParameter("costo") != ""
+                    && request.getParameter("dias") != null && request.getParameter("dias") != "")
+            {
+                clsReserva entidad = new clsReserva();
+                entidad.setObjPersona(new clsPersona(Integer.parseInt(request.getParameter("idPersona"))));
+                entidad.setObjHabitacion(new clsHabitacion(Integer.parseInt(request.getParameter("idHabitacion"))));
+                entidad.setFechaIngreso(new Date(Long.parseLong(request.getParameter("fechaIngreso"))));
+                entidad.setFechaEgreso(new Date(Long.parseLong(request.getParameter("fechaEgreso"))));
+                entidad.setCosto(Double.parseDouble(request.getParameter("costo")));
+                entidad.setDias(Integer.parseInt(request.getParameter("dias")));
+                obj.put("id",clsGestor.insertarReserva(entidad));              
+            }
+            else  if(idServicio==6 && request.getParameter("idReserva") != null && request.getParameter("idReserva") != ""
+                    && request.getParameter("estado") != null && request.getParameter("estado") != "")
+            {
+                obj.put("estado",clsGestor.actualizarEstadoReserva(Integer.parseInt(request.getParameter("idReserva")),Integer.parseInt(request.getParameter("estado"))));              
+            }
+            else  if(idServicio==7 && request.getParameter("limpieza") != null && request.getParameter("limpieza") != ""
+                    && request.getParameter("servicio") != null && request.getParameter("servicio") != ""
+                    && request.getParameter("comodidad") != null && request.getParameter("comodidad") != ""
+                    && request.getParameter("comentario") != null && request.getParameter("comentario") != ""
+                    && request.getParameter("idReserva") != null && request.getParameter("idReserva") != "")
+            {
+                 clsReserva entidad = new clsReserva();
+                entidad.setIdReserva(Integer.parseInt(request.getParameter("idReserva")));
+                entidad.setLimpieza(Integer.parseInt(request.getParameter("limpieza")));
+                entidad.setComodidad(Integer.parseInt(request.getParameter("comodidad")));
+                entidad.setServicio(Integer.parseInt(request.getParameter("servicio")));
+                entidad.setComentario(request.getParameter("comentario"));
+                obj.put("estado",clsGestor.actualizarPuntacionReserva(entidad));           
+            }
             
         }
         out.println(obj);

@@ -41,6 +41,7 @@ import android.widget.TextView;
 
 import com.refugiate.app.dao.clsConfiguracionSQL;
 import com.refugiate.app.dao.clsPersonaSQL;
+import com.refugiate.app.dao.clsReservaSQL;
 import com.refugiate.app.dao.clsSucursalSQL;
 import com.refugiate.app.entidades.clsConfiguracion;
 import com.refugiate.app.entidades.clsPersona;
@@ -53,6 +54,8 @@ import com.refugiate.app.fragment.cuenta.FragmentPerfil;
 import com.refugiate.app.fragment.cuenta.FragmentRegistro;
 import com.refugiate.app.fragment.cuenta.FragmentReservas;
 import com.refugiate.app.fragment.hoteles.FragmentReserva;
+import com.refugiate.app.fragment.hoteles.FragmentTab3;
+import com.refugiate.app.fragment.hoteles.FragmentTab4;
 import com.refugiate.app.utilidades.RecyclerView.Adapters.DrawerAdapter;
 import com.refugiate.app.utilidades.RecyclerView.Classes.DrawerItem;
 import com.refugiate.app.utilidades.RecyclerView.Utils.ItemClickSupport;
@@ -83,8 +86,8 @@ public class MainActivity extends  AppCompatActivity {
     TypedValue typedValueColorPrimary, typedValueTextColorPrimary, typedValueTextColorControlHighlight, typedValueColorBackground;
     int colorPrimary, textColorPrimary, colorControlHighlight, colorBackground;
     public Menu mOptionsMenu=null;
-    private int mapa=0;
-    private int registro=0;
+    public int mapa=0;
+    public int registro=0;
 
     private clsPersona entidad;
 
@@ -672,19 +675,7 @@ public class MainActivity extends  AppCompatActivity {
             case 1:
 
 
-                dialog = new Dialog(this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                //dialog.setCancelable(false);
-                dialog.setContentView(R.layout.dialog_filtro_rango);
-                /*Button btnCancelarAbaut = (Button) dialog.findViewById(R.id.btnCancelarAbaut);
-                btnCancelarAbaut.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });*/
-                dialog.show();
+
 
                 break;
             default:
@@ -727,7 +718,11 @@ public class MainActivity extends  AppCompatActivity {
             case 0:
                 if(entidad==null) {
                     registro=0;
-                    setFragment(new FragmentLogin());
+                    FragmentLogin fragment = new FragmentLogin();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("fragment", 0); // use as per your need
+                    fragment.setArguments(bundle);
+                    setFragment(fragment);
                 }
                 else
                 setFragment(new FragmentPerfil());
@@ -736,7 +731,11 @@ public class MainActivity extends  AppCompatActivity {
             case 1:
                 if(entidad==null) {
                     registro=1;
-                    setFragment(new FragmentLogin());
+                    FragmentLogin fragment = new FragmentLogin();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("fragment",1); // use as per your need
+                    fragment.setArguments(bundle);
+                    setFragment(fragment);
                 }
                 else
                 setFragment(new FragmentReservas());
@@ -744,7 +743,12 @@ public class MainActivity extends  AppCompatActivity {
             case 2:
                 if(entidad==null) {
                     registro=2;
-                    setFragment(new FragmentLogin());
+                    FragmentLogin fragment = new FragmentLogin();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("fragment",2); // use as per your need
+                    fragment.setArguments(bundle);
+                    setFragment(fragment);
+
                 }
                 else
                 setFragment(new FragmentHistorial());
@@ -759,7 +763,7 @@ public class MainActivity extends  AppCompatActivity {
     {
         if (keyCode == KeyEvent.KEYCODE_BACK)
         {
-
+            AlertDialog.Builder alert;
             Fragment currentFrag =  getSupportFragmentManager().findFragmentById(R.id.content_frame);
             if (currentFrag!=null) {
                 switch (currentFrag.getClass().getSimpleName())
@@ -772,23 +776,49 @@ public class MainActivity extends  AppCompatActivity {
                     case "FragmentTab2":
                     case "FragmentTab3":
                     case "FragmentTab4":
-                    case "FragmentTab5":
                         if(mapa==0)
                             setFragment(new FragmentMapa());
-                        else
+                        else if(mapa==1)
                             setFragment(new FragmentListNombre());
+                        else if(mapa==2)
+                            setFragment(new FragmentReservas());
+                        else if(mapa==3)
+                            setFragment(new FragmentHistorial());
+
                         mOptionsMenu.getItem(0).setVisible(false);
                         break;
                     case "FragmentLogin":
-
-                        getitemClickSupport2(registro);
+                        if(registro==3)
+                            setFragment(new FragmentTab3());
+                        else
+                            getitemClickSupport2(registro);
                         break;
-                    case "FragmentRegistro":
-                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    case "FragmentReserva":
+                        alert = new AlertDialog.Builder(this);
                         alert.setTitle(getString(R.string.alert_retroceder));
                         alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                setFragment(new FragmentLogin());
+                                setFragment(new FragmentTab3());
+                            }
+                        });
+                        alert.setNegativeButton(getString(R.string.str_btnCancelar), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }
+                        });
+                        alert.show();
+
+                        break;
+                    case "FragmentRegistro":
+                        alert = new AlertDialog.Builder(this);
+                        alert.setTitle(getString(R.string.alert_retroceder));
+                        alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                FragmentLogin fragment = new FragmentLogin();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("fragment", registro); // use as per your need
+                                fragment.setArguments(bundle);
+                                setFragment(fragment);
                             }
                         });
                         alert.setNegativeButton(getString(R.string.str_btnCancelar), new DialogInterface.OnClickListener() {
@@ -844,7 +874,10 @@ public class MainActivity extends  AppCompatActivity {
                 alert.setPositiveButton(getString(R.string.str_btnAceptar), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         clsPersonaSQL.Borrar(MainActivity.this);
+                        clsReservaSQL.Borrar(MainActivity.this);
                         mOptionsMenu.getItem(1).setVisible(false);
+                        getitemClickSupport1(0);
+
                     }
                 });
                 alert.setNegativeButton(getString(R.string.str_btnCancelar), new DialogInterface.OnClickListener() {
