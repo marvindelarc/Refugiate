@@ -150,8 +150,8 @@ CREATE TABLE `empresa` (
   `ruc` varchar(11) DEFAULT NULL,
   `puntos` int(11) DEFAULT NULL,
   `fechaRegistro` datetime DEFAULT NULL,
-  `logo` blob,
-  `banner` blob,
+  `logo` mediumblob,
+  `banner` mediumblob,
   `estado` int(11) DEFAULT NULL,
   `fechaUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`idEmpresa`)
@@ -624,4 +624,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-29 22:46:13
+-- Dump completed on 2016-03-01  0:13:43
