@@ -1,6 +1,12 @@
+<%@page import="Entidades.clsEncargado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<%
+clsEncargado objEncargado=(clsEncargado) request.getSession().getAttribute("SessionEncargado");
+if(objEncargado!=null)
+{
+%>
 <head>
 <meta charset="utf-8" />
 <title>Refugiate Web - Administrativa</title>
@@ -412,4 +418,7 @@ function edit_form(id,txtEmpresaNombreComercial,txtEmpresaNombre,txtSlogan,txtRu
 };  	 
 </script>
 </body>
+
+<%}else  
+    response.sendRedirect("index.jsp");%>   
 

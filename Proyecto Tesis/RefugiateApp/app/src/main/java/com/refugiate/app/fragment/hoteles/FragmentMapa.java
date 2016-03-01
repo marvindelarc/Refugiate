@@ -184,50 +184,50 @@ public class FragmentMapa extends Fragment implements LocationListener,GoogleMap
             getLocation();
             addMaker();
             /**
-            googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+             googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
-                public View getInfoWindow(Marker marker) {
-                    View v = getActivity().getLayoutInflater().inflate(R.layout.map_infowindow, null);
-                    final int position = Integer.parseInt(marker.getSnippet());
-                    TextView lblNombre = (TextView)v.findViewById(R.id.lblNombre);
-                    lblNombre.setText(itens.get(position).getObjEmpresa().getNombreComercial());
+             public View getInfoWindow(Marker marker) {
+             View v = getActivity().getLayoutInflater().inflate(R.layout.map_infowindow, null);
+             final int position = Integer.parseInt(marker.getSnippet());
+             TextView lblNombre = (TextView)v.findViewById(R.id.lblNombre);
+             lblNombre.setText(itens.get(position).getObjEmpresa().getNombreComercial());
 
-                    RatingBar ratingEstrellas = (RatingBar) v.findViewById(R.id.ratingEstrellas);
-                    ratingEstrellas.setRating(itens.get(position).getNivel());
+             RatingBar ratingEstrellas = (RatingBar) v.findViewById(R.id.ratingEstrellas);
+             ratingEstrellas.setRating(itens.get(position).getNivel());
 
-                    ImageView image = (ImageView)v.findViewById(R.id.image);
-                    if(itens.get(position).getObjEmpresa().getLogo()!=null)
-                        image.setImageDrawable( new BitmapDrawable(BitmapFactory.decodeByteArray(itens.get(position).getObjEmpresa().getLogo(), 0, itens.get(position).getObjEmpresa().getLogo().length)));
+             ImageView image = (ImageView)v.findViewById(R.id.image);
+             if(itens.get(position).getObjEmpresa().getLogo()!=null)
+             image.setImageDrawable( new BitmapDrawable(BitmapFactory.decodeByteArray(itens.get(position).getObjEmpresa().getLogo(), 0, itens.get(position).getObjEmpresa().getLogo().length)));
 
-                    return v;
-                }
+             return v;
+             }
 
-                public View getInfoContents(Marker arg0) {
+             public View getInfoContents(Marker arg0) {
 
 
-                    return null;
+             return null;
 
-                }
+             }
+             });
+
+             googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+            final int posicion = Integer.parseInt(marker.getSnippet());
+
+            CharSequence[] items = {"Ver Detalle", "Llegar a Pie", "Llegar en Carro", "Cancelar"};
+            AlertDialog.Builder alert = new AlertDialog.Builder(FragmentMapa.this.getActivity());
+            alert.setTitle(listSucursal.get(posicion).getObjEmpresa().getNombre());
+
+            alert.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+            // opccionesMapa(posicion, item);
+            }
             });
-
-            googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                @Override
-                public void onInfoWindowClick(Marker marker) {
-                    final int posicion = Integer.parseInt(marker.getSnippet());
-
-                    CharSequence[] items = {"Ver Detalle", "Llegar a Pie", "Llegar en Carro", "Cancelar"};
-                    AlertDialog.Builder alert = new AlertDialog.Builder(FragmentMapa.this.getActivity());
-                    alert.setTitle(listSucursal.get(posicion).getObjEmpresa().getNombre());
-
-                    alert.setItems(items, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int item) {
-                           // opccionesMapa(posicion, item);
-                        }
-                    });
-                    alert.show();
-                }
+            alert.show();
+            }
             });
-            */
+             */
         }
         return v;
     }
