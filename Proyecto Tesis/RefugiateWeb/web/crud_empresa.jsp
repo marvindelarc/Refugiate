@@ -106,7 +106,7 @@ if(objEncargado!=null)
     <div class="content">
       <ul class="breadcrumb">
         <li>
-          <p>TU ESTAS EN</p>
+          <p>SE ENCUENTRA EN</p>
         </li>
         <i class="icon-angle-right"></i>
         <li><a href="#" class="active">GESTION DE EMPRESA</a> </li>
@@ -116,72 +116,92 @@ if(objEncargado!=null)
       </div>
 	  
        <div class="row-fluid">
-            <div class="span4">
+            <div class="span12">
               <div class="grid simple">
                 <div class="grid-title no-border">
-                  <h4>Traditional <span class="semi-bold">Validation</span></h4>
+                  <h4>Datos de la <span class="semi-bold">Empresa</span></h4>
                   <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                 </div>
                 <div class="grid-body no-border"> <br />
                     <form id="forml_validation" action="#" >
                         <div class="row-fluid">
-                            <div class="span12">
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label">Nombre: </label>
+                                    <span class="help">de la Empresa.</span>
+                                    <div class="input-with-icon  right">                                       
+                                        <i class=""></i>
+                                        <input type="text" name="txtEmpresaNombre" id="txtEmpresaNombre" class="span12" placeholder="Ingrese nombre"  />                                 
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="span6">
                                 <div class="control-group">
                                     <label class="control-label">Nombre Comercial: </label>
-                                    <span class="help">de Empresa.</span>
+                                    <span class="help">de la Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtEmpresaNombreComercial" id="txtEmpresaNombreComercial" class="span12" placeholder="ingrese nombre comercial"  />                                 
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">Nombre: </label>
-                                    <span class="help">de Empresa.</span>
-                                    <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        <input type="text" name="txtEmpresaNombre" id="txtEmpresaNombre" class="span12" placeholder="Ingrese nombre"  />                                 
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
                                 <div class="control-group">
                                     <label class="control-label">Slogan: </label>
-                                    <span class="help">de Empresa.</span>
+                                    <span class="help">de la Empresa.</span>
                                     <div class="input-with-icon  right">                                       
                                         <i class=""></i>
                                         <input type="text" name="txtSlogan" id="txtSlogan" class="span12" placeholder="Ingrese nombre"  />                                 
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">R.U.C.: </label>
-                                    <span class="help">de Empresa.</span>
-                                    <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        <input type="text" name="txtRuc" id="txtRuc" class="span12" placeholder="Ingrese R.U.C."  />                                 
+                            </div>
+                            <div class="span6">
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div class="control-group">
+                                            <label class="control-label">R.U.C.: </label>
+                                            <span class="help">de la Empresa.</span>
+                                            <div class="input-with-icon  right">                                       
+                                                <i class=""></i>
+                                                <input type="text" name="txtRuc" id="txtRuc" class="span12" placeholder="Ingrese R.U.C."  />                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <div class="control-group">
+                                            <label class="control-label">Puntos: </label>
+                                            <span class="help">de la Empresa.</span>
+                                            <div class="input-with-icon  right">                                       
+                                                <i class=""></i>
+                                                <input type="text" name="txtPuntos" id="txtPuntos" class="span12" placeholder="Ingrese Puntos"  />                                 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">Puntos: </label>
-                                    <span class="help">de Empresa.</span>
-                                    <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        <input type="text" name="txtPuntos" id="txtPuntos" class="span12" placeholder="Ingrese Puntos"  />                                 
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
                                 <div class="control-group">
                                     <label class="control-label">Logo: </label>
-                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        
+                                        <i class=""></i>                                        
                                     </div>
                                 </div>
+                            </div>
+                            <div class="span6">
                                 <div class="control-group">
                                     <label class="control-label">Banner: </label>
-                                    <span class="help">de Empresa.</span>
                                     <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        
+                                        <i class=""></i>                                        
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
                                 <div class="control-group">
                                     <label class="control-label">Estado:</label>
                                     <span class="help">seleccione un estado</span>
@@ -207,11 +227,13 @@ if(objEncargado!=null)
                     </form>                                  
                 </div>
               </div>
-            </div>		
-            <div class="span8">
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
               <div class="grid simple">
                 <div class="grid-title no-border">
-                  <h4>Icon <span class="semi-bold">Validation</span></h4>
+                  <h4>Lista de <span class="semi-bold">Empresas</span></h4>
                   <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                 </div>                  
                 <div class="grid-body ">
