@@ -1,10 +1,8 @@
 <%@page import="sun.misc.BASE64Encoder"%>
 <%@page import="Entidades.clsEncargado"%>
 <%
-clsEncargado objEncargado=(clsEncargado) request.getSession().getAttribute("SessionEncargado");
-if(objEncargado!=null)
-{
-    BASE64Encoder e = new BASE64Encoder();
+    clsEncargado objEncargado=(clsEncargado) request.getSession().getAttribute("SessionEncargado");
+    if(objEncargado!=null) { BASE64Encoder e = new BASE64Encoder(); 
 %>
 <!-- BEGIN CONTAINER -->
 <div id="sidebar">
@@ -14,145 +12,78 @@ if(objEncargado!=null)
       <div class="profile-wrapper"> <img src="data:image/png;base64,<%=e.encodeBuffer(objEncargado.getObjSucursal().getObjEmpresa().getLogo())%>" width="69" height="69" /> </div>
       <div class="user-info">
         <div class="greeting">Bienvenido</div>
-        <div class="username"><%=objEncargado.getApellido()%> <span class="semi-bold"><%=objEncargado.getNombre()%></span></div>
+        <div class="username">
+            <%=objEncargado.getApellido()%> <span class="semi-bold">
+                <br>
+            <%=objEncargado.getNombre()%></span>
+        </div>
         <div class="status">Estado<a href="#">
           <div class="status-icon green"></div>
-          Linea</a></div>
+          Linea</a>
+        </div>
       </div>
     </div>
-    <!-- END MINI-PROFILE -->
-    <!-- BEGIN MINI-WIGETS -->
-    <!-- END MINI-WIGETS -->
+    <!-- END MINI-PROFILE -->  
+    <br>
     <!-- BEGIN SIDEBAR MENU -->
     <ul>
-      <li class="start active "> <a href="index.html"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> <span class="selected"></span> <span class="badge badge-important pull-right">5</span></a> </li>
-      <li class=""> <a href="email.html"> <i class="icon-envelope"></i> <span class="title">Email</span> <span class=" badge badge-disable pull-right ">203</span></a> </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-shield"></i> <span class="title">Configuracion</span> <span class="arrow "></span> <span class="badge badge-disable pull-right">5</span></a>
-        <ul class="sub-menu">
-            <li> <a href="../crud_costo_tipo_habitacion.jsp">Gestion Costo Habitaciones</a></li>             
-            <li> <a href="../crud_empresa.jsp">Gestion Empresa</a></li> 
-            <li> <a href="../crud_encargado.jsp">Gestion Encargado</a></li> 
-            <li> <a href="../crud_habitacion.jsp">Gestion Habitaciones</a></li>
-            <li> <a href="../crud_instalacion.jsp">Gestion Instalacion</a></li>
-            <li> <a href="../crud_paquete.jsp">Gestion Paquetes</a></li>
-            <li> <a href="../crud_servicio.jsp">Gestion Servicio</a></li>            
-            <li> <a href="../crud_tipo_habitacion.jsp">Gestion Tipo Habitación</a></li>            
-        </ul>
+      <li class="start active "> 
+          <a href="../intranet.jsp"> 
+              <i class="icon-bar-chart"></i> <span class="title">Dashboard</span> <span class="selected"></span>
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-custom-form"></i> <span class="title">Forms</span> <span class="arrow "></span> <span class="badge badge-disable pull-right">5</span></a>
-        <ul class="sub-menu">
-          <li> <a href="form_elements.html">Form Elements </a> </li>
-          <li> <a href="form_validations.html">Form Validations</a> </li>
-        </ul>
+      <li class="start active "> 
+          <a href="../crud_empresa.jsp">
+              <i class="icon-home"></i> <span class="title">Empresa</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-custom-portlets"></i> <span class="title">Grids</span> <span class="arrow "></span> </a>
-        <ul class="sub-menu">
-          <li> <a href="grids_simple.html">Simple Grids</a> </li>
-          <li> <a href="grids_draggable.html">Draggable Grids </a> </li>
-        </ul>
+      <li class="start active "> 
+          <a href="../crud_encargado.jsp">
+              <i class="icon-group"></i> <span class="title">Encargados</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-custom-thumb"></i> <span class="title">Tables</span> <span class="arrow "></span> </a>
-        <ul class="sub-menu">
-          <li> <a href="tables.html"> Basic Tables </a> </li>
-          <li> <a href="datatables.html"> Data Tables </a> </li>
-        </ul>
+      <li class="start active "> 
+          <a href="../crud_servicio.jsp">
+              <i class="icon-gears"></i> <span class="title">Servicios</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-custom-map"></i> <span class="title">Maps</span> <span class="arrow "></span> </a>
-        <ul class="sub-menu">
-          <li> <a href="google_map.html"> Google Maps </a> </li>
-          <li> <a href="vector_map.html"> Vector Maps </a> </li>
-        </ul>
+      <li class="start active "> 
+          <a href="../crud_instalacion.jsp">
+              <i class="icon-glass"></i> <span class="title">Instalaciones</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
-      <li class=""> <a href="charts.html"> <i class="icon-custom-chart"></i> <span class="title">Charts</span> </a> </li>
-      <li class=""> <a href="javascript:;"> <i class="icon-custom-extra"></i> <span class="title">Extra</span> <span class="arrow "></span> </a>
-        <ul class="sub-menu">
-          <li> <a href="user-profile.html"> User Profile </a> </li>
-          <li> <a href="gallery.html"> Gallery</a> </li>
-          <li class=""><a href="calender.html"> Calendar</a> </li>
-          <li> <a href="invoice.html"> Invoice </a> </li>
-          <li> <a href="404.html"> 404 Page </a> </li>
-          <li> <a href="500.html"> 500 Page </a> </li>
-          <li> <a href="blank_template.html"> Blank Page </a> </li>
-        </ul>
+      <li class="start active "> 
+          <a href="../crud_tipo_habitacion.jsp">
+              <i class="icon-custom-home"></i> <span class="title">Tipos Habitacións</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
-      <li class="hidden-desktop hidden-phone visible-tablet" id="more-widgets" style="display:"> <a href="javascript:;"> <i class="icon-ellipsis-horizontal"></i></a>
-        <ul class="sub-menu">
-          <div class="side-bar-widgets">
-            <p class="menu-title">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="icon-plus"></i></a></span></p>
-            <ul class="folders" id="folders">
-              <li><a href="#">
-                <div class="status-icon green"></div>
-                My quick tasks </a> </li>
-              <li><a href="#">
-                <div class="status-icon red"></div>
-                To do list </a> </li>
-              <li><a href="#">
-                <div class="status-icon blue"></div>
-                Projects </a> </li>
-              <li id="folder-input" class="folder-input" style="display:none">
-                <input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="" id="folder-name" />
-              </li>
-            </ul>
-            <p class="menu-title">PROJECTS </p>
-            <div class="status-widget">
-              <div class="status-widget-wrapper">
-                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-                <p>Redesign home page</p>
-              </div>
-            </div>
-            <div class="status-widget">
-              <div class="status-widget-wrapper">
-                <div class="title">envato<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-                <p>Statistical report</p>
-              </div>
-            </div>
-          </div>
-        </ul>
+      <li class="start active "> 
+          <a href="../crud_costo_tipo_habitacion.jsp">
+              <i class="icon-custom-home"></i> <span class="title">Costo Habitaciones</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
       </li>
+      <li class="start active "> 
+          <a href="../crud_habitacion.jsp">
+              <i class="icon-custom-home"></i> <span class="title">Habitaciones</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
+      </li>
+      <li class="start active "> 
+          <a href="../crud_paquete.jsp">
+              <i class="icon-gift"></i> <span class="title">Paquetes</span> <span class="selected"></span> 
+              <span class="badge badge-success pull-right">5</span>
+          </a>
+      </li>      
     </ul>
-    <div class="side-bar-widgets">
-      <p class="menu-title">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="icon-plus"></i></a></span></p>
-      <ul class="folders" id="folders">
-        <li><a href="#">
-          <div class="status-icon green"></div>
-          My quick tasks </a> </li>
-        <li><a href="#">
-          <div class="status-icon red"></div>
-          To do list </a> </li>
-        <li><a href="#">
-          <div class="status-icon blue"></div>
-          Projects </a> </li>
-        <li id="folder-input" class="folder-input" style="display:none">
-          <input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="" id="folder-name" />
-        </li>
-      </ul>
-      <p class="menu-title">PROJECTS </p>
-      <div class="status-widget">
-        <div class="status-widget-wrapper">
-          <div class="title">Freelancer<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-          <p>Redesign home page</p>
-        </div>
-      </div>
-      <div class="status-widget">
-        <div class="status-widget-wrapper">
-          <div class="title">envato<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-          <p>Statistical report</p>
-        </div>
-      </div>
-    </div>
-    <a href="#" class="scrollup">Scroll</a>
-    <div class="clearfix"></div>
     <!-- END SIDEBAR MENU -->
   </div>
-  <div class="footer-widget">
-    <div class="progress transparent progress-success progress-small no-radius no-margin">
-      <div data-percentage="79%" class="bar animate-progress-bar"></div>
-    </div>
-    <div class="pull-right">
-      <div class="details-status"> <span data-animation-duration="560" data-value="86" class="animate-number"></span>% </div>
-      <a href="login.html"><i class="icon-off"></i></a></div>
-  </div>
-
 </div>
 <!-- END PAGE -->
 <%}%>   

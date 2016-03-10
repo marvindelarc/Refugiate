@@ -11,7 +11,7 @@ public class clsConexion {
 //    public static String clave = "@123Soltrux123";
     public static String url = "jdbc:mysql://localhost:3306/refugiate";
     public static String usuario = "root";
-    public static String clave = "123456";
+    public static String clave = "";
     
     public clsConexion() {
     }

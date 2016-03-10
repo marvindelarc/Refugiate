@@ -207,8 +207,8 @@ public class clsEncargadoDAO {
             
             if (rsEmpresa.next()){
                 rpta=rsEmpresa.getInt(1);
-                sql= "INSERT INTO sucursal(idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,limpieza,servicio,comodidad,puntuacion,nivel,entrada,fecha,estado)"
-                   + " VALUES(?,?,?,?,?,?,?,0,0,0,0,?,?,now(),1);";
+                sql= "INSERT INTO sucursal(idEmpresa,idDistrito,direccion,pisos,telefono,longitud,latitud,limpieza,servicio,comodidad,puntuacion,nivel,entrada,salida,fecha,estado)"
+                   + " VALUES(?,?,?,?,?,?,?,0,0,0,0,?,?,?,now(),1);";
                 PreparedStatement  stmtSucursal = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmtSucursal.setInt(1, rpta);
                 stmtSucursal.setInt(2, entidad.getObjSucursal().getObjDistrito().getIdDistrito());
@@ -219,6 +219,7 @@ public class clsEncargadoDAO {
                 stmtSucursal.setDouble(7, entidad.getObjSucursal().getLatitud());
                 stmtSucursal.setInt(8, entidad.getObjSucursal().getNivel());
                 stmtSucursal.setString(9, entidad.getObjSucursal().getEntrada());
+                stmtSucursal.setString(10, entidad.getObjSucursal().getSalida());
                 stmtSucursal.executeUpdate();
                 ResultSet rsSucursal = stmtSucursal.getGeneratedKeys();            
                 if (rsSucursal.next()){

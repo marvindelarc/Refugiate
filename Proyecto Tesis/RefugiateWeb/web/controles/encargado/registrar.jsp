@@ -18,7 +18,8 @@ request.getParameter("txtNombreCEmpresa") != null && request.getParameter("txtNo
 request.getParameter("txtSloganEmpresa") != null && request.getParameter("txtSloganEmpresa") != "" &&
 request.getParameter("txtRucEmpresa") != null && request.getParameter("txtRucEmpresa") != "" &&
 request.getParameter("txtDireccionSucrusla") != null && request.getParameter("txtDireccionSucrusla") != "" &&
-request.getParameter("txtHorarioSucursal") != null && request.getParameter("txtHorarioSucursal") != "" &&
+request.getParameter("txtHorarioEntradaSucursal") != null && request.getParameter("txtHorarioEntradaSucursal") != "" &&
+request.getParameter("txtHorarioSalidaSucursal") != null && request.getParameter("txtHorarioSalidaSucursal") != "" &&
 request.getParameter("txtTelefonoSucursal") != null && request.getParameter("txtTelefonoSucursal") != "" &&
 request.getParameter("txtPisosSucursal") != null && request.getParameter("txtPisosSucursal") != "" &&    
 request.getParameter("txtLatiud") != null && request.getParameter("txtLatiud") != "" &&
@@ -49,7 +50,8 @@ request.getParameter("txtFotoBanner") != null && request.getParameter("txtFotoBa
     objSucursal.setObjDistrito(new clsDistrito(Integer.parseInt(request.getParameter("cbDistrito"))));
     objSucursal.setNivel(Integer.parseInt(request.getParameter("cbNivel")));
     objSucursal.setDireccion(request.getParameter("xtDireccionSucrusla"));
-    objSucursal.setEntrada(request.getParameter("txtHorarioSucursal"));
+    objSucursal.setEntrada(request.getParameter("txtHorarioEntradaSucursal"));
+    objSucursal.setSalida(request.getParameter("txtHorarioSalidaSucursal"));
     objSucursal.setTelefono(request.getParameter("txtTelefonoSucursal"));
     objSucursal.setPisos(Integer.parseInt(request.getParameter("txtPisosSucursal")));
     objSucursal.setLatitud(Double.parseDouble(request.getParameter("txtLatiud")));
@@ -65,12 +67,10 @@ request.getParameter("txtFotoBanner") != null && request.getParameter("txtFotoBa
     entidad.setPassword(request.getParameter("txtContrasena"));
     entidad.setEstado(0);
 
-
      int id=clsGestor.insertarEncargado(entidad);
         if(id>0)
             out.print(id);
         else
-            out.print(0);
-   
+            out.print(0);   
 }
 %>
