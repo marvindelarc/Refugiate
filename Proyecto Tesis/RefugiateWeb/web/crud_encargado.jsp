@@ -54,7 +54,7 @@ if(objEncargado!=null)
                     </li>
                 </ul>
                 <!-- BEGIN LOGO -->
-                <a href="intranet.jsp"><img src="assets/img/logo.png" class="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="92" /></a>
+                <a href="intranet.jsp"><img src="assets/img/icono.png" class="logo" data-src="assets/img/icono.png" width="45"/></a>
                 <!-- END LOGO -->
                 <ul class="nav pull-right notifcation-center">
                     <li class="dropdown" id="header_task_bar"> 
@@ -110,87 +110,111 @@ if(objEncargado!=null)
             <div class="clearfix"></div>
             <div class="content">
                 <ul class="breadcrumb">
-                    <li> <p>TU ESTAS EN</p></li>
+                    <li> <p>SE ENCUENTRA EN</p></li>
                     <i class="icon-angle-right"></i>
                     <li><a href="#" class="active">GESTION DE ENCARGADO</a> </li>
                 </ul>
                 <div class="page-title"> <i class="icon-custom-left"></i>
-                    <h3>Configuraciín - <span class="semi-bold">Encargado</span></h3>
+                    <h3>Configuraci&oacute;n - <span class="semi-bold">Encargado</span></h3>
                 </div>	  
                 <div class="row-fluid">
-                    <div class="span4">
+                    <div class="span12">
                         <div class="grid simple">
                             <div class="grid-title no-border">
-                                <h4>Traditional <span class="semi-bold">Validation</span></h4>
+                                <h4>Datos Del <span class="semi-bold">Encargado</span></h4>
                                 <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                             </div>
-                            <div class="grid-body no-border"> <br />
+                            <div class="grid-body no-border"> 
                                 <form id="forml_validation" action="#" >
                                     <div class="row-fluid">
                                         <div class="span12">
-                                            <div class="control-group">
-                                                <label class="control-label">Sucursal: </label>
-                                                <span class="help">Seleccionar Sucursal.</span>
-                                                <div id="cbDistrito" ></div>
-                                            </div>                        
-                                            <div class="control-group">
-                                                <label class="control-label">Nombre: </label>
-                                                <span class="help">Nombres de Encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="Ingrese Nombre"  />                                 
+                                            <div class="row-fluid">
+                                                <div class="span8">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Sucursal: </label>
+                                                        <span class="help">Seleccionar Sucursal.</span>
+                                                        <div id="cbDistrito" ></div>
+                                                    </div>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Estado:</label>
+                                                        <span class="help">seleccione un estado</span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <div class="radio radio-success">
+                                                                <input id="yes" type="radio" name="rEstado" value="1" checked="checked" />
+                                                                <label for="yes">Activo</label>
+                                                                <input id="no" type="radio" name="rEstado" value="0" />
+                                                                <label for="no">Inactivo</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Apellidos:</label>
-                                                <span class="help">Apellidos de Encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtApellidos" id="txtApellidos" class="span12" placeholder="Ingrese Apellido"  />                                 
+                                            <div class="row-fluid">
+                                                <div class="span6">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Nombre: </label>
+                                                        <span class="help">Nombres de Encargado.</span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="Ingrese Nombre"  />                                 
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>                         
-                                            <div class="control-group">
-                                                <label class="control-label">Email:</label>
-                                                <span class="help"> muestra@gmail.com </span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtEmail" id="txtEmail" class="span12" placeholder="Ingrese Email"  />                                 
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Telefono:</label>
-                                                <span class="help"> #947445544 ó 044252224 </span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtTelefono" id="txtTelefono" class="span12" placeholder="Ingrese Telefono"  />                                 
+                                                <div class="span6">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Apellidos:</label>
+                                                        <span class="help">Apellidos de Encargado.</span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <input type="text" name="txtApellidos" id="txtApellidos" class="span12" placeholder="Ingrese Apellido"  />                                 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Usuario:</label>
-                                                <span class="help">Ususario de encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtUsuario" id="txtUsuario" class="span12" placeholder="Ingrese Usuario"  />                                 
+                                            <div class="row-fluid">
+                                                <div class="span6">                        
+                                                    <div class="control-group">
+                                                        <label class="control-label">Email:</label>
+                                                        <span class="help"> muestra@gmail.com </span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <input type="text" name="txtEmail" id="txtEmail" class="span12" placeholder="Ingrese Email"  />                                 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="span6">                        
+                                                    <div class="control-group">
+                                                        <label class="control-label">Telefono:</label>
+                                                        <span class="help"> #947445544 ó 044252224 </span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <input type="text" name="txtTelefono" id="txtTelefono" class="span12" placeholder="Ingrese Telefono"  />                                 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Password:</label>
-                                                <span class="help">Contraseña de encargado.</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <input type="text" name="txtPassword" id="txtPassword" class="span12" placeholder="Ingrese Password"  />                                 
+                                            <div class="row-fluid">
+                                                <div class="span6">                        
+                                                    <div class="control-group">
+                                                        <label class="control-label">Usuario:</label>
+                                                        <span class="help">Ususario de encargado.</span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <input type="text" name="txtUsuario" id="txtUsuario" class="span12" placeholder="Ingrese Usuario"  />                                 
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <label class="control-label">Estado:</label>
-                                                <span class="help">seleccione un estado</span>
-                                                <div class="input-with-icon  right">                                       
-                                                    <i class=""></i>
-                                                    <div class="radio radio-success">
-                                                        <input id="yes" type="radio" name="rEstado" value="1" checked="checked" />
-                                                        <label for="yes">Activo</label>
-                                                        <input id="no" type="radio" name="rEstado" value="0" />
-                                                        <label for="no">Inactivo</label>
+                                                <div class="span6">                        
+                                                    <div class="control-group">
+                                                        <label class="control-label">Password:</label>
+                                                        <span class="help">Contraseña de encargado.</span>
+                                                        <div class="input-with-icon  right">                                       
+                                                            <i class=""></i>
+                                                            <input type="text" name="txtPassword" id="txtPassword" class="span12" placeholder="Ingrese Password"  />                                 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,8 +230,10 @@ if(objEncargado!=null)
                                 </form>
                             </div>
                         </div>
-                    </div>		
-                    <div class="span8">
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
                         <div class="grid simple">
                             <div class="grid-title no-border">
                                 <h4>Icon <span class="semi-bold">Validation</span></h4>

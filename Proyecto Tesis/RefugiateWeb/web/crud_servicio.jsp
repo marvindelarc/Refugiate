@@ -55,7 +55,7 @@ if(objEncargado!=null)
                     </li>
                 </ul>
                 <!-- BEGIN LOGO -->
-                <a href="intranet.jsp"><img src="assets/img/logo.png" class="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="92" /></a>
+                <a href="intranet.jsp"><img src="assets/img/icono.png" class="logo" data-src="assets/img/icono.png" width="45"/></a>
                 <!-- END LOGO -->
                 <ul class="nav pull-right notifcation-center">
                     <li class="dropdown" id="header_task_bar"> 
@@ -108,25 +108,25 @@ if(objEncargado!=null)
             <div class="clearfix"></div>
             <div class="content">
                 <ul class="breadcrumb">
-                    <li><p>TU ESTAS EN</p></li>
+                    <li><p>SE ENCUENTRA EN</p></li>
                     <i class="icon-angle-right"></i>
-                    <li><a href="#" class="active">GESTION DE TIPO DE SERVICIOS</a> </li>
+                    <li><a href="#" class="active">GESTION DE SERVICIOS</a> </li>
                 </ul>
                 <div class="page-title"> <i class="icon-custom-left"></i>
-                    <h3>Configuraciín - <span class="semi-bold">Tipo de Servicio</span></h3>
+                    <h3>Configuraci&oacute;n - <span class="semi-bold">Tipo de Servicio</span></h3>
                 </div>
 
                 <div class="row-fluid">
-                    <div class="span4">
+                    <div class="span12">
                         <div class="grid simple">
                             <div class="grid-title no-border">
-                                <h4>Traditional <span class="semi-bold">Validation</span></h4>
+                                <h4>Datos de <span class="semi-bold">Servicio</span></h4>
                                 <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                             </div>
-                            <div class="grid-body no-border"> <br />
+                            <div class="grid-body no-border">
                                 <form id="forml_validation" action="#">
                                     <div class="row-fluid">
-                                        <div class="span12">
+                                        <div class="span7">
                                             <div class="control-group">
                                                 <label class="control-label">Nombre: </label>
                                                 <span class="help">Digite nombre de servicio.</span>
@@ -135,6 +135,8 @@ if(objEncargado!=null)
                                                     <input type="text" name="txtNombre" id="txtNombre" class="span12" placeholder="ingrese nombre"  />                                 
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="span5">
                                             <div class="control-group">
                                                 <label class="control-label">Estado:</label>
                                                 <span class="help">seleccione un estado</span>
@@ -160,11 +162,13 @@ if(objEncargado!=null)
 				</form>
                             </div>
                         </div>
-                    </div>		
-                    <div class="span8">
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
                         <div class="grid simple">
                             <div class="grid-title no-border">
-                                <h4>Icon <span class="semi-bold">Validation</span></h4>
+                                <h4>Lista de <span class="semi-bold">Servicios</span></h4>
                                 <div class="tools"> <a href="javascript:;" class="collapse"></a> </div>
                             </div>                  
                             <div class="grid-body ">

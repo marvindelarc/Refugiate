@@ -53,7 +53,7 @@ if(objEncargado!=null)
           </a> </li>
       </ul>
       <!-- BEGIN LOGO -->
-      <a href="intranet.jsp"><img src="assets/img/logo.png" class="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="92" /></a>
+      <a href="intranet.jsp"><img src="assets/img/icono.png" class="logo" data-src="assets/img/icono.png" width="45"/></a>
       <!-- END LOGO -->
       <ul class="nav pull-right notifcation-center">
         <li class="dropdown" id="header_task_bar"> <a href="intranet.jsp" class="dropdown-toggle active" data-toggle="">
@@ -112,7 +112,7 @@ if(objEncargado!=null)
         <li><a href="#" class="active">GESTION DE EMPRESA</a> </li>
       </ul>
       <div class="page-title"> <i class="icon-custom-left"></i>
-        <h3>Configuraciín - <span class="semi-bold">Empresa:</span></h3>
+        <h3>Configuraci&oacute;n - <span class="semi-bold">Empresa:</span></h3>
       </div>
 	  
        <div class="row-fluid">
