@@ -1,4 +1,8 @@
-package com.refugiate.app.utilidades.LazyList;
+package com.refugiate.app.utilidades.ImageLoader;
+
+/**
+ * Created by eharo on 14/03/2016.
+ */
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -20,7 +24,7 @@ public class MemoryCache {
         //use 25% of available heap size
         setLimit(Runtime.getRuntime().maxMemory()/4);
     }
-    
+
     public void setLimit(long new_limit){
         limit=new_limit;
         Log.i(TAG, "MemoryCache will use up to "+limit/1024./1024.+"MB");
@@ -48,11 +52,11 @@ public class MemoryCache {
             th.printStackTrace();
         }
     }
-    
+
     private void checkSize() {
         Log.i(TAG, "cache size="+size+" length="+cache.size());
         if(size>limit){
-            Iterator<Entry<String, Bitmap>> iter=cache.entrySet().iterator();//least recently accessed item will be the first one iterated  
+            Iterator<Entry<String, Bitmap>> iter=cache.entrySet().iterator();//least recently accessed item will be the first one iterated
             while(iter.hasNext()){
                 Entry<String, Bitmap> entry=iter.next();
                 size-=getSizeInBytes(entry.getValue());
