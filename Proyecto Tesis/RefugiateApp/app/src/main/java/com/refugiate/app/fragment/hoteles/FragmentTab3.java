@@ -50,12 +50,15 @@ public class FragmentTab3 extends Fragment {
     private ListView listHabitaciones;
     private Spinner Combo;
     private ProgressDialog pdCargar;
+
+    View Tab4 ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tabs_3, container, false);
         entidad= clsSucursalSQL.getSeleccionado(this.getActivity());
-
+        Tab4=  (View) view.findViewById(R.id.Tab4);
+        Tab4.setVisibility(View.GONE);
         listHabitaciones = (ListView)view.findViewById(R.id.listHabitaciones);
         Button btnTab1 = (Button) view.findViewById(R.id.btnTab1);
 

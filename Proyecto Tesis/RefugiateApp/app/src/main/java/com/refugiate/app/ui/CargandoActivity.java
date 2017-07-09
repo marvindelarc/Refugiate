@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.refugiate.app.dao.clsConfiguracionSQL;
 import com.refugiate.app.entidades.clsConfiguracion;
+import com.refugiate.app.servicio.clsService;
 
 public class CargandoActivity extends Activity {
 
@@ -17,8 +18,11 @@ public class CargandoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargando);
         clsConfiguracion entidad=clsConfiguracionSQL.Buscar(this);
-        if(entidad!=null)
-            configuracion=false;
+        if(entidad!=null) {
+            configuracion = false;
+            Intent svc = new Intent(this, clsService.class);
+            startService(svc);
+        }
         AsyncTaskCargaDatos ATCargaDatos = new AsyncTaskCargaDatos(this);
         ATCargaDatos.execute();
     }

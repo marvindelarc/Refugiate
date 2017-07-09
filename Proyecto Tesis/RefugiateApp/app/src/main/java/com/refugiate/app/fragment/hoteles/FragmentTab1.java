@@ -57,15 +57,15 @@ private clsSucursal entidad;
                 btnTabs(4);
             }
         });
-
+        Tab4.setVisibility(View.GONE);
         if(entidad.isPaquete()) {
             Tab3.setVisibility(View.VISIBLE);
-            Tab4.setVisibility(View.VISIBLE);
+           // Tab4.setVisibility(View.VISIBLE);
         }
         else
         {
             Tab3.setVisibility(View.INVISIBLE);
-            Tab4.setVisibility(View.INVISIBLE);
+            //Tab4.setVisibility(View.INVISIBLE);
         }
         TextView lblHotel = (TextView)view.findViewById(R.id.lblHotel);
         lblHotel.setText(entidad.getObjEmpresa().getNombreComercial());

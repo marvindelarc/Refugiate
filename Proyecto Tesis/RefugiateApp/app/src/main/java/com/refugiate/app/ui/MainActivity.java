@@ -261,13 +261,13 @@ public class MainActivity extends  AppCompatActivity {
         drawerItems1 = new ArrayList<>();
         drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_nombre),this.getString(R.string.lbl_item_dw_1_1)));
         drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_ubigeo), this.getString(R.string.lbl_item_dw_1_2)));
-        drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_mapa), this.getString(R.string.lbl_item_dw_1_3)));
+        //drawerItems1.add(new DrawerItem(getResources().getDrawable(R.drawable.ic_action_mapa), this.getString(R.string.lbl_item_dw_1_3)));
 
 
         drawerAdapter1 = new DrawerAdapter(drawerItems1);
         recyclerViewDrawer1.setAdapter(drawerAdapter1);
 
-        recyclerViewDrawer1.setMinimumHeight(convertDpToPx(144));
+        recyclerViewDrawer1.setMinimumHeight(convertDpToPx(96));
         recyclerViewDrawer1.setHasFixedSize(true);
 
 
@@ -300,10 +300,6 @@ public class MainActivity extends  AppCompatActivity {
 
         drawerAdapterSettings = new DrawerAdapter(drawerItemsSettings);
         recyclerViewDrawerSettings.setAdapter(drawerAdapterSettings);
-
-
-
-
 
 
         recyclerViewDrawerSettings.setMinimumHeight(convertDpToPx(96));

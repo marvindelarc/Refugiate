@@ -27,7 +27,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +39,7 @@ import java.util.regex.Pattern;
  * @author EdHam
  */
 public class Utilidades {
-    public static String url="http://192.168.1.2:8084/servicio";//servidor
+    public static String url="http://192.168.1.5:8084/servicio";//servidor
 
 
 
@@ -158,5 +160,44 @@ public class Utilidades {
     {
         SimpleDateFormat e=new SimpleDateFormat("HH:mm");
         return e.format(fecha);
+    }
+
+    public static int getEdad(Date  pNacio){
+
+        try
+        {
+
+            Calendar fecha = new GregorianCalendar();
+            fecha.setTime(pNacio);
+            int diaNacio = fecha.get(Calendar.DATE);
+            int mesNacio = fecha.get(Calendar.MONTH)+1;
+            int anoNacio = fecha.get(Calendar.YEAR);
+            fecha.setTime(new Date());
+
+            int anoFecha = fecha.get(Calendar.YEAR);
+            int mesFecha = fecha.get(Calendar.MONTH)+1;
+            int diaFecha = fecha.get(Calendar.DATE);
+
+            int difAno = anoFecha - anoNacio;
+            int difMes = mesFecha - mesNacio;
+            int difDia = diaFecha - diaNacio;
+
+            if(difMes <0){
+
+                difAno-=1;
+
+            }else if(difMes == 0){
+
+                if(difDia < 0){
+                    difAno-=1;
+                }
+
+            }
+            return difAno;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+
     }
 }

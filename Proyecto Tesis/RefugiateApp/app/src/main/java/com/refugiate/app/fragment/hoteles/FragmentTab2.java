@@ -79,15 +79,15 @@ public class FragmentTab2 extends Fragment implements LocationListener,GoogleMap
         Tab3=  (View) view.findViewById(R.id.Tab3);
         Tab4=  (View) view.findViewById(R.id.Tab4);
         entidad= clsSucursalSQL.getSeleccionado(this.getActivity());
-
+        Tab4.setVisibility(View.GONE);
         if(entidad.isPaquete()) {
             Tab3.setVisibility(View.VISIBLE);
-            Tab4.setVisibility(View.VISIBLE);
+            //Tab4.setVisibility(View.VISIBLE);
         }
         else
         {
             Tab3.setVisibility(View.INVISIBLE);
-            Tab4.setVisibility(View.INVISIBLE);
+            //Tab4.setVisibility(View.INVISIBLE);
         }
         puntosSeleccion = new LatLng(entidad.getLatitud(), entidad.getLongitud());
         Button btnTab1 = (Button) view.findViewById(R.id.btnTab1);
