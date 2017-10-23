@@ -17,7 +17,8 @@ public class clsEncargado {
     private String Celular;
     private String usuario;
     private String password;
-    private int estado;    
+    private int estado; 
+    private int admin; 
     private clsSucursal objSucursal;
 
     public clsEncargado() {
@@ -94,4 +95,21 @@ public class clsEncargado {
     public void setObjSucursal(clsSucursal objSucursal) {
         this.objSucursal = objSucursal;
     }
+
+    public int getInt_IdEncargado() {
+        return int_IdEncargado;
+    }
+
+    public void setInt_IdEncargado(int int_IdEncargado) {
+        this.int_IdEncargado = int_IdEncargado;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+    
 }

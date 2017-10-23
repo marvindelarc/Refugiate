@@ -10,7 +10,11 @@
     <div class="chat-toggler">
         <div class="user-details"> 
             <div class="username">
+                <%if(objEncargado.getAdmin()==0){%>
                 <img alt="" src="data:image/png;base64,<%=e.encodeBuffer(objEncargado.getObjSucursal().getObjEmpresa().getBanner())%>" width="55" height="35" /> 
+                <%}else{%>
+                    <img alt="" src="../assets/img/logo.png" width="55" height="35" /> 
+                <%}%>
             </div>						
         </div>
     </div>
@@ -22,7 +26,8 @@
             <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="dropdownMenu">
                 <li><a href="user-profile.html"> Mi Perfil</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="icon-off"></i>&nbsp;&nbsp;Cerrar Sesión</a></li>
+                <li><a href="javascript:void(0)" onclick="cerrarSesion()" ><i class="icon-off"></i>&nbsp;&nbsp;Cerrar Sesión</a></li>
+
             </ul>
         </li> 
         <li class="quicklinks"> <span class="h-seperate"></span></li>
@@ -35,4 +40,16 @@
         </div>
     </div>  
 </div>
+
+<script>
+
+
+    function cerrarSesion() {
+        
+        if (confirm("Desea cerrar sesion?") == true) {
+              window.location = 'controles/encargado/cerrar_sesion.jsp';
+        } 
+       
+    }
+</script>
 <%}%>   

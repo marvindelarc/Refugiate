@@ -33,7 +33,7 @@ public class clsEncargadoDAO {
             String sql="SELECT e.idEncargado,e.nombre,e.apellido,e.email,e.celularPersonal,e.usuario,e.password,e.estado,e.idSucursal,\n" +
                         "s.idDistrito,s.direccion,s.pisos,s.telefono,s.longitud,s.latitud,s.limpieza,s.servicio,s.comodidad,s.puntuacion,\n" +
                         "s.nivel,s.entrada,s.estado,s.idEmpresa,em.nombreComercial,em.nombre,em.slogan,em.ruc,em.puntos,em.logo,em.banner,\n" +
-                        "em.estado FROM encargado e inner join sucursal s on e.idSucursal=s.idSucursal inner join empresa em \n" +
+                        "em.estado,e.admin FROM encargado e left join sucursal s on e.idSucursal=s.idSucursal left join empresa em \n" +
                         "on s.idEmpresa=em.idEmpresa where e.usuario='"+usuario+"' and e.password='"+password+"';";
       
             conn = clsConexion.getConnection();
@@ -42,6 +42,9 @@ public class clsEncargadoDAO {
 
             if(dr.next())
             {
+                clsSucursal objSucursal = new clsSucursal();
+                if(dr.getInt(32)==0)
+                {
                 clsEmpresa objEmpresa = new clsEmpresa();
                 objEmpresa.setIdEmpresa(dr.getInt(23));
                 objEmpresa.setNombreComercial(dr.getString(24));
@@ -51,9 +54,8 @@ public class clsEncargadoDAO {
                 objEmpresa.setPuntos(dr.getInt(28));
                 objEmpresa.setLogo(dr.getBytes(29));
                 objEmpresa.setBanner(dr.getBytes(30));
-                objEmpresa.setEstado(dr.getInt(23));
-                
-                clsSucursal objSucursal = new clsSucursal();
+                objEmpresa.setEstado(dr.getInt(31));
+                //sucursal
                 objSucursal.setObjEmpresa(objEmpresa);
                 objSucursal.setIdSucursal(dr.getInt(9));
                 objSucursal.setObjDistrito(new clsDistrito(dr.getInt(10)));
@@ -69,7 +71,7 @@ public class clsEncargadoDAO {
                 objSucursal.setNivel(dr.getInt(20));
                 objSucursal.setEntrada(dr.getString(21));
                 objSucursal.setEstado(dr.getInt(22));
-                
+                }
                 entidad = new clsEncargado();                
                 entidad.setObjSucursal(objSucursal);
                 entidad.setIdEncargado(dr.getInt(1));
@@ -80,6 +82,7 @@ public class clsEncargadoDAO {
                 entidad.setUsuario(dr.getString(6));
                 entidad.setPassword(dr.getString(7));
                 entidad.setEstado(dr.getInt(8));    
+                entidad.setAdmin(dr.getInt(32));    
             }
         } catch (Exception e) {
             throw new Exception("Listar "+e.getMessage(), e);
@@ -101,7 +104,7 @@ public class clsEncargadoDAO {
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="SELECT idEncargado,idSucursal,nombre,apellido,email,celularPersonal,usuario,password,estado FROM encargado";
+            String sql="SELECT idEncargado,idSucursal,nombre,apellido,email,celularPersonal,usuario,password,estado FROM encargado where admin=0";
             if(activo)
                     sql+=" where estado=1"; 
             conn = clsConexion.getConnection();

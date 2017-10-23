@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
  * @author EdHam
  */
 public class Utilidades {
-    public static String url="http://192.168.1.5:8084/servicio";//servidor
+    public static String url="http://192.168.1.7:8080/servicio";//servidor
 
 
 

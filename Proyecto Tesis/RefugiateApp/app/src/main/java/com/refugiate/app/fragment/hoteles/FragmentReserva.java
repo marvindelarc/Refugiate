@@ -258,7 +258,7 @@ public class FragmentReserva extends Fragment {
 
         lblFecFin.setText(new StringBuilder().append(Utilidades.pad(calendarFin.get(Calendar.DATE))).append("/").append(Utilidades.pad(calendarFin.get(Calendar.MONTH) + 1)).append("/").append(calendarFin.get(Calendar.YEAR)));
         TotalDias =Utilidades.getDiferenciaEnDias(calendarInicio.getTime(), calendarFin.getTime());
-       // lblTotal.setText(""+Double.parseDouble(lblCosto.getText().toString())*TotalDias);
+        lblTotal.setText(""+Double.parseDouble(lblCosto.getText().toString())*TotalDias);
 
         lblTotalDias.setText("Total: "+TotalDias);
 
@@ -302,8 +302,8 @@ public class FragmentReserva extends Fragment {
     {
 
         itens= clsHabitacionSQL.Listar(this.getActivity());
-        //lblCosto.setText(""+itens.get(0).getObjCostoTipoHabitacion().getCosto());
-       // costoTotal=itens.get(0).getObjCostoTipoHabitacion().getCosto();
+        lblCosto.setText(""+itens.get(0).getObjCostoTipoHabitacion().getCosto());
+        costoTotal=itens.get(0).getObjCostoTipoHabitacion().getCosto();
 
 
 
