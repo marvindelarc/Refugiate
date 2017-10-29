@@ -24,8 +24,7 @@
                 <div class="greeting">Bienvenido</div>
                 <div class="username">
                     <%=objEncargado.getApellido()%> <span class="semi-bold">
-                        <br>
-                        <%=objEncargado.getNombre()%></span>
+                    <%=objEncargado.getNombre()%></span>
                 </div>
                 <div class="status">Estado<a href="#">
                         <div class="status-icon green"></div>
@@ -41,39 +40,31 @@
             <li class="start active "> 
                 <a href="../intranet.jsp"> 
                     <i class="icon-bar-chart"></i> <span class="title">Dashboard</span> <span class="selected"></span>
-                    <span class="badge badge-success pull-right">5</span>
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_empresa.jsp">
-                    <i class="icon-home"></i> <span class="title">Empresa</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-th-large"></i> <span class="title">Empresa</span> <span class="selected"></span> 
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_encargado.jsp">
                     <i class="icon-group"></i> <span class="title">Encargados</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
                 </a>
             </li>
-          
-          
             <li class="start active "> 
                 <a href="../crud_costo_tipo_habitacion.jsp">
-                    <i class="icon-custom-home"></i> <span class="title">Costo Habitaciones</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-money"></i> <span class="title">Costo Habitaciones</span> <span class="selected"></span> 
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_habitacion.jsp">
-                    <i class="icon-custom-home"></i> <span class="title">Habitaciones</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-inbox"></i> <span class="title">Habitaciones</span> <span class="selected"></span> 
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_paquete.jsp">
-                    <i class="icon-gift"></i> <span class="title">Paquetes</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-archive"></i> <span class="title">Paquetes</span> <span class="selected"></span> 
                 </a>
             </li>      
         </ul>
@@ -82,37 +73,31 @@
             <li class="start active "> 
                 <a href="../intranet.jsp"> 
                     <i class="icon-bar-chart"></i> <span class="title">Dashboard</span> <span class="selected"></span>
-                    <span class="badge badge-success pull-right">5</span>
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_empresa.jsp">
-                    <i class="icon-home"></i> <span class="title">Empresa</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-th-large"></i> <span class="title">Empresa</span> <span class="selected"></span> 
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_encargado.jsp">
-                    <i class="icon-group"></i> <span class="title">Encargados</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-group"></i> <span class="title">Encargados</span> <span class="selected"></span>
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_servicio.jsp">
                     <i class="icon-gears"></i> <span class="title">Servicios</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
                 </a>
             </li>
             <li class="start active "> 
                 <a href="../crud_instalacion.jsp">
-                    <i class="icon-glass"></i> <span class="title">Instalaciones</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-glass"></i> <span class="title">Instalaciones</span> <span class="selected"></span>
                 </a>
             </li>
            <li class="start active "> 
                 <a href="../crud_tipo_habitacion.jsp">
-                    <i class="icon-custom-home"></i> <span class="title">Tipos Habitacións</span> <span class="selected"></span> 
-                    <span class="badge badge-success pull-right">5</span>
+                    <i class="icon-inbox"></i> <span class="title">Tipos Habitacións</span> <span class="selected"></span> 
                 </a>
             </li>
         </ul>
